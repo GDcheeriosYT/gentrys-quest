@@ -4,8 +4,9 @@ public class Character {
   private int starRating;
   private String name;
   private int level = 1;
-  private int xp = 0;
-  private int xpRequired = 100;
+  private long xp = 0;
+  private long xpRequired = 100;
+  long previousXpRequired;
   private int health;
   private int defaultHealth;
   private int additionalHealth;
@@ -22,39 +23,29 @@ public class Character {
     this.xpRequired = xpRequired * starRating;
     this.defaultHealth = (starRating * 10);
     this.defaultAttackDamage = starRating;
-    this.defaultDefense = starRating;
+    this.defaultDefense = (int)(starRating * 0.3);
   }
 
   public void addXp(int amount){
     amount += xp;
     xp = 0;
-    if(amount >= xpRequired){
-      System.out.println("more " + level + " " + amount + " " + xpRequired);
-      System.out.println(amount - xpRequired);
-      amount -= xpRequired;
+    while(amount >= xpRequired){
+      amount -= previousXpRequired;
       levelUp(1);
-      if (amount >= xpRequired){
-        addXp(amount - xpRequired);
-      }
-      else{
-        System.out.println("less " + xp + " " + amount + " " + xpRequired);
-        xp += amount;
-      }
     }
-    else{
-      System.out.println("less " + xp + " " + amount + " " + xpRequired);
-      xp += amount;
-    }
+    xp = amount;
   }
 
   public void levelUp(int amount){
     level += amount;
     for(int i = 0; i < amount; i++){
-      xpRequired += xpRequired * (starRating * 0.1);
+      //System.out.println(xpRequired);
+      previousXpRequired = xpRequired;
+      xpRequired += (xpRequired*0.2) * (starRating * 0.1);
+      defaultHealth += level * (starRating * 0.3);
+      defaultAttackDamage += level * (starRating * 0.05);
+      defaultDefense += level * (starRating * 0.02);
     }
-    defaultHealth += level * ((starRating * 10) * 0.5);
-    defaultAttackDamage += level * (starRating * 0.5);
-    defaultDefense += level * (starRating * 0.5);
     updateStats();
   }
 
@@ -84,7 +75,7 @@ public class Character {
     if(additionalDefense != 0){
       moreDefense = " + " + additionalDefense;
     }
-
-    return name + " " + stars + "\nlevel " + level + "\nxp: " + xp + "/" + xpRequired + " " + ((xp/xpRequired)*100) + "%" + "\nhealth: " + defaultHealth + moreHealth  + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense;
+    float percent = (xp * 100.0f) / xpRequired;
+    return name + " " + stars + "\nlevel " + level + "\nxp: " + xp + "/" + xpRequired + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth  + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense;
   }
 }
