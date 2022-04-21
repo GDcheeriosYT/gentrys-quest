@@ -1,17 +1,18 @@
+import character.Character;
+import java.util.ArrayList;
+import artifact.Artifact;
+import enemy.Enemy;
+import weapon.Weapon;
 class Main{
   public static void main(String[] args){
-    Character joe = new Character(5, "joe");
-    System.out.println(joe.toString());
-    joe.levelUp(1);
-    System.out.println(joe.toString());
-    joe.levelUp(100);
-    System.out.println(joe.toString());
-    System.out.println("-----------------\n\n-----------------");
-    Character poopJoe = new Character(4, "poopjoe");
-    System.out.println(poopJoe.toString());
-    poopJoe.levelUp(1);
-    System.out.println(poopJoe.toString());
-    poopJoe.levelUp(100);
-    System.out.println(poopJoe.toString());
+    //private ArrayList<Character> characters;
+    //private ArrayList<Artifact> artifacts;
+    //private ArrayList<Enemy> enemies;
+    //private ArrayList<Weapon> weapons;
+    //new FileWriter("data\\data.json"));
+    Character benji = new Character(5, "benji");
+    //System.out.println(benji.toString());
+    benji.addXp(1251);
+    System.out.println(benji.toString());
   }
 }

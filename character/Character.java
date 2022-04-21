@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package character;
 
 public class Character {
   private int starRating;
@@ -15,7 +15,6 @@ public class Character {
   private int defense;
   private int defaultDefense;
   private int additionalDefense;
-  private ArrayList<Artifact> artifacts;
   
   public Character(int starRating, String name){
     this.starRating = starRating;
@@ -27,11 +26,25 @@ public class Character {
   }
 
   public void addXp(int amount){
-    if(xp + amount > xpRequired){
+    amount += xp;
+    xp = 0;
+    if(amount >= xpRequired){
+      System.out.println("more " + level + " " + amount + " " + xpRequired);
+      System.out.println(amount - xpRequired);
+      amount -= xpRequired;
       levelUp(1);
-      addXp(xp + amount - xpRequired);
+      if (amount >= xpRequired){
+        addXp(amount - xpRequired);
+      }
+      else{
+        System.out.println("less " + xp + " " + amount + " " + xpRequired);
+        xp += amount;
+      }
     }
-    xp += amount;
+    else{
+      System.out.println("less " + xp + " " + amount + " " + xpRequired);
+      xp += amount;
+    }
   }
 
   public void levelUp(int amount){
@@ -72,6 +85,6 @@ public class Character {
       moreDefense = " + " + additionalDefense;
     }
 
-    return name + " " + stars + "\nlevel " + level + "\nxp: " + xp + "/" + xpRequired + "\nhealth: " + defaultHealth + moreHealth  + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense;
+    return name + " " + stars + "\nlevel " + level + "\nxp: " + xp + "/" + xpRequired + " " + ((xp/xpRequired)*100) + "%" + "\nhealth: " + defaultHealth + moreHealth  + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense;
   }
 }
