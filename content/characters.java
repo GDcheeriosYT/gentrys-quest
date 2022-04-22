@@ -45,7 +45,7 @@ public class characters {
     Character masonJames = new Character(5, "Mason James", 0, 4, 0, 0.0, 0, "description");
     Character shrpe = new Character(5, "Shrpe", 1, 3, 0, 0.0, 0, "Child prodigy who also specializes in making cupcakes for the the once famous Philadelphia eagles superfan.");
     Character kevin = new Character(5, "Kevin", 0, 0, 0, 0.0, 4, "description");
-    Character lucasSmidt = new Character(5, "Lucas Smidt", 1, 2, 1, 0.0, 0, "Super rad guy who is super awesome.");
+    Character lucasSmidt = new Character(5, "Lucas Smidt", 1, 2, 1, 0.0, 0, "Totally rad guy who is super awesome.");
 
     //putting into the arraylist
     contentCharacters.add(brodyKrysa);
