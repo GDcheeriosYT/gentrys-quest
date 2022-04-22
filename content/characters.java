@@ -10,8 +10,8 @@ public class characters {
   
   public static ArrayList<Character> getContentCharacters(){
     //1 star characters
-    Character brodyKrysa = new Character(1, "Brody Krysa", 0, 0, 0, 0.0, 0, "description");
-    Character davidNapier = new Character(1, "David Napier", 0, 0, 0, 0, 0, "description");
+    Character brodyKrysa = new Character(1, "Brody Krysa", 0, 0, 0, 0.0, 0, "description. Known as wall climber.");
+    Character davidNapier = new Character(1, "David Napier", 0, 0, 0, 0.0, 0, "6\'4\'\'.");
     Character matheuSliger = new Character(1, "Matheu Sliger", 0, 0, 0, 0.0, 0, "Big ninja.");
 
     //2 star characters
