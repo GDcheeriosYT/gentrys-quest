@@ -17,6 +17,7 @@ public class characters {
     //2 star characters
     Character gavinKnudsen = new Character(2, "Gavin Knudsen", 0, 1, 0, 0.0, 0, "description");
     Character ryanMartinez = new Character(2, "Ryan Martinez",  1, 0, 0, 0.0, 0, "an American former YouTuber known for his rant videos, vlogs, and for being a superfan of the American football team the Philadelphia Eagles.");
+    Character connor = new Character(2, "Connor", 0, 0, 0, 1.0, 0, "description");
 
     //3 star characters
     Character maxTramontina = new Character(3, "Max Tramontina", 1, 0, 0, 1.0, 0, "description");
