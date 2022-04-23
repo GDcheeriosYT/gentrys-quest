@@ -2,6 +2,8 @@ package artifact;
 
 import java.util.ArrayList;
 
+import buff.Buff;
+
 public class Artifact {
   private String name;
   private int starRating;
@@ -9,7 +11,7 @@ public class Artifact {
   private Buff mainAttribute;
   private ArrayList<Buff> attributes = new ArrayList<Buff>();
 
-  public Artifact(String name, int starRating, Buff buff){
+  public Artifact(String name, int starRating, Buff mainAttribute){
     this.name = name;
     this.starRating = starRating;
     this.mainAttribute = mainAttribute;

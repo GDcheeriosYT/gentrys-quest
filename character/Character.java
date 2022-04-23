@@ -1,9 +1,9 @@
 package character;
 import java.util.ArrayList;
-import java.util.List;
 
 import artifact.Artifact;
-import artifact.Buff;
+import buff.Buff;
+import weapon.Weapon;
 
 public class Character {
   private int starRating;
@@ -28,6 +28,7 @@ public class Character {
   private int critDamage;
   private int defaultCritDamage;
   private int additionalCritDamage;
+  private Weapon weapon;
   private Artifact[] artifacts = {null, null, null, null, null};
   
   public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description){
@@ -117,6 +118,11 @@ public class Character {
     }
   }
 
+  public void equipWeapon(Weapon weapon2){
+    System.out.println(name + " has succesfully equipped " + weapon2.getName());
+    weapon = weapon2;
+  }
+
   public Artifact[] getArtifactList(){
     return artifacts;
   }
@@ -144,6 +150,8 @@ public class Character {
     String moreDefense = "";
     String moreCritRate = "";
     String moreCritDamage = "";
+    String weaponInfo = "";
+    String artifactInfo = "";
     if(additionalHealth != 0){
       moreHealth = " + " + additionalHealth + " (" + (defaultHealth + additionalHealth) + ")";
     }
@@ -166,7 +174,20 @@ public class Character {
     if(additionalCritDamage != 0){
       moreCritDamage = " + " + additionalCritDamage + " (" + (defaultCritDamage + additionalCritDamage) + ")";
     }
+
+    weaponInfo += "\n--------weapon--------\n" + weapon + "\n---------------------";
+
+    for(Artifact artifact: artifacts){
+      artifactInfo += "\n^^^^^^^^artifact^^^^^^^^\n";
+      if(artifact != null){
+        artifactInfo += artifact;
+      }
+      else{
+        artifactInfo += "empty\n";
+      }
+    }
+
     float percent = (xp * 100.0f) / xpRequired;
-    return name + " " + stars + "\nlevel " + level + "\nxp: " + xp + "/" + xpRequired + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense + "\ncrit rate: " + defaultCritRate + "% " + moreCritRate + "\ncrit damage " + defaultCritDamage + moreCritDamage + "\n====================\n" + description + "\n====================";
+    return name + " " + stars + "\nlevel " + level + "\nxp: " + xp + "/" + xpRequired + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense + "\ncrit rate: " + defaultCritRate + "% " + moreCritRate + "\ncrit damage " + defaultCritDamage + moreCritDamage + weaponInfo + artifactInfo + "\n====================\n" + description + "\n====================";
   }
 }

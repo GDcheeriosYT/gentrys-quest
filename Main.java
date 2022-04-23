@@ -1,40 +1,46 @@
 import character.Character;
+import content.artifacts;
 import content.characters;
 import java.util.ArrayList;
 import java.util.Scanner;
 import artifact.Artifact;
-import artifact.Buff;
+import buff.Buff;
 import enemy.Enemy;
 import weapon.Weapon;
 import data.Inventory;
 class Main{
   static Inventory inventory = new Inventory();
   public static void main(String[] args){
+    gacha(false, 1);
 
-    // for(Character character: content.characters.getContentCharacters()){
-    //   inventory.addCharacter(character);
-    // }
-
-    Character gentry = new Character(1, "Mr.Gentry", 10, 1, 1, 0.5, 1, "A computer science teacher");
-    
-    inventory.addCharacter(gentry);
-
-    System.out.println("Welcome to Gentry Quest!");
-
-    while(true){
-      System.out.println("1.Travel\n2.Edit Party\n3.Quit");
-      Scanner input = new Scanner(System.in);
-      //Locations
-      if(input.nextLine() == "1"){
-        System.out.println("1.United States\n2.Japan");
-        input = new Scanner(System.in);
-        //US actions
-        if (input.nextLine() == "1"){
-            
-        }
-      }
+    for(Character character: content.characters.getContentCharacters()){
+      inventory.addCharacter(character);
     }
 
+    Character gentry = new Character(1, "Mr.Gentry", 10, 1, 1, 0.5, 1, "A computer science teacher");
+    Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"));
+    
+    gentry.equipWeapon(fists);
+    inventory.addCharacter(gentry);
+
+    System.out.println("Welcome to Gentry's Quest!");
+
+    // Enemy joe = new Enemy("joe", 1000, 5, 1, 1, fists);
+    // System.out.println(joe);
+    
+    // while(true){
+    //   System.out.println("1.Travel\n2.Edit Party\n3.Quit");
+    //   Scanner input = new Scanner(System.in);
+    //   //Locations
+    //   if(input.nextLine() == "1"){
+    //     System.out.println("1.United States\n2.Japan");
+    //     input = new Scanner(System.in);
+    //     //US actions
+    //     if (input.nextLine() == "1"){
+            
+    //     }
+    //   }
+    // }
   }
 
 

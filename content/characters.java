@@ -34,11 +34,11 @@ public class characters {
     Character joeNuts = new Character(4, "Joe Nuts", 0, 0, 3, 0.0, 0, "Massive man who like sausage.");
     
     //5 star characters
-    //Character gMoney = new Character(5, "Gmoney(Mr.Gentry)");
+    Character gMoney = new Character(5, "Gmoney(Mr.Gentry)", 2, 2, 0, 0.0, 0, "hyplains drifter.");
     Character braydenMesserschmidt = new Character(5, "Brayden Messerschmidt", 0, 4, 0, 0.0, 0, "An osu player who formed a contract with ppy to not talk to females.");
-    //Character sethSmith = new Character(5, "Seth Smith");
+    Character sethSmith = new Character(5, "Seth Smith", 1, 3, 0, 0.0, 0, "goat.");
     Character oliverStrauss = new Character(5, "Oliver Strauss", 0, 0, 0, 2.0, 2, "sneaky boi, has many females.");
-    //Character nathanTenney = new Character(5, "Nathan Tenney");
+    Character nathanTenney = new Character(5, "Nathan Tenney", 1, 1, 2, 0.0, 0, "description");
     Character nolanAnderson = new Character(5, "Nolan Anderson", 2, 2, 0, 0.0, 0, "Best character in the game.");
     Character grantArmstrong = new Character(5, "Grant Armstrong", 2, 1, 1, 0.0, 0, "description");
     Character brianHightower = new Character(5, "Brian Hightower", 0, 2, 2, 0.0, 0, "description");
@@ -46,6 +46,10 @@ public class characters {
     Character shrpe = new Character(5, "Shrpe", 1, 3, 0, 0.0, 0, "Child prodigy who also specializes in making cupcakes for the the once famous Philadelphia eagles superfan.");
     Character kevin = new Character(5, "Kevin", 0, 0, 0, 0.0, 4, "description");
     Character lucasSmidt = new Character(5, "Lucas Smidt", 1, 2, 1, 0.0, 0, "Totally rad guy who is super awesome.");
+    Character danMesserschmidt = new Character(5, "Dan Messerschmidt", 1, 2, 1, 0.0, 0, "Very Ugly.");
+    Character jackSmidt = new Character(5, "Jack Smidt", 0, 2, 1, 1.0, 0, "A dank wizard.");
+    Character seanMcbroom = new Character(5, "Sean Mcbroom", 0, 2, 1, 0.0, 1, "Fart nuts");
+    Character hannaHardy = new Character(5, "Hanna Hardy", 1, 1, 0, 1.0, 0, "Fart nuts");
 
     //putting into the arraylist
     contentCharacters.add(brodyKrysa);
@@ -64,11 +68,11 @@ public class characters {
     //contentCharacters.add(dylanTopic);
     //contentCharacters.add(maxShrum);
     contentCharacters.add(joeNuts);
-    //contentCharacters.add(gMoney);
+    contentCharacters.add(gMoney);
     contentCharacters.add(braydenMesserschmidt);
-    //contentCharacters.add(sethSmith);
+    contentCharacters.add(sethSmith);
     contentCharacters.add(oliverStrauss);
-    //contentCharacters.add(nathanTenney);
+    contentCharacters.add(nathanTenney);
     contentCharacters.add(nolanAnderson);
     contentCharacters.add(grantArmstrong);
     contentCharacters.add(brianHightower);
@@ -76,7 +80,11 @@ public class characters {
     contentCharacters.add(shrpe);
     contentCharacters.add(kevin);
     contentCharacters.add(lucasSmidt);
-
+    contentCharacters.add(danMesserschmidt);
+    contentCharacters.add(jackSmidt);
+    contentCharacters.add(seanMcbroom);
+    contentCharacters.add(hannaHardy);
+    
     return contentCharacters;
   }
 }

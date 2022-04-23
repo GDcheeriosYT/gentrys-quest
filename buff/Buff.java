@@ -1,4 +1,4 @@
-package artifact;
+package buff;
 
 import java.util.Random;
 
