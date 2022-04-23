@@ -30,7 +30,7 @@ public class characters {
     //4 star characters
     Character benji = new Character(4, "Benji", 0, 0, 0, 3.0, 0, "He was born a very lucky boy.");
     Character dylanTopic = new Character(4, "Dylan Topic", 3, 0, 0, 0.0, 0, "Cool uhm uhm uhm uhm uhm uhm oh tetris dude.");
-    //Character maxShrum = new Character(4, "Max Shrum");
+    Character maxShrum = new Character(4, "Max Shrum", 2, 1, 0, 0.0, 0, "Minecraft player thing");
     Character joeNuts = new Character(4, "Joe Nuts", 0, 0, 3, 0.0, 0, "Massive man who like sausage.");
     
     //5 star characters
