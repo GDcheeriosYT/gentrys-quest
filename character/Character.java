@@ -118,8 +118,10 @@ public class Character {
     }
   }
 
-  public void equipWeapon(Weapon weapon2){
-    System.out.println(name + " has succesfully equipped " + weapon2.getName());
+  public void equipWeapon(Weapon weapon2, boolean output){
+    if(output == true){
+      System.out.println(name + " has succesfully equipped " + weapon2.getName());
+    }
     weapon = weapon2;
   }
 
