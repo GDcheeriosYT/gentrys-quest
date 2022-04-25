@@ -32,6 +32,7 @@ public class characters {
     Character dylanTopic = new Character(4, "Dylan Topic", 3, 0, 0, 0.0, 0, "Cool uhm uhm uhm uhm uhm uhm oh tetris dude.");
     Character maxShrum = new Character(4, "Max Shrum", 2, 1, 0, 0.0, 0, "Minecraft player thing");
     Character joeNuts = new Character(4, "Joe Nuts", 0, 0, 3, 0.0, 0, "Massive man who like sausage.");
+    Character hannaHardy = new Character(4, "Hanna Hardy", 1, 1, 0, 1.0, 0, "Fart nuts");
     
     //5 star characters
     Character gMoney = new Character(5, "Gmoney(Mr.Gentry)", 2, 2, 0, 0.0, 0, "hyplains drifter.");
@@ -49,7 +50,6 @@ public class characters {
     Character danMesserschmidt = new Character(5, "Dan Messerschmidt", 1, 2, 1, 0.0, 0, "Very Ugly.");
     Character jackSmidt = new Character(5, "Jack Smidt", 0, 2, 1, 1.0, 0, "A dank wizard.");
     Character seanMcbroom = new Character(5, "Sean Mcbroom", 0, 2, 1, 0.0, 1, "Fart nuts");
-    Character hannaHardy = new Character(5, "Hanna Hardy", 1, 1, 0, 1.0, 0, "Fart nuts");
 
     //putting into the arraylist
     contentCharacters.add(brodyKrysa);
@@ -68,6 +68,7 @@ public class characters {
     //contentCharacters.add(dylanTopic);
     //contentCharacters.add(maxShrum);
     contentCharacters.add(joeNuts);
+    contentCharacters.add(hannaHardy);
     contentCharacters.add(gMoney);
     contentCharacters.add(braydenMesserschmidt);
     contentCharacters.add(sethSmith);
@@ -83,7 +84,6 @@ public class characters {
     contentCharacters.add(danMesserschmidt);
     contentCharacters.add(jackSmidt);
     contentCharacters.add(seanMcbroom);
-    contentCharacters.add(hannaHardy);
     
     return contentCharacters;
   }
