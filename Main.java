@@ -11,25 +11,23 @@ import data.Inventory;
 class Main{
   static Inventory inventory = new Inventory();
   public static void main(String[] args){
-    gacha(false, 1);
+    //gacha(false, 7);
 
-    for(Character character: content.characters.getContentCharacters()){
-      inventory.addCharacter(character);
-    }
+    //System.out.println(inventory.getCharacters());
 
-    Character gentry = new Character(1, "Mr.Gentry", 10, 1, 1, 0.5, 1, "A computer science teacher");
+    Character gentry = new Character(5, "Mr.Gentry", 10, 1, 1, 0.5, 1, "A computer science teacher");
     Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"));
     
-    gentry.equipWeapon(fists);
+    gentry.equipWeapon(fists, false);
     inventory.addCharacter(gentry);
 
-    System.out.println("Welcome to Gentry's Quest!");
+    gentry.levelUp(5);
+    System.out.println(gentry);
 
-    // Enemy joe = new Enemy("joe", 1000, 5, 1, 1, fists);
-    // System.out.println(joe);
+    System.out.println("Welcome to Gentry's Quest!");
     
     // while(true){
-    //   System.out.println("1.Travel\n2.Edit Party\n3.Quit");
+    //   System.out.println("1.Travel\n2.inventory\n3.Quit");
     //   Scanner input = new Scanner(System.in);
     //   //Locations
     //   if(input.nextLine() == "1"){
@@ -37,7 +35,7 @@ class Main{
     //     input = new Scanner(System.in);
     //     //US actions
     //     if (input.nextLine() == "1"){
-            
+          
     //     }
     //   }
     // }
@@ -56,10 +54,14 @@ class Main{
         int randomPullIteration = (int)((Math.random() * 10000) + 1);
         int randomPullCharacter = (int)((Math.random() * content.characters.getContentCharacters().size()) + 1);
         Character character = content.characters.getContentCharacters().get(randomPullCharacter - 1);
+        String stars = "";
+        for(int j = 0; j < character.getStarRating(); j++){
+          stars += "*";
+        }
         if(randomPullIteration <= 500){
           boolean inInventory = false;
           if (character.getStarRating() == 5){
-            System.out.println("you got a " + character.getStarRating() + " star " + character.getName());
+            System.out.println("you got a " + character.getName() + " " + stars);
             for(Character character2: inventory.getCharacters()){
               if(character2.getName().equals(character.getName())){
                 System.out.println("but you already have that character, giving xp");
@@ -79,7 +81,7 @@ class Main{
         else if(randomPullIteration <= 1200){
           boolean inInventory = false;
           if (character.getStarRating() == 4){
-            System.out.println("you got a " + character.getStarRating() + " star " + character.getName());
+            System.out.println("you got a " + character.getName() + " " + stars);
             for(Character character2: inventory.getCharacters()){
               if(character2.getName().equals(character.getName())){
                 System.out.println("but you already have that character, giving xp");
@@ -99,7 +101,7 @@ class Main{
         else if(randomPullIteration <= 4500){
           boolean inInventory = false;
           if (character.getStarRating() == 3){
-            System.out.println("you got a " + character.getStarRating() + " star " + character.getName());
+            System.out.println("you got a " + character.getName() + " " + stars);
             for(Character character2: inventory.getCharacters()){
               if(character2.getName().equals(character.getName())){
                 System.out.println("but you already have that character, giving xp");
@@ -119,7 +121,7 @@ class Main{
         else if(randomPullIteration <= 7000){
           boolean inInventory = false;
           if (character.getStarRating() == 2){
-            System.out.println("you got a " + character.getStarRating() + " star " + character.getName());
+            System.out.println("you got a " + character.getName() + " " + stars);
             for(Character character2: inventory.getCharacters()){
               if(character2.getName().equals(character.getName())){
                 System.out.println("but you already have that character, giving xp");
@@ -139,7 +141,7 @@ class Main{
         else if(randomPullIteration <= 9000){
           boolean inInventory = false;
           if (character.getStarRating() == 1){
-            System.out.println("you got a " + character.getStarRating() + " star " + character.getName());
+            System.out.println("you got a " + character.getName() + " " + stars);
             for(Character character2: inventory.getCharacters()){
               if(character2.getName().equals(character.getName())){
                 System.out.println("but you already have that character, giving xp");

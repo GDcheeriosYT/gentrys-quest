@@ -1,5 +1,4 @@
 package location;
-
 import java.util.ArrayList;
 
 public class Location {

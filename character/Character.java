@@ -40,7 +40,7 @@ public class Character {
     this.defaultAttackDamage = starRating + attack;
     this.defaultDefense = starRating + defense;
     this.defaultCritRate = starRating * 0.05 + critRate;
-    this.defaultCritDamage = starRating + attack;
+    this.defaultCritDamage = starRating;
   }
 
   public void addXp(int amount){
@@ -58,11 +58,11 @@ public class Character {
     for(int i = 0; i < amount; i++){
       //System.out.println(xpRequired);
       previousXpRequired = xpRequired;
-      xpRequired += (xpRequired*0.05) * (starRating * 0.25);
+      xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
       defaultHealth += (level * 0.5) * (starRating * 0.9);
       defaultAttackDamage += (level * 0.5) * (starRating * 0.05);
       defaultDefense += (level * 0.5) * (starRating * 0.02);
-      defaultCritRate += (starRating * 0.045);
+      defaultCritRate += 0.2 + (starRating * 0.045);
       defaultCritDamage += (level * 0.5) * (starRating * 0.02);
     }
     updateStats();
