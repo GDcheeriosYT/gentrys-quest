@@ -21,8 +21,8 @@ public class characters {
 
     //3 star characters
     Character maxTramontina = new Character(3, "Max Tramontina", 1, 0, 0, 1.0, 0, "description");
-    //Character calebJallen = new Character(3, "Caleb Jallen");
-    //Character charlieEddie = new Character(3, "Charlie Eddie");
+    Character calebJallen = new Character(3, "Caleb Jallen", 1, 0, 0, 0.0, 1, "Dude I don't know.");
+    Character charlieEddie = new Character(3, "Charlie Eddie", 0, 2, 0, 0.0, 0, "A lone hunter in the wild just trying to avenge his dead dog.");
     //Character alecFerchen = new Character(3, "Alec Ferchen");
     Character dyllonForney = new Character(3, "Dyllon Forney", 0, 2, 0, 0, 0, "description");
     Character kolinCraig = new Character(3, "Kolin Craig", 1, 0, 1, 0.0, 0, "A super *tall* and handsome man.");
@@ -41,7 +41,7 @@ public class characters {
     Character oliverStrauss = new Character(5, "Oliver Strauss", 0, 0, 0, 2.0, 2, "sneaky boi, has many females.");
     Character nathanTenney = new Character(5, "Nathan Tenney", 1, 1, 2, 0.0, 0, "description");
     Character nolanAnderson = new Character(5, "Nolan Anderson", 2, 2, 0, 0.0, 0, "Best character in the game.");
-    Character grantArmstrong = new Character(5, "Grant Armstrong", 2, 1, 1, 0.0, 0, "description");
+    Character grantArmstrong = new Character(5, "Grant Armstrong", 2, 1, 1, 0.0, 0, "");
     Character brianHightower = new Character(5, "Brian Hightower", 0, 2, 2, 0.0, 0, "description");
     Character masonJames = new Character(5, "Mason James", 0, 4, 0, 0.0, 0, "description");
     Character shrpe = new Character(5, "Shrpe", 1, 3, 0, 0.0, 0, "Child prodigy who also specializes in making cupcakes for the the once famous Philadelphia eagles superfan.");
@@ -50,6 +50,7 @@ public class characters {
     Character danMesserschmidt = new Character(5, "Dan Messerschmidt", 1, 2, 1, 0.0, 0, "Very Ugly.");
     Character jackSmidt = new Character(5, "Jack Smidt", 0, 2, 1, 1.0, 0, "A dank wizard.");
     Character seanMcbroom = new Character(5, "Sean Mcbroom", 0, 2, 1, 0.0, 1, "Fart nuts");
+    Character derekCorona = new Character(5, "Derek Corona", 2, 1, 0, 0.0, 1, "An mexican assasin who can't keep away from alcohol.");
 
     //putting into the arraylist
     contentCharacters.add(brodyKrysa);
@@ -65,8 +66,8 @@ public class characters {
     contentCharacters.add(dyllonForney);
     contentCharacters.add(kolinCraig);
     contentCharacters.add(benji);
-    //contentCharacters.add(dylanTopic);
-    //contentCharacters.add(maxShrum);
+    contentCharacters.add(dylanTopic);
+    contentCharacters.add(maxShrum);
     contentCharacters.add(joeNuts);
     contentCharacters.add(hannaHardy);
     contentCharacters.add(gMoney);
@@ -84,6 +85,7 @@ public class characters {
     contentCharacters.add(danMesserschmidt);
     contentCharacters.add(jackSmidt);
     contentCharacters.add(seanMcbroom);
+    contentCharacters.add(derekCorona);
     
     return contentCharacters;
   }
