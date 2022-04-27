@@ -26,6 +26,19 @@ public class Inventory {
     characters.add(character);
   }
 
+  public void addMoney(int amount){
+    money += amount;
+  }
+  
+  public void spendMoney(int amount){
+    if(money - amount < 0){
+      System.out.println("not enough money...");
+    }
+    else{
+      money -= amount;
+    }
+  }
+
   public ArrayList<Character> getCharacters(){
     return characters;
   }
