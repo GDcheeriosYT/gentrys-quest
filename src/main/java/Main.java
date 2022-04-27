@@ -28,20 +28,39 @@ class Main{
     for(Character character: inventory.getCharacters()){
       System.out.println(character);
     }
-    
-    // while(true){
-    //   System.out.println("1.Travel\n2.inventory\n3.Quit");
-    //   Scanner input = new Scanner(System.in);
-    //   //Locations
-    //   if(input.nextLine() == "1"){
-    //     System.out.println("1.United States\n2.Japan");
-    //     input = new Scanner(System.in);
-    //     //US actions
-    //     if (input.nextLine() == "1"){
-          
-    //     }
-    //   }
-    // }
+     while(true){
+       System.out.println("1.Travel\n2.Gacha\n3.inventory\n4.option\n5.Quit");
+       Scanner input = new Scanner(System.in);
+       //Locations
+       if(input.nextInt() == 1){
+         System.out.println("1.United States\n2.Japan");
+         input = new Scanner(System.in);
+         //US actions
+           if (input.nextInt() == 1){
+
+           }
+       }
+
+       else if (input.nextInt() == 2) {
+         System.out.println("how many characters would you like to pull?\n1 = $1000");
+         input = new Scanner(System.in);
+         if(inventory.getMoney() > (input.nextInt() * 1000)){
+          gacha();
+         }
+       }
+
+       //inventory
+       else if (input.nextInt() == 3) {
+         System.out.println("$" + inventory.getMoney());
+         System.out.println("1.Characters\n2.Artifacts\n3.Weapons\n4.Back");
+         input = new Scanner(System.in);
+
+       }
+
+       else{
+         break;
+       }
+     }
   }
 
 
