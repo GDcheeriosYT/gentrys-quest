@@ -38,6 +38,10 @@ public class Inventory {
     }
   }
 
+  public int getMoney() {
+    return money;
+  }
+
   public ArrayList<Character> getCharacters(){
     return characters;
   }
