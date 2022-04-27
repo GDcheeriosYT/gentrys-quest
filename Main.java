@@ -11,20 +11,22 @@ import data.Inventory;
 class Main{
   static Inventory inventory = new Inventory();
   public static void main(String[] args){
-    //gacha(false, 7);
+    //gacha(false, 1000);
 
     //System.out.println(inventory.getCharacters());
 
-    Character gentry = new Character(5, "Mr.Gentry", 10, 1, 1, 0.5, 1, "A computer science teacher");
+    Character gentry = new Character(1, "Mr.Gentry", 1, 1, 1, 0.5, 1, "A computer science teacher");
     Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"));
     
     gentry.equipWeapon(fists, false);
     inventory.addCharacter(gentry);
-
-    gentry.levelUp(5);
-    System.out.println(gentry);
+    //System.out.println(gentry);
 
     System.out.println("Welcome to Gentry's Quest!");
+
+    for(Character character: inventory.getCharacters()){
+      System.out.println(character);
+    }
     
     // while(true){
     //   System.out.println("1.Travel\n2.inventory\n3.Quit");
