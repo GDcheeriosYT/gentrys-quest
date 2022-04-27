@@ -8,7 +8,6 @@ import weapon.Weapon;
 public class Inventory {
   private ArrayList<Character> characters = new ArrayList<Character>();
   private ArrayList<Artifact> artifacts =  new ArrayList<Artifact>();
-  private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   private ArrayList<Weapon> weapons = new ArrayList<Weapon>();
   private int money;
 
