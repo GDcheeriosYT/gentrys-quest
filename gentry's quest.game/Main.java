@@ -13,14 +13,16 @@ class Main{
   public static void main(String[] args){
     //gacha(false, 1000);
 
-    //System.out.println(inventory.getCharacters());
+    System.out.println(content.characters.getContentCharacters());
 
     Character gentry = new Character(1, "Mr.Gentry", 1, 1, 1, 0.5, 1, "A computer science teacher");
     Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"));
     
     gentry.equipWeapon(fists, false);
+    gentry.equipArtifact(new Artifact("Coding Laptop", 3, new Buff("")));
     inventory.addCharacter(gentry);
-    //System.out.println(gentry);
+
+    System.out.println(gentry);
 
     System.out.println("Welcome to Gentry's Quest!");
 
@@ -68,6 +70,7 @@ class Main{
               if(character2.getName().equals(character.getName())){
                 System.out.println("but you already have that character, giving xp");
                 character2.addXp(5000);
+                inventory.addMoney(50);
                 inInventory = true;
               }
             }
@@ -88,6 +91,7 @@ class Main{
               if(character2.getName().equals(character.getName())){
                 System.out.println("but you already have that character, giving xp");
                 character2.addXp(4000);
+                inventory.addMoney(40);
                 inInventory = true;
               }
             }
@@ -108,6 +112,7 @@ class Main{
               if(character2.getName().equals(character.getName())){
                 System.out.println("but you already have that character, giving xp");
                 character2.addXp(3000);
+                inventory.addMoney(30);
                 inInventory = true;
               }
             }
@@ -128,6 +133,7 @@ class Main{
               if(character2.getName().equals(character.getName())){
                 System.out.println("but you already have that character, giving xp");
                 character2.addXp(2000);
+                inventory.addMoney(20);
                 inInventory = true;
               }
             }
@@ -148,6 +154,7 @@ class Main{
               if(character2.getName().equals(character.getName())){
                 System.out.println("but you already have that character, giving xp");
                 character2.addXp(1000);
+                inventory.addMoney(10);
                 inInventory = true;
               }
             }
