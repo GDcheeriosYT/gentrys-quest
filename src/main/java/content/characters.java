@@ -61,8 +61,8 @@ public class characters {
     contentCharacters.add(ryanMartinez);
     contentCharacters.add(connor);
     contentCharacters.add(maxTramontina);
-    //contentCharacters.add(calebJallen);
-    //contentCharacters.add(charlieEddie);
+    contentCharacters.add(calebJallen);
+    contentCharacters.add(charlieEddie);
     //contentCharacters.add(alecFerchen);
     contentCharacters.add(dyllonForney);
     contentCharacters.add(kolinCraig);
