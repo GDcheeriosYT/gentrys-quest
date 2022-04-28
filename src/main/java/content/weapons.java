@@ -1,9 +1,10 @@
 package content;
 import buff.Buff;
 import weapon.Weapon;
+import java.util.ArrayList;
 
 public class weapons {
-  private static arraylist<Weapon> contentWeapons = new arraylist<Weapon>();
+  private static ArrayList<Weapon> contentWeapons = new ArrayList<Weapon>();
 
   public weapons(){
       //empty class
