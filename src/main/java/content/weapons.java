@@ -10,7 +10,7 @@ public class weapons {
       //empty class
   }
 
-    public static arraylist<Weapon> getContentWeapons() {
+    public static ArrayList<Weapon> getContentWeapons() {
       //1 star weapons
       Weapon sword = new Weapon("Sword", 1, "sword", 5, new Buff(""));
       Weapon bow = new Weapon("Bow", 1, "bow", 3, new Buff(""));
