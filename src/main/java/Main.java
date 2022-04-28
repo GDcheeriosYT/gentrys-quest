@@ -68,13 +68,17 @@ class Main{
 
   public static void gacha(Boolean pullWeapon, int amount){
     if(pullWeapon == true){
-      //do something
+      int weaponsPulled = 0;
+      for(int i = 0; i < amount; i = weaponsPulled){
+        int randomPullIteration = (int)((Math.random() * 10000) + 1);
+        int randomPullWeapon = (int)((Math.random() * content.weapons.getContentWeapons().size()) + 1);
+      }
     }
     else{
       int charactersPulled = 0;
       for(int i = 0; i < amount; i = charactersPulled){
-        int randomPullIteration = (int)((Math.random() * 10000) + 1);
         int randomPullCharacter = (int)((Math.random() * content.characters.getContentCharacters().size()) + 1);
+        int randomPullIteration = (int)((Math.random() * 10000) + 1);
         Character character = content.characters.getContentCharacters().get(randomPullCharacter - 1);
         String stars = "";
         for(int j = 0; j < character.getStarRating(); j++){
