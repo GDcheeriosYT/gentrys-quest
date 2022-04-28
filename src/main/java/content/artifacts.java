@@ -18,7 +18,7 @@ public class artifacts {
     Artifact rubiksCube = new Artifact("Rubik's Cube", 2, new Buff("critRate"));
 
     //3 star artifacts
-
+    Artifact animeManga = new Artifact("animeManga", 3, new Buff(""));
 
     //4 star artifacts
 
