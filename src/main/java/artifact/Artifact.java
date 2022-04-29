@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import buff.Buff;
 
 public class Artifact {
-  private String name;
-  private int starRating;
+  private final String name;
+  private final int starRating;
   private int level = 1;
-  private Buff mainAttribute;
+  private final Buff mainAttribute;
   private ArrayList<Buff> attributes = new ArrayList<Buff>();
 
   public Artifact(String name, int starRating, Buff mainAttribute){

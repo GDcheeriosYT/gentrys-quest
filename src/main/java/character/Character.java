@@ -6,9 +6,9 @@ import buff.Buff;
 import weapon.Weapon;
 
 public class Character {
-  private int starRating;
-  private String name;
-  private String description;
+  private final int starRating;
+  private final String name;
+  private final String description;
   private int level = 1;
   private long xp = 0;
   private long xpRequired = 100;

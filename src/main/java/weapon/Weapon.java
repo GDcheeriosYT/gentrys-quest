@@ -3,19 +3,23 @@ package weapon;
 import buff.Buff;
 
 public class Weapon {
-  private String name;
-  private String weaponType;
+  private final String name;
+  private final String weaponType;
   private int level = 1;
-  private int starRating;
+  private final int starRating;
   private int baseAttack;
-  private Buff attribute;
+  private final Buff attribute;
+  private final String[] verbs;
+  private final String description;
 
-  public Weapon(String name, int starRating, String weaponType, int baseAttack, Buff attribute){
+  public Weapon(String name, int starRating, String weaponType, int baseAttack, Buff attribute, String[] verbs, String description){
     this.name = name;
     this.starRating = starRating;
     this.weaponType = weaponType;
     this.baseAttack = baseAttack;
     this.attribute = attribute;
+    this.verbs = verbs;
+    this.description = description;
   }
 
   public void levelUp(int amount){
