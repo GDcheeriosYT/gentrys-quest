@@ -64,6 +64,7 @@ public class artifacts {
     Artifact skittles = new Artifact("Skittles", new Buff("health"), "kelly krysa");
     Artifact kunaiKnife = new Artifact("Kunai Knife", new Buff("critDamage"), "kelly krysa");
 
+    //lucas smidt artifacts
 
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(animeManga);
