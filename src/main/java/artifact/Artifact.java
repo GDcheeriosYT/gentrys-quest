@@ -62,6 +62,10 @@ public class Artifact {
     return value;
   }
 
+  public void generateStarRating(){
+    starRating = (int)((Math.random() * (Math.random() * 5)) + 1);
+  }
+
   public ArrayList<Buff> getAllBuffs(){
     ArrayList<Buff> buffs = new ArrayList<Buff>();
     buffs.add(mainAttribute);
