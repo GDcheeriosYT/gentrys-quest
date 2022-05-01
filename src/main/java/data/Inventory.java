@@ -28,14 +28,19 @@ public class Inventory {
   public void addMoney(int amount){
     money += amount;
   }
-  
-  public void spendMoney(int amount){
+
+  public boolean checkMoney(int amount){
     if(money - amount < 0){
-      System.out.println("not enough money...");
+      System.out.println("Not enought money...");
+      return false;
     }
     else{
-      money -= amount;
+      return true;
     }
+  }
+
+  public void spendMoney(int amount){
+      money -= amount;
   }
 
   public int getMoney() {
