@@ -33,6 +33,7 @@ public class weapons {
       Weapon sharpThrowingCards = new Weapon("Sharp Throwing Cards", 5, "Playing Cards", 28, new Buff("critRate"), new Verbs("grazed", "sliced"), "Tactical throwing cards."); //spencer weapon
       Weapon masonator = new Weapon("Mason-ator", 5, "toothbrush", 30, new Buff("critDamage"), new Verbs("brushed", "squirted toothpaste"), "THE TOOTHBRUSH.\nThis toothbrush has been handed down for generations upon generations by the greek gods. You must be worthy of the brush to obtain this brush."); //mason weapon
       Weapon messerschmidter = new Weapon("The Messerschmidter", 5, "Sword", 40, new Buff("attack"), new Verbs("with your Messerschmidter tapped", "with your Messerschmidter spat on"), "A life size version of Brayden Messerschmidt but as a sword"); //benji weapon
+      Weapon coolWeapon = new Weapon("Cool Weapon", 5, "Sword", 43, new Buff("attack"), new Verbs("sweetify", "coolify"), "Super cool sword.\nOnly the coolest of the cool can wield this sword."); //lucas weapon
 
       contentWeapons.add(sword);
       contentWeapons.add(bow);
