@@ -54,10 +54,10 @@ public class Artifact {
   public double getValue(Buff buff){
     double value;
     if(buff.getBuff()[0] == 4){
-      value = (level * 0.05) + (starRating * 0.3) * (buff.getBuff()[1]);
+      value = 1 + (level * 0.05) + (starRating * 0.3) * (buff.getBuff()[1]);
     }
     else{
-      value = (int)(level * 0.85) + (int)(starRating * 1.2) * (buff.getBuff()[1]);
+      value = 1 + (int)(level * 0.85) + (int)(starRating * 1.2) * (buff.getBuff()[1]);
     }
     return value;
   }
