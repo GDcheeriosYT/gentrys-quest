@@ -47,7 +47,10 @@ public class Artifact {
     }
   }
 
-  
+  public String getFamily() {
+    return family;
+  }
+
   public double getValue(Buff buff){
     double value;
     if(buff.getBuff()[0] == 4){
