@@ -9,6 +9,7 @@ public class Artifact {
   private int starRating;
   private int level = 1;
   private final Buff mainAttribute;
+  private final String family;
   private ArrayList<Buff> attributes = new ArrayList<Buff>();
 
   public Artifact(String name, int starRating, Buff mainAttribute){
