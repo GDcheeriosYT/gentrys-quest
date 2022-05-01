@@ -53,6 +53,18 @@ public class Character {
     xp = amount;
   }
 
+  private boolean hasSet(){
+    boolean hasSet = false;
+    String family = artifacts[0].getFamily();
+    for(Artifact artifact: artifacts){
+      if(artifact == null) return false;
+      if(!artifact.getFamily().equals(family)){
+        return false;
+      }
+    }
+    return true;
+  }
+
   public void levelUp(int amount){
     level += amount;
     for(int i = 0; i < amount; i++){
@@ -115,6 +127,13 @@ public class Character {
           }
         }
       }
+    }
+    if(hasSet()) {
+      additionalHealth += starRating * 1.5;
+      additionalAttackDamage += starRating * 1.5;
+      additionalDefense += starRating * 1.5;
+      additionalCritRate += starRating * 0.7;
+      additionalCritDamage += starRating * 0.7;
     }
   }
 
