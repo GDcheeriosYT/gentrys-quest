@@ -9,10 +9,10 @@ public class Weapon {
   private final int starRating;
   private int baseAttack;
   private final Buff attribute;
-  private final String[] verbs;
+  private final Verbs verbs;
   private final String description;
 
-  public Weapon(String name, int starRating, String weaponType, int baseAttack, Buff attribute, String[] verbs, String description){
+  public Weapon(String name, int starRating, String weaponType, int baseAttack, Buff attribute, Verbs verbs, String description){
     this.name = name;
     this.starRating = starRating;
     this.weaponType = weaponType;
