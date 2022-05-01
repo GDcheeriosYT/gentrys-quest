@@ -97,6 +97,6 @@ public class Artifact {
     for(int i = 0; i < attributes.size(); i++){
       strAttributes += attributes.get(i) + " " + getValue(attributes.get(i)) + "\n"; 
     }
-    return name + " " + stars + "\n" + "level: " + level + "\n" + mainAttribute + " " +getValue(mainAttribute) + "\n" + strAttributes;
+    return name + " " + stars + "\nappart of: " + family + " set" + "\n" + "level: " + level + "\n" + mainAttribute + " " +getValue(mainAttribute) + "\n" + strAttributes;
   }
 }
