@@ -6,60 +6,67 @@ import java.util.Scanner;
 import artifact.Artifact;
 import buff.Buff;
 import enemy.Enemy;
+import weapon.Verbs;
 import weapon.Weapon;
 import data.Inventory;
 class Main{
   static Inventory inventory = new Inventory();
   public static void main(String[] args){
-
-    System.out.println(content.characters.getContentCharacters());
-
     Character gentry = new Character(1, "Mr.Gentry", 1, 1, 1, 0.5, 1, "A computer science teacher");
-    Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"));
-    
+    Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
+
     gentry.equipWeapon(fists, false);
-    gentry.equipArtifact(new Artifact("Coding Laptop", 3, new Buff("")));
     inventory.addCharacter(gentry);
 
-    System.out.println(gentry);
+    for(Character character: content.characters.getContentCharacters()){
+      System.out.println(character);
+    }
 
     System.out.println("Welcome to Gentry's Quest!");
 
-    for(Character character: inventory.getCharacters()){
-      System.out.println(character);
-    }
-     while(true){
-       System.out.println("1.Travel\n2.Gacha\n3.inventory\n4.option\n5.Quit");
-       Scanner input = new Scanner(System.in);
-       //Locations
-       if(input.nextInt() == 1){
-         System.out.println("1.United States\n2.Japan");
-         input = new Scanner(System.in);
-         //US actions
-           if (input.nextInt() == 1){
-
-           }
-       }
-
-       else if (input.nextInt() == 2) {
-         System.out.println("how many characters would you like to pull?\n1 = $1000");
-         input = new Scanner(System.in);
-         if(inventory.getMoney() > (input.nextInt() * 1000)){
-          gacha();
-         }
-       }
-
-       //inventory
-       else if (input.nextInt() == 3) {
-         System.out.println("$" + inventory.getMoney());
-         System.out.println("1.Characters\n2.Artifacts\n3.Weapons\n4.Back");
-         input = new Scanner(System.in);
-
-       }
-
-       else{
-         break;
-       }
+    System.out.println("1.Travel\n2.Gacha\n3.inventory\n4.option\n5.Quit");
+    Scanner input = new Scanner(System.in);
+    int x = 0;
+    while(input.nextInt() != 5){
+      int in = input.nextInt();
+      if(x != 0){
+        System.out.println("1.Travel\n2.Gacha\n3.inventory\n4.option\n5.Quit");
+      }
+      //Locations
+      if(in == 1){
+        System.out.println("1.United States\n2.Japan");
+        //US actions
+        if (in == 1){
+        }
+      }
+      else if (in == 2) {
+        System.out.println("1.Character\n2.Weapon");
+        if (input.nextInt() == 1){
+          System.out.println("how many characters would you like to pull?\n1 = $1000");
+          if(inventory.checkMoney(input.nextInt() * 1000)){
+            inventory.spendMoney(input.nextInt() * 1000);
+            gacha(false, input.nextInt());
+          }
+        }
+        else if(input.nextInt() == 2){
+          System.out.println("how many weapons would you like to pull?\n1 = $1000");
+          if(inventory.checkMoney(input.nextInt() * 1000)){
+            inventory.spendMoney(input.nextInt() * 1000);
+            gacha(true, input.nextInt());
+          }
+        }
+        else{
+          System.out.println("");
+        }
+      }
+      //inventory
+      else if (in == 3) {
+        System.out.println("$" + inventory.getMoney());
+        System.out.println("1.Characters\n2.Artifacts\n3.Weapons\n4.Back");
+      }
+      else{
+        System.out.println("BRO, PICK A VALID OPTION.");
+      }
      }
   }
 
@@ -67,11 +74,37 @@ class Main{
 
 
   public static void gacha(Boolean pullWeapon, int amount){
-    if(pullWeapon == true){
+    if(pullWeapon){
       int weaponsPulled = 0;
       for(int i = 0; i < amount; i = weaponsPulled){
         int randomPullIteration = (int)((Math.random() * 10000) + 1);
         int randomPullWeapon = (int)((Math.random() * content.weapons.getContentWeapons().size()) + 1);
+        Weapon weapon = content.weapons.getContentWeapons().get(randomPullWeapon - 1);
+        String stars = "";
+        for(int j = 0; j < weapon.getStarRating(); j++){
+          stars += "*";
+        }
+        if(randomPullIteration <= 500){
+          boolean inInventory = false;
+          if (weapon.getStarRating() == 5){
+            System.out.println("you got a " + weapon.getName() + " " + stars);
+            for(Weapon weapon1: inventory.getWeapons()){
+              if(weapon1.getName().equals(weapon.getName())){
+                System.out.println("but you already have that weapon, giving xp and money");
+                weapon1.levelUp(1);
+                inventory.addMoney(50);
+                inInventory = true;
+              }
+            }
+            if(inInventory){
+              weaponsPulled += 1;
+            }
+            else{
+              inventory.addWeapon(weapon);
+              weaponsPulled += 1;
+            }
+          }
+        }
       }
     }
     else{
@@ -190,6 +223,13 @@ class Main{
           }
         }
       }
+    }
+  }
+
+  public static void initializeArtifact(Artifact artifact){
+    artifact.generateStarRating();
+    for(int i = 0; i < artifact.getStarRating()*4; i++){
+      artifact.levelUp();
     }
   }
 }
