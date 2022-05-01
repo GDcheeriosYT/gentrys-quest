@@ -12,10 +12,10 @@ public class Artifact {
   private final String family;
   private ArrayList<Buff> attributes = new ArrayList<Buff>();
 
-  public Artifact(String name, int starRating, Buff mainAttribute){
+  public Artifact(String name, Buff mainAttribute, String family){
     this.name = name;
-    this.starRating = starRating;
     this.mainAttribute = mainAttribute;
+    this.family = family;
   }
 
   public void levelUp(){
