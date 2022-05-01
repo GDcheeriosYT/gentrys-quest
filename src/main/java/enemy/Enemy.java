@@ -19,6 +19,10 @@ public class Enemy {
     this.description = description;
   }
 
+  public String getName() {
+    return name;
+  }
+
   public String toString(){
     return name + "\nlevel: " + level + "\nhealth: " + health + "\nattack: " + attack + "\ndefense: " + defense + "\nweapon: " + weapon + "\n===============" + description + "\n===============";
   }
