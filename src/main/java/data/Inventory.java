@@ -50,4 +50,12 @@ public class Inventory {
   public ArrayList<Character> getCharacters(){
     return characters;
   }
+
+  public void addWeapon(Weapon weapon){
+    weapons.add(weapon);
+  }
+
+  public ArrayList<Weapon> getWeapons() {
+    return weapons;
+  }
 }
