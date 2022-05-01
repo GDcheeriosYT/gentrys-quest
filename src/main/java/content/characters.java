@@ -10,22 +10,23 @@ public class characters {
   
   public static ArrayList<Character> getContentCharacters(){
     //1 star characters
-    Character brodyKrysa = new Character(1, "Brody Krysa", 0, 0, 0, 0.0, 0, "description. Known as wall climber.");
-    Character davidNapier = new Character(1, "David Napier", 0, 0, 0, 0.0, 0, "6\'4\'\'.");
+    Character brodyKrysa = new Character(1, "Brody Krysa", 0, 0, 0, 0.0, 0, "Mighty warrior. Known as wall climber.");
+    Character davidNapier = new Character(1, "David Napier", 0, 0, 0, 0.0, 0, "6'4''.");
     Character matheuSliger = new Character(1, "Matheu Sliger", 0, 0, 0, 0.0, 0, "Big ninja.");
 
     //2 star characters
     Character gavinKnudsen = new Character(2, "Gavin Knudsen", 0, 1, 0, 0.0, 0, "description");
     Character ryanMartinez = new Character(2, "Ryan Martinez",  1, 0, 0, 0.0, 0, "an American former YouTuber known for his rant videos, vlogs, and for being a superfan of the American football team the Philadelphia Eagles.");
-    Character connor = new Character(2, "Connor", 0, 0, 0, 1.0, 0, "description");
+    Character connor = new Character(2, "Connor", 0, 0, 0, 1.0, 0, "A mutant shih tzu who loves cheese and belly rubs.");
 
     //3 star characters
     Character maxTramontina = new Character(3, "Max Tramontina", 1, 0, 0, 1.0, 0, "description");
     Character calebJallen = new Character(3, "Caleb Jallen", 1, 0, 0, 0.0, 1, "Dude I don't know.");
     Character charlieEddie = new Character(3, "Charlie Eddie", 0, 2, 0, 0.0, 0, "A lone hunter in the wild just trying to avenge his dead dog.");
-    //Character alecFerchen = new Character(3, "Alec Ferchen");
+    Character alecFerchen = new Character(3, "Alec Ferchen", 0, 2, 0, 0.0, 0, "Big sexy man.");
     Character dyllonForney = new Character(3, "Dyllon Forney", 0, 2, 0, 0, 0, "description");
     Character kolinCraig = new Character(3, "Kolin Craig", 1, 0, 1, 0.0, 0, "A super *tall* and handsome man.");
+    Character connorFogarty = new Character(3, "Connor Fogarty", 0, 1, 1, 0.0, 0, "A mutant shih tzu who loves cheese and belly rubs.");
 
     //4 star characters
     Character benji = new Character(4, "Benji", 0, 0, 0, 3.0, 0, "He was born a very lucky boy.");
@@ -33,10 +34,11 @@ public class characters {
     Character maxShrum = new Character(4, "Max Shrum", 2, 1, 0, 0.0, 0, "Minecraft player thing");
     Character joeNuts = new Character(4, "Joe Nuts", 0, 0, 3, 0.0, 0, "Massive man who like sausage.");
     Character hannaHardy = new Character(4, "Hanna Hardy", 1, 1, 0, 1.0, 0, "Fart nuts");
+    Character kellyKrysa = new Character(4, "Kelly Krysa", 1, 1, 1, 0.0, 0, "Apex predator.");
     
     //5 star characters
-    Character gMoney = new Character(5, "Gmoney(Mr.Gentry)", 2, 2, 0, 0.0, 0, "hyplains drifter.");
-    Character braydenMesserschmidt = new Character(5, "Brayden Messerschmidt", 0, 4, 0, 0.0, 0, "An osu player who formed a contract with ppy to not talk to females.");
+    Character gMoney = new Character(5, "Gmoney(Mr.Gentry)", 2, 2, 0, 0.0, 0, "Hyplains drifter.");
+    Character braydenMesserschmidt = new Character(5, "Brayden Messerschmidt", 0, 4, 0, 0.0, 0, "An osu player who formed a contract with ppy(Dean Herbert) to not talk to females.");
     Character sethSmith = new Character(5, "Seth Smith", 1, 3, 0, 0.0, 0, "goat.");
     Character oliverStrauss = new Character(5, "Oliver Strauss", 0, 0, 0, 2.0, 2, "sneaky boi, has many females.");
     Character nathanTenney = new Character(5, "Nathan Tenney", 1, 1, 2, 0.0, 0, "description");
@@ -52,6 +54,7 @@ public class characters {
     Character seanMcbroom = new Character(5, "Sean Mcbroom", 0, 2, 1, 0.0, 1, "Fart nuts");
     Character derekCorona = new Character(5, "Derek Corona", 2, 1, 0, 0.0, 1, "A mexican assasin who can't keep away from alcohol.");
     Character bryceAnderson = new Character(5, "Bryce Anderson", 2, 1, 0, 0.0, 1, "Tall guy.");
+    Character spencerGeorge = new Character(5, "Spizzle", 0, 0, 0, 1.0, 3, "Gambling glass cannon.");
 
     //putting into the arraylist
     contentCharacters.add(brodyKrysa);
@@ -63,9 +66,10 @@ public class characters {
     contentCharacters.add(maxTramontina);
     contentCharacters.add(calebJallen);
     contentCharacters.add(charlieEddie);
-    //contentCharacters.add(alecFerchen);
+    contentCharacters.add(alecFerchen);
     contentCharacters.add(dyllonForney);
     contentCharacters.add(kolinCraig);
+    contentCharacters.add(connorFogarty);
     contentCharacters.add(benji);
     contentCharacters.add(dylanTopic);
     contentCharacters.add(maxShrum);
@@ -88,6 +92,7 @@ public class characters {
     contentCharacters.add(seanMcbroom);
     contentCharacters.add(derekCorona);
     contentCharacters.add(bryceAnderson);
+    contentCharacters.add(spencerGeorge);
     
     return contentCharacters;
   }
