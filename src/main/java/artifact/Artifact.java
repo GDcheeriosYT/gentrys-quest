@@ -75,6 +75,10 @@ public class Artifact {
     return buffs;
   }
 
+  public void setStarRating(int starRating) {
+    this.starRating = starRating;
+  }
+
   public String getName(){
     return name;
   }
