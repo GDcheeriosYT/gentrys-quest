@@ -6,7 +6,7 @@ import buff.Buff;
 
 public class Artifact {
   private final String name;
-  private final int starRating;
+  private int starRating;
   private int level = 1;
   private final Buff mainAttribute;
   private ArrayList<Buff> attributes = new ArrayList<Buff>();
