@@ -46,6 +46,7 @@ public class weapons {
       contentWeapons.add(sharpThrowingCards);
       contentWeapons.add(masonator);
       contentWeapons.add(messerschmidter);
+      contentWeapons.add(coolWeapon);
 
       return contentWeapons;
     }
