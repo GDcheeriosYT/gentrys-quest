@@ -37,6 +37,7 @@ class Main{
         System.out.println("1.United States\n2.Japan");
         //US actions
         if (in == 1){
+          System.out.println("wip");
         }
       }
       else if (in == 2) {
