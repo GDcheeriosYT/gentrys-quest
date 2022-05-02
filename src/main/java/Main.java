@@ -18,10 +18,6 @@ class Main{
     gentry.equipWeapon(fists, false);
     inventory.addCharacter(gentry);
 
-    for(Character character: content.characters.getContentCharacters()){
-      System.out.println(character);
-    }
-
     System.out.println("Welcome to Gentry's Quest!");
 
     System.out.println("1.Travel\n2.Gacha\n3.inventory\n4.option\n5.Quit");
