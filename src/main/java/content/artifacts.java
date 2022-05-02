@@ -94,6 +94,11 @@ public class artifacts {
     contentArtifacts.add(harness);
     contentArtifacts.add(belayDevice);
     contentArtifacts.add(karabiner);
+    contentArtifacts.add(redEvoShield);
+    contentArtifacts.add(jellyFish);
+    contentArtifacts.add(carbine);
+    contentArtifacts.add(skittles);
+    contentArtifacts.add(kunaiKnife);
 
     return contentArtifacts;
   }
