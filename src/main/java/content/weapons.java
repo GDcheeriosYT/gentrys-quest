@@ -29,7 +29,7 @@ public class weapons {
       Weapon dualSabers = new Weapon("Dual Sabers", 4, "Saber", 32, new Buff("critDamage"), new Verbs("slashed", "mollywhopped"), "The Dual Sabers, plucked from the depths of hell.");
 
       //5 star weapons
-      Weapon cypireanScythe = new Weapon("Cypirean Scythe", 5, "Scythe", 26, new Buff(""), new Verbs("swung at", "did a sweeping 360 BayBlade scythe spin"), "Long black shafted with 死 imprinted on the blade."); //max weapon
+      Weapon cypireanScythe = new Weapon("Cypirean Scythe", 5, "Scythe", 26, new Buff(""), new Verbs("swung at", "did a sweeping 360 BayBlade scythe spin"), "Long black shaft with 死 imprinted on the blade."); //max weapon
       Weapon sharpThrowingCards = new Weapon("Sharp Throwing Cards", 5, "Playing Cards", 28, new Buff("critRate"), new Verbs("grazed", "sliced"), "Tactical throwing cards."); //spencer weapon
       Weapon masonator = new Weapon("Mason-ator", 5, "toothbrush", 30, new Buff("critDamage"), new Verbs("brushed", "squirted toothpaste"), "THE TOOTHBRUSH.\nThis toothbrush has been handed down for generations upon generations by the greek gods. You must be worthy of the brush to obtain this brush."); //mason weapon
       Weapon messerschmidter = new Weapon("The Messerschmidter", 5, "Sword", 40, new Buff("attack"), new Verbs("with your Messerschmidter tapped", "with your Messerschmidter spat on"), "A life size version of Brayden Messerschmidt but as a sword"); //benji weapon
