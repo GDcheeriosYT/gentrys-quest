@@ -22,7 +22,7 @@ class Main{
     gentry.equipWeapon(fists, false);
     inventory.addCharacter(gentry);
 
-    inventory.addMoney(2000000);
+    inventory.setInfiniteMoney(true);
 
     System.out.println("Welcome to Gentry's Quest!");
     while(true){
