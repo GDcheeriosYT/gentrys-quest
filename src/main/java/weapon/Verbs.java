@@ -1,6 +1,7 @@
 package weapon;
 
-public class Verbs {
+public class
+Verbs {
     private final String normal;
     private final String critical;
 

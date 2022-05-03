@@ -30,7 +30,7 @@ public class Character {
   private int additionalCritDamage;
   private Weapon weapon;
   private Artifact[] artifacts = {null, null, null, null, null};
-  
+
   public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description){
     this.starRating = starRating;
     this.name = name;
@@ -84,6 +84,14 @@ public class Character {
     health = defaultHealth + additionalHealth;
     attackDamage = defaultAttackDamage + additionalAttackDamage;
     defense = defaultDefense + additionalDefense;
+  }
+
+  public String getFancyStars(){
+    String stars = "";
+    for(int i = 0; i<starRating; i++){
+      stars += "*";
+    }
+    return stars;
   }
 
   public void equipArtifact(Artifact artifact){
@@ -158,6 +166,10 @@ public class Character {
 
   public String getDescription(){
     return description;
+  }
+
+  public int getLevel() {
+    return level;
   }
 
   public String toString(){

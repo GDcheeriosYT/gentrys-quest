@@ -42,6 +42,7 @@ public class weapons {
       contentWeapons.add(brodysBroadsword);
       contentWeapons.add(alecsRock);
       contentWeapons.add(bone);
+      contentWeapons.add(dualSabers);
       contentWeapons.add(cypireanScythe);
       contentWeapons.add(sharpThrowingCards);
       contentWeapons.add(masonator);
