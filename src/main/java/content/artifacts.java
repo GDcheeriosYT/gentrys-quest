@@ -71,6 +71,13 @@ public class artifacts {
     Artifact piano = new Artifact("Piano", new Buff("critDamage"), "lucas smidt");
     Artifact tardySlip = new Artifact("Tardy Slip", new Buff("attack"), "lucas smidt");
 
+    //dan messerschmidt artifacts
+    Artifact budweiser = new Artifact("Budweiser Bottle", new Buff("attack"), "dan messerschmidt");
+    Artifact tissues = new Artifact("Tissues", new Buff("defense"), "dan messerschmidt");
+    Artifact brokenKeyboard = new Artifact("Broken Keyboard", new Buff(""), "dan messerschmidt");
+    Artifact poop = new Artifact("Poop", new Buff(""), "dan messerschmidt");
+    Artifact nachos = new Artifact("Nachos", new Buff("health"), "dan messerschmidt");
+
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(animeManga);
     contentArtifacts.add(hyveeFualSaverCard);
@@ -104,6 +111,16 @@ public class artifacts {
     contentArtifacts.add(carbine);
     contentArtifacts.add(skittles);
     contentArtifacts.add(kunaiKnife);
+    contentArtifacts.add(computer);
+    contentArtifacts.add(proteinShake);
+    contentArtifacts.add(basketball);
+    contentArtifacts.add(piano);
+    contentArtifacts.add(tardySlip);
+    contentArtifacts.add(budweiser);
+    contentArtifacts.add(tissues);
+    contentArtifacts.add(brokenKeyboard);
+    contentArtifacts.add(poop);
+    contentArtifacts.add(nachos);
 
     return contentArtifacts;
   }
