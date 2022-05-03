@@ -32,7 +32,7 @@ public class Inventory {
 
   public boolean checkMoney(int amount){
     if(money - amount < 0){
-      System.out.println("Not enought money...");
+      System.out.println("Not enough money...");
       return false;
     }
     else{
