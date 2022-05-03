@@ -71,6 +71,24 @@ class Main{
           int indexCounter = 1;
           for(Character character: inventory.getCharacters()){
             System.out.println(indexCounter + ". " + character.getName() + " " + character.getFancyStars() + " lvl " +  character.getLevel());
+            indexCounter++;
+          }
+          int input3 = getMainMenuInput("View character\nor\n" + indexCounter + ". quit");
+          try{
+            System.out.println(inventory.getCharacters().get(input3 - 1));
+          } catch (Exception e) {
+            System.out.flush();
+          }
+          Character character = inventory.getCharacters().get(input3 - 1);
+          int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts");
+          if(input4 == 1){
+            float percent = (character.getXp() * 100.0f) / character.getXpRequired();
+            int input5 = getMainMenuInput("lvl " + character.getLevel() + "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + percent + ")\nupgrade your character?\n$1 = 10xp");
+            if(inventory.checkMoney(input5)){
+              character.addXp(input5 * 10);
+              inventory.spendMoney(input5);
+            }
+            System.out.println("lvl " + character.getLevel() + "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + (int)percent + "%)");
           }
         }
       }
