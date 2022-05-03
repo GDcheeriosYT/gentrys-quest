@@ -38,6 +38,7 @@ class Main{
       //gacha
       else if (input == 2) {
         int input2 = getMainMenuInput("1.Character\n2.Weapon");
+        //character
         if (input2 == 1){
           System.out.println("how many characters would you like to pull?\n1 = $1000\nYou have: " + "$" + inventory.getMoney());
           int amount = getMainMenuInput("");
@@ -46,6 +47,7 @@ class Main{
             gacha(false, amount);
           }
         }
+        //weapon
         else if(input2 == 2){
           int amount = getMainMenuInput("how many weapons would you like to pull?\n1 = $1000\nYou have: " + "$" + inventory.getMoney());
           if(inventory.checkMoney(amount * 1000)){
