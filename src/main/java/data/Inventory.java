@@ -6,6 +6,7 @@ import enemy.Enemy;
 import weapon.Weapon;
 
 public class Inventory {
+  private boolean infiniteMoney;
   private ArrayList<Character> characters = new ArrayList<Character>();
   private ArrayList<Artifact> artifacts =  new ArrayList<Artifact>();
   private ArrayList<Weapon> weapons = new ArrayList<Weapon>();
@@ -39,11 +40,17 @@ public class Inventory {
     }
   }
 
+  public void setInfiniteMoney(boolean infiniteMoney) {
+    this.infiniteMoney = infiniteMoney;
+  }
+
   public void spendMoney(int amount){
+    if(!infiniteMoney)
       money -= amount;
   }
 
   public int getMoney() {
+    if(infiniteMoney) return Integer.MAX_VALUE;
     return money;
   }
 
