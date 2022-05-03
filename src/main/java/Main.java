@@ -29,6 +29,7 @@ class Main{
       int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.Quit");
       //Locations
       if(input == 1){
+        System.out.flush();
         System.out.println("1.United States\n2.Japan");
         //US actions
         if (input == 1){
@@ -37,9 +38,11 @@ class Main{
       }
       //gacha
       else if (input == 2) {
+        System.out.flush();
         int input2 = getMainMenuInput("1.Character\n2.Weapon");
         //character
         if (input2 == 1){
+          System.out.flush();
           System.out.println("how many characters would you like to pull?\n1 = $1000\nYou have: " + "$" + inventory.getMoney());
           int amount = getMainMenuInput("");
           if(inventory.checkMoney(amount * 1000)){
@@ -49,6 +52,7 @@ class Main{
         }
         //weapon
         else if(input2 == 2){
+          System.out.flush();
           int amount = getMainMenuInput("how many weapons would you like to pull?\n1 = $1000\nYou have: " + "$" + inventory.getMoney());
           if(inventory.checkMoney(amount * 1000)){
             inventory.spendMoney(amount * 1000);
@@ -58,10 +62,12 @@ class Main{
       }
       //inventory
       else if (input == 3) {
+        System.out.flush();
         System.out.println("$" + inventory.getMoney());
         int input2 = getMainMenuInput("1.Characters\n2.Artifacts\n3.Weapons\n4.Back");
         //Characters
         if(input2 == 1){
+          System.out.flush();
           int indexCounter = 1;
           for(Character character: inventory.getCharacters()){
             System.out.println(indexCounter + ". " + character.getName() + " " + character.getFancyStars() + " lvl " +  character.getLevel());
