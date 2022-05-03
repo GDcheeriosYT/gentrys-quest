@@ -31,13 +31,16 @@ public class Inventory {
   }
 
   public boolean checkMoney(int amount){
-    if(money - amount < 0){
-      System.out.println("Not enough money...");
-      return false;
+    if(!infiniteMoney){
+      if(money - amount < 0){
+        System.out.println("Not enough money...");
+        return false;
+      }
+      else{
+        return true;
+      }
     }
-    else{
-      return true;
-    }
+    else return true;
   }
 
   public void setInfiniteMoney(boolean infiniteMoney) {
