@@ -65,6 +65,11 @@ public class artifacts {
     Artifact kunaiKnife = new Artifact("Kunai Knife", new Buff("critDamage"), "kelly krysa");
 
     //lucas smidt artifacts
+    Artifact computer = new Artifact("Computer", new Buff("critRate"), "lucas smidt");
+    Artifact proteinShake = new Artifact("Protein Shake", new Buff("health"), "lucas smidt");
+    Artifact basketball = new Artifact("Basketball", new Buff("attack"), "lucas smidt");
+    Artifact piano = new Artifact("Piano", new Buff("critDamage"), "lucas smidt");
+    Artifact tardySlip = new Artifact("Tardy Slip", new Buff("attack"), "lucas smidt");
 
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(animeManga);
