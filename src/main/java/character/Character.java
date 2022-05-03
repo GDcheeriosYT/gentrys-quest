@@ -1,5 +1,6 @@
 package character;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import artifact.Artifact;
 import buff.Buff;
@@ -94,6 +95,14 @@ public class Character {
     return stars;
   }
 
+  public long getXp() {
+    return xp;
+  }
+
+  public long getXpRequired() {
+    return xpRequired;
+  }
+
   public void equipArtifact(Artifact artifact){
     boolean equipped = false;
     for(int i = 0; i < artifacts.length; i++){
@@ -152,6 +161,10 @@ public class Character {
     weapon = weapon2;
   }
 
+  public void deEquipWeapon(Weapon weapon, boolean output){
+    weapon = null;
+  }
+
   public Artifact[] getArtifactList(){
     return artifacts;
   }
@@ -208,16 +221,11 @@ public class Character {
       moreCritDamage = " + " + additionalCritDamage + " (" + (defaultCritDamage + additionalCritDamage) + ")";
     }
 
-    weaponInfo += "\n--------weapon--------\n" + weapon + "\n---------------------";
+    weaponInfo += "\n--------weapon--------\n" + Objects.requireNonNullElse(weapon, "empty\n");
 
     for(Artifact artifact: artifacts){
       artifactInfo += "\n^^^^^^^^artifact^^^^^^^^\n";
-      if(artifact != null){
-        artifactInfo += artifact;
-      }
-      else{
-        artifactInfo += "empty\n";
-      }
+      artifactInfo += Objects.requireNonNullElse(artifact, "empty\n");
     }
 
     float percent = (xp * 100.0f) / xpRequired;
