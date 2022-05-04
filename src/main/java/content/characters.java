@@ -52,7 +52,7 @@ public class characters {
     Character danMesserschmidt = new Character(5, "Dan Messerschmidt", 1, 2, 1, 0.0, 0, "Very Ugly.");
     Character jackSmidt = new Character(5, "Jack Smidt", 0, 2, 1, 1.0, 0, "A dank wizard.");
     Character seanMcbroom = new Character(5, "Sean Mcbroom", 0, 2, 1, 0.0, 1, "Fart nuts");
-    Character derekCorona = new Character(5, "Derek Corona", 2, 1, 0, 0.0, 1, "A mexican assasin who can't keep away from alcohol.");
+    Character derekCorona = new Character(5, "Derek Corona", 2, 1, 0, 0.0, 1, "A mexican assassin who can't keep away from alcohol.");
     Character bryceAnderson = new Character(5, "Bryce Anderson", 2, 1, 0, 0.0, 1, "Tall guy.");
     Character spencerGeorge = new Character(5, "Spizzle", 0, 0, 0, 1.0, 3, "Gambling glass cannon.");
 

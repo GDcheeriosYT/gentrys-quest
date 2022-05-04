@@ -17,7 +17,7 @@ public class weapons {
       Weapon bow = new Weapon("Bow", 1, "bow", 3, new Buff(""), new Verbs("shot", "hit the bullseye of"), "Just a bow.");
       Weapon spear = new Weapon("Spear", 1, "spear", 6, new Buff(""), new Verbs("stabbed", "combo'd"), "Just a spear.");
       Weapon hammer = new Weapon("Hammer", 1, "heavy", 8, new Buff(""), new Verbs("smashed", "slammed"), "Just a hammer.");
-      Weapon brodysBroadsword = new Weapon("Brody's Broadsword", 1, "Broadsword", 10, new Buff("attack"), new Verbs("swung", ""), "Brody the mighty warrior's broadsword.\nThe weapon was wielded for centuries by Brody himself, but was lost when the great calamity struck and he lost his life to the invading Waifu's."); //brody weapon
+      Weapon brodysBroadsword = new Weapon("Brody's Broadsword", 1, "Broadsword", 10, new Buff("attack"), new Verbs("swung", "whacked"), "Brody the mighty warrior's broadsword.\nThe weapon was wielded for centuries by Brody himself, but was lost when the great calamity struck and he lost his life to the invading Waifu's."); //brody weapon
 
       //2 star weapons
       Weapon alecsRock = new Weapon("Alec's Rock", 2, "stone", 12, new Buff("attack"), new Verbs("hit", "immensely bashed"), "A small rock."); //alec weapon
@@ -27,6 +27,7 @@ public class weapons {
 
       //4 star weapons
       Weapon dualSabers = new Weapon("Dual Sabers", 4, "Saber", 32, new Buff("critDamage"), new Verbs("slashed", "mollywhopped"), "The Dual Sabers, plucked from the depths of hell.");
+      Weapon anubisBlade = new Weapon("Anubis Blade", 4, "Sword", 30, new Buff("attack"), new Verbs("quindavious bingleton smashed", "placed a goblin giant on the battlefield and it smacked the poop out of"), "Fried chicken muncher :)."); //joe nuts weapon
 
       //5 star weapons
       Weapon cypireanScythe = new Weapon("Cypirean Scythe", 5, "Scythe", 26, new Buff(""), new Verbs("swung at", "did a sweeping 360 BayBlade scythe spin"), "Long black shaft with 死 imprinted on the blade."); //max weapon
@@ -34,6 +35,8 @@ public class weapons {
       Weapon masonator = new Weapon("Mason-ator", 5, "toothbrush", 30, new Buff("critDamage"), new Verbs("brushed", "squirted toothpaste"), "THE TOOTHBRUSH.\nThis toothbrush has been handed down for generations upon generations by the greek gods. You must be worthy of the brush to obtain this brush."); //mason weapon
       Weapon messerschmidter = new Weapon("The Messerschmidter", 5, "Sword", 40, new Buff("attack"), new Verbs("with your Messerschmidter tapped", "with your Messerschmidter spat on"), "A life size version of Brayden Messerschmidt but as a sword"); //benji weapon
       Weapon coolWeapon = new Weapon("Cool Weapon", 5, "Sword", 43, new Buff("attack"), new Verbs("sweetify", "coolify"), "Super cool sword.\nOnly the coolest of the cool can wield this sword."); //lucas weapon
+      Weapon masonKiller = new Weapon("Mason Killer", 5, "Dagger", 50, new Buff("attack"), new Verbs("penetrated", "hard penetrated"), "Two purple daggers."); //nolan anderson weapon
+      Weapon knutsHammer = new Weapon("Knuts Hammer", 5, "Hammer", 50, new Buff("defense"), new Verbs("knut slammed", "atomically knut slammed"), "The Massive Knuts Hammer.\nWas picked up by the first great lord knuts and used to slay all the oppositions. lol ##"); //joe nuts weapon
 
       contentWeapons.add(sword);
       contentWeapons.add(bow);
@@ -48,6 +51,8 @@ public class weapons {
       contentWeapons.add(masonator);
       contentWeapons.add(messerschmidter);
       contentWeapons.add(coolWeapon);
+      contentWeapons.add(masonKiller);
+      contentWeapons.add(knutsHammer);
 
       return contentWeapons;
     }

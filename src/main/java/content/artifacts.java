@@ -78,6 +78,13 @@ public class artifacts {
     Artifact poop = new Artifact("Poop", new Buff(""), "dan messerschmidt");
     Artifact nachos = new Artifact("Nachos", new Buff("health"), "dan messerschmidt");
 
+    //nolan anderson artifacts
+    Artifact manscappedRazerBundle = new Artifact("Manscapped Razer Bundle", new Buff("attack"), "nolan anderson");
+    Artifact lubricant = new Artifact("Lubricant", new Buff("defense"), "nolan anderson");
+    Artifact pondWater = new Artifact("Pond Water", new Buff("health"), "nolan anderson");
+    Artifact chikFilABurrito = new Artifact("Chik-Fil-A Burrito", new Buff("defense"), "nolan anderson");
+    Artifact spicyStick = new Artifact("Spicy Stick", new Buff("attack"), "nolan anderson");
+
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(animeManga);
     contentArtifacts.add(hyveeFualSaverCard);
@@ -121,6 +128,11 @@ public class artifacts {
     contentArtifacts.add(brokenKeyboard);
     contentArtifacts.add(poop);
     contentArtifacts.add(nachos);
+    contentArtifacts.add(manscappedRazerBundle);
+    contentArtifacts.add(lubricant);
+    contentArtifacts.add(pondWater);
+    contentArtifacts.add(chikFilABurrito);
+    contentArtifacts.add(spicyStick);
 
     return contentArtifacts;
   }
