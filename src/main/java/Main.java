@@ -80,15 +80,28 @@ class Main{
             System.out.flush();
           }
           Character character = inventory.getCharacters().get(input3 - 1);
-          int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts");
-          if(input4 == 1){
-            float percent = (character.getXp() * 100.0f) / character.getXpRequired();
-            int input5 = getMainMenuInput("lvl " + character.getLevel() + "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + percent + ")\nupgrade your character?\n$1 = 10xp");
-            if(inventory.checkMoney(input5)){
-              character.addXp(input5 * 10);
-              inventory.spendMoney(input5);
+          int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.back");
+          boolean characterInfoViewing = true;
+          while(characterInfoViewing){
+            //leveling
+            if(input4 == 1){
+              float percent = (character.getXp() * 100.0f) / character.getXpRequired();
+              boolean leveling = true;
+              while(leveling){
+                int input5 = getMainMenuInput("lvl " + character.getLevel() + "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + percent + ")\nupgrade your character?\n$1 = 10xp\n0 to go back");
+                if(input5 == 0) leveling = false;
+                else{
+                  if(inventory.checkMoney(input5)){
+                    character.addXp(input5 * 10);
+                    inventory.spendMoney(input5);
+                  }
+                }
+              }
             }
-            System.out.println("lvl " + character.getLevel() + "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + (int)percent + "%)");
+            //manage weapon
+            if(input4 == 2){
+
+            }
           }
         }
       }
