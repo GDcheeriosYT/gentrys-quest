@@ -48,8 +48,8 @@ public class Character {
     amount += xp;
     xp = 0;
     while(amount >= xpRequired){
-      amount -= previousXpRequired;
       levelUp(1);
+      amount -= previousXpRequired;
     }
     xp = amount;
   }
