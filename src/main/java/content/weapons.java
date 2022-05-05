@@ -24,10 +24,12 @@ public class weapons {
       Weapon bone = new Weapon("Bone", 2, "sword", 3, new Buff(""), new Verbs("clobbered", "smushed"), "4 foot long dog bone"); //connor weapon
 
       //3 star weapons
+      Weapon homemadeStaffOfHoney = new Weapon("Homade Staff of Honey", 3, "Staff", 20, new Buff("critRate"), new Verbs("stabbed", "enlightened"), "A pointy staff of honey.");
 
       //4 star weapons
       Weapon dualSabers = new Weapon("Dual Sabers", 4, "Saber", 32, new Buff("critDamage"), new Verbs("slashed", "mollywhopped"), "The Dual Sabers, plucked from the depths of hell.");
       Weapon anubisBlade = new Weapon("Anubis Blade", 4, "Sword", 30, new Buff("attack"), new Verbs("quindavious bingleton smashed", "placed a goblin giant on the battlefield and it smacked the poop out of"), "Fried chicken muncher :)."); //joe nuts weapon
+      Weapon nutBuster = new Weapon("Nut Buster", 4, "Mace", 25, new Buff("attack"), new Verbs("you busted", "busted their nuts"), "Perfect weapon to slide on your opps and bust their nuts."); //gavin weapon
 
       //5 star weapons
       Weapon cypireanScythe = new Weapon("Cypirean Scythe", 5, "Scythe", 26, new Buff(""), new Verbs("swung at", "did a sweeping 360 BayBlade scythe spin"), "Long black shaft with 死 imprinted on the blade."); //max weapon
@@ -37,6 +39,7 @@ public class weapons {
       Weapon coolWeapon = new Weapon("Cool Weapon", 5, "Sword", 43, new Buff("attack"), new Verbs("sweetify", "coolify"), "Super cool sword.\nOnly the coolest of the cool can wield this sword."); //lucas weapon
       Weapon masonKiller = new Weapon("Mason Killer", 5, "Dagger", 50, new Buff("attack"), new Verbs("penetrated", "hard penetrated"), "Two purple daggers."); //nolan anderson weapon
       Weapon knutsHammer = new Weapon("Knuts Hammer", 5, "Hammer", 50, new Buff("defense"), new Verbs("knut slammed", "atomically knut slammed"), "The Massive Knuts Hammer.\nWas picked up by the first great lord knuts and used to slay all the oppositions. lol ##"); //joe nuts weapon
+      Weapon sirFarQuad = new Weapon("Sir Far Quad", 5, "Lance", 50, new Buff("critDamage"), new Verbs("impailed", "sliced"), "Long long sword."); //dylan weapon
 
       contentWeapons.add(sword);
       contentWeapons.add(bow);
@@ -45,7 +48,10 @@ public class weapons {
       contentWeapons.add(brodysBroadsword);
       contentWeapons.add(alecsRock);
       contentWeapons.add(bone);
+      contentWeapons.add(homemadeStaffOfHoney);
       contentWeapons.add(dualSabers);
+      contentWeapons.add(anubisBlade);
+      contentWeapons.add(nutBuster);
       contentWeapons.add(cypireanScythe);
       contentWeapons.add(sharpThrowingCards);
       contentWeapons.add(masonator);
@@ -53,6 +59,7 @@ public class weapons {
       contentWeapons.add(coolWeapon);
       contentWeapons.add(masonKiller);
       contentWeapons.add(knutsHammer);
+      contentWeapons.add(sirFarQuad);
 
       return contentWeapons;
     }

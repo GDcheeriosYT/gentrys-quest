@@ -85,6 +85,13 @@ public class artifacts {
     Artifact chikFilABurrito = new Artifact("Chik-Fil-A Burrito", new Buff("defense"), "nolan anderson");
     Artifact spicyStick = new Artifact("Spicy Stick", new Buff("attack"), "nolan anderson");
 
+    //gavin knudsen artifacts
+    Artifact nutCracker = new Artifact("Nut Cracker", new Buff("defense"), "gavin knudsen");
+    Artifact saltyNuts = new Artifact("Salty Nuts", new Buff("health"), "gavin knudsen");
+    Artifact bowlOfNuts = new Artifact("Bowl of Nuts", new Buff("critDamage"), "gavin knudsen");
+    Artifact secretSauce = new Artifact("Secret Sauce", new Buff("health"), "gavin knudsen");
+    Artifact emptyPringlesCan = new Artifact("Empty Pringles Can", new Buff("attack"), "gavin knudsen");
+
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(animeManga);
     contentArtifacts.add(hyveeFualSaverCard);

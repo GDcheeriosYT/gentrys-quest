@@ -27,6 +27,7 @@ public class characters {
     Character dyllonForney = new Character(3, "Dyllon Forney", 0, 2, 0, 0, 0, "description");
     Character kolinCraig = new Character(3, "Kolin Craig", 1, 0, 1, 0.0, 0, "A super *tall* and handsome man.");
     Character connorFogarty = new Character(3, "Connor Fogarty", 0, 1, 1, 0.0, 0, "A mutant shih tzu who loves cheese and belly rubs.");
+    Character asherLane = new Character(3, "Asher Lane", 0, 1, 0, 1.0, 0, "Pray to the goddess honey.");
 
     //4 star characters
     Character benji = new Character(4, "Benji", 0, 0, 0, 3.0, 0, "He was born a very lucky boy.");
@@ -70,11 +71,13 @@ public class characters {
     contentCharacters.add(dyllonForney);
     contentCharacters.add(kolinCraig);
     contentCharacters.add(connorFogarty);
+    contentCharacters.add(asherLane);
     contentCharacters.add(benji);
     contentCharacters.add(dylanTopic);
     contentCharacters.add(maxShrum);
     contentCharacters.add(joeNuts);
     contentCharacters.add(hannaHardy);
+    contentCharacters.add(kellyKrysa);
     contentCharacters.add(gMoney);
     contentCharacters.add(braydenMesserschmidt);
     contentCharacters.add(sethSmith);
