@@ -144,7 +144,7 @@ class Main{
                 float percent = (weapon.getXp() * 100.0f) / weapon.getXpRequired();
                 boolean leveling = true;
                 while(leveling){
-                  int input5 = getMainMenuInput("lvl " + weapon.getLevel() + "\nxp " + weapon.getXp() + "/" + weapon.getXpRequired() + " (" + percent + ")\nupgrade your character?\n$1 = 10xp\n0 to go back");
+                  int input5 = getMainMenuInput("lvl " + weapon.getLevel() + "\nxp " + weapon.getXp() + "/" + weapon.getXpRequired() + " (" + percent + ")\nupgrade your weapon?\n$1 = 10xp\n0 to go back");
                   if(input5 == 0) leveling = false;
                   else{
                     if(inventory.checkMoney(input5)){
