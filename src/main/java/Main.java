@@ -62,47 +62,102 @@ class Main{
       }
       //inventory
       else if (input == 3) {
-        System.out.flush();
-        System.out.println("$" + inventory.getMoney());
-        int input2 = getMainMenuInput("1.Characters\n2.Artifacts\n3.Weapons\n4.Back");
-        //Characters
-        if(input2 == 1){
+        boolean inventoryViewing = true;
+        while(inventoryViewing){
           System.out.flush();
-          int indexCounter = 1;
-          for(Character character: inventory.getCharacters()){
-            System.out.println(indexCounter + ". " + character.getName() + " " + character.getFancyStars() + " lvl " +  character.getLevel());
-            indexCounter++;
-          }
-          int input3 = getMainMenuInput("View character\nor\n" + indexCounter + ". quit");
-          try{
-            System.out.println(inventory.getCharacters().get(input3 - 1));
-          } catch (Exception e) {
+          System.out.println("$" + inventory.getMoney());
+          int input2 = getMainMenuInput("1.Characters\n2.Artifacts\n3.Weapons\n4.Back");
+          //Characters
+          if(input2 == 1){
             System.out.flush();
-          }
-          Character character = inventory.getCharacters().get(input3 - 1);
-          int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.back");
-          boolean characterInfoViewing = true;
-          while(characterInfoViewing){
-            //leveling
-            if(input4 == 1){
-              float percent = (character.getXp() * 100.0f) / character.getXpRequired();
-              boolean leveling = true;
-              while(leveling){
-                int input5 = getMainMenuInput("lvl " + character.getLevel() + "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + percent + ")\nupgrade your character?\n$1 = 10xp\n0 to go back");
-                if(input5 == 0) leveling = false;
-                else{
-                  if(inventory.checkMoney(input5)){
-                    character.addXp(input5 * 10);
-                    inventory.spendMoney(input5);
+            int indexCounter = 1;
+            for(Character character: inventory.getCharacters()){
+              System.out.println(indexCounter + ". " + character.getName() + " " + character.getFancyStars() + " lvl " +  character.getLevel());
+              indexCounter++;
+            }
+            int input3 = getMainMenuInput("View character\nor\n" + indexCounter + ". quit");
+            try{
+              System.out.println(inventory.getCharacters().get(input3 - 1));
+            } catch (Exception e) {
+              System.out.flush();
+            }
+            Character character = inventory.getCharacters().get(input3 - 1);
+            int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.back");
+            boolean characterInfoViewing = true;
+            while(characterInfoViewing){
+              //leveling
+              if(input4 == 1){
+                float percent = (character.getXp() * 100.0f) / character.getXpRequired();
+                boolean leveling = true;
+                while(leveling){
+                  int input5 = getMainMenuInput("lvl " + character.getLevel() + "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + percent + ")\nupgrade your character?\n$1 = 10xp\n0 to go back");
+                  if(input5 == 0) leveling = false;
+                  else{
+                    if(inventory.checkMoney(input5)){
+                      character.addXp(input5 * 10);
+                      inventory.spendMoney(input5);
+                    }
                   }
                 }
               }
-            }
-            //manage weapon
-            if(input4 == 2){
-
+              //manage weapon
+              else if(input4 == 2){
+                boolean weaponViewing = true;
+                while(weaponViewing){
+                  int input5 = getMainMenuInput("1.swap weapon\n2.back");
+                  //swap weapon
+                  if(input5 == 1){
+                    int counter = 1;
+                    for(Weapon weapon: inventory.getWeapons()){
+                      System.out.println(counter + "." + weapon.getName() + " " + weapon.getFancyStars() + " lvl " + weapon.getLevel());
+                    }
+                  }
+                  //end loop
+                  else if(input5 == 2) weaponViewing = false;
+                }
+              }
+              //end loop
+              else if(input4 == 4) characterInfoViewing = false;
             }
           }
+          //artifacts
+          else if(input2 == 2){
+
+          }
+          //weapons
+          else if(input2 == 3){
+            int counter = 1;
+            for(Weapon weapon: inventory.getWeapons()){
+              System.out.println(counter + "." + weapon.getName() + " " + weapon.getFancyStars() + " lvl " + weapon.getLevel());
+              counter += 1;
+            }
+            int input3 = getMainMenuInput("select a weapon\nor\n0.back");
+            boolean selectingWeapons = true;
+            while(selectingWeapons){
+              if(input3 != 0){
+                try{
+                  System.out.println(inventory.getWeapons().get(input3 - 1));
+                } catch (Exception e) {
+                  System.out.flush();
+                }
+                Weapon weapon = inventory.getWeapons().get(input3 -1);
+                float percent = (weapon.getXp() * 100.0f) / weapon.getXpRequired();
+                boolean leveling = true;
+                while(leveling){
+                  int input5 = getMainMenuInput("lvl " + weapon.getLevel() + "\nxp " + weapon.getXp() + "/" + weapon.getXpRequired() + " (" + percent + ")\nupgrade your character?\n$1 = 10xp\n0 to go back");
+                  if(input5 == 0) leveling = false;
+                  else{
+                    if(inventory.checkMoney(input5)){
+                      weapon.addXp(input5 * 10);
+                      inventory.spendMoney(input5);
+                    }
+                  }
+                }
+              }
+              else selectingWeapons = false;
+            }
+          }
+          else inventoryViewing = false;
         }
       }
       else{

@@ -45,12 +45,24 @@ public class Weapon {
     return stars;
   }
 
+  public long getXp() {
+    return xp;
+  }
+
+  public long getXpRequired() {
+    return xpRequired;
+  }
+
+  public int getLevel() {
+    return level;
+  }
+
   public void addXp(int amount){
     amount += xp;
     xp = 0;
     while(amount >= xpRequired){
-      amount -= previousXpRequired;
       levelUp(1);
+      amount -= previousXpRequired;
     }
     xp = amount;
   }
