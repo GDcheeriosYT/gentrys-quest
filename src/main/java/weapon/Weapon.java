@@ -30,6 +30,7 @@ public class Weapon {
     level += amount;
     for(int i = 0; i < amount; i++){
       previousXpRequired = xpRequired;
+      xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
       baseAttack += (level*0.16) + (starRating);
       if(level % 5 == 0){
         attribute.levelUp(1);
