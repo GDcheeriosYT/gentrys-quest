@@ -1,26 +1,28 @@
 import character.Character;
-import content.artifacts;
-import content.characters;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import artifact.Artifact;
 import buff.Buff;
-import enemy.Enemy;
 import weapon.Verbs;
 import weapon.Weapon;
 import data.Inventory;
+import org.json.JSONObject;
 class Main{
   static Inventory inventory = new Inventory();
   static ArrayList<Character> gachaCharacterObtained = new ArrayList<Character>();
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
   public static void main(String[] args){
-    Character gentry = new Character(1, "Mr.Gentry", 1, 1, 1, 0.5, 1, "A computer science teacher");
+
+    JSONObject gameData = new JSONObject();
+
+    String name = new Scanner(System.in).nextLine();
+
+    Character player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
     Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
-    gentry.equipWeapon(fists, false);
-    inventory.addCharacter(gentry);
+    player.equipWeapon(fists, false);
+    inventory.addCharacter(player);
 
     inventory.setInfiniteMoney(true);
 

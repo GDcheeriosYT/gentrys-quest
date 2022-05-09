@@ -12,14 +12,18 @@ public class artifacts {
 
   public static ArrayList<Artifact> getContentArtifacts(){
     //nathan tenny artifacts
-    Artifact rubiksCube = new Artifact("Rubik's Cube", new Buff("critRate"), "nathan tenny");
+    Artifact rubiksCube = new Artifact("Rubik's Cube", new Buff("critRate"), "nathan tenney");
+    Artifact fork = new Artifact("Fork", new Buff("attack"), "nathan tenney");
+    Artifact bucket = new Artifact("Bucket", new Buff("defense"), "nathan tenney");
+    Artifact globe = new Artifact("Globe", new Buff("critDamage"), "nathan tenney");
+    Artifact blanket = new Artifact("Blanket", new Buff("defense"), "nathan tenney");
 
     //brayden messerschmidt artifacts
-    Artifact animeManga = new Artifact("animeManga", new Buff(""), "brayden messerschmidt");
+    Artifact loliBodyPillow = new Artifact("Loli Body Pillow", new Buff("critRate"), "brayden messerschmidt");
     Artifact hyveeFualSaverCard = new Artifact("Hy-vee Fuel Saver", new Buff("critRate"), "brayden messerschmidt");
-
-    //joe nuts artifacts
-    Artifact joesCube = new Artifact("Joe's Cube", new Buff("defense"), "joe nuts");
+    Artifact loliCloth = new Artifact("Loli Cloth", new Buff("critRate"), "brayden messerschmidt");
+    Artifact pepsiBottle = new Artifact("Pepsi Bottle", new Buff("critRate"), "brayden messerschmidt");
+    Artifact osuTablet = new Artifact("Osu Tablet", new Buff("critRate"), "brayden messerschmidt");
 
     //connor fogarty artifacts
     Artifact bone = new Artifact("Bone", new Buff("health"), "connor fogarty");
@@ -93,9 +97,15 @@ public class artifacts {
     Artifact emptyPringlesCan = new Artifact("Empty Pringles Can", new Buff("attack"), "gavin knudsen");
 
     contentArtifacts.add(rubiksCube);
-    contentArtifacts.add(animeManga);
+    contentArtifacts.add(fork);
+    contentArtifacts.add(bucket);
+    contentArtifacts.add(globe);
+    contentArtifacts.add(blanket);
+    contentArtifacts.add(loliBodyPillow);
     contentArtifacts.add(hyveeFualSaverCard);
-    contentArtifacts.add(joesCube);
+    contentArtifacts.add(loliCloth);
+    contentArtifacts.add(pepsiBottle);
+    contentArtifacts.add(osuTablet);
     contentArtifacts.add(bone);
     contentArtifacts.add(multipetPigDogToy);
     contentArtifacts.add(cheeseWheel);
@@ -140,6 +150,11 @@ public class artifacts {
     contentArtifacts.add(pondWater);
     contentArtifacts.add(chikFilABurrito);
     contentArtifacts.add(spicyStick);
+    contentArtifacts.add(nutCracker);
+    contentArtifacts.add(saltyNuts);
+    contentArtifacts.add(bowlOfNuts);
+    contentArtifacts.add(secretSauce);
+    contentArtifacts.add(emptyPringlesCan);
 
     return contentArtifacts;
   }

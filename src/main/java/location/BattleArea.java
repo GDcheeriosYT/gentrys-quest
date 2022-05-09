@@ -16,4 +16,8 @@ public class BattleArea {
     this.enemies = enemies;
     this.artifacts = artifacts;
   }
+
+  public String getName() {
+    return name;
+  }
 }
