@@ -1,3 +1,4 @@
+import artifact.Artifact;
 import character.Character;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ class Main{
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
   public static void main(String[] args){
 
-    JSONObject gameData = new JSONObject();
+    //JSONObject gameData = new JSONObject();
 
     String name = new Scanner(System.in).nextLine();
 
@@ -84,21 +85,25 @@ class Main{
               System.out.flush();
             }
             Character character = inventory.getCharacters().get(input3 - 1);
-            int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.back");
             boolean characterInfoViewing = true;
+            int tracker = 0;
             while(characterInfoViewing){
+              if(tracker != 0) System.out.println(character);
+              int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.back");
               //leveling
               if(input4 == 1){
                 float percent = (character.getXp() * 100.0f) / character.getXpRequired();
                 boolean leveling = true;
                 while(leveling){
                   int input5 = getMainMenuInput("lvl " + character.getLevel() + "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + percent + ")\nupgrade your character?\n$1 = 10xp\n0 to go back");
-                  if(input5 == 0) leveling = false;
-                  else{
+                  if(input5 != 0){
                     if(inventory.checkMoney(input5)){
                       character.addXp(input5 * 10);
                       inventory.spendMoney(input5);
                     }
+                  }
+                  else{
+                    leveling = false;
                   }
                 }
               }
