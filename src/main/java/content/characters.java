@@ -34,7 +34,7 @@ public class characters {
     Character dylanTopic = new Character(4, "Dylan Topic", 3, 0, 0, 0.0, 0, "Cool uhm uhm uhm uhm uhm uhm oh tetris dude.");
     Character maxShrum = new Character(4, "Max Shrum", 2, 1, 0, 0.0, 0, "Minecraft player thing");
     Character joeNuts = new Character(4, "Joe Nuts", 0, 0, 3, 0.0, 0, "Massive man who like sausage.");
-    Character hannaHardy = new Character(4, "Hanna Hardy", 1, 1, 0, 1.0, 0, "Fart nuts");
+    Character hannaHardy = new Character(4, "Hanna Hardy", 1, 1, 0, 1.0, 0, "IDK");
     Character kellyKrysa = new Character(4, "Kelly Krysa", 1, 1, 1, 0.0, 0, "Apex predator.");
     
     //5 star characters
@@ -56,6 +56,8 @@ public class characters {
     Character derekCorona = new Character(5, "Derek Corona", 2, 1, 0, 0.0, 1, "A mexican assassin who can't keep away from alcohol.");
     Character bryceAnderson = new Character(5, "Bryce Anderson", 2, 1, 0, 0.0, 1, "Tall guy.");
     Character spencerGeorge = new Character(5, "Spizzle", 0, 0, 0, 1.0, 3, "Gambling glass cannon.");
+    Character willJohnson = new Character(5, "Wil \"longest\" johnson", 1, 2, 1, 0.0, 0, "He has teh longest johnson.");
+    Character makDaddy = new Character(5, "Mak Daddy", 1, 2, 1, 0.0, 0, "4 foot 11 and 40 pounds but big strong.");
 
     //putting into the arraylist
     contentCharacters.add(brodyKrysa);
@@ -96,7 +98,9 @@ public class characters {
     contentCharacters.add(derekCorona);
     contentCharacters.add(bryceAnderson);
     contentCharacters.add(spencerGeorge);
-    
+    contentCharacters.add(willJohnson);
+    contentCharacters.add(makDaddy);
+
     return contentCharacters;
   }
 }

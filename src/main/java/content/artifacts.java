@@ -96,6 +96,13 @@ public class artifacts {
     Artifact secretSauce = new Artifact("Secret Sauce", new Buff("health"), "gavin knudsen");
     Artifact emptyPringlesCan = new Artifact("Empty Pringles Can", new Buff("attack"), "gavin knudsen");
 
+    //bryce anderson artifacts
+    Artifact murphysNuts = new Artifact("Murphy's Nuts", new Buff("health"), "bryce anderson");
+    Artifact quandaleDingleFartInAJar = new Artifact("Quandale Dingle Fart In A Jar", new Buff("attack"), "bryce anderson");
+    Artifact buttahDog = new Artifact("buttah Dog", new Buff("defense"), "bryce anderson");
+    Artifact nyanCat = new Artifact("Nyan Cat", new Buff("critRate"), "bryce anderson");
+    Artifact angryAnubis = new Artifact("Angry Anubis", new Buff("critRate"), "bryce anderson");
+
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(fork);
     contentArtifacts.add(bucket);
@@ -155,6 +162,11 @@ public class artifacts {
     contentArtifacts.add(bowlOfNuts);
     contentArtifacts.add(secretSauce);
     contentArtifacts.add(emptyPringlesCan);
+    contentArtifacts.add(murphysNuts);
+    contentArtifacts.add(quandaleDingleFartInAJar);
+    contentArtifacts.add(buttahDog);
+    contentArtifacts.add(nyanCat);
+    contentArtifacts.add(angryAnubis);
 
     return contentArtifacts;
   }
