@@ -57,6 +57,14 @@ public class Inventory {
     return money;
   }
 
+  public int getLongestCharacterNameLength(ArrayList<Character> characterList){
+    int longest = 0;
+    for(Character character: getCharacters()){
+      if(character.getName().length() > longest) longest = character.getName().length();
+    }
+    return longest;
+  }
+
   public ArrayList<Character> getCharacters(){
     return characters;
   }

@@ -276,4 +276,46 @@ class Main{
       System.out.println("");
     }
   }
+
+  public static void inventoryView(String menu){
+    int menuSize;
+    String top = "";
+    int mainSection;
+    int alternateSection;
+    if(menu.equals("character")){
+      ArrayList<Integer> playerSectionSizes = new ArrayList<Integer>();
+      ArrayList<Character[]> characterGroupings = new ArrayList<Character[]>();
+      int i = inventory.getCharacters().size();
+      while(i != 0){
+        if(inventory.getCharacters().size() < 10){
+          i -= inventory.getCharacters().size();
+        }
+
+        else{
+          int ownedCharactersRepresentation = inventory.getCharacters().size();
+          while(ownedCharactersRepresentation > 10);{
+            playerSectionSizes.add(10);
+            ownedCharactersRepresentation -= 10;
+            i -= 10;
+          }
+        }
+      }
+      int
+      for(Integer integer: playerSectionSizes){
+        Character[] characterGroup = new Character[integer];
+
+        for(i = 0; i < integer; i++){
+          characterGroup[i] = inventory.getCharacters().get(i);
+        }
+        characterGroupings.add(characterGroup);
+      }
+      //inventory.getLongestCharacterNameLength();
+    }
+    else if(menu.equals("weapon")){
+
+    }
+    else{
+
+    }
+  }
 }
