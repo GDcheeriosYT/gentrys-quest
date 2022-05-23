@@ -14,6 +14,17 @@ class Main{
   static ArrayList<Character> gachaCharacterObtained = new ArrayList<Character>();
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
   public static void main(String[] args){
+    System.out.println("loading...");
+    System.out.println("loading characters");
+    content.characters.initializeContentCharacters();
+    System.out.println("loading weapons");
+    content.weapons.initializeContentWeapons();
+    System.out.println("loading battle areas");
+    content.BattleAreas.initializeContentBattleAreas();
+    System.out.println("loading locations");
+    content.Locations.initializeContentLocations();
+    System.out.println("loading artifacts");
+    content.artifacts.initializeContentArtifacts();
 
     //JSONObject gameData = new JSONObject();
 
