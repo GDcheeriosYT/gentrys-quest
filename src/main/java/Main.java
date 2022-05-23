@@ -30,7 +30,7 @@ class Main{
 
     //String name = new Scanner(System.in).nextLine();
 
-    Character player = new Character(5, "nigerian", 1, 1, 1, 0.5, 1, "The guy");
+    Character player = new Character(5, "test", 1, 1, 1, 0.5, 1, "The guy");
     Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
     player.equipWeapon(fists, false);
