@@ -45,15 +45,42 @@ public class BattleAreas {
                             "Mental",
                             2,
                             new Buff(""),
-                            new Verbs("messed with", ""),
-                            "The psychic weapon used by this being"
+                            new Verbs("messed with", "tricked"),
+                            "A psychic weapon."
                         ),
                     "A voice that often talks to Brayden.")
                     )
             ),
-            new ArrayList<Artifact>(List.of(getFamily("brayden messerschmidt"))));
+            new ArrayList<Artifact>(List.of(getFamily("brayden messerschmidt")))
+        );
+
+        BattleArea unfinishedConstructionSite = new BattleArea(
+            "Unfinished Construction Site",
+            true,
+            new ArrayList<Enemy>(
+                List.of(new Enemy(
+                    "OSHA Worker",
+                    30,
+                    3,
+                    1,
+                    new Weapon(
+                        "Clipboard",
+                        1,
+                        "Clipboard",
+                        1,
+                        new Buff(""),
+                        new Verbs("smacked", "broke the clipboard in the process of smacking"),
+                        "A wooden clipboard"
+                    ),
+                "An OSHA worker with an unlimited supply of clipboards.")
+                )
+
+            ),
+            new ArrayList<Artifact>(List.of(getFamily("max shrum")))
+        );
 
         contentBattleAreas.add(braydensHouse);
+        contentBattleAreas.add(unfinishedConstructionSite);
 
         return contentBattleAreas;
     }
