@@ -304,4 +304,11 @@ class Main{
       System.out.println("");
     }
   }
+
+  public static void listLocations(){
+    int indexer = 0;
+    for(Location location: content.Locations.getContentLocations()){
+      System.out.println(indexer + ". " + location);
+    }
+  }
 }
