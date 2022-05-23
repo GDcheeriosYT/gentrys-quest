@@ -18,18 +18,21 @@ public class Locations {
         return null;
     }
 
-    public static ArrayList<Location> getContentLocations(){
+    public static void initializeContentLocations(){
         Location unitedStates = new Location(
             "United States",
             new ArrayList<BattleArea>(
                 List.of(
-                    getBattleArea("Brayden's House")
+                    getBattleArea("Brayden's House"),
+                    getBattleArea("Unfinished Construction Site")
                 )
             )
         );
 
         contentLocations.add(unitedStates);
+    }
 
+    public static ArrayList<Location> getContentLocations() {
         return contentLocations;
     }
 }

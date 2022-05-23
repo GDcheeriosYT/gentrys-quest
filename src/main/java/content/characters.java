@@ -8,7 +8,7 @@ public class characters {
 
   }
   
-  public static ArrayList<Character> getContentCharacters(){
+  public static void initializeContentCharacters(){
     //1 star characters
     Character brodyKrysa = new Character(1, "Brody Krysa", 0, 0, 0, 0.0, 0, "Mighty warrior. Known as wall climber.");
     Character davidNapier = new Character(1, "David Napier", 0, 0, 0, 0.0, 0, "6'4''.");
@@ -100,7 +100,9 @@ public class characters {
     contentCharacters.add(spencerGeorge);
     contentCharacters.add(willJohnson);
     contentCharacters.add(makDaddy);
+  }
 
+  public static ArrayList<Character> getContentCharacters() {
     return contentCharacters;
   }
 }

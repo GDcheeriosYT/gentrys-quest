@@ -7,7 +7,6 @@ import location.BattleArea;
 import weapon.Verbs;
 import weapon.Weapon;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class BattleAreas {
@@ -16,42 +15,37 @@ public class BattleAreas {
         //empty constructor lol
     }
 
-    private static Artifact[] getFamily(String family){
-        Artifact[] artifactsToCollect = new Artifact[5];
-        int counter = 0;
+    private static ArrayList<Artifact> getFamilyArtifacts(String family){
+        ArrayList<Artifact> artifactList = new ArrayList<Artifact>();
         for(Artifact artifact: artifacts.getContentArtifacts()){
-            if(artifact.getFamily().equals(family)){
-                artifactsToCollect[counter] = artifact;
-                counter += 1;
-            }
-            if(counter >= 5) break;
+            if(artifact.getFamily().equals(family)) artifactList.add(artifact);
         }
-        return artifactsToCollect;
+        return artifactList;
     }
 
-    public static ArrayList<BattleArea> getContentBattleAreas(){
+    public static void initializeContentBattleAreas(){
         BattleArea braydensHouse = new BattleArea(
             "Brayden's House",
             false,
             new ArrayList<Enemy>(
-                    List.of(new Enemy(
-                        "A voice from Brayden's head",
-                        60,
-                        6,
-                        3,
-                        new Weapon(
-                            "Psychology",
-                            2,
-                            "Mental",
-                            2,
-                            new Buff(""),
-                            new Verbs("messed with", "tricked"),
-                            "A psychic weapon."
-                        ),
-                    "A voice that often talks to Brayden.")
-                    )
+                List.of(new Enemy(
+                    "A voice from Brayden's head",
+                    60,
+                    6,
+                    3,
+                    new Weapon(
+                        "Psychology",
+                        2,
+                        "Mental",
+                        2,
+                        new Buff(""),
+                        new Verbs("messed with", "tricked"),
+                        "A psychic weapon."
+                    ),
+                "A voice that often talks to Brayden.")
+                )
             ),
-            new ArrayList<Artifact>(List.of(getFamily("brayden messerschmidt")))
+            new ArrayList<Artifact>(List.of(getFamilyArtifacts("brayden messerschmidt")))
         );
 
         BattleArea unfinishedConstructionSite = new BattleArea(
@@ -76,12 +70,14 @@ public class BattleAreas {
                 )
 
             ),
-            new ArrayList<Artifact>(List.of(getFamily("max shrum")))
+            new ArrayList<Artifact>(List.of(getFamilyArtifacts("max shrum")))
         );
 
         contentBattleAreas.add(braydensHouse);
         contentBattleAreas.add(unfinishedConstructionSite);
+    }
 
+    public static ArrayList<BattleArea> getContentBattleAreas() {
         return contentBattleAreas;
     }
 }

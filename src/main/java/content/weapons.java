@@ -11,7 +11,7 @@ public class weapons {
       //empty class
   }
 
-    public static ArrayList<Weapon> getContentWeapons() {
+    public static void initializeContentWeapons() {
       //1 star weapons
       Weapon sword = new Weapon("Sword", 1, "Sword", 5, new Buff(""), new Verbs("swung at", "sliced up"), "Just a sword.");
       Weapon bow = new Weapon("Bow", 1, "Bow", 3, new Buff(""), new Verbs("shot", "hit the bullseye of"), "Just a bow.");
@@ -66,7 +66,9 @@ public class weapons {
       contentWeapons.add(sirFarQuad);
       contentWeapons.add(braydensOsuPen);
       contentWeapons.add(quandaleDingle);
-
-      return contentWeapons;
     }
+
+  public static ArrayList<Weapon> getContentWeapons() {
+    return contentWeapons;
+  }
 }

@@ -8,10 +8,10 @@ public class artifacts {
   private static ArrayList<Artifact> contentArtifacts = new ArrayList<Artifact>();
 
   public artifacts(){
-    
+    //empty constructor lol
   }
 
-  public static ArrayList<Artifact> getContentArtifacts(){
+  public static void initializeContentArtifacts(){
     //nathan tenny artifacts
     Artifact rubiksCube = new Artifact("Rubik's Cube", new Buff("critRate"), "nathan tenney");
     Artifact fork = new Artifact("Fork", new Buff("attack"), "nathan tenney");
@@ -174,7 +174,9 @@ public class artifacts {
     contentArtifacts.add(buttahDog);
     contentArtifacts.add(nyanCat);
     contentArtifacts.add(angryAnubis);
+  }
 
+  public static ArrayList<Artifact> getContentArtifacts(){
     return contentArtifacts;
   }
 }
