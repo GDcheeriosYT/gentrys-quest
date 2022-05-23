@@ -44,10 +44,20 @@ class Main{
       //Locations
       if(input == 1){
         clearConsole();
-        System.out.println("1.United States\n2.Japan");
-        //US actions
-        if (input == 1){
-          System.out.println("wip");
+        listLocations();
+        int input2 = getMainMenuInput("where would you like to go?\n");
+        try{
+          content.Locations.getContentLocations().get(input2).listBattleAreas();
+        }
+        catch (Exception e){
+          clearConsole();
+          System.out.println("This battle area doesn't exist...");
+          try {
+            Thread.sleep(2000);
+          } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+          }
+          clearConsole();
         }
       }
       //gacha
