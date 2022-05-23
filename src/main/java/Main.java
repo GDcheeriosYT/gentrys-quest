@@ -19,7 +19,7 @@ class Main{
 
     //String name = new Scanner(System.in).nextLine();
 
-    Character player = new Character(1, "nigerian", 1, 1, 1, 0.5, 1, "The guy");
+    Character player = new Character(5, "nigerian", 1, 1, 1, 0.5, 1, "The guy");
     Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
     player.equipWeapon(fists, false);
@@ -43,9 +43,9 @@ class Main{
       else if (input == 2) {
         clearConsole();
         int input2 = getMainMenuInput("what would you like to pull?\n1.Character\n2.Weapon");
+        clearConsole();
         //character
         if (input2 == 1){
-          clearConsole();
           System.out.println("how many characters would you like to pull?\n1 = $1000\nYou have: " + "$" + inventory.getMoney());
           int amount = getMainMenuInput("");
           if(inventory.checkMoney(amount * 1000)){
@@ -70,15 +70,16 @@ class Main{
           clearConsole();
           System.out.println("$" + inventory.getMoney());
           int input2 = getMainMenuInput("1.Characters\n2.Artifacts\n3.Weapons\n4.Back");
+          clearConsole();
           //Characters
           if(input2 == 1){
-            clearConsole();
             int indexCounter = 1;
             for(Character character: inventory.getCharacters()){
               System.out.println(indexCounter + ". " + character.getName() + " " + character.getFancyStars() + " lvl " +  character.getLevel());
               indexCounter++;
             }
             int input3 = getMainMenuInput("View character\nor\n" + indexCounter + ". quit");
+            clearConsole();
             try{
               System.out.println(inventory.getCharacters().get(input3 - 1));
             } catch (Exception e) {
@@ -90,12 +91,18 @@ class Main{
             while(characterInfoViewing){
               if(tracker != 0) System.out.println(character);
               int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.back");
+              clearConsole();
               //leveling
               if(input4 == 1){
                 float percent = (character.getXp() * 100.0f) / character.getXpRequired();
                 boolean leveling = true;
                 while(leveling){
-                  int input5 = getMainMenuInput("lvl " + character.getLevel() + "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + percent + ")\nupgrade your character?\n$1 = 10xp\n0 to go back");
+                  int input5 = getMainMenuInput("lvl " + character.getLevel() +
+                          "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + percent + ")" +
+                          "\nupgrade your character?\n" +
+                          "$" + inventory.getMoney() + "/" + "$" + (int)(character.getXpRequired() * 0.1) + " required to level up" +
+                          "\n$1 = 10xp\n0 to go back");
+                  clearConsole();
                   if(input5 != 0){
                     if(inventory.checkMoney(input5)){
                       character.addXp(input5 * 10);
@@ -274,48 +281,6 @@ class Main{
   public static void clearConsole(){
     for (int i = 0; i < 100; i++) {
       System.out.println("");
-    }
-  }
-
-  public static void inventoryView(String menu){
-    int menuSize;
-    String top = "";
-    int mainSection;
-    int alternateSection;
-    if(menu.equals("character")){
-      ArrayList<Integer> playerSectionSizes = new ArrayList<Integer>();
-      ArrayList<Character[]> characterGroupings = new ArrayList<Character[]>();
-      int i = inventory.getCharacters().size();
-      while(i != 0){
-        if(inventory.getCharacters().size() < 10){
-          i -= inventory.getCharacters().size();
-        }
-
-        else{
-          int ownedCharactersRepresentation = inventory.getCharacters().size();
-          while(ownedCharactersRepresentation > 10);{
-            playerSectionSizes.add(10);
-            ownedCharactersRepresentation -= 10;
-            i -= 10;
-          }
-        }
-      }
-      int
-      for(Integer integer: playerSectionSizes){
-        Character[] characterGroup = new Character[integer];
-
-        for(i = 0; i < integer; i++){
-          characterGroup[i] = inventory.getCharacters().get(i);
-        }
-        characterGroupings.add(characterGroup);
-      }
-      //inventory.getLongestCharacterNameLength();
-    }
-    else if(menu.equals("weapon")){
-
-    }
-    else{
-
     }
   }
 }
