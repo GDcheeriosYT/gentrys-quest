@@ -2,6 +2,7 @@ package content;
 import java.util.ArrayList;
 import artifact.Artifact;
 import buff.Buff;
+import org.checkerframework.checker.units.qual.A;
 
 public class artifacts {
   private static ArrayList<Artifact> contentArtifacts = new ArrayList<Artifact>();
@@ -39,6 +40,9 @@ public class artifacts {
     //max shrum artifacts
     Artifact keyCard = new Artifact("Key Card", new Buff("critRate"), "max shrum");
     Artifact bowlOfNoodles = new Artifact("Bowl O' Noodles", new Buff("health"), "max shrum");
+    Artifact bikeTirePump = new Artifact("Bike Tire Pump", new Buff("attack"), "max shrum");
+    Artifact blueprints = new Artifact("Blueprints", new Buff("defense"), "max shrum");
+    Artifact violin = new Artifact("Violin", new Buff("health"), "max shrum");
 
     //spencer george artifacts
     Artifact aceUpTheSleeve = new Artifact("Ace Up The Sleeve", new Buff("critDamage"), "spencer george");
@@ -122,6 +126,9 @@ public class artifacts {
     contentArtifacts.add(canesTendies);
     contentArtifacts.add(keyCard);
     contentArtifacts.add(bowlOfNoodles);
+    contentArtifacts.add(bikeTirePump);
+    contentArtifacts.add(blueprints);
+    contentArtifacts.add(violin);
     contentArtifacts.add(aceUpTheSleeve);
     contentArtifacts.add(halfEatenSandwich);
     contentArtifacts.add(weightedDice);
