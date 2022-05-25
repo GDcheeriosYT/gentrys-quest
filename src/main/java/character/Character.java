@@ -31,6 +31,7 @@ public class Character {
   private int additionalCritDamage;
   private Weapon weapon;
   private Artifact[] artifacts = {null, null, null, null, null};
+  private int difficulty = 1;
 
   public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description){
     this.starRating = starRating;
@@ -78,6 +79,12 @@ public class Character {
       defaultCritRate += 0.2 + (starRating * 0.045);
       defaultCritDamage += (level * 0.5) * (starRating * 0.02);
     }
+    int difficultyTracker = 1;
+    for(int i = 0; i < level; i++){
+      if(i%20==0) difficultyTracker++;
+    }
+    difficulty = difficultyTracker;
+
     updateStats();
   }
 
@@ -183,6 +190,10 @@ public class Character {
 
   public int getLevel() {
     return level;
+  }
+
+  public int getDifficulty() {
+    return difficulty;
   }
 
   public String toString(){

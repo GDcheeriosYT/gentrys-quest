@@ -33,9 +33,10 @@ public class artifacts {
     Artifact silkDogBed = new Artifact("Silk Dog Bed", new Buff("critDamage"), "connor fogarty");
     Artifact bellyRubMachine = new Artifact("Belly Rub Machine", new Buff("attack"), "connor fogarty");
 
-    //alec ferchan artifacts
-    Artifact macBook = new Artifact("Mac Book", new Buff("critDamage"), "alec ferchan");
-    Artifact canesTendies = new Artifact("Cane's Tendies", new Buff("health"), "alec ferchan");
+    //alec ferchen artifacts
+    Artifact macBook = new Artifact("Mac Book", new Buff("critDamage"), "alec ferchen");
+    Artifact canesTendies = new Artifact("Cane's Tendies", new Buff("health"), "alec ferchen");
+    Artifact dog = new Artifact("dog", new Buff("defense"), "alec ferchen");
 
     //max shrum artifacts
     Artifact keyCard = new Artifact("Key Card", new Buff("critRate"), "max shrum");

@@ -12,11 +12,11 @@ public class Location {
 
   public void listBattleAreas(){
     for(BattleArea battleArea: battleAreas){
-      System.out.println(battleArea);
+      System.out.println(battleArea.getName());
     }
   }
 
   public String toString(){
-    return name + "\n" + battleAreas.size() + "battle areas\n";
+    return name + battleAreas.size() + " battle areas\n";
   }
 }

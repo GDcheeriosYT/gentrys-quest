@@ -27,6 +27,7 @@ public class BattleAreas {
         BattleArea braydensHouse = new BattleArea(
             "Brayden's House",
             false,
+            false,
             new ArrayList<Enemy>(
                 List.of(new Enemy(
                     "A voice from Brayden's head",
@@ -45,12 +46,13 @@ public class BattleAreas {
                 "A voice that often talks to Brayden.")
                 )
             ),
-            new ArrayList<Artifact>(List.of(getFamilyArtifacts("brayden messerschmidt")))
+            new ArrayList<Artifact>(getFamilyArtifacts("brayden messerschmidt"))
         );
 
         BattleArea unfinishedConstructionSite = new BattleArea(
             "Unfinished Construction Site",
             true,
+            false,
             new ArrayList<Enemy>(
                 List.of(new Enemy(
                     "OSHA Worker",
@@ -70,7 +72,7 @@ public class BattleAreas {
                 )
 
             ),
-            new ArrayList<Artifact>(List.of(getFamilyArtifacts("max shrum")))
+            new ArrayList<Artifact>(getFamilyArtifacts("max shrum"))
         );
 
         contentBattleAreas.add(braydensHouse);

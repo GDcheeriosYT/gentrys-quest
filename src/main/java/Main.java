@@ -1,9 +1,12 @@
+import artifact.Artifact;
 import character.Character;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import buff.Buff;
+import enemy.Enemy;
+import location.BattleArea;
 import location.Location;
 import weapon.Verbs;
 import weapon.Weapon;
@@ -31,8 +34,11 @@ class Main{
 
     //String name = new Scanner(System.in).nextLine();
 
+    Character equipedCharacter;
     Character player = new Character(5, "test", 1, 1, 1, 0.5, 1, "The guy");
     Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
+
+    equipedCharacter = player;
 
     player.equipWeapon(fists, false);
     inventory.addCharacter(player);
@@ -311,5 +317,11 @@ class Main{
     for(Location location: content.Locations.getContentLocations()){
       System.out.println(indexer + ". " + location);
     }
+  }
+
+  public static void startBattle(BattleArea battleArea){
+    ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
+    ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+
   }
 }
