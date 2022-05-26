@@ -196,6 +196,10 @@ public class Character {
     return difficulty;
   }
 
+  public int getHealth() {
+    return health;
+  }
+
   public String toString(){
     String stars = "";
     //make fancier star display

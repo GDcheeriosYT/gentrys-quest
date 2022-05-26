@@ -34,7 +34,7 @@ class Main{
 
     //String name = new Scanner(System.in).nextLine();
 
-    Character equipedCharacter;
+    Character equipedCharacter = null;
     Character player = new Character(5, "test", 1, 1, 1, 0.5, 1, "The guy");
     Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
@@ -319,9 +319,18 @@ class Main{
     }
   }
 
-  public static void startBattle(BattleArea battleArea){
+  public void startBattle(BattleArea battleArea, Character character){
     ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
     ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    for(Artifact artifact: artifacts) artifacts.add(artifact);
+    for(Enemy enemy: enemies) enemies.add(enemy);
+
+    for(Enemy enemy: enemies){
+      while(enemy.getHealth() > 0 || character.getHealth() > 0){
+        int input = getMainMenuInput("1.attack\n2.run");
+        if(input == 1) ;
+      }
+    }
 
   }
 }

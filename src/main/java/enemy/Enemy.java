@@ -26,6 +26,10 @@ public class Enemy {
     this.level = level;
   }
 
+  public int getHealth() {
+    return health;
+  }
+
   public String toString(){
     return name + "\nlevel: " + level + "\nhealth: " + health + "\nattack: " + attack + "\ndefense: " + defense + "\nweapon: " + weapon + "\n===============" + description + "\n===============";
   }
