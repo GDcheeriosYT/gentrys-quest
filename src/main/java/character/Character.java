@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import artifact.Artifact;
 import buff.Buff;
+import enemy.Enemy;
 import weapon.Weapon;
 
 public class Character {
@@ -168,7 +169,7 @@ public class Character {
     weapon = weapon2;
   }
 
-  public void deEquipWeapon(Weapon weapon, boolean output){
+  public void deEquipWeapon(boolean output){
     weapon = null;
   }
 
@@ -198,6 +199,17 @@ public class Character {
 
   public int getHealth() {
     return health;
+  }
+
+  public Weapon getWeapon() {
+    return weapon;
+  }
+
+  public void attack(Enemy enemy){
+    int damage = attackDamage;
+    double criticalChecker = (Math.random() * 100) + 1;
+    if(criticalChecker<critRate)damage += critDamage;
+    enemy.setHealth(enemy.getHealth() - damage);
   }
 
   public String toString(){

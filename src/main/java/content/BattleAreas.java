@@ -46,7 +46,7 @@ public class BattleAreas {
                 "A voice that often talks to Brayden.")
                 )
             ),
-            new ArrayList<Artifact>(getFamilyArtifacts("brayden messerschmidt"))
+            getFamilyArtifacts("brayden messerschmidt")
         );
 
         BattleArea unfinishedConstructionSite = new BattleArea(
@@ -72,7 +72,7 @@ public class BattleAreas {
                 )
 
             ),
-            new ArrayList<Artifact>(getFamilyArtifacts("max shrum"))
+            getFamilyArtifacts("max shrum")
         );
 
         contentBattleAreas.add(braydensHouse);

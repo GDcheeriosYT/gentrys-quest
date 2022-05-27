@@ -10,13 +10,23 @@ public class Location {
     this.battleAreas = battleAreas;
   }
 
+  public String getName() {
+    return name;
+  }
+
   public void listBattleAreas(){
+    int i = 1;
     for(BattleArea battleArea: battleAreas){
-      System.out.println(battleArea.getName());
+      System.out.println(i + ". " + battleArea.getName());
+      i++;
     }
   }
 
+  public BattleArea getBattleArea(int index){
+    return battleAreas.get(index);
+  }
+
   public String toString(){
-    return name + battleAreas.size() + " battle areas\n";
+    return name + " " + battleAreas.size() + " battle areas\n";
   }
 }
