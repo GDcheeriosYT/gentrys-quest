@@ -42,16 +42,15 @@ public class BattleArea {
   public ArrayList<Artifact> initializeArtifacts(int difficulty){
     if(isBossArea) difficulty++;
     ArrayList<Artifact> artifactsToReturn = new ArrayList<Artifact>();
-    int artifactToReturnAmount = (int)(Math.random() * difficulty*2)+1;
-    for(int i = 0; i<artifactToReturnAmount; i++){
-      Artifact artifact = artifacts.get((int) (Math.random() * artifacts.size()));
+    for(int i = 0; i<((Math.random() * difficulty*2) + 1);i++){
+      Artifact artifact = artifacts.get((int) (Math.random()) * artifacts.size());
       int random = (int)(Math.random() * 1000) + 1;
       int rating = 0;
+      if (random <= (difficulty*160)) rating = 1;
       if (random <= (difficulty*140)) rating = 2;
-      else if(random <= (difficulty*120)) rating = 3;
-      else if(random <= (difficulty*90)) rating = 4;
-      else if(random <= (difficulty*50)) rating = 5;
-      else rating = 1;
+      if (random <= (difficulty*120)) rating = 3;
+      if (random <= (difficulty*90)) rating = 4;
+      if (random <= (difficulty*50)) rating = 5;
 
       artifact.setStarRating(rating);
       artifactsToReturn.add(artifact);

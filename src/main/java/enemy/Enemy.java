@@ -18,10 +18,6 @@ public class Enemy {
     this.description = description;
   }
 
-  public void setHealth(int health) {
-    this.health = health;
-  }
-
   public String getName() {
     return name;
   }
