@@ -121,7 +121,7 @@ class Main{
             int tracker = 0;
             while(characterInfoViewing){
               if(tracker != 0) System.out.println(character);
-              int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.back");
+              int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.equip character\n5.back");
               clearConsole();
               //leveling
               if(input4 == 1){
@@ -153,24 +153,23 @@ class Main{
                   //swap weapon
                   int counter = 1;
                   if(input5 == 1){
+                    //list weapons
                     for(Weapon weapon: inventory.getWeapons()){
                       System.out.println(counter + "." + weapon.getName() + " " + weapon.getFancyStars() + " lvl " + weapon.getLevel());
                       counter++;
                     }
                     System.out.println((counter + 1) + ".back");
+
                   }
                   //end loop
                   else if(input5 == counter + 1) weaponViewing = false;
-                  else{
-
-
-                    character.deEquipWeapon(true);
-                    character.equipWeapon(inventory.getWeapons().get(input - 1), true);
-                  }
                 }
               }
+              //equip character
+              else if(input4 == 4){ equipedCharacter = character; }
+
               //end loop
-              else if(input4 == 4) characterInfoViewing = false;
+              else if(input4 == 5) characterInfoViewing = false;
             }
           }
           //artifacts
