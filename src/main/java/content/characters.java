@@ -1,6 +1,7 @@
 package content;
 import java.util.ArrayList;
 import character.Character;
+
 public class characters {
   private static ArrayList<Character> contentCharacters = new ArrayList<Character>();
 

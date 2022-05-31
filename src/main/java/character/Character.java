@@ -1,10 +1,12 @@
 package character;
+
 import java.util.Objects;
 
 import artifact.Artifact;
 import buff.Buff;
 import enemy.Enemy;
 import weapon.Weapon;
+
 
 public class Character {
   private final int starRating;
@@ -43,6 +45,7 @@ public class Character {
     this.defaultDefense = starRating + defense;
     this.defaultCritRate = starRating * 0.05 + critRate;
     this.defaultCritDamage = starRating;
+    updateStats();
   }
 
   public void addXp(int amount){
@@ -55,7 +58,7 @@ public class Character {
     xp = amount;
   }
 
-  private boolean hasSet(){
+  private boolean hasSet()*{
     boolean hasSet = false;
     String family = artifacts[0].getFamily();
     for(Artifact artifact: artifacts){
@@ -206,12 +209,48 @@ public class Character {
     return weapon;
   }
 
-  public void attack(Enemy enemy){
-    int damage = attackDamage;
-    double criticalChecker = (Math.random() * 100) + 1;
-    if(criticalChecker<critRate)damage += critDamage;
-    enemy.setHealth(enemy.getHealth() - damage);
+  public void setHealth(int health) {
+    this.health = health;
   }
+
+  public boolean attack(Enemy enemy){
+    String output = "You ";
+    int damage = defaultAttackDamage;
+    double criticalChecker = (Math.random() * 100) + 1;
+    if(criticalChecker<critRate){
+      output += weapon.getVerb(true) + " the " + enemy.getName();
+      damage += critDamage;
+    }
+    else output += weapon.getVerb(false) + " the " + enemy.getName();
+    if(damage < enemy.getDefense()){
+      System.out.println(enemy.getName() + " dodged...");
+      return false;
+    }
+    else System.out.println(output);
+
+    enemy.setHealth(enemy.getHealth() - damage + enemy.getDefense());
+    if(enemy.getHealth() < 0){
+      System.out.println(enemy.getName() + " is dead.");
+      return true;
+    }
+    return false;
+  }
+
+  public static void clearConsole(){
+    for (int i = 0; i < 100; i++) {
+      System.out.println("");
+    }
+  }
+
+  public static void timeout(int time, boolean clearConole){
+    try {
+      Thread.sleep(time);
+    } catch (InterruptedException ex) {
+      throw new RuntimeException(ex);
+    }
+    if(clearConole) clearConsole();
+  }
+
 
   public String toString(){
     String stars = "";
@@ -260,3 +299,5 @@ public class Character {
     return name + " " + stars + "\nlevel " + level + "\nxp: " + xp + "/" + xpRequired + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense + "\ncrit rate: " + defaultCritRate + "% " + moreCritRate + "\ncrit damage " + defaultCritDamage + moreCritDamage + weaponInfo + artifactInfo + "\n====================\n" + description + "\n====================";
   }
 }
+
+

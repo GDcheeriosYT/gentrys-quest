@@ -2,7 +2,6 @@ package data;
 import java.util.ArrayList;
 import character.Character;
 import artifact.Artifact;
-import enemy.Enemy;
 import weapon.Weapon;
 
 public class Inventory {

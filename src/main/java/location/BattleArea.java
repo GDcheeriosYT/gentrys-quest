@@ -29,12 +29,13 @@ public class BattleArea {
     int enemyAmount = (int)(Math.random() *  (difficulty * 1.5) + 1);
     ArrayList<Enemy> enemiesToReturn = new ArrayList<Enemy>();
     for(int i = 0; i<enemyAmount; i++){
-      enemiesToReturn.add(enemies.get((int) (Math.random()) * enemies.size()));
+      Enemy enemySelector = enemies.get((int) (Math.random() * enemies.size()));
+      Enemy enemy = new Enemy(enemySelector.getName(), enemySelector.getHealth(), enemySelector.getAttack(), enemySelector.getDefense(), enemySelector.getWeapon(), enemySelector.getDescription());
+      enemy.setLevel((int)(Math.random() * (20 * (difficulty - 1) + 1) + 1));
+      enemiesToReturn.add(enemy);
     }
 
-    for(Enemy enemy: enemiesToReturn){
-      enemy.setLevel((int)((20 * difficulty) - (Math.random() * 5) + 1));
-    }
+    System.out.println(enemiesToReturn);
 
     return enemiesToReturn;
   }
@@ -44,7 +45,8 @@ public class BattleArea {
     ArrayList<Artifact> artifactsToReturn = new ArrayList<Artifact>();
     int artifactToReturnAmount = (int)(Math.random() * difficulty*2)+1;
     for(int i = 0; i<artifactToReturnAmount; i++){
-      Artifact artifact = artifacts.get((int) (Math.random() * artifacts.size()));
+      Artifact artifactSelector = artifacts.get((int) (Math.random() * artifacts.size()));
+      Artifact artifact = new Artifact(artifactSelector.getName(), artifactSelector.getMainAttribute(), artifactSelector.getFamily());
       int random = (int)(Math.random() * 1000) + 1;
       int rating = 0;
       if (random <= (difficulty*140)) rating = 2;

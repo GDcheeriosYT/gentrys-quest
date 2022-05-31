@@ -1,8 +1,8 @@
 package artifact;
 
-import java.util.ArrayList;
-
 import buff.Buff;
+
+import java.util.ArrayList;
 
 public class Artifact {
   private final String name;
@@ -19,6 +19,10 @@ public class Artifact {
     this.name = name;
     this.mainAttribute = mainAttribute;
     this.family = family;
+  }
+
+  public Buff getMainAttribute() {
+    return mainAttribute;
   }
 
   public void levelUp(){

@@ -68,6 +68,11 @@ public class Weapon {
     xp = amount;
   }
 
+  public String getVerb(boolean critical) {
+    if(critical) return verbs.getCritical();
+    else return verbs.getNormal();
+  }
+
   public int getDamage(){
     return baseAttack;
   }

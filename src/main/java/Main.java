@@ -1,17 +1,17 @@
-import artifact.Artifact;
-import character.Character;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import artifact.Artifact;
 import buff.Buff;
+import character.Character;
 import enemy.Enemy;
 import location.BattleArea;
 import location.Location;
 import weapon.Verbs;
 import weapon.Weapon;
 import data.Inventory;
-import org.json.JSONObject;
 
 class Main{
   static Inventory inventory = new Inventory();
@@ -76,7 +76,7 @@ class Main{
       //gacha
       else if (input == 2) {
         clearConsole();
-        int input2 = getMainMenuInput("what would you like to pull?\n1.Character\n2.Weapon");
+        int input2 = getMainMenuInput("what would you like to pull?\n1.character.Character\n2.Weapon");
         clearConsole();
         //character
         if (input2 == 1){
@@ -119,7 +119,6 @@ class Main{
             while(characterInfoViewing){
               System.out.println(character);
               int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.equip character\n5.back");
-
               clearConsole();
               //leveling
               if(input4 == 1){
@@ -159,11 +158,12 @@ class Main{
                       counter++;
                     }
                     int input6 = getMainMenuInput("select a weapon or " + counter + ".back");
-                    if(input6 != counter + 1) {
+                    if(input6 != counter) {
                       clearConsole();
                       character.deEquipWeapon(false);
                       character.equipWeapon(inventory.getWeapons().get(input6 - 1), true);
                     }
+                    clearConsole();
                   }
                   //end loop
                   else if(input5 == 2) weaponViewing = false;
@@ -405,9 +405,20 @@ class Main{
     }
 
     for(Enemy enemy: enemies){
-      while(enemy.getHealth() > 0 || character.getHealth() > 0){
-        int input = getMainMenuInput("1.attack\n2.run");
-        if(input == 1) character.attack(enemy);
+      System.out.println("You encountered an " + enemy.getName() + "(lvl " + enemy.getLevel() + ")");
+      boolean fighting = true;
+      while(fighting){
+        System.out.println();
+        int input = getMainMenuInput("===========================================\n\t" +
+                enemy.getName() + "(lvl " + enemy.getLevel() + ")" +
+                "\n\t" + enemy.getHealth() +
+                "\n==========================================\n" +
+                "you have " + character.getHealth() + " health" +
+                "\n1.attack\n2.run");
+        if(input == 1){
+          if(character.attack(enemy)) fighting = false;
+          if(enemy.attack(character)) fighting = false;
+        }
         else{
           ran = true;
           break;
@@ -444,7 +455,10 @@ class Main{
     }
     int input = getMainMenuInput(tracker + ". back");
     if(input != tracker){
-      if(startingArtifact != null) inventory.addArtifact(startingArtifact);
+      if(startingArtifact != null){
+        character.deEquipArtifact(position);
+        inventory.addArtifact(startingArtifact);
+      }
       character.equipArtifact(position, inventory.getArtifacts().get(input - 1));
       inventory.removeArtifact(inventory.getArtifacts().get(input - 1));
     }
@@ -458,5 +472,14 @@ class Main{
   public static void upgradeArtifact(Artifact artifact, Artifact artifactInExchange){
     artifact.addXp((artifactInExchange.getLevel() * 20) * artifactInExchange.getStarRating());
     inventory.removeArtifact(artifactInExchange);
+  }
+
+  public static void timeout(int time, boolean clearConole){
+    try {
+      Thread.sleep(time);
+    } catch (InterruptedException ex) {
+      throw new RuntimeException(ex);
+    }
+    if(clearConole) clearConsole();
   }
 }
