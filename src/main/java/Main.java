@@ -18,6 +18,7 @@ class Main{
   static ArrayList<Character> gachaCharacterObtained = new ArrayList<Character>();
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
   public static void main(String[] args){
+    clearConsole();
     System.out.println("loading...");
     System.out.println("loading artifacts");
     content.artifacts.initializeContentArtifacts();
@@ -27,7 +28,7 @@ class Main{
     content.weapons.initializeContentWeapons();
     System.out.println("loading battle areas");
     content.BattleAreas.initializeContentBattleAreas();
-    System.out.println("loading locations");
+    System.out.println("loading locations\n");
     content.Locations.initializeContentLocations();
 
     //JSONObject gameData = new JSONObject();
@@ -53,9 +54,11 @@ class Main{
         clearConsole();
         listLocations();
         int input2 = getMainMenuInput("where would you like to go?\n");
-        Location location = content.Locations.getContentLocations().get(input2);
+        Location location = content.Locations.getContentLocations().get(input2 - 1);
+        clearConsole();
         location.listBattleAreas();
         input2 = getMainMenuInput("where in " + location.getName() + " would you like to go?");
+        clearConsole();
         startBattle(location.getBattleArea(input2 - 1), equipedCharacter);
         try{
         }
@@ -118,10 +121,10 @@ class Main{
             }
             Character character = inventory.getCharacters().get(input3 - 1);
             boolean characterInfoViewing = true;
-            int tracker = 0;
             while(characterInfoViewing){
-              if(tracker != 0) System.out.println(character);
+              System.out.println(character);
               int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.equip character\n5.back");
+
               clearConsole();
               //leveling
               if(input4 == 1){
@@ -145,11 +148,13 @@ class Main{
                   }
                 }
               }
+
               //manage weapon
               else if(input4 == 2){
                 boolean weaponViewing = true;
                 while(weaponViewing){
-                  int input5 = getMainMenuInput(character.getWeapon() + "\n1.swap weapon\n2.back");
+                  int input5 = getMainMenuInput(character.getName() + " currently has the weapon " + character.getWeapon() + " equipped\n1.swap weapon\n2.back");
+                  clearConsole();
                   //swap weapon
                   int counter = 1;
                   if(input5 == 1){
@@ -158,15 +163,74 @@ class Main{
                       System.out.println(counter + "." + weapon.getName() + " " + weapon.getFancyStars() + " lvl " + weapon.getLevel());
                       counter++;
                     }
-                    System.out.println((counter + 1) + ".back");
-
+                    int input6 = getMainMenuInput("select a weapon or " + counter + ".back");
+                    if(input6 != counter + 1) {
+                      clearConsole();
+                      character.deEquipWeapon(false);
+                      character.equipWeapon(inventory.getWeapons().get(input6 - 1), true);
+                    }
                   }
                   //end loop
-                  else if(input5 == counter + 1) weaponViewing = false;
+                  else if(input5 == 2) weaponViewing = false;
                 }
               }
+
+              //manage artifacts
+              else if(input4 == 3){
+                clearConsole();
+                boolean artifactViewing = true;
+                while(artifactViewing){
+                  for(int i = 1; i<6; i++){
+                    if(character.getArtifactList()[i - 1] == null) System.out.println(i + ". unequipped");
+                    else System.out.println(i + ". " + character.getArtifactList()[i - 1].getName() + " " + character.getArtifactList()[i - 1].getFancyStars() + " lvl " + character.getArtifactList()[i - 1].getLevel());
+                  }
+                  int input5 = getMainMenuInput(6 + ". back");
+                  clearConsole();
+                  if(input5 != 6){
+                    boolean artifactDetailViewing = true;
+                    while(artifactDetailViewing){
+                      if(character.getArtifactList()[input5 - 1] == null){
+                        switchArtifact(character, input5 - 1, null);
+                      }
+                      else{
+                        System.out.println(character.getArtifactList()[input5 - 1]);
+                        int input6 = getMainMenuInput("1.switch artifact\n2.remove artifact\n3.upgrade artifact\n4.back");
+                        clearConsole();
+                        if(input6 == 1){
+                          switchArtifact(character, input5 - 1, character.getArtifactList()[input5 - 1]);
+                        }
+                        else if(input6 == 2){
+                          removeArtifact(character, input5 - 1);
+                        }
+                        else if(input6 == 3){
+                          boolean upgradingArtifact = true;
+                          while(upgradingArtifact){
+                            int tracker = 1;
+                            for(Artifact artifact: inventory.getArtifacts()){
+                              System.out.println(tracker + ". " + artifact);
+                              tracker++;
+                            }
+                            int input7 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back");
+                            if(input7 != inventory.getArtifacts().size() + 1){
+                              upgradeArtifact(character.getArtifactList()[input5 - 1], inventory.getArtifacts().get(input7 - 1));
+                              clearConsole();
+                            }
+                            else upgradingArtifact = false;
+                          }
+                        }
+                        else artifactDetailViewing = false;
+                      }
+                    }
+                  }
+                  else artifactViewing = false;
+                }
+              }
+
               //equip character
-              else if(input4 == 4){ equipedCharacter = character; }
+              else if(input4 == 4){
+                equipedCharacter = character;
+                System.out.println("You equiped " + character.getName() + " " + character.getFancyStars() + " lvl " + character.getLevel());
+              }
 
               //end loop
               else if(input4 == 5) characterInfoViewing = false;
@@ -256,6 +320,7 @@ class Main{
         int c = counts.computeIfAbsent(weapon.getName() + " " + weapon.getFancyStars(), key -> 0);
         counts.put(weapon.getName() + " " + weapon.getFancyStars(), ++c);
       }
+      clearConsole();
       System.out.println("You got:");
       for (var entry : counts.entrySet()) {
         System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
@@ -299,6 +364,7 @@ class Main{
         int c = counts.computeIfAbsent(character.getName() + " " + character.getFancyStars(), key -> 0);
         counts.put(character.getName() + " " + character.getFancyStars(), ++c);
       }
+      clearConsole();
       System.out.println("You got:");
       for (var entry : counts.entrySet()) {
         System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
@@ -323,7 +389,7 @@ class Main{
   }
 
   public static void listLocations(){
-    int indexer = 0;
+    int indexer = 1;
     for(Location location: content.Locations.getContentLocations()){
       System.out.println(indexer + ". " + location);
     }
@@ -369,5 +435,33 @@ class Main{
       inventory.addArtifact(artifact);
     }
 
+    System.out.println("press enter to continue...");
+    new Scanner(System.in).nextLine();
+    clearConsole();
+
+  }
+
+  public static void switchArtifact(Character character, int position, Artifact startingArtifact){
+    int tracker = 1;
+    for(Artifact artifact: inventory.getArtifacts()){
+      System.out.println(tracker + ". " + artifact);
+      tracker++;
+    }
+    int input = getMainMenuInput(tracker + ". back");
+    if(input != tracker){
+      if(startingArtifact != null) inventory.addArtifact(startingArtifact);
+      character.equipArtifact(position, inventory.getArtifacts().get(input - 1));
+      inventory.removeArtifact(inventory.getArtifacts().get(input - 1));
+    }
+  }
+
+  public static void removeArtifact(Character character, int position){
+    inventory.addArtifact(character.getArtifactList()[position - 1]);
+    character.dequipArtifact(position - 1);
+  }
+
+  public static void upgradeArtifact(Artifact artifact, Artifact artifactInExchange){
+    artifact.addXp((artifactInExchange.getLevel() * 20) * artifactInExchange.getStarRating());
+    inventory.removeArtifact(artifactInExchange);
   }
 }
