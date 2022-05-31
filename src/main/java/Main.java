@@ -114,11 +114,6 @@ class Main{
             }
             int input3 = getMainMenuInput("View character\nor\n" + indexCounter + ". quit");
             clearConsole();
-            try{
-              System.out.println(inventory.getCharacters().get(input3 - 1));
-            } catch (Exception e) {
-              clearConsole();
-            }
             Character character = inventory.getCharacters().get(input3 - 1);
             boolean characterInfoViewing = true;
             while(characterInfoViewing){
