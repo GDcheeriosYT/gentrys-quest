@@ -111,21 +111,23 @@ public class Character {
     return xpRequired;
   }
 
-  public void equipArtifact(Artifact artifact){
-    boolean equipped = false;
-    for(int i = 0; i < artifacts.length; i++){
-      if(artifacts[i] == null){
-        artifacts[i] = artifact;
-        equipped = true;
-        break;
-      }
-    }
-    if(equipped == true){
-      System.out.println(name + " succesfully equipped " + artifact.getName());
+  public void equipArtifact(int position, Artifact artifact){
+    if(artifacts[position] == null){
+      System.out.println("equipped " + artifact.getName());
+      artifacts[position] = artifact;
+      checkArtifacts();
     }
     else{
-      System.out.println(name + " couldn't equip" + artifact.getName());
+      System.out.println("couldn't equip " + artifact.getName());
     }
+  }
+
+  public void dequipArtifact(int position){
+    artifacts[position] = null;
+    checkArtifacts();
+  }
+
+  public void checkArtifacts(){
     for(Artifact artifact2: artifacts){
       if(artifact2 != null){
         for(Buff attribute: artifact2.getAllBuffs()){
