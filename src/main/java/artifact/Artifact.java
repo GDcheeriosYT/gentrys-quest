@@ -8,6 +8,9 @@ public class Artifact {
   private final String name;
   private int starRating;
   private int level = 1;
+  int xp = 0;
+  int xpRequired = 100;
+  int previousXpRequired;
   private final Buff mainAttribute;
   private final String family;
   private ArrayList<Buff> attributes = new ArrayList<Buff>();
@@ -47,6 +50,24 @@ public class Artifact {
     }
   }
 
+  public String getFancyStars(){
+    String stars = "";
+    for(int i = 0; i<starRating; i++){
+      stars += "*";
+    }
+    return stars;
+  }
+
+  public void addXp(int amount){
+    amount += xp;
+    xp = 0;
+    while(amount >= xpRequired){
+      levelUp();
+      amount -= previousXpRequired;
+    }
+    xp = amount;
+  }
+
   public String getFamily() {
     return family;
   }
@@ -77,6 +98,7 @@ public class Artifact {
 
   public void setStarRating(int starRating) {
     this.starRating = starRating;
+    this.xpRequired = xpRequired * starRating;
   }
 
   public String getName(){
@@ -85,6 +107,10 @@ public class Artifact {
 
   public int getStarRating(){
     return starRating;
+  }
+
+  public int getLevel() {
+    return level;
   }
 
   public String toString(){
@@ -97,6 +123,7 @@ public class Artifact {
     for(int i = 0; i < attributes.size(); i++){
       strAttributes += attributes.get(i) + " " + getValue(attributes.get(i)) + "\n"; 
     }
-    return name + " " + stars + "\nappart of: " + family + " set" + "\n" + "level: " + level + "\n" + mainAttribute + " " +getValue(mainAttribute) + "\n" + strAttributes;
+    float percent = (xp * 100.0f) / xpRequired;
+    return name + " " + stars + "\nappart of: " + family + " set" + "\n" + "level: " + level + " (" + percent + "%)\n" + mainAttribute + " " +getValue(mainAttribute) + "\n" + strAttributes;
   }
 }
