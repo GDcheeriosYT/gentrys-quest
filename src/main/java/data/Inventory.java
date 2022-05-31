@@ -18,6 +18,10 @@ public class Inventory {
     artifacts.add(artifact);
   }
 
+  public void removeArtifact(Artifact artifact){
+    artifacts.remove(artifact);
+  }
+
   public ArrayList<Artifact> getArtifacts(){
     return artifacts;
   }
