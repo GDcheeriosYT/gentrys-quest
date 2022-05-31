@@ -1,5 +1,4 @@
 package character;
-import java.util.ArrayList;
 import java.util.Objects;
 
 import artifact.Artifact;
@@ -122,7 +121,7 @@ public class Character {
     }
   }
 
-  public void dequipArtifact(int position){
+  public void deEquipArtifact(int position){
     artifacts[position] = null;
     checkArtifacts();
   }

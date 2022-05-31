@@ -457,7 +457,7 @@ class Main{
 
   public static void removeArtifact(Character character, int position){
     inventory.addArtifact(character.getArtifactList()[position - 1]);
-    character.dequipArtifact(position - 1);
+    character.deEquipArtifact(position - 1);
   }
 
   public static void upgradeArtifact(Artifact artifact, Artifact artifactInExchange){
