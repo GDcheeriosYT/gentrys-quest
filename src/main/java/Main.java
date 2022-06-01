@@ -76,7 +76,7 @@ class Main{
       //gacha
       else if (input == 2) {
         clearConsole();
-        int input2 = getMainMenuInput("what would you like to pull?\n1.character.Character\n2.Weapon");
+        int input2 = getMainMenuInput("what would you like to pull?\n1.character\n2.Weapon");
         clearConsole();
         //character
         if (input2 == 1){
@@ -107,160 +107,197 @@ class Main{
           clearConsole();
           //Characters
           if(input2 == 1){
-            int indexCounter = 1;
-            for(Character character: inventory.getCharacters()){
-              System.out.println(indexCounter + ". " + character.getName() + " " + character.getFancyStars() + " lvl " +  character.getLevel());
-              indexCounter++;
-            }
-            int input3 = getMainMenuInput("View character\nor\n" + indexCounter + ". quit");
-            clearConsole();
-            Character character = inventory.getCharacters().get(input3 - 1);
-            boolean characterInfoViewing = true;
-            while(characterInfoViewing){
-              System.out.println(character);
-              int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.equip character\n5.back");
+            boolean characterViewing = true;
+            while(characterViewing){
+
+              int indexCounter = 1;
+              for(Character character: inventory.getCharacters()){
+                System.out.println(indexCounter + ". " + character.getName() + " " + character.getFancyStars() + " lvl " +  character.getLevel());
+                indexCounter++;
+              }
+              int input3 = getMainMenuInput("View character\nor\n" + indexCounter + ". quit");
               clearConsole();
-              //leveling
-              if(input4 == 1){
-                float percent = (character.getXp() * 100.0f) / character.getXpRequired();
-                boolean leveling = true;
-                while(leveling){
-                  int input5 = getMainMenuInput("lvl " + character.getLevel() +
-                          "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + percent + ")" +
-                          "\nupgrade your character?\n" +
-                          "$" + inventory.getMoney() + "/" + "$" + (int)(character.getXpRequired() * 0.1) + " required to level up" +
-                          "\n$1 = 10xp\n0 to go back");
+              if(input3 == inventory.getCharacters().size() + 1) characterViewing = false;
+              else{
+                Character character = inventory.getCharacters().get(input3 - 1);
+                boolean characterInfoViewing = true;
+                while(characterInfoViewing){
+                  System.out.println(character);
+                  int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.equip character\n5.back");
                   clearConsole();
-                  if(input5 != 0){
-                    if(inventory.checkMoney(input5)){
-                      character.addXp(input5 * 10);
-                      inventory.spendMoney(input5);
-                    }
-                  }
-                  else{
-                    leveling = false;
-                  }
-                }
-              }
-
-              //manage weapon
-              else if(input4 == 2){
-                boolean weaponViewing = true;
-                while(weaponViewing){
-                  int input5 = getMainMenuInput(character.getName() + " currently has the weapon " + character.getWeapon() + " equipped\n1.swap weapon\n2.back");
-                  clearConsole();
-                  //swap weapon
-                  int counter = 1;
-                  if(input5 == 1){
-                    //list weapons
-                    for(Weapon weapon: inventory.getWeapons()){
-                      System.out.println(counter + "." + weapon.getName() + " " + weapon.getFancyStars() + " lvl " + weapon.getLevel());
-                      counter++;
-                    }
-                    int input6 = getMainMenuInput("select a weapon or " + counter + ".back");
-                    if(input6 != counter) {
+                  //leveling
+                  if(input4 == 1){
+                    float percent = (character.getXp() * 100.0f) / character.getXpRequired();
+                    boolean leveling = true;
+                    while(leveling){
+                      int input5 = getMainMenuInput("lvl " + character.getLevel() +
+                              "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + percent + ")" +
+                              "\nupgrade your character?\n" +
+                              "$" + inventory.getMoney() + "/" + "$" + (int)(character.getXpRequired() * 0.1) + " required to level up" +
+                              "\n$1 = 10xp\n0 to go back");
                       clearConsole();
-                      character.deEquipWeapon(false);
-                      character.equipWeapon(inventory.getWeapons().get(input6 - 1), true);
-                    }
-                    clearConsole();
-                  }
-                  //end loop
-                  else if(input5 == 2) weaponViewing = false;
-                }
-              }
-
-              //manage artifacts
-              else if(input4 == 3){
-                clearConsole();
-                boolean artifactViewing = true;
-                while(artifactViewing){
-                  for(int i = 1; i<6; i++){
-                    if(character.getArtifactList()[i - 1] == null) System.out.println(i + ". unequipped");
-                    else System.out.println(i + ". " + character.getArtifactList()[i - 1].getName() + " " + character.getArtifactList()[i - 1].getFancyStars() + " lvl " + character.getArtifactList()[i - 1].getLevel());
-                  }
-                  int input5 = getMainMenuInput(6 + ". back");
-                  clearConsole();
-                  if(input5 != 6){
-                    boolean artifactDetailViewing = true;
-                    while(artifactDetailViewing){
-                      if(character.getArtifactList()[input5 - 1] == null){
-                        switchArtifact(character, input5 - 1, null);
+                      if(input5 != 0){
+                        if(inventory.checkMoney(input5)){
+                          character.addXp(input5 * 10);
+                          inventory.spendMoney(input5);
+                        }
                       }
                       else{
-                        System.out.println(character.getArtifactList()[input5 - 1]);
-                        int input6 = getMainMenuInput("1.switch artifact\n2.remove artifact\n3.upgrade artifact\n4.back");
-                        clearConsole();
-                        if(input6 == 1){
-                          switchArtifact(character, input5 - 1, character.getArtifactList()[input5 - 1]);
-                        }
-                        else if(input6 == 2){
-                          removeArtifact(character, input5 - 1);
-                        }
-                        else if(input6 == 3){
-                          boolean upgradingArtifact = true;
-                          while(upgradingArtifact){
-                            int tracker = 1;
-                            for(Artifact artifact: inventory.getArtifacts()){
-                              System.out.println(tracker + ". " + artifact);
-                              tracker++;
-                            }
-                            int input7 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back");
-                            if(input7 != inventory.getArtifacts().size() + 1){
-                              upgradeArtifact(character.getArtifactList()[input5 - 1], inventory.getArtifacts().get(input7 - 1));
-                              clearConsole();
-                            }
-                            else upgradingArtifact = false;
-                          }
-                        }
-                        else artifactDetailViewing = false;
+                        leveling = false;
                       }
                     }
                   }
-                  else artifactViewing = false;
+
+                  //manage weapon
+                  else if(input4 == 2){
+                    boolean weaponViewing = true;
+                    while(weaponViewing){
+                      int input5 = getMainMenuInput(character.getName() + " currently has the weapon " + character.getWeapon() + " equipped\n1.swap weapon\n2.back");
+                      clearConsole();
+                      //swap weapon
+                      int counter = 1;
+                      if(input5 == 1){
+                        //list weapons
+                        for(Weapon weapon: inventory.getWeapons()){
+                          System.out.println(counter + "." + weapon.getName() + " " + weapon.getFancyStars() + " lvl " + weapon.getLevel());
+                          counter++;
+                        }
+                        int input6 = getMainMenuInput("select a weapon or " + counter + ".back");
+                        if(input6 != counter) {
+                          clearConsole();
+                          character.deEquipWeapon(false);
+                          character.equipWeapon(inventory.getWeapons().get(input6 - 1), true);
+                        }
+                        clearConsole();
+                      }
+                      //end loop
+                      else if(input5 == 2) weaponViewing = false;
+                    }
+                  }
+
+                  //manage artifacts
+                  else if(input4 == 3){
+                    clearConsole();
+                    boolean artifactViewing = true;
+                    while(artifactViewing){
+                      for(int i = 1; i<6; i++){
+                        if(character.getArtifactList()[i - 1] == null) System.out.println(i + ". unequipped");
+                        else System.out.println(i + ". " + character.getArtifactList()[i - 1].getName() + " " + character.getArtifactList()[i - 1].getFancyStars() + " lvl " + character.getArtifactList()[i - 1].getLevel());
+                      }
+                      int input5 = getMainMenuInput(6 + ". back");
+                      clearConsole();
+                      if(input5 != 6){
+                        boolean artifactDetailViewing = true;
+                        while(artifactDetailViewing){
+                          if(character.getArtifactList()[input5 - 1] == null){
+                            switchArtifact(character, input5 - 1, null);
+                          }
+                          else{
+                            System.out.println(character.getArtifactList()[input5 - 1]);
+                            int input6 = getMainMenuInput("1.switch artifact\n2.remove artifact\n3.upgrade artifact\n4.back");
+                            clearConsole();
+                            if(input6 == 1){
+                              switchArtifact(character, input5 - 1, character.getArtifactList()[input5 - 1]);
+                            }
+                            else if(input6 == 2){
+                              removeArtifact(character, input5 - 1);
+                            }
+                            else if(input6 == 3){
+                              boolean upgradingArtifact = true;
+                              while(upgradingArtifact){
+                                int tracker = 1;
+                                for(Artifact artifact: inventory.getArtifacts()){
+                                  System.out.println(tracker + ". " + artifact);
+                                  tracker++;
+                                }
+                                int input7 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back");
+                                if(input7 != inventory.getArtifacts().size() + 1){
+                                  upgradeArtifact(character.getArtifactList()[input5 - 1], inventory.getArtifacts().get(input7 - 1));
+                                  clearConsole();
+                                }
+                                else upgradingArtifact = false;
+                              }
+                            }
+                            else artifactDetailViewing = false;
+                          }
+                        }
+                      }
+                      else artifactViewing = false;
+                    }
+                  }
+
+                  //equip character
+                  else if(input4 == 4){
+                    equipedCharacter = character;
+                    System.out.println("You equiped " + character.getName() + " " + character.getFancyStars() + " lvl " + character.getLevel());
+                  }
+
+                  //end loop
+                  else if(input4 == 5) characterInfoViewing = false;
                 }
               }
-
-              //equip character
-              else if(input4 == 4){
-                equipedCharacter = character;
-                System.out.println("You equiped " + character.getName() + " " + character.getFancyStars() + " lvl " + character.getLevel());
-              }
-
-              //end loop
-              else if(input4 == 5) characterInfoViewing = false;
             }
           }
           //artifacts
           else if(input2 == 2){
-
+            boolean artifactViewing = true;
+            while(artifactViewing){
+              for(int i = 1; i < inventory.getArtifacts().size() + 1; i++){
+                Artifact artifact = inventory.getArtifacts().get(i - 1);
+                System.out.println(i + ". " + artifact);
+              }
+              int input3 = getMainMenuInput((inventory.getArtifacts().size() + 1) + ". back\nselect an artifact");
+              if(input3 == inventory.getArtifacts().size() + 1) artifactViewing = false;
+              else{
+                Artifact artifact = inventory.getArtifacts().get(input3 - 1);
+                clearConsole();
+                boolean viewingArtifact = true;
+                while(viewingArtifact){
+                  int input4 = getMainMenuInput(artifact + "\n1.level up artifact\n2.back");
+                  if(input4 == 1){
+                    clearConsole();
+                    boolean upgradingArtifact = true;
+                    while(upgradingArtifact){
+                      for(int i = 1; i < inventory.getArtifacts().size() + 1; i++){
+                        Artifact artifact2 = inventory.getArtifacts().get(i - 1);
+                        System.out.println(i + ". " + artifact2);
+                      }
+                      int input5 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back");
+                      if(input5 != inventory.getArtifacts().size() + 1){
+                        upgradeArtifact(inventory.getArtifacts().get(input4 - 1), inventory.getArtifacts().get(input5 - 1));
+                        clearConsole();
+                      }
+                      else upgradingArtifact = false;
+                    }
+                  }
+                  else viewingArtifact = false;
+                }
+              }
+            }
           }
           //weapons
           else if(input2 == 3){
-            int counter = 1;
-            for(Weapon weapon: inventory.getWeapons()){
-              System.out.println(counter + "." + weapon.getName() + " " + weapon.getFancyStars() + " lvl " + weapon.getLevel());
-              counter += 1;
-            }
-            int input3 = getMainMenuInput("select a weapon\nor\n0.back");
             boolean selectingWeapons = true;
             while(selectingWeapons){
+              int counter = 1;
+              for(Weapon weapon: inventory.getWeapons()){
+                System.out.println(counter + "." + weapon.getName() + " " + weapon.getFancyStars() + " lvl " + weapon.getLevel());
+                counter += 1;
+              }
+              int input3 = getMainMenuInput("select a weapon\nor\n0.back");
+              clearConsole();
               if(input3 != 0){
-                try{
-                  System.out.println(inventory.getWeapons().get(input3 - 1));
-                } catch (Exception e) {
-                  clearConsole();
-                }
                 Weapon weapon = inventory.getWeapons().get(input3 -1);
                 float percent = (weapon.getXp() * 100.0f) / weapon.getXpRequired();
                 boolean leveling = true;
                 while(leveling){
-                  int input5 = getMainMenuInput("lvl " + weapon.getLevel() + "\nxp " + weapon.getXp() + "/" + weapon.getXpRequired() + " (" + percent + ")\nupgrade your weapon?\n$1 = 10xp\n0 to go back");
-                  if(input5 == 0) leveling = false;
+                  int input4 = getMainMenuInput("lvl " + weapon.getLevel() + "\nxp " + weapon.getXp() + "/" + weapon.getXpRequired() + " (" + percent + ")\n\nupgrade your weapon?\n$1 = 10xp\n0 to go back");
+                  clearConsole();
+                  if(input4 == 0) leveling = false;
                   else{
-                    if(inventory.checkMoney(input5)){
-                      weapon.addXp(input5 * 10);
-                      inventory.spendMoney(input5);
+                    if(inventory.checkMoney(input4)){
+                      weapon.addXp(input4 * 10);
+                      inventory.spendMoney(input4);
                     }
                   }
                 }
@@ -419,15 +456,23 @@ class Main{
                 "you have " + character.getHealth() + " health" +
                 "\n1.attack\n2.run");
         if(input == 1){
-          if(character.attack(enemy)) fighting = false;
+          clearConsole();
+          if(character.attack(enemy)){
+            inventory.addMoney(enemy.getLevel() * 2);
+            character.addXp(enemy.getLevel() * 10);
+            System.out.println("Killed " + enemy.getName() + ", received $" + (enemy.getLevel() * 2) + " and " + (enemy.getLevel() * 10) + "xp");
+            fighting = false;
+          }
           if(enemy.attack(character)){
             alive = false;
+            character.updateStats();
             artifacts.clear();
             fighting = false;
           }
         }
         else{
           ran = true;
+          clearConsole();
           artifacts.clear();
           break;
         }

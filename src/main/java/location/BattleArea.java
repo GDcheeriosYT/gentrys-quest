@@ -25,13 +25,14 @@ public class BattleArea {
 
   public ArrayList<Enemy> initializeEnemies(int difficulty){
     if(isBossArea) difficulty++;
+    System.out.println("!warning!\n this area is very dangerous.");
     if(isSingleBossArea) return enemies;
     int enemyAmount = (int)(Math.random() *  (difficulty * 1.5) + 1);
     ArrayList<Enemy> enemiesToReturn = new ArrayList<Enemy>();
     for(int i = 0; i<enemyAmount; i++){
       Enemy enemySelector = enemies.get((int) (Math.random() * enemies.size()));
       Enemy enemy = new Enemy(enemySelector.getName(), enemySelector.getHealth(), enemySelector.getAttack(), enemySelector.getDefense(), enemySelector.getWeapon(), enemySelector.getDescription());
-      enemy.setLevel((int)(Math.random() * (20 * (difficulty - 1) + 1) + 1));
+      enemy.setLevel((int)((20 * (difficulty - 1)) + (Math.random() * 5) + 1));
       enemiesToReturn.add(enemy);
     }
 
@@ -47,11 +48,11 @@ public class BattleArea {
       Artifact artifact = new Artifact(artifactSelector.getName(), artifactSelector.getMainAttribute(), artifactSelector.getFamily());
       int random = (int)(Math.random() * 1000) + 1;
       int rating = 0;
+      if (random <= (difficulty*160)) rating = 1;
       if (random <= (difficulty*140)) rating = 2;
-      else if(random <= (difficulty*120)) rating = 3;
-      else if(random <= (difficulty*90)) rating = 4;
-      else if(random <= (difficulty*50)) rating = 5;
-      else rating = 1;
+      if (random <= (difficulty*120)) rating = 3;
+      if (random <= (difficulty*90)) rating = 4;
+      if (random <= (difficulty*50)) rating = 5;
 
       artifact.setStarRating(rating);
       artifactsToReturn.add(artifact);

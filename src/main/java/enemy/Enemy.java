@@ -43,11 +43,12 @@ public class Enemy {
   }
 
   public boolean attack(Character character){
-    System.out.println(name + " " + weapon.getVerb(false) + " you");
+    System.out.println(name + " " + weapon.getVerb(false) + " " + character.getName());
+    timeout(2000, false);
     character.setHealth(character.getHealth() - attack);
     if(character.getHealth() < 0){
-      timeout(1000, true);
-      System.out.println("You died...");
+      System.out.println("You died...\n");
+      timeout(2000, false);
       return true;
     }
     return false;

@@ -85,6 +85,10 @@ public class Weapon {
     return starRating;
   }
 
+  public Buff getAttribute() {
+    return attribute;
+  }
+
   public String toString(){
     String stars = "";
     for(int i = 0; i < starRating; i++){

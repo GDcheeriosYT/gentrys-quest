@@ -17,6 +17,7 @@ public class Character {
   private long xpRequired = 100;
   long previousXpRequired;
   private int health;
+  private int maxHealth;
   private int defaultHealth;
   private int additionalHealth;
   private int attackDamage;
@@ -93,6 +94,7 @@ public class Character {
 
   public void updateStats(){
     health = defaultHealth + additionalHealth;
+    int maxHealth = health;
     attackDamage = defaultAttackDamage + additionalAttackDamage;
     defense = defaultDefense + additionalDefense;
   }
@@ -127,6 +129,17 @@ public class Character {
   public void deEquipArtifact(int position){
     artifacts[position] = null;
     checkArtifacts();
+  }
+
+  private double getValue(Buff buff){
+    double value;
+    if(buff.getBuff()[0] == 4){
+      value = 1 + (level * 0.05) + (starRating * 0.3) * (buff.getBuff()[1]);
+    }
+    else{
+      value = 1 + (int)(level * 0.85) + (int)(starRating * 1.2) * (buff.getBuff()[1]);
+    }
+    return value;
   }
 
   public void checkArtifacts(){
@@ -166,15 +179,38 @@ public class Character {
     }
   }
 
+  public void checkWeapon(){
+    if(weapon != null){
+      int[] attributeInfo = weapon.getAttribute().getBuff();
+      if(attributeInfo[0] == 1){
+        additionalHealth += getValue(weapon.getAttribute());
+      }
+      else if(attributeInfo[0] == 2){
+        additionalAttackDamage += getValue(weapon.getAttribute());
+      }
+      else if(attributeInfo[0] == 3){
+        additionalDefense += getValue(weapon.getAttribute());
+      }
+      else if(attributeInfo[0] == 4){
+        additionalCritRate += getValue(weapon.getAttribute());
+      }
+      else if(attributeInfo[0] == 5){
+        additionalCritDamage += getValue(weapon.getAttribute());
+      }
+    }
+  }
+
   public void equipWeapon(Weapon weapon2, boolean output){
     if(output == true){
       System.out.println(name + " has succesfully equipped " + weapon2.getName());
     }
     weapon = weapon2;
+    checkWeapon();
   }
 
   public void deEquipWeapon(boolean output){
     weapon = null;
+    checkWeapon();
   }
 
   public Artifact[] getArtifactList(){
@@ -214,8 +250,10 @@ public class Character {
   }
 
   public boolean attack(Enemy enemy){
-    String output = "You ";
-    int damage = defaultAttackDamage;
+    String output = name + " ";
+    int damage = 0;
+    if(weapon == null) System.out.println("You have no weapon...\nYou're better off running away.");
+    else damage = attackDamage + weapon.getDamage();
     double criticalChecker = (Math.random() * 100) + 1;
     if(criticalChecker<critRate){
       output += weapon.getVerb(true) + " the " + enemy.getName();
@@ -223,19 +261,19 @@ public class Character {
     }
     else output += weapon.getVerb(false) + " the " + enemy.getName();
     if(damage < enemy.getDefense()){
-      timeout(1000, true);
-      System.out.println(enemy.getName() + " dodged...");
+      System.out.println(enemy.getName() + " dodged...\n");
+      timeout(2000, false);
       return false;
     }
     else{
-      timeout(1000, true);
-      System.out.println(output);
+      System.out.println(output + "\n");
+      timeout(2000, false);
     }
 
     enemy.setHealth(enemy.getHealth() - damage + enemy.getDefense());
     if(enemy.getHealth() < 0){
-      timeout(1000, true);
-      System.out.println(enemy.getName() + " is dead.");
+      System.out.println(enemy.getName() + " is dead.\n");
+      timeout(2000, false);
       return true;
     }
     return false;
