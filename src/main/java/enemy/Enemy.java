@@ -46,6 +46,7 @@ public class Enemy {
     System.out.println(name + " " + weapon.getVerb(false) + " you");
     character.setHealth(character.getHealth() - attack);
     if(character.getHealth() < 0){
+      timeout(1000, true);
       System.out.println("You died...");
       return true;
     }
@@ -66,6 +67,21 @@ public class Enemy {
 
   public String getDescription() {
     return description;
+  }
+
+  public static void clearConsole(){
+    for (int i = 0; i < 100; i++) {
+      System.out.println("");
+    }
+  }
+
+  public static void timeout(int time, boolean clearConole){
+    try {
+      Thread.sleep(time);
+    } catch (InterruptedException ex) {
+      throw new RuntimeException(ex);
+    }
+    if(clearConole) clearConsole();
   }
 
   public String toString(){

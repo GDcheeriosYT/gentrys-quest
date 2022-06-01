@@ -404,7 +404,10 @@ class Main{
       artifactList += artifact + "\n";
     }
 
+    boolean alive = true;
+
     for(Enemy enemy: enemies){
+      if(!alive) break;
       System.out.println("You encountered an " + enemy.getName() + "(lvl " + enemy.getLevel() + ")");
       boolean fighting = true;
       while(fighting){
@@ -417,10 +420,15 @@ class Main{
                 "\n1.attack\n2.run");
         if(input == 1){
           if(character.attack(enemy)) fighting = false;
-          if(enemy.attack(character)) fighting = false;
+          if(enemy.attack(character)){
+            alive = false;
+            artifacts.clear();
+            fighting = false;
+          }
         }
         else{
           ran = true;
+          artifacts.clear();
           break;
         }
       }
@@ -428,6 +436,10 @@ class Main{
         ending = "You ran\n" + ((enemies.indexOf(enemy) / enemies.size()) * 100) + "% completion";
         artifactList = "nothing";
         break;
+      }
+      else if(alive == false){
+        ending = ((enemies.indexOf(enemy) / enemies.size()) * 100) + "% completion";
+        artifactList = "nothing";
       }
       else{
         ending = ((enemies.indexOf(enemy) / enemies.size()) * 100) + "% completion";

@@ -58,7 +58,7 @@ public class Character {
     xp = amount;
   }
 
-  private boolean hasSet()*{
+  private boolean hasSet(){
     boolean hasSet = false;
     String family = artifacts[0].getFamily();
     for(Artifact artifact: artifacts){
@@ -223,13 +223,18 @@ public class Character {
     }
     else output += weapon.getVerb(false) + " the " + enemy.getName();
     if(damage < enemy.getDefense()){
+      timeout(1000, true);
       System.out.println(enemy.getName() + " dodged...");
       return false;
     }
-    else System.out.println(output);
+    else{
+      timeout(1000, true);
+      System.out.println(output);
+    }
 
     enemy.setHealth(enemy.getHealth() - damage + enemy.getDefense());
     if(enemy.getHealth() < 0){
+      timeout(1000, true);
       System.out.println(enemy.getName() + " is dead.");
       return true;
     }

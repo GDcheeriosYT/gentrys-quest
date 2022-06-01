@@ -35,8 +35,6 @@ public class BattleArea {
       enemiesToReturn.add(enemy);
     }
 
-    System.out.println(enemiesToReturn);
-
     return enemiesToReturn;
   }
 
