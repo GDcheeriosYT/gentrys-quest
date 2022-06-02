@@ -24,7 +24,8 @@ public class Locations {
             new ArrayList<BattleArea>(
                 List.of(
                     getBattleArea("Brayden's House"),
-                    getBattleArea("Unfinished Construction Site")
+                    getBattleArea("Unfinished Construction Site"),
+                    getBattleArea("Down Town")
                 )
             )
         );

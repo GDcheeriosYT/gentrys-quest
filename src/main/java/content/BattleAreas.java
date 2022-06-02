@@ -91,8 +91,51 @@ public class BattleAreas {
             getFamilyArtifacts("max shrum")
         );
 
+        BattleArea downTown = new BattleArea(
+            "Down Town",
+            false,
+            false,
+            new ArrayList<Enemy>(
+                List.of(new Enemy(
+                    "Homeless guy",
+                    10,
+                    2,
+                    2,
+                    new Weapon(
+                        "Empty beer bottle",
+                        1,
+                        "beer bottle",
+                        3,
+                        new Buff(""),
+                        new Verbs("whacked", "peed on"),
+                        "A beer bottle in a brown paper bag."
+                    ),
+                    "A homeless guy."),
+                new Enemy(
+                    "Business man",
+                    26,
+                    3,
+                    2,
+                    new Weapon(
+                        "Briefcase",
+                        4,
+                        "briefcase",
+                        4,
+                        new Buff(""),
+                        new Verbs("swung his breifcase at", "downsmashed with his breifcase at"),
+                        "A briefcase with 'important' files."
+                    ),
+                    "A very serious buisiness man"
+                )
+                )
+            ),
+            getFamilyArtifacts("down town")
+        );
+
+
         contentBattleAreas.add(braydensHouse);
         contentBattleAreas.add(unfinishedConstructionSite);
+        contentBattleAreas.add(downTown);
     }
 
     public static ArrayList<BattleArea> getContentBattleAreas() {
