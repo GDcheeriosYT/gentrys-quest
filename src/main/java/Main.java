@@ -44,8 +44,6 @@ class Main{
     player.equipWeapon(fists, false);
     inventory.addCharacter(player);
 
-    inventory.setInfiniteMoney(true);
-
     System.out.println("Welcome to Gentry's Quest!");
     while(true){
       int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.Quit");
