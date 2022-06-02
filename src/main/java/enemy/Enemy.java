@@ -12,9 +12,9 @@ public class Enemy {
 
   public Enemy(String name, int health, int attack, int defense, Weapon weapon, String description){
     this.name = name;
-    this.health = health * (int)(level * 10.5);
-    this.attack = attack * (int)(level * 0.9);
-    this.defense = defense * (int)(level * 0.85);
+    this.health = health;
+    this.attack = attack;
+    this.defense = defense;
     this.weapon = weapon;
     this.description = description;
   }
@@ -33,9 +33,9 @@ public class Enemy {
 
   public void setLevel(int level) {
     this.level = level;
-    this.health = (int)(level * 10.5);
-    this.attack = (int)(level * 0.9);
-    this.defense = (int)(level * 0.85);
+    this.health += (int)(level * 6);
+    this.attack += (int)(level * 0.9);
+    this.defense += (int)(level * 0.85);
   }
 
   public int getHealth() {
