@@ -61,7 +61,11 @@ public class Character {
 
   private boolean hasSet(){
     boolean hasSet = false;
-    String family = artifacts[0].getFamily();
+    String family = "";
+    if(artifacts[0]!=null){
+      family = artifacts[0].getFamily();
+    }
+    else return false;
     for(Artifact artifact: artifacts){
       if(artifact == null) return false;
       if(!artifact.getFamily().equals(family)){
@@ -89,6 +93,14 @@ public class Character {
     }
     difficulty = difficultyTracker;
 
+    additionalHealth = 0;
+    additionalAttackDamage = 0;
+    additionalDefense = 0;
+    additionalCritRate = 0;
+    additionalCritDamage = 0;
+
+    checkWeapon();
+    checkArtifacts(false, null);
     updateStats();
   }
 
@@ -119,7 +131,7 @@ public class Character {
     if(artifacts[position] == null){
       System.out.println("equipped " + artifact.getName());
       artifacts[position] = artifact;
-      checkArtifacts();
+      checkArtifacts(false, null);
     }
     else{
       System.out.println("couldn't equip " + artifact.getName());
@@ -127,50 +139,60 @@ public class Character {
   }
 
   public void deEquipArtifact(int position){
+    checkArtifacts(true, artifacts[position]);
     artifacts[position] = null;
-    checkArtifacts();
   }
 
   private double getValue(Buff buff){
-    double value;
-    if(buff.getBuff()[0] == 4){
-      value = 1 + (level * 0.05) + (starRating * 0.3) * (buff.getBuff()[1]);
-    }
-    else{
-      value = 1 + (int)(level * 0.85) + (int)(starRating * 1.2) * (buff.getBuff()[1]);
-    }
+    double value = ((weapon.getAttribute().getBuff()[1] * 0.85) * (weapon.getStarRating() * 1.3));
+
     return value;
   }
 
-  public void checkArtifacts(){
-    for(Artifact artifact2: artifacts){
-      if(artifact2 != null){
-        for(Buff attribute: artifact2.getAllBuffs()){
-          int[] attributeInfo = attribute.getBuff();
-          if(attributeInfo[0] == 1){
-            additionalHealth += artifact2.getValue(attribute);
-          }
-          else if(attributeInfo[0] == 2){
-            additionalAttackDamage += artifact2.getValue(attribute);
-          }
-          else if(attributeInfo[0] == 3){
-            additionalDefense += artifact2.getValue(attribute);
-          }
-          else if(attributeInfo[0] == 4){
-            if(defaultCritRate + additionalCritRate > 100){
-              additionalCritRate = 100;
+  public void checkArtifacts(boolean removal, Artifact artifact){
+    if(!removal){
+      for(Artifact artifact2: artifacts){
+        if(artifact2 != null){
+          for(Buff attribute: artifact2.getAllBuffs()){
+            int[] attributeInfo = attribute.getBuff();
+            if(attributeInfo[0] == 1){
+              additionalHealth += artifact2.getValue(attribute);
             }
-            else{
+            else if(attributeInfo[0] == 2){
+              additionalAttackDamage += artifact2.getValue(attribute);
+            }
+            else if(attributeInfo[0] == 3){
+              additionalDefense += artifact2.getValue(attribute);
+            }
+            else if(attributeInfo[0] == 4){
               additionalCritRate += artifact2.getValue(attribute);
             }
-          }
-          else{
-            additionalCritDamage += artifact2.getValue(attribute);
+            else{
+              additionalCritDamage += artifact2.getValue(attribute);
+            }
           }
         }
       }
     }
-    if(hasSet()) {
+    else {
+      for (Buff attribute : artifact.getAllBuffs()) {
+        int[] attributeInfo = attribute.getBuff();
+        if (attributeInfo[0] == 1) {
+          additionalHealth -= artifact.getValue(attribute);
+        }
+        else if (attributeInfo[0] == 2) {
+          additionalAttackDamage -= artifact.getValue(attribute);
+        }
+        else if (attributeInfo[0] == 3) {
+          additionalDefense -= artifact.getValue(attribute);
+        }
+        else if (attributeInfo[0] == 4) {
+          additionalCritRate -= artifact.getValue(attribute);
+        }
+        else additionalCritDamage -= artifact.getValue(attribute);
+      }
+    }
+    if(hasSet()){
       additionalHealth += starRating * 1.5;
       additionalAttackDamage += starRating * 1.5;
       additionalDefense += starRating * 1.5;
@@ -209,8 +231,26 @@ public class Character {
   }
 
   public void deEquipWeapon(boolean output){
-    weapon = null;
-    checkWeapon();
+    if(weapon!=null){
+      int[] attributeInfo = weapon.getAttribute().getBuff();
+      if(attributeInfo[0] == 1){
+        additionalHealth -= getValue(weapon.getAttribute());
+      }
+      else if(attributeInfo[0] == 2){
+        additionalAttackDamage -= getValue(weapon.getAttribute());
+      }
+      else if(attributeInfo[0] == 3){
+        additionalDefense -= getValue(weapon.getAttribute());
+      }
+      else if(attributeInfo[0] == 4){
+        additionalCritRate -= getValue(weapon.getAttribute());
+      }
+      else{
+        additionalCritDamage -= getValue(weapon.getAttribute());
+      }
+      weapon = null;
+      checkWeapon();
+    }
   }
 
   public Artifact[] getArtifactList(){
@@ -271,7 +311,7 @@ public class Character {
     }
 
     enemy.setHealth(enemy.getHealth() - damage + enemy.getDefense());
-    if(enemy.getHealth() < 0){
+    if(enemy.getHealth() < 1){
       System.out.println(enemy.getName() + " is dead.\n");
       timeout(2000, false);
       return true;
@@ -293,7 +333,6 @@ public class Character {
     }
     if(clearConole) clearConsole();
   }
-
 
   public String toString(){
     String stars = "";
@@ -342,5 +381,3 @@ public class Character {
     return name + " " + stars + "\nlevel " + level + "\nxp: " + xp + "/" + xpRequired + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense + "\ncrit rate: " + defaultCritRate + "% " + moreCritRate + "\ncrit damage " + defaultCritDamage + moreCritDamage + weaponInfo + artifactInfo + "\n====================\n" + description + "\n====================";
   }
 }
-
-

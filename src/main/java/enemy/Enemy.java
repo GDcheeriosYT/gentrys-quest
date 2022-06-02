@@ -46,7 +46,7 @@ public class Enemy {
     System.out.println(name + " " + weapon.getVerb(false) + " " + character.getName());
     timeout(2000, false);
     character.setHealth(character.getHealth() - attack);
-    if(character.getHealth() < 0){
+    if(character.getHealth() < 1){
       System.out.println("You died...\n");
       timeout(2000, false);
       return true;

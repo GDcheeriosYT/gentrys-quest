@@ -30,7 +30,7 @@ public class BattleAreas {
             false,
             new ArrayList<Enemy>(
                 List.of(new Enemy(
-                    "A voice from Brayden's head",
+                    "Voice from Brayden's head",
                     60,
                     6,
                     3,
@@ -43,7 +43,23 @@ public class BattleAreas {
                         new Verbs("messed with", "tricked"),
                         "A psychic weapon."
                     ),
-                "A voice that often talks to Brayden.")
+                "A voice that often talks to Brayden."),
+                new Enemy(
+                    "Demon from under brayden's bed",
+                    50,
+                    5,
+                    1,
+                    new Weapon(
+                        "Trident",
+                        2,
+                        "Trident",
+                        3,
+                        new Buff(""),
+                        new Verbs("poked", "impaled"),
+                        "A demon's trident."
+                    ),
+                "A demon from underneath brayden's bed."
+                )
                 )
             ),
             getFamilyArtifacts("brayden messerschmidt")

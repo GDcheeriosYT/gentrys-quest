@@ -6,8 +6,8 @@ import enemy.Enemy;
 
 public class BattleArea {
   private final String name;
-  private static boolean isBossArea;
-  private static boolean isSingleBossArea;
+  private boolean isBossArea;
+  private boolean isSingleBossArea;
   private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   private ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
 
@@ -24,8 +24,10 @@ public class BattleArea {
   }
 
   public ArrayList<Enemy> initializeEnemies(int difficulty){
-    if(isBossArea) difficulty++;
-    System.out.println("!warning!\n this area is very dangerous.");
+    if(isBossArea){
+      difficulty++;
+      System.out.println("!warning!\n this area is very dangerous.");
+    }
     if(isSingleBossArea) return enemies;
     int enemyAmount = (int)(Math.random() *  (difficulty * 1.5) + 1);
     ArrayList<Enemy> enemiesToReturn = new ArrayList<Enemy>();
@@ -47,8 +49,7 @@ public class BattleArea {
       Artifact artifactSelector = artifacts.get((int) (Math.random() * artifacts.size()));
       Artifact artifact = new Artifact(artifactSelector.getName(), artifactSelector.getMainAttribute(), artifactSelector.getFamily());
       int random = (int)(Math.random() * 1000) + 1;
-      int rating = 0;
-      if (random <= (difficulty*160)) rating = 1;
+      int rating = 1;
       if (random <= (difficulty*140)) rating = 2;
       if (random <= (difficulty*120)) rating = 3;
       if (random <= (difficulty*90)) rating = 4;

@@ -19,8 +19,8 @@ public class Locations {
     }
 
     public static void initializeContentLocations(){
-        Location unitedStates = new Location(
-            "United States",
+        Location iowa = new Location(
+            "Iowa",
             new ArrayList<BattleArea>(
                 List.of(
                     getBattleArea("Brayden's House"),
@@ -29,7 +29,7 @@ public class Locations {
             )
         );
 
-        contentLocations.add(unitedStates);
+        contentLocations.add(iowa);
     }
 
     public static ArrayList<Location> getContentLocations() {

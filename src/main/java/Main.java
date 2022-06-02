@@ -31,13 +31,13 @@ class Main{
     System.out.println("loading locations\n");
     content.Locations.initializeContentLocations();
 
-    //JSONObject gameData = new JSONObject();
-
-    //String name = new Scanner(System.in).nextLine();
+    System.out.println("what's your name?");
+    String name = new Scanner(System.in).nextLine();
+    clearConsole();
 
     Character equipedCharacter = null;
-    Character player = new Character(5, "test", 1, 1, 1, 0.5, 1, "The guy");
-    Weapon fists = new Weapon("fists", 1, "hand", 1, new Buff("critRate"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
+    Character player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
+    Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
     equipedCharacter = player;
 
@@ -445,7 +445,7 @@ class Main{
 
     for(Enemy enemy: enemies){
       if(!alive) break;
-      System.out.println("You encountered an " + enemy.getName() + "(lvl " + enemy.getLevel() + ")");
+      System.out.println(character.getName() + " encountered a " + enemy.getName() + "(lvl " + enemy.getLevel() + ")");
       boolean fighting = true;
       while(fighting){
         System.out.println();
@@ -453,7 +453,7 @@ class Main{
                 enemy.getName() + "(lvl " + enemy.getLevel() + ")" +
                 "\n\t" + enemy.getHealth() +
                 "\n==========================================\n" +
-                "you have " + character.getHealth() + " health" +
+                character.getName() + " has " + character.getHealth() + " health" +
                 "\n1.attack\n2.run");
         if(input == 1){
           clearConsole();
@@ -463,22 +463,25 @@ class Main{
             System.out.println("Killed " + enemy.getName() + ", received $" + (enemy.getLevel() * 2) + " and " + (enemy.getLevel() * 10) + "xp");
             fighting = false;
           }
-          if(enemy.attack(character)){
-            alive = false;
-            character.updateStats();
-            artifacts.clear();
-            fighting = false;
+          if(fighting){
+            if(enemy.attack(character)){
+              alive = false;
+              character.updateStats();
+              artifacts.clear();
+              fighting = false;
+            }
           }
         }
         else{
           ran = true;
           clearConsole();
+          character.updateStats();
           artifacts.clear();
           break;
         }
       }
       if(ran == true){
-        ending = "You ran\n" + ((enemies.indexOf(enemy) / enemies.size()) * 100) + "% completion";
+        ending = character.getName() + " ran\n" + ((enemies.indexOf(enemy) / enemies.size()) * 100) + "% completion";
         artifactList = "nothing";
         break;
       }

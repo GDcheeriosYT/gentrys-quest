@@ -128,6 +128,6 @@ public class Artifact {
       strAttributes += attributes.get(i) + " " + getValue(attributes.get(i)) + "\n"; 
     }
     float percent = (xp * 100.0f) / xpRequired;
-    return name + " " + stars + "\nappart of: " + family + " set" + "\n" + "level: " + level + " (" + percent + "%)\n" + mainAttribute + " " +getValue(mainAttribute) + "\n" + strAttributes;
+    return name + " " + stars + "\nappart of: " + family + " set" + "\n" + "level: " + level + " (" + percent + "%)\n" + mainAttribute + " " + getValue(mainAttribute) + "\n" + strAttributes;
   }
 }
