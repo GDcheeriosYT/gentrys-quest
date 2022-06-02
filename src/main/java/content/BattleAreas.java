@@ -31,7 +31,7 @@ public class BattleAreas {
             new ArrayList<Enemy>(
                 List.of(new Enemy(
                     "Voice from Brayden's head",
-                    60,
+                    20,
                     6,
                     3,
                     new Weapon(
@@ -46,12 +46,12 @@ public class BattleAreas {
                 "A voice that often talks to Brayden."),
                 new Enemy(
                     "Demon from under brayden's bed",
-                    50,
+                    23,
                     5,
                     1,
                     new Weapon(
                         "Trident",
-                        2,
+                        3,
                         "Trident",
                         3,
                         new Buff(""),
@@ -72,7 +72,7 @@ public class BattleAreas {
             new ArrayList<Enemy>(
                 List.of(new Enemy(
                     "OSHA Worker",
-                    30,
+                    15,
                     3,
                     1,
                     new Weapon(
