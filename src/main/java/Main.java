@@ -31,7 +31,7 @@ class Main{
     System.out.println("loading locations\n");
     content.Locations.initializeContentLocations();
 
-    System.out.println("what's your name?");
+    System.out.println("what's this protagonists name?");
     String name = new Scanner(System.in).nextLine();
     clearConsole();
 
