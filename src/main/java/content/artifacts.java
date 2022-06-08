@@ -116,6 +116,15 @@ public class artifacts {
     Artifact moldyCheese = new Artifact("Moldy Cheese", new Buff(""), "down town");
     Artifact emptyBeerBottle = new Artifact("Empty Beer Bottle", new Buff("attack"), "down town");
 
+    //Man Clan artifacts
+    //Hentai Man
+    Artifact phone = new Artifact("Phone", new Buff("critDamage"), "man clan");
+    Artifact spoonCollection = new Artifact("Spoon Collection", new Buff("health"), "man clan");
+    Artifact crustyBodyPillow = new Artifact("Crusty Body Pillow", new Buff("defense"), "man clan");
+    Artifact bluetoothSpeakerThatPlaysVineBoomSoundEffect = new Artifact("Bluetooth Speaker That Plays Vine Boom Sound Effect", new Buff("health"), "man clan");
+    Artifact soakedDoujin = new Artifact("Soaked Doujin", new Buff("critRate"), "man clan");
+    //kchuntMan artifacts
+
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(fork);
     contentArtifacts.add(bucket);

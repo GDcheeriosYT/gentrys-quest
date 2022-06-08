@@ -24,6 +24,7 @@ public class BattleAreas {
     }
 
     public static void initializeContentBattleAreas(){
+        //iowa locations
         BattleArea braydensHouse = new BattleArea(
             "Brayden's House",
             false,
@@ -132,10 +133,86 @@ public class BattleAreas {
             getFamilyArtifacts("down town")
         );
 
+        //town of robloxia highschool
+        BattleArea gymLockerRoomBathroom = new BattleArea(
+            "Gym's Locker Room's Bathroom",
+            false,
+            false,
+            new ArrayList<Enemy>(
+                List.of(
+                    new Enemy(
+                        "Valley White Girl",
+                        10,
+                        3,
+                        1,
+                        new Weapon(
+                            "Whiny Voice",
+                            1,
+                            "Vocal",
+                            3,
+                            new Buff(""),
+                            new Verbs("breathed on", "spat on"),
+                            "A whiny white girls voice"
+                        ),
+                        "An annoying species."
+                    ),
+                    new Enemy(
+                        "Teacher",
+                        22,
+                        5,
+                        2,
+                        new Weapon(
+                            "Clipboard",
+                            3,
+                            "clipboard",
+                            1,
+                            new Buff(""),
+                            new Verbs("punished", "gave detention to"),
+                            "A clipboard that never actually has stuff written on it."
+                        ),
+                        "A busty white milf."
+                    ),
+                    new Enemy(
+                        "Buff Gym Teacher",
+                        30,
+                        6,
+                        3,
+                        new Weapon(
+                            "Whistle",
+                            1,
+                            "Whistle",
+                            1,
+                            new Buff(""),
+                            new Verbs("blew", "deafened"),
+                            "Loud, no running."
+                        ),
+                        "Don't let him catch you. You'll suffer the wrath."
+                    ),
+                    new Enemy(
+                        "Bully",
+                        20,
+                        3,
+                        1,
+                        new Weapon(
+                            "Fists",
+                            2,
+                            "hands",
+                            1,
+                            new Buff(""),
+                            new Verbs("tripped", "punched"),
+                            "Stubby little fingers create a stubby litle fist."
+                        ),
+                        "Sensitive man on the inside. Strong man on the outside."
+                    )
+                )
+            ),
+            getFamilyArtifacts("man")
+        );
 
         contentBattleAreas.add(braydensHouse);
         contentBattleAreas.add(unfinishedConstructionSite);
         contentBattleAreas.add(downTown);
+        contentBattleAreas.add(gymLockerRoomBathroom);
     }
 
     public static ArrayList<BattleArea> getContentBattleAreas() {

@@ -43,6 +43,7 @@ public class weapons {
       Weapon sirFarQuad = new Weapon("Sir Far Quad", 5, "Lance", 50, new Buff("critDamage"), new Verbs("impailed", "sliced"), "Long long sword."); //dylan weapon
       Weapon braydensOsuPen = new Weapon("Brayden's Osu Pen", 5, "Pen", 36, new Buff("critRate"), new Verbs("hit a circle on", "fc'ed the pattern on"), "Brayden's osu pen."); //brayden messerschmidt weapon
       Weapon quandaleDingle = new Weapon("Quandale Dingle", 5, "Person", 46, new Buff("attack"), new Verbs("got quandale dingle'd", "got dingle bombed"), "Long nose guy."); //bryce anderson weapon
+      Weapon theBunnyGirl = new Weapon("The Bunny Girl", 5, "katana", 46, new Buff("critDamage"), new Verbs("tickled", "came inside"), "Born from the highest luxurious used bunny girl outfit fabric. A lustful weapon"); //hentai man weapon
 
       contentWeapons.add(sword);
       contentWeapons.add(bow);
