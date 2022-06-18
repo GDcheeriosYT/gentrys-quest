@@ -24,6 +24,32 @@ public class BattleAreas {
     }
 
     public static void initializeContentBattleAreas(){
+        BattleArea introFight = new BattleArea(
+            "intro",
+            false,
+            true,
+            new ArrayList<Enemy>(
+                List.of(new Enemy(
+                    "Angry Pedestrian",
+                    15,
+                    20,
+                    3,
+                    new Weapon(
+                        "Knife",
+                        1,
+                        "Knife",
+                        0,
+                        new Buff("attack"),
+                        new Verbs("stabbed", "slashed"),
+                        "A regular everyday knife"
+                    ),
+                    "A for some reason very angry pedestrian"
+                )
+                )
+            ),
+            getFamilyArtifacts("brayden messerschmidt")
+        );
+
         //iowa locations
         BattleArea braydensHouse = new BattleArea(
             "Brayden's House",
@@ -39,7 +65,7 @@ public class BattleAreas {
                         "Psychology",
                         2,
                         "Mental",
-                        2,
+                        0,
                         new Buff(""),
                         new Verbs("messed with", "tricked"),
                         "A psychic weapon."
@@ -54,7 +80,7 @@ public class BattleAreas {
                         "Trident",
                         3,
                         "Trident",
-                        3,
+                        0,
                         new Buff(""),
                         new Verbs("poked", "impaled"),
                         "A demon's trident."
@@ -74,13 +100,13 @@ public class BattleAreas {
                 List.of(new Enemy(
                     "OSHA Worker",
                     15,
-                    3,
+                    2,
                     1,
                     new Weapon(
                         "Clipboard",
                         1,
                         "Clipboard",
-                        1,
+                        0,
                         new Buff(""),
                         new Verbs("smacked", "broke the clipboard in the process of smacking"),
                         "A wooden clipboard"
@@ -100,13 +126,13 @@ public class BattleAreas {
                 List.of(new Enemy(
                     "Homeless guy",
                     10,
-                    2,
+                    3,
                     2,
                     new Weapon(
                         "Empty beer bottle",
                         1,
                         "beer bottle",
-                        3,
+                        0,
                         new Buff(""),
                         new Verbs("whacked", "peed on"),
                         "A beer bottle in a brown paper bag."
@@ -115,18 +141,18 @@ public class BattleAreas {
                 new Enemy(
                     "Business man",
                     26,
-                    3,
+                    6,
                     2,
                     new Weapon(
                         "Briefcase",
                         4,
                         "briefcase",
-                        4,
+                        0,
                         new Buff(""),
-                        new Verbs("swung his breifcase at", "downsmashed with his breifcase at"),
+                        new Verbs("swung his briefcase at", "downsmashed with his briefcase at"),
                         "A briefcase with 'important' files."
                     ),
-                    "A very serious buisiness man"
+                    "A very serious business man"
                 )
                 )
             ),
@@ -200,7 +226,7 @@ public class BattleAreas {
                             1,
                             new Buff(""),
                             new Verbs("tripped", "punched"),
-                            "Stubby little fingers create a stubby litle fist."
+                            "Stubby little fingers create a stubby little fist."
                         ),
                         "Sensitive man on the inside. Strong man on the outside."
                     )
@@ -208,6 +234,8 @@ public class BattleAreas {
             ),
             getFamilyArtifacts("man")
         );
+
+        contentBattleAreas.add(introFight);
 
         contentBattleAreas.add(braydensHouse);
         contentBattleAreas.add(unfinishedConstructionSite);
