@@ -59,6 +59,8 @@ public class characters {
     Character spencerGeorge = new Character(5, "Spizzle", 0, 0, 0, 1.0, 3, "Gambling glass cannon.");
     Character willJohnson = new Character(5, "Wil \"longest\" johnson", 1, 2, 1, 0.0, 0, "He has teh longest johnson.");
     Character makDaddy = new Character(5, "Mak Daddy", 1, 2, 1, 0.0, 0, "4 foot 11 and 40 pounds but big strong.");
+    Character kchuntMan = new Character(5, "KchuntMan", 0, 0, 0, 4.0, 0, "Stealth Mode.");
+    Character hentaiMan = new Character(5, "Hentai Man", 0, 0, 0, 4.0, 0, "Weaponized hentai.");
 
     //putting into the arraylist
     contentCharacters.add(brodyKrysa);
@@ -101,6 +103,8 @@ public class characters {
     contentCharacters.add(spencerGeorge);
     contentCharacters.add(willJohnson);
     contentCharacters.add(makDaddy);
+    contentCharacters.add(kchuntMan);
+    contentCharacters.add(hentaiMan);
   }
 
   public static ArrayList<Character> getContentCharacters() {

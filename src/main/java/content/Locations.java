@@ -24,12 +24,23 @@ public class Locations {
             new ArrayList<BattleArea>(
                 List.of(
                     getBattleArea("Brayden's House"),
-                    getBattleArea("Unfinished Construction Site")
+                    getBattleArea("Unfinished Construction Site"),
+                    getBattleArea("Down Town")
+                )
+            )
+        );
+
+        Location townOfRobloxiaHighschool = new Location(
+            "Town of Robloxia's Highscool",
+            new ArrayList<BattleArea>(
+                List.of(
+                    getBattleArea("Gym's Locker Room's Bathroom")
                 )
             )
         );
 
         contentLocations.add(iowa);
+        contentLocations.add(townOfRobloxiaHighschool);
     }
 
     public static ArrayList<Location> getContentLocations() {

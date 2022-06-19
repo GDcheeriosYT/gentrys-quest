@@ -107,6 +107,24 @@ public class artifacts {
     Artifact nyanCat = new Artifact("Nyan Cat", new Buff("critRate"), "bryce anderson");
     Artifact angryAnubis = new Artifact("Angry Anubis", new Buff("critRate"), "bryce anderson");
 
+    //Down Town artifacts
+    Artifact trashCanLid = new Artifact("Trash Can Lid", new Buff("defense"), "down town");
+    Artifact suit = new Artifact("Suit", new Buff("defense"), "down town");
+    Artifact jacket = new Artifact("Jacket", new Buff("defense"), "down town");
+    Artifact carKeys = new Artifact("Car Keys", new Buff(""), "down town");
+    Artifact cardboardBox = new Artifact("Cardboard Box", new Buff(""), "down town");
+    Artifact moldyCheese = new Artifact("Moldy Cheese", new Buff(""), "down town");
+    Artifact emptyBeerBottle = new Artifact("Empty Beer Bottle", new Buff("attack"), "down town");
+
+    //Man Clan artifacts
+    //Hentai Man
+    Artifact phone = new Artifact("Phone", new Buff("critDamage"), "man clan");
+    Artifact spoonCollection = new Artifact("Spoon Collection", new Buff("health"), "man clan");
+    Artifact crustyBodyPillow = new Artifact("Crusty Body Pillow", new Buff("defense"), "man clan");
+    Artifact bluetoothSpeakerThatPlaysVineBoomSoundEffect = new Artifact("Bluetooth Speaker That Plays Vine Boom Sound Effect", new Buff("health"), "man clan");
+    Artifact soakedDoujin = new Artifact("Soaked Doujin", new Buff("critRate"), "man clan");
+    //kchuntMan artifacts
+
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(fork);
     contentArtifacts.add(bucket);
@@ -174,6 +192,18 @@ public class artifacts {
     contentArtifacts.add(buttahDog);
     contentArtifacts.add(nyanCat);
     contentArtifacts.add(angryAnubis);
+    contentArtifacts.add(trashCanLid);
+    contentArtifacts.add(suit);
+    contentArtifacts.add(jacket);
+    contentArtifacts.add(carKeys);
+    contentArtifacts.add(cardboardBox);
+    contentArtifacts.add(moldyCheese);
+    contentArtifacts.add(emptyBeerBottle);
+    contentArtifacts.add(phone);
+    contentArtifacts.add(spoonCollection);
+    contentArtifacts.add(crustyBodyPillow);
+    contentArtifacts.add(bluetoothSpeakerThatPlaysVineBoomSoundEffect);
+    contentArtifacts.add(soakedDoujin);
   }
 
   public static ArrayList<Artifact> getContentArtifacts(){
