@@ -450,6 +450,7 @@ class Main{
     int indexer = 1;
     for(Location location: content.Locations.getContentLocations()){
       System.out.println(indexer + ". " + location);
+      indexer += 1;
     }
   }
 
