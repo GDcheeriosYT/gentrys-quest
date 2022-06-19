@@ -232,7 +232,7 @@ public class BattleAreas {
                     )
                 )
             ),
-            getFamilyArtifacts("man")
+            getFamilyArtifacts("man clan")
         );
 
         contentBattleAreas.add(introFight);
