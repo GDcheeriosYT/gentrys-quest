@@ -24,6 +24,33 @@ public class BattleAreas {
     }
 
     public static void initializeContentBattleAreas(){
+        BattleArea introFight = new BattleArea(
+            "intro",
+            false,
+            true,
+            new ArrayList<Enemy>(
+                List.of(new Enemy(
+                    "Angry Pedestrian",
+                    15,
+                    20,
+                    3,
+                    new Weapon(
+                        "Knife",
+                        1,
+                        "Knife",
+                        0,
+                        new Buff("attack"),
+                        new Verbs("stabbed", "slashed"),
+                        "A regular everyday knife"
+                    ),
+                    "A for some reason very angry pedestrian"
+                )
+                )
+            ),
+            getFamilyArtifacts("brayden messerschmidt")
+        );
+
+        //iowa locations
         BattleArea braydensHouse = new BattleArea(
             "Brayden's House",
             false,
@@ -38,7 +65,7 @@ public class BattleAreas {
                         "Psychology",
                         2,
                         "Mental",
-                        2,
+                        0,
                         new Buff(""),
                         new Verbs("messed with", "tricked"),
                         "A psychic weapon."
@@ -53,7 +80,7 @@ public class BattleAreas {
                         "Trident",
                         3,
                         "Trident",
-                        3,
+                        0,
                         new Buff(""),
                         new Verbs("poked", "impaled"),
                         "A demon's trident."
@@ -73,13 +100,13 @@ public class BattleAreas {
                 List.of(new Enemy(
                     "OSHA Worker",
                     15,
-                    3,
+                    2,
                     1,
                     new Weapon(
                         "Clipboard",
                         1,
                         "Clipboard",
-                        1,
+                        0,
                         new Buff(""),
                         new Verbs("smacked", "broke the clipboard in the process of smacking"),
                         "A wooden clipboard"
@@ -99,13 +126,13 @@ public class BattleAreas {
                 List.of(new Enemy(
                     "Homeless guy",
                     10,
-                    2,
+                    3,
                     2,
                     new Weapon(
                         "Empty beer bottle",
                         1,
                         "beer bottle",
-                        3,
+                        0,
                         new Buff(""),
                         new Verbs("whacked", "peed on"),
                         "A beer bottle in a brown paper bag."
@@ -114,28 +141,106 @@ public class BattleAreas {
                 new Enemy(
                     "Business man",
                     26,
-                    3,
+                    6,
                     2,
                     new Weapon(
                         "Briefcase",
                         4,
                         "briefcase",
-                        4,
+                        0,
                         new Buff(""),
-                        new Verbs("swung his breifcase at", "downsmashed with his breifcase at"),
+                        new Verbs("swung his briefcase at", "downsmashed with his briefcase at"),
                         "A briefcase with 'important' files."
                     ),
-                    "A very serious buisiness man"
+                    "A very serious business man"
                 )
                 )
             ),
             getFamilyArtifacts("down town")
         );
 
+        //town of robloxia highschool
+        BattleArea gymLockerRoomBathroom = new BattleArea(
+            "Gym's Locker Room's Bathroom",
+            false,
+            false,
+            new ArrayList<Enemy>(
+                List.of(
+                    new Enemy(
+                        "Valley White Girl",
+                        10,
+                        3,
+                        1,
+                        new Weapon(
+                            "Whiny Voice",
+                            1,
+                            "Vocal",
+                            3,
+                            new Buff(""),
+                            new Verbs("breathed on", "spat on"),
+                            "A whiny white girls voice"
+                        ),
+                        "An annoying species."
+                    ),
+                    new Enemy(
+                        "Teacher",
+                        22,
+                        5,
+                        2,
+                        new Weapon(
+                            "Clipboard",
+                            3,
+                            "clipboard",
+                            1,
+                            new Buff(""),
+                            new Verbs("punished", "gave detention to"),
+                            "A clipboard that never actually has stuff written on it."
+                        ),
+                        "A busty white milf."
+                    ),
+                    new Enemy(
+                        "Buff Gym Teacher",
+                        30,
+                        6,
+                        3,
+                        new Weapon(
+                            "Whistle",
+                            1,
+                            "Whistle",
+                            1,
+                            new Buff(""),
+                            new Verbs("blew", "deafened"),
+                            "Loud, no running."
+                        ),
+                        "Don't let him catch you. You'll suffer the wrath."
+                    ),
+                    new Enemy(
+                        "Bully",
+                        20,
+                        3,
+                        1,
+                        new Weapon(
+                            "Fists",
+                            2,
+                            "hands",
+                            1,
+                            new Buff(""),
+                            new Verbs("tripped", "punched"),
+                            "Stubby little fingers create a stubby little fist."
+                        ),
+                        "Sensitive man on the inside. Strong man on the outside."
+                    )
+                )
+            ),
+            getFamilyArtifacts("man")
+        );
+
+        contentBattleAreas.add(introFight);
 
         contentBattleAreas.add(braydensHouse);
         contentBattleAreas.add(unfinishedConstructionSite);
         contentBattleAreas.add(downTown);
+        contentBattleAreas.add(gymLockerRoomBathroom);
     }
 
     public static ArrayList<BattleArea> getContentBattleAreas() {
