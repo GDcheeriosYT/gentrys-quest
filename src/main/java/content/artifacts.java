@@ -199,6 +199,11 @@ public class artifacts {
     contentArtifacts.add(cardboardBox);
     contentArtifacts.add(moldyCheese);
     contentArtifacts.add(emptyBeerBottle);
+    contentArtifacts.add(phone);
+    contentArtifacts.add(spoonCollection);
+    contentArtifacts.add(crustyBodyPillow);
+    contentArtifacts.add(bluetoothSpeakerThatPlaysVineBoomSoundEffect);
+    contentArtifacts.add(soakedDoujin);
   }
 
   public static ArrayList<Artifact> getContentArtifacts(){
