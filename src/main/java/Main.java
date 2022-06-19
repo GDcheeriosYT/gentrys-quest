@@ -44,7 +44,35 @@ class Main{
     player.equipWeapon(fists, false);
     inventory.addCharacter(player);
 
+    timeout(2000, false);
+    System.out.println("It's 10pm.");
+    timeout(2000, false);
+    System.out.println(equipedCharacter.getName() + " is at the convenience store buying instant noodles.");
+    timeout(3500, false);
+    System.out.println("He purchases " + (int)((Math.random() * ((Math.random() * 10) + 1)) + 1) + " packages of instant noodles and walks out the door.");
+    timeout(3500, false);
+    System.out.println("As he is walking down the road a pedestrian runs up to him, pulls out a knife and commands " + equipedCharacter.getName() + " to give him $" + (int)((Math.random() * ((Math.random() * 1000) + 1)) + 1));
+    timeout(5000, false);
+    System.out.println(equipedCharacter.getName() + " Prepares for battle\n");
+    timeout(1000, false);
+
+    startBattle(content.BattleAreas.getContentBattleAreas().get(0), equipedCharacter, false, false);
+    timeout(1000, false);
+
+    System.out.println("Or so " + equipedCharacter.getName() + " thought...");
+    timeout(3000, true);
+
+    System.out.println(equipedCharacter.getName() + " opened his eyes.\nAs he looks around he notices he is in someone's living room.\n\"How did I get here?\" he asked himself.\nSomeone comes into the room.\n\"Oh my, you're awake.\" she says.\n\"I'm surprised I was able to save you. You were injured pretty badly.\"");
+    timeout(15000, false);
+    System.out.println("\"Thankfully Chug-Jugs are really effective.\"");
+    timeout(3500, true);
+    System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you $2000 to help you get prepared for any future encounters like that.\"\n\"I can't thank you enough!\" you say.\nShe smiles at you while you exit through the front door.");
+    inventory.addMoney(2000);
+
+    timeout(15000, true);
+
     System.out.println("Welcome to Gentry's Quest!");
+    timeout(2500, true);
     while(true){
       int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.Quit");
       //Locations
@@ -57,7 +85,7 @@ class Main{
         location.listBattleAreas();
         input2 = getMainMenuInput("where in " + location.getName() + " would you like to go?");
         clearConsole();
-        startBattle(location.getBattleArea(input2 - 1), equipedCharacter);
+        startBattle(location.getBattleArea(input2 - 1), equipedCharacter, true, true);
         try{
         }
         catch (Exception e){
@@ -425,7 +453,7 @@ class Main{
     }
   }
 
-  public static void startBattle(BattleArea battleArea, Character character){
+  public static void startBattle(BattleArea battleArea, Character character, boolean canRun, boolean results){
     ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
     ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     artifacts = battleArea.initializeArtifacts(character.getDifficulty());
@@ -446,13 +474,23 @@ class Main{
       System.out.println(character.getName() + " encountered a " + enemy.getName() + "(lvl " + enemy.getLevel() + ")");
       boolean fighting = true;
       while(fighting){
-        System.out.println();
-        int input = getMainMenuInput("===========================================\n\t" +
-                enemy.getName() + "(lvl " + enemy.getLevel() + ")" +
-                "\n\t" + enemy.getHealth() +
-                "\n==========================================\n" +
-                character.getName() + " has " + character.getHealth() + " health" +
-                "\n1.attack\n2.run");
+        int input;
+        if(canRun){
+          input = getMainMenuInput("===========================================\n\t" +
+                  enemy.getName() + "(lvl " + enemy.getLevel() + ")" +
+                  "\n\t" + enemy.getHealth() +
+                  "\n==========================================\n" +
+                  character.getName() + " has " + character.getHealth() + " health" +
+                  "\n1.attack\n2.run");
+        }
+        else{
+          input = getMainMenuInput("===========================================\n\t" +
+                  enemy.getName() + "(lvl " + enemy.getLevel() + ")" +
+                  "\n\t" + enemy.getHealth() +
+                  "\n==========================================\n" +
+                  character.getName() + " has " + character.getHealth() + " health" +
+                  "\n1.attack");
+        }
         if(input == 1){
           clearConsole();
           if(character.attack(enemy)){
@@ -470,20 +508,25 @@ class Main{
             }
           }
         }
-        else{
-          ran = true;
-          clearConsole();
-          character.updateStats();
-          artifacts.clear();
-          break;
+        if(canRun){
+          if(input == 2){
+            ran = true;
+            clearConsole();
+            character.updateStats();
+            artifacts.clear();
+            break;
+          }
+        }
+        else if(!canRun && input != 1){
+          System.out.println(character.getName() + " did something you didn't expect to happen...");
         }
       }
-      if(ran == true){
+      if(ran){
         ending = character.getName() + " ran\n" + ((enemies.indexOf(enemy) / enemies.size()) * 100) + "% completion";
         artifactList = "nothing";
         break;
       }
-      else if(alive == false){
+      else if(!alive){
         ending = ((enemies.indexOf(enemy) / enemies.size()) * 100) + "% completion";
         artifactList = "nothing";
       }
@@ -491,18 +534,18 @@ class Main{
         ending = ((enemies.indexOf(enemy) / enemies.size()) * 100) + "% completion";
       }
     }
-    System.out.println("battle area summary:\n" +
-            ending + "\n" +
-            "obtained:\n" + artifactList
-    );
     for(Artifact artifact: artifacts){
       inventory.addArtifact(artifact);
     }
-
-    System.out.println("press enter to continue...");
-    new Scanner(System.in).nextLine();
-    clearConsole();
-
+    if(results){
+      System.out.println("battle area summary:\n" +
+              ending + "\n" +
+              "obtained:\n" + artifactList
+      );
+      System.out.println("press enter to continue...");
+      new Scanner(System.in).nextLine();
+      clearConsole();
+    }
   }
 
   public static void switchArtifact(Character character, int position, Artifact startingArtifact){
