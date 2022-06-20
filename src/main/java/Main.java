@@ -71,11 +71,14 @@ class Main{
     timeout(15000, false);
     System.out.println("\"Thankfully Chug-Jugs are really effective.\"");
     timeout(3500, true);
-    System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you $2000 to help you get prepared for any future encounters like that.\"\n\"I can't thank you enough!\" you say.\nShe smiles at you while you exit through the front door.");
-    equipedCharacter.deEquipWeapon(false);
-    inventory.addMoney(2000);
-
+    System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you this...\"");
     timeout(15000, true);
+    gacha(true, 1);
+    System.out.println("\"I can't thank you enough!\" you say. She smiles at you while you exit through the front door.");
+    equipedCharacter.deEquipWeapon(false);
+    equipedCharacter.equipWeapon(inventory.getWeapons().get(0), true);
+
+    timeout(5000, true);
 
     System.out.println("Welcome to Gentry's Quest!");
     timeout(2500, true);
