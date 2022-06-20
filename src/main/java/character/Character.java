@@ -86,12 +86,8 @@ public class Character {
       defaultDefense += (level * 0.5) * (starRating * 0.02);
       defaultCritRate += 0.2 + (starRating * 0.045);
       defaultCritDamage += (level * 0.5) * (starRating * 0.02);
+      difficulty = (int)(1 + (level / 20));
     }
-    int difficultyTracker = 1;
-    for(int i = 0; i < level; i++){
-      if(i%20==0) difficultyTracker++;
-    }
-    difficulty = difficultyTracker;
 
     additionalHealth = 0;
     additionalAttackDamage = 0;
