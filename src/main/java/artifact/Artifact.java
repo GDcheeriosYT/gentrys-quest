@@ -27,7 +27,11 @@ public class Artifact {
 
   public void levelUp(){
     if(level < starRating * 4){
+      timeout(1000, true);
       level += 1;
+      System.out.println("Your artifact is now level " + level);
+      previousXpRequired = xpRequired;
+      xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
       mainAttribute.levelUp(1);
       if(level % 4 == 0){
         ArrayList<Buff> rewriteList = new ArrayList<Buff>();
@@ -50,7 +54,23 @@ public class Artifact {
       }
     }
     else{
+      timeout(1000, true);
       System.out.println("you have reached the max level of this artifact!");
+    }
+    timeout(3000, true);
+  }
+  public static void timeout(int time, boolean clearConole){
+    try {
+      Thread.sleep(time);
+    } catch (InterruptedException ex) {
+      throw new RuntimeException(ex);
+    }
+    if(clearConole) clearConsole();
+  }
+
+  public static void clearConsole(){
+    for (int i = 0; i < 100; i++) {
+      System.out.println("");
     }
   }
 
@@ -127,7 +147,11 @@ public class Artifact {
     for(int i = 0; i < attributes.size(); i++){
       strAttributes += attributes.get(i) + " " + getValue(attributes.get(i)) + "\n"; 
     }
-    float percent = (xp * 100.0f) / xpRequired;
+
+    float percent;
+    if(level != starRating*4) percent = (xp * 100.0f) / xpRequired;
+    else percent = 100;
+
     return name + " " + stars + "\nappart of: " + family + " set" + "\n" + "level: " + level + " (" + percent + "%)\n" + mainAttribute + " " + getValue(mainAttribute) + "\n" + strAttributes;
   }
 }
