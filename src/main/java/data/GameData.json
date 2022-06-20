@@ -1,5 +1,5 @@
 {
-  "startup amount" : 0,
+  "startupAmount" : 0,
   "inventory" : {
     "money" : 0,
     "characters" : [],
