@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.json.JSONObject;
+
 import artifact.Artifact;
 import buff.Buff;
 import character.Character;
@@ -335,7 +337,7 @@ class Main{
         }
       }
       else{
-        break;
+        saveGame();
       }
      }
   }
@@ -583,5 +585,21 @@ class Main{
       throw new RuntimeException(ex);
     }
     if(clearConole) clearConsole();
+  }
+
+  public static void saveGame(){
+    //do inventory stuff
+    JSONObject inventoryData = new JSONObject();
+
+    inventoryData.put("money", inventory.getMoney());
+    inventoryData.put("characters", inventory.getCharacters());
+    inventoryData.put("weapons", inventory.getWeapons());
+    inventoryData.put("artifacts", inventory.getArtifacts());
+
+    JSONObject gameData = new JSONObject();
+    gameData.put("startup amount", 1);
+    gameData.put("inventory", inventoryData);
+
+    System.out.println(gameData.toString(4));
   }
 }
