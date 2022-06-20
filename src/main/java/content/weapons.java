@@ -17,7 +17,7 @@ public class weapons {
       Weapon bow = new Weapon("Bow", 1, "Bow", 3, new Buff(""), new Verbs("shot", "hit the bullseye of"), "Just a bow.");
       Weapon spear = new Weapon("Spear", 1, "Spear", 6, new Buff(""), new Verbs("stabbed", "combo'd"), "Just a spear.");
       Weapon hammer = new Weapon("Hammer", 1, "Hammer", 8, new Buff(""), new Verbs("smashed", "slammed"), "Just a hammer.");
-      Weapon brodysBroadsword = new Weapon("Brody's Broadsword", 1, "Broadsword", 10, new Buff("attack"), new Verbs("swung", "whacked"), "Brody the mighty warrior's broadsword.\nThe weapon was wielded for centuries by Brody himself, but was lost when the great calamity struck and he lost his life to the invading Waifu's."); //brody weapon
+      Weapon brodysBroadsword = new Weapon("Brody's Broadsword", 1, "Broadsword", 10, new Buff("attack"), new Verbs("swung at", "whacked"), "Brody the mighty warrior's broadsword.\nThe weapon was wielded for centuries by Brody himself, but was lost when the great calamity struck and he lost his life to the invading Waifu's."); //brody weapon
 
       //2 star weapons
       Weapon alecsRock = new Weapon("Alec's Rock", 2, "Stone", 12, new Buff("attack"), new Verbs("hit", "immensely bashed"), "A small rock."); //alec weapon
