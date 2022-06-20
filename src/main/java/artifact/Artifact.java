@@ -28,6 +28,8 @@ public class Artifact {
   public void levelUp(){
     if(level < starRating * 4){
       level += 1;
+      previousXpRequired = xpRequired;
+      xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
       mainAttribute.levelUp(1);
       if(level % 4 == 0){
         ArrayList<Buff> rewriteList = new ArrayList<Buff>();
