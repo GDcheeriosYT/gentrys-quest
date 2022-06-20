@@ -32,7 +32,7 @@ public class BattleAreas {
                 List.of(new Enemy(
                     "Angry Pedestrian",
                     15,
-                    20,
+                    25,
                     3,
                     new Weapon(
                         "Knife",
