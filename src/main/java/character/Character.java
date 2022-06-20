@@ -287,7 +287,13 @@ public class Character {
   public boolean attack(Enemy enemy){
     String output = name + " ";
     int damage = 0;
-    if(weapon == null) System.out.println("You have no weapon...\nYou're better off running away.");
+    if(weapon == null){
+      System.out.println("You have no weapon...");
+      timeout(2000, false);
+      System.out.println("You're better off running away.");
+      timeout(2000, false);
+      return false;
+    }
     else damage = (int)(attackDamage + weapon.getDamage() - (Math.random() * enemy.getDefense()) + 1);
     double criticalChecker = (Math.random() * 100) + 1;
     if(criticalChecker<critRate){
