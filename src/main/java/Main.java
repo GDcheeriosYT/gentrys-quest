@@ -20,7 +20,7 @@ class Main{
   static Inventory inventory = new Inventory();
   static ArrayList<Character> gachaCharacterObtained = new ArrayList<Character>();
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
-  public static void main(String[] args){
+  public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
     clearConsole();
     System.out.println("loading...");
     System.out.println("loading artifacts");
