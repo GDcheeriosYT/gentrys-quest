@@ -44,6 +44,7 @@ public class Enemy {
 
   public boolean attack(Character character){
     System.out.println(name + " " + weapon.getVerb(false) + " " + character.getName());
+    damage -= (Math.random() * character.getDefense()) + 1;
     timeout(2000, false);
     character.setHealth(character.getHealth() - attack);
     if(character.getHealth() < 1){

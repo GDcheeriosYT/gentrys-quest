@@ -288,7 +288,7 @@ public class Character {
     String output = name + " ";
     int damage = 0;
     if(weapon == null) System.out.println("You have no weapon...\nYou're better off running away.");
-    else damage = attackDamage + weapon.getDamage();
+    else damage = (int)(attackDamage + weapon.getDamage() - (Math.random() * enemy.getDefense()) + 1);
     double criticalChecker = (Math.random() * 100) + 1;
     if(criticalChecker<critRate){
       output += weapon.getVerb(true) + " the " + enemy.getName();
@@ -318,6 +318,10 @@ public class Character {
     for (int i = 0; i < 100; i++) {
       System.out.println("");
     }
+  }
+
+  public int getDefense() {
+    return defense;
   }
 
   public static void timeout(int time, boolean clearConole){
