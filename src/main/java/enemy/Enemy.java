@@ -52,7 +52,7 @@ public class Enemy {
     }
     else System.out.println(name + " " + weapon.getVerb(false) + " " + character.getName() + " (" + damage + "dmg)");
     timeout(2000, false);
-    if(character.getHealth() - (damage + character.getDefense()) < 0) System.out.println(character.getName() + " dodged");
+    if(damage < 0) System.out.println(character.getName() + " dodged");
     else character.setHealth(character.getHealth() - damage);
     if(character.getHealth() < 1){
       System.out.println(character.getName() + " died...\n");
