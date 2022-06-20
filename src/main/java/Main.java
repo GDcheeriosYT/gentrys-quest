@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -601,6 +602,23 @@ class Main{
     JSONObject gameData = new JSONObject();
     gameData.put("startup amount", 1);
     gameData.put("inventory", inventoryData);
+
+    System.out.println(gameData.toString(4));
+  }
+
+  public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
+    Scanner in = new Scanner(new FileReader("src/main/java/data/GameData.json"));
+
+    StringBuilder sb = new StringBuilder();
+    while(in.hasNext()) {
+      sb.append(in.next());
+    }
+    in.close();
+    String outString = sb.toString();
+
+    System.out.println(outString);
+
+    JSONObject gameData = new JSONObject(outString);
 
     System.out.println(gameData.toString(4));
   }
