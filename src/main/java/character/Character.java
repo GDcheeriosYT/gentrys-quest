@@ -81,9 +81,9 @@ public class Character {
       //System.out.println(xpRequired);
       previousXpRequired = xpRequired;
       xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
-      defaultHealth += (level * 0.5) * (starRating * 0.9);
-      defaultAttackDamage += (level * 0.5) * (starRating * 0.05);
-      defaultDefense += (level * 0.5) * (starRating * 0.02);
+      defaultHealth += 2 + (level * 0.5) * (starRating * 0.9);
+      defaultAttackDamage += 1 + (level * 0.5) * (starRating * 0.05);
+      defaultDefense += 0.5 + (level * 0.5) * (starRating * 0.02);
       defaultCritRate += 0.2 + (starRating * 0.045);
       defaultCritDamage += (level * 0.5) * (starRating * 0.02);
       difficulty = (int)(1 + (level / 20));
