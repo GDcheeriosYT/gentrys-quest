@@ -30,8 +30,10 @@ class Main{
     content.weapons.initializeContentWeapons();
     System.out.println("loading battle areas");
     content.BattleAreas.initializeContentBattleAreas();
-    System.out.println("loading locations\n");
+    System.out.println("loading locations");
     content.Locations.initializeContentLocations();
+    System.out.println("loading game data\n");
+    loadGame();
 
     System.out.println("what's this protagonists name?");
     String name = new Scanner(System.in).nextLine();
