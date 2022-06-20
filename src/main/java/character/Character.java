@@ -291,10 +291,10 @@ public class Character {
     else damage = (int)(attackDamage + weapon.getDamage() - (Math.random() * enemy.getDefense()) + 1);
     double criticalChecker = (Math.random() * 100) + 1;
     if(criticalChecker<critRate){
-      output += weapon.getVerb(true) + " the " + enemy.getName();
+      output += weapon.getVerb(true) + " the " + enemy.getName() + " (" + (damage + critDamage) + "dmg)";
       damage += critDamage;
     }
-    else output += weapon.getVerb(false) + " the " + enemy.getName();
+    else output += weapon.getVerb(false) + " the " + enemy.getName() + " (" + damage + "dmg)";
     if(damage < enemy.getDefense()){
       System.out.println(enemy.getName() + " dodged...\n");
       timeout(2000, false);
@@ -305,7 +305,7 @@ public class Character {
       timeout(2000, false);
     }
 
-    enemy.setHealth(enemy.getHealth() - damage + enemy.getDefense());
+    enemy.setHealth(enemy.getHealth() - damage);
     if(enemy.getHealth() < 1){
       System.out.println(enemy.getName() + " is dead.\n");
       timeout(2000, false);
