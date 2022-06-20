@@ -34,8 +34,8 @@ public class Enemy {
   public void setLevel(int level) {
     this.level = level;
     this.health += (int)(level * 3);
-    this.attack += (int)(level * 0.5);
-    this.defense += (int)(level * 0.1);
+    this.attack += (int)(level * 0.3);
+    this.defense += (int)(level * 0.03);
   }
 
   public int getHealth() {
