@@ -102,7 +102,6 @@ public class Character {
 
   public void updateStats(){
     health = defaultHealth + additionalHealth;
-    int maxHealth = health;
     attackDamage = defaultAttackDamage + additionalAttackDamage;
     defense = defaultDefense + additionalDefense;
   }
