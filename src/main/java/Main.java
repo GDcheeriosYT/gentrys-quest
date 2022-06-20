@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +20,7 @@ class Main{
   static Inventory inventory = new Inventory();
   static ArrayList<Character> gachaCharacterObtained = new ArrayList<Character>();
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
-  public static void main(String[] args){
+  public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
     clearConsole();
     System.out.println("loading...");
     System.out.println("loading artifacts");
@@ -30,8 +31,10 @@ class Main{
     content.weapons.initializeContentWeapons();
     System.out.println("loading battle areas");
     content.BattleAreas.initializeContentBattleAreas();
-    System.out.println("loading locations\n");
+    System.out.println("loading locations");
     content.Locations.initializeContentLocations();
+    System.out.println("loading game data\n");
+    loadGame();
 
     System.out.println("what's this protagonists name?");
     String name = new Scanner(System.in).nextLine();
@@ -599,6 +602,23 @@ class Main{
     JSONObject gameData = new JSONObject();
     gameData.put("startup amount", 1);
     gameData.put("inventory", inventoryData);
+
+    System.out.println(gameData.toString(4));
+  }
+
+  public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
+    Scanner in = new Scanner(new FileReader("src/main/java/data/GameData.json"));
+
+    StringBuilder sb = new StringBuilder();
+    while(in.hasNext()) {
+      sb.append(in.next());
+    }
+    in.close();
+    String outString = sb.toString();
+
+    System.out.println(outString);
+
+    JSONObject gameData = new JSONObject(outString);
 
     System.out.println(gameData.toString(4));
   }
