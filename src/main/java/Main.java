@@ -240,6 +240,11 @@ class Main{
                             else if(input6 == 3){
                               boolean upgradingArtifact = true;
                               while(upgradingArtifact){
+                                if(character.getArtifactList()[input5 - 1].getLevel() == character.getArtifactList()[input5 - 1].getStarRating() * 4){
+                                  System.out.println("Artifact is max level!");
+                                  upgradingArtifact = false;
+                                  break;
+                                }
                                 int tracker = 1;
                                 for(Artifact artifact: inventory.getArtifacts()){
                                   System.out.println(tracker + ". " + artifact);
@@ -248,7 +253,6 @@ class Main{
                                 int input7 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back");
                                 if(input7 != inventory.getArtifacts().size() + 1){
                                   upgradeArtifact(character.getArtifactList()[input5 - 1], inventory.getArtifacts().get(input7 - 1));
-                                  clearConsole();
                                 }
                                 else upgradingArtifact = false;
                               }
@@ -293,6 +297,11 @@ class Main{
                     clearConsole();
                     boolean upgradingArtifact = true;
                     while(upgradingArtifact){
+                      if(artifact.getLevel() == artifact.getStarRating() * 4){
+                        System.out.println("Artifact is max level!");
+                        upgradingArtifact = false;
+                        break;
+                      }
                       for(int i = 1; i < inventory.getArtifacts().size() + 1; i++){
                         Artifact artifact2 = inventory.getArtifacts().get(i - 1);
                         System.out.println(i + ". " + artifact2);
@@ -300,7 +309,6 @@ class Main{
                       int input5 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back");
                       if(input5 != inventory.getArtifacts().size() + 1){
                         upgradeArtifact(inventory.getArtifacts().get(input4 - 1), inventory.getArtifacts().get(input5 - 1));
-                        clearConsole();
                       }
                       else upgradingArtifact = false;
                     }
