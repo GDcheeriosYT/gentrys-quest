@@ -582,7 +582,7 @@ class Main{
   }
 
   public static void upgradeArtifact(Artifact artifact, Artifact artifactInExchange){
-    artifact.addXp((artifactInExchange.getLevel() * 20) * artifactInExchange.getStarRating());
+    artifact.addXp((artifactInExchange.getLevel() * 50) * artifactInExchange.getStarRating());
     inventory.removeArtifact(artifactInExchange);
   }
 
