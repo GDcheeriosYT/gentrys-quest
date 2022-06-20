@@ -47,7 +47,7 @@ public class Enemy {
     int damage = attack;
     damage -= (Math.random() * character.getDefense()) + 1;
     if(criticalChecker < 20){
-      damage += damage * 0.96;
+      damage += damage * 0.4;
       System.out.println(name + " " + weapon.getVerb(true) + " " + character.getName() + " (" + damage + "dmg)");
     }
     else System.out.println(name + " " + weapon.getVerb(false) + " " + character.getName() + " (" + damage + "dmg)");
