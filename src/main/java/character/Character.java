@@ -85,7 +85,7 @@ public class Character {
       defaultAttackDamage += 1 + (level * 0.5) * (starRating * 0.05);
       defaultDefense += 0.5 + (level * 0.5) * (starRating * 0.02);
       defaultCritRate += 0.2 + (starRating * 0.045);
-      defaultCritDamage += (level * 0.5) * (starRating * 0.02);
+      defaultCritDamage += 0.5 + (level * 0.5) * (starRating * 0.02);
       difficulty = (int)(1 + (level / 20));
     }
 
