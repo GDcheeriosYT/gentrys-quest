@@ -544,6 +544,7 @@ class Main{
       inventory.addArtifact(artifact);
     }
     if(results){
+      character.updateStats();
       System.out.println("battle area summary:\n" +
               ending + "\n" +
               "obtained:\n" + artifactList
