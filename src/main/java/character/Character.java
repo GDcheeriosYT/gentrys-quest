@@ -81,11 +81,11 @@ public class Character {
       //System.out.println(xpRequired);
       previousXpRequired = xpRequired;
       xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
-      defaultHealth += (level * 0.5) * (starRating * 0.9);
-      defaultAttackDamage += (level * 0.5) * (starRating * 0.05);
-      defaultDefense += (level * 0.5) * (starRating * 0.02);
+      defaultHealth += 2 + (level * 0.5) * (starRating * 0.9);
+      defaultAttackDamage += 1 + (level * 0.5) * (starRating * 0.05);
+      defaultDefense += 0.5 + (level * 0.5) * (starRating * 0.02);
       defaultCritRate += 0.2 + (starRating * 0.045);
-      defaultCritDamage += (level * 0.5) * (starRating * 0.02);
+      defaultCritDamage += 0.5 + (level * 0.5) * (starRating * 0.02);
       difficulty = (int)(1 + (level / 20));
     }
 
@@ -102,7 +102,6 @@ public class Character {
 
   public void updateStats(){
     health = defaultHealth + additionalHealth;
-    int maxHealth = health;
     attackDamage = defaultAttackDamage + additionalAttackDamage;
     defense = defaultDefense + additionalDefense;
   }
@@ -288,14 +287,20 @@ public class Character {
   public boolean attack(Enemy enemy){
     String output = name + " ";
     int damage = 0;
-    if(weapon == null) System.out.println("You have no weapon...\nYou're better off running away.");
-    else damage = attackDamage + weapon.getDamage();
+    if(weapon == null){
+      System.out.println("You have no weapon...");
+      timeout(2000, false);
+      System.out.println("You're better off running away.");
+      timeout(2000, false);
+      return false;
+    }
+    else damage = (int)(attackDamage + weapon.getDamage() - (Math.random() * enemy.getDefense()) + 1);
     double criticalChecker = (Math.random() * 100) + 1;
     if(criticalChecker<critRate){
-      output += weapon.getVerb(true) + " the " + enemy.getName();
+      output += weapon.getVerb(true) + " the " + enemy.getName() + " (" + (damage + critDamage) + "dmg)";
       damage += critDamage;
     }
-    else output += weapon.getVerb(false) + " the " + enemy.getName();
+    else output += weapon.getVerb(false) + " the " + enemy.getName() + " (" + damage + "dmg)";
     if(damage < enemy.getDefense()){
       System.out.println(enemy.getName() + " dodged...\n");
       timeout(2000, false);
@@ -306,7 +311,7 @@ public class Character {
       timeout(2000, false);
     }
 
-    enemy.setHealth(enemy.getHealth() - damage + enemy.getDefense());
+    enemy.setHealth(enemy.getHealth() - damage);
     if(enemy.getHealth() < 1){
       System.out.println(enemy.getName() + " is dead.\n");
       timeout(2000, false);
@@ -319,6 +324,10 @@ public class Character {
     for (int i = 0; i < 100; i++) {
       System.out.println("");
     }
+  }
+
+  public int getDefense() {
+    return defense;
   }
 
   public static void timeout(int time, boolean clearConole){

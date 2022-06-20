@@ -72,6 +72,7 @@ class Main{
     System.out.println("\"Thankfully Chug-Jugs are really effective.\"");
     timeout(3500, true);
     System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you $2000 to help you get prepared for any future encounters like that.\"\n\"I can't thank you enough!\" you say.\nShe smiles at you while you exit through the front door.");
+    equipedCharacter.deEquipWeapon(false);
     inventory.addMoney(2000);
 
     timeout(15000, true);
@@ -544,6 +545,7 @@ class Main{
       inventory.addArtifact(artifact);
     }
     if(results){
+      character.updateStats();
       System.out.println("battle area summary:\n" +
               ending + "\n" +
               "obtained:\n" + artifactList
