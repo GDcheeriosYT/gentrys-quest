@@ -52,11 +52,11 @@ public class artifacts {
     Artifact bouncer = new Artifact("Bouncer", new Buff("defense"), "spencer george");
 
     //mason james artifacts
-    Artifact toothpaste = new Artifact("Toothpaste", new Buff("attack"), "mason james");
-    Artifact luckyFloss = new Artifact("Lucky Floss", new Buff("health"), "mason james");
-    Artifact dentures = new Artifact("Dentures", new Buff("defense"), "mason james");
-    Artifact retainers = new Artifact("Retainers", new Buff("critRate"), "mason james");
-    Artifact toothComb = new Artifact("Tooth Comb", new Buff("critDamage"), "mason james");
+    Artifact usedUndies = new Artifact("Used Undies", new Buff("health"), "mason james");
+    Artifact hairBrush = new Artifact("Hair Brush", new Buff("attack"), "mason james");
+    Artifact handCuffs = new Artifact("Hand Cuffs", new Buff("defense"), "mason james");
+    Artifact restraints = new Artifact("Restraints", new Buff("critRate"), "mason james");
+    Artifact strangeFlashlight = new Artifact("Strange Flashlight", new Buff("critDamage"), "mason james");
 
     //brody krysa artifacts
     Artifact chalkBag = new Artifact("Chalk Bag", new Buff("critRate"), "brody krysa");
@@ -152,11 +152,11 @@ public class artifacts {
     contentArtifacts.add(weightedDice);
     contentArtifacts.add(rouletteWheel);
     contentArtifacts.add(bouncer);
-    contentArtifacts.add(toothpaste);
-    contentArtifacts.add(luckyFloss);
-    contentArtifacts.add(dentures);
-    contentArtifacts.add(retainers);
-    contentArtifacts.add(toothComb);
+    contentArtifacts.add(usedUndies);
+    contentArtifacts.add(hairBrush);
+    contentArtifacts.add(handCuffs);
+    contentArtifacts.add(restraints);
+    contentArtifacts.add(strangeFlashlight);
     contentArtifacts.add(chalkBag);
     contentArtifacts.add(climbingShoes);
     contentArtifacts.add(harness);
