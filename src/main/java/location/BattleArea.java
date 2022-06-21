@@ -25,7 +25,7 @@ public class BattleArea {
   public ArrayList<Enemy> initializeEnemies(int difficulty){
     if(isBossArea){
       difficulty++;
-      System.out.println("!warning!\n this area is very dangerous.");
+      System.out.println("!warning!\nthis area is very dangerous.");
     }
     int enemyAmount = (int)(Math.random() *  (difficulty * 1.5) + 1);
     ArrayList<Enemy> enemiesToReturn = new ArrayList<Enemy>();
