@@ -26,7 +26,7 @@ public class Locations {
                     getBattleArea("Brayden's House"),
                     getBattleArea("Unfinished Construction Site"),
                     getBattleArea("Down Town"),
-                    getBattleArea("Climb Iowa")
+                    getBattleArea("Climb Iowa"),
                     getBattleArea("Target")
             )
         );
