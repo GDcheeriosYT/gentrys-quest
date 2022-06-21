@@ -320,6 +320,7 @@ public class BattleAreas {
         contentBattleAreas.add(braydensHouse);
         contentBattleAreas.add(unfinishedConstructionSite);
         contentBattleAreas.add(downTown);
+        contentBattleAreas.add(target);
         contentBattleAreas.add(gymLockerRoomBathroom);
         contentBattleAreas.add(pureTaboosSet);
     }
