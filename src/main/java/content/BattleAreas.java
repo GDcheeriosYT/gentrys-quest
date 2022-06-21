@@ -27,7 +27,6 @@ public class BattleAreas {
         BattleArea introFight = new BattleArea(
             "intro",
             false,
-            true,
             new ArrayList<Enemy>(
                 List.of(new Enemy(
                     "Angry Pedestrian",
@@ -53,7 +52,6 @@ public class BattleAreas {
         //iowa locations
         BattleArea braydensHouse = new BattleArea(
             "Brayden's House",
-            false,
             false,
             new ArrayList<Enemy>(
                 List.of(new Enemy(
@@ -95,7 +93,6 @@ public class BattleAreas {
         BattleArea unfinishedConstructionSite = new BattleArea(
             "Unfinished Construction Site",
             true,
-            false,
             new ArrayList<Enemy>(
                 List.of(new Enemy(
                     "OSHA Worker",
@@ -120,7 +117,6 @@ public class BattleAreas {
 
         BattleArea downTown = new BattleArea(
             "Down Town",
-            false,
             false,
             new ArrayList<Enemy>(
                 List.of(new Enemy(
@@ -159,10 +155,52 @@ public class BattleAreas {
             getFamilyArtifacts("down town")
         );
 
+        BattleArea climbIowa = new BattleArea(
+            "Climb Iowa",
+            false,
+            new ArrayList<Enemy>(
+                List.of(
+                    new Enemy(
+                        "Gym Bro",
+                        27,
+                        5,
+                        4,
+                        new Weapon(
+                            "Muscles",
+                            2,
+                            "muscle",
+                            1,
+                            new Buff(""),
+                            new Verbs("confidently flexed on", "power screamed at"),
+                            "some nice looking muscles"
+                        ),
+                        "probably short"
+                    ),
+                    new Enemy(
+                        "8 year old who can climb v9s",
+                        15,
+                        8,
+                        1,
+                        new Weapon(
+                            "Little Muscles",
+                            2,
+                            "muscle",
+                            1,
+                            new Buff(""),
+                            new Verbs("punches up at", "flashed the project of"),
+                            "looks can be decieving"
+                        ),
+                        "definitely short"
+                    )
+                )
+            ),
+            getFamilyArtifacts("brody krysa")
+        );
+
+
         //town of robloxia highschool
         BattleArea gymLockerRoomBathroom = new BattleArea(
             "Gym's Locker Room's Bathroom",
-            false,
             false,
             new ArrayList<Enemy>(
                 List.of(
@@ -239,13 +277,12 @@ public class BattleAreas {
         BattleArea pureTaboosSet = new BattleArea(
             "Pure Taboo Set",
             true,
-            true,
             new ArrayList<Enemy>(
                 List.of(
                     new Enemy(
                         "Riley Reid",
                         35,
-                        8,
+                        10,
                         5,
                         new Weapon(
                             "Hand of Exhaust",
@@ -268,6 +305,7 @@ public class BattleAreas {
         contentBattleAreas.add(braydensHouse);
         contentBattleAreas.add(unfinishedConstructionSite);
         contentBattleAreas.add(downTown);
+        contentBattleAreas.add(climbIowa);
         contentBattleAreas.add(gymLockerRoomBathroom);
         contentBattleAreas.add(pureTaboosSet);
     }
