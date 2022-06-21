@@ -157,7 +157,8 @@ public class BattleAreas {
 
         BattleArea target = new BattleArea(
             "Target",
-            new ArrayList<Enemy>(
+            false,
+                new ArrayList<Enemy>(
                 List.of(
                     new Enemy(
                         "Karen",
@@ -211,11 +212,13 @@ public class BattleAreas {
             ),
             getFamilyArtifacts("lucas smidt")
         );
+
         BattleArea climbIowa = new BattleArea(
             "Climb Iowa",
             false,
             new ArrayList<Enemy>(
                 List.of(
+                    new Enemy(
                         "Gym Bro",
                         27,
                         5,
@@ -249,7 +252,7 @@ public class BattleAreas {
                     )
                 )
             ),
-            getFamilyArtifacts("brody krysa");
+            getFamilyArtifacts("brody krysa")
         );
 
         //town of robloxia highschool
