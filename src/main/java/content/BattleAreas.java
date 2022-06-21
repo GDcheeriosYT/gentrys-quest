@@ -27,7 +27,6 @@ public class BattleAreas {
         BattleArea introFight = new BattleArea(
             "intro",
             false,
-            true,
             new ArrayList<Enemy>(
                 List.of(new Enemy(
                     "Angry Pedestrian",
@@ -53,7 +52,6 @@ public class BattleAreas {
         //iowa locations
         BattleArea braydensHouse = new BattleArea(
             "Brayden's House",
-            false,
             false,
             new ArrayList<Enemy>(
                 List.of(new Enemy(
@@ -95,7 +93,6 @@ public class BattleAreas {
         BattleArea unfinishedConstructionSite = new BattleArea(
             "Unfinished Construction Site",
             true,
-            false,
             new ArrayList<Enemy>(
                 List.of(new Enemy(
                     "OSHA Worker",
@@ -120,7 +117,6 @@ public class BattleAreas {
 
         BattleArea downTown = new BattleArea(
             "Down Town",
-            false,
             false,
             new ArrayList<Enemy>(
                 List.of(new Enemy(
@@ -159,10 +155,67 @@ public class BattleAreas {
             getFamilyArtifacts("down town")
         );
 
+        BattleArea target = new BattleArea(
+            "Target",
+            false,
+            new ArrayList<Enemy>(
+                List.of(
+                    new Enemy(
+                        "Karen",
+                        23,
+                        4,
+                        4,
+                        new Weapon(
+                            "camera",
+                            5,
+                            "camera",
+                            1,
+                            new Buff(""),
+                            new Verbs("recorded", "left a bad review about"),
+                            "a regular iphone camera"
+                        ),
+                        "A for some reason very angry woman."
+                    ),
+                    new Enemy(
+                        "Target Employee",
+                        20,
+                        3,
+                        3,
+                        new Weapon(
+                            "zebra",
+                            5,
+                            "phone",
+                            1,
+                            new Buff(""),
+                            new Verbs("scanned", "called over a manger to deal with"),
+                            "just a scanner phone."
+                        ),
+                        "an employee"
+                    ),
+                    new Enemy(
+                        "Target Manager",
+                        25,
+                        5,
+                        5,
+                        new Weapon(
+                                "zebra",
+                                5,
+                                "phone",
+                                1,
+                                new Buff(""),
+                                new Verbs("scanner", "dealt with"),
+                                "just a scanner phone."
+                        ),
+                        "a manager"
+                    )
+                )
+            ),
+            getFamilyArtifacts("lucas smidt")
+        );
+
         //town of robloxia highschool
         BattleArea gymLockerRoomBathroom = new BattleArea(
             "Gym's Locker Room's Bathroom",
-            false,
             false,
             new ArrayList<Enemy>(
                 List.of(
@@ -238,7 +291,6 @@ public class BattleAreas {
         //nigeria
         BattleArea pureTaboosSet = new BattleArea(
             "Pure Taboo Set",
-            true,
             true,
             new ArrayList<Enemy>(
                 List.of(
