@@ -29,12 +29,21 @@ public class BattleArea {
     }
     int enemyAmount = (int)(Math.random() *  (difficulty * 1.5) + 1);
     ArrayList<Enemy> enemiesToReturn = new ArrayList<Enemy>();
-    for(int i = 0; i<enemyAmount; i++){
+    if(enemies.size() > 1){
+      for(int i = 0; i<enemyAmount; i++){
+        Enemy enemySelector = enemies.get((int) (Math.random() * enemies.size()));
+        Enemy enemy = new Enemy(enemySelector.getName(), enemySelector.getHealth(), enemySelector.getAttack(), enemySelector.getDefense(), enemySelector.getWeapon(), enemySelector.getDescription());
+        enemy.setLevel((int)((20 * (difficulty - 1)) + (Math.random() * 5) + 1));
+        enemiesToReturn.add(enemy);
+      }
+    }
+    else{
       Enemy enemySelector = enemies.get((int) (Math.random() * enemies.size()));
       Enemy enemy = new Enemy(enemySelector.getName(), enemySelector.getHealth(), enemySelector.getAttack(), enemySelector.getDefense(), enemySelector.getWeapon(), enemySelector.getDescription());
       enemy.setLevel((int)((20 * (difficulty - 1)) + (Math.random() * 5) + 1));
       enemiesToReturn.add(enemy);
     }
+
 
     return enemiesToReturn;
   }
