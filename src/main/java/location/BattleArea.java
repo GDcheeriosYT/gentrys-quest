@@ -14,7 +14,6 @@ public class BattleArea {
   public BattleArea(String name, boolean isBossArea, boolean isSingleBossArea, ArrayList<Enemy> enemies, ArrayList<Artifact> artifacts){
     this.name = name;
     this.isBossArea = isBossArea;
-    this.isSingleBossArea = isSingleBossArea;
     this.enemies = enemies;
     this.artifacts = artifacts;
   }
