@@ -249,7 +249,7 @@ public class BattleAreas {
                     )
                 )
             ),
-            getFamilyArtifacts("brody krysa")
+            getFamilyArtifacts("brody krysa");
         );
         //town of robloxia highschool
         BattleArea gymLockerRoomBathroom = new BattleArea(
