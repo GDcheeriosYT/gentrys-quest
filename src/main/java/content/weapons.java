@@ -67,6 +67,7 @@ public class weapons {
       contentWeapons.add(sirFarQuad);
       contentWeapons.add(braydensOsuPen);
       contentWeapons.add(quandaleDingle);
+      contentWeapons.add(theMobyDick);
     }
 
   public static ArrayList<Weapon> getContentWeapons() {
