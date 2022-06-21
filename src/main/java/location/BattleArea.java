@@ -14,7 +14,6 @@ public class BattleArea {
   public BattleArea(String name, boolean isBossArea, boolean isSingleBossArea, ArrayList<Enemy> enemies, ArrayList<Artifact> artifacts){
     this.name = name;
     this.isBossArea = isBossArea;
-    this.isSingleBossArea = isSingleBossArea;
     this.enemies = enemies;
     this.artifacts = artifacts;
   }
@@ -26,9 +25,8 @@ public class BattleArea {
   public ArrayList<Enemy> initializeEnemies(int difficulty){
     if(isBossArea){
       difficulty++;
-      System.out.println("!warning!\n this area is very dangerous.");
+      System.out.println("!warning!\nthis area is very dangerous.");
     }
-    if(isSingleBossArea) return enemies;
     int enemyAmount = (int)(Math.random() *  (difficulty * 1.5) + 1);
     ArrayList<Enemy> enemiesToReturn = new ArrayList<Enemy>();
     for(int i = 0; i<enemyAmount; i++){
