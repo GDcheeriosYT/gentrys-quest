@@ -39,8 +39,19 @@ public class Locations {
             )
         );
 
+        Location nigeria = new Location(
+            "Nigeria",
+            new ArrayList<BattleArea>(
+                List.of(
+                    getBattleArea("Pure Taboo Set")
+                )
+            )
+        );
+
+
         contentLocations.add(iowa);
         contentLocations.add(townOfRobloxiaHighschool);
+        contentLocations.add(nigeria);
     }
 
     public static ArrayList<Location> getContentLocations() {
