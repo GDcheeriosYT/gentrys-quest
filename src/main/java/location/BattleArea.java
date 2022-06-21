@@ -7,7 +7,6 @@ import enemy.Enemy;
 public class BattleArea {
   private final String name;
   private boolean isBossArea;
-  private boolean isSingleBossArea;
   private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   private ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
 

@@ -157,7 +157,6 @@ public class BattleAreas {
 
         BattleArea target = new BattleArea(
             "Target",
-            false,
             new ArrayList<Enemy>(
                 List.of(
                     new Enemy(
@@ -212,7 +211,46 @@ public class BattleAreas {
             ),
             getFamilyArtifacts("lucas smidt")
         );
-
+        BattleArea climbIowa = new BattleArea(
+            "Climb Iowa",
+            false,
+            new ArrayList<Enemy>(
+                List.of(
+                        "Gym Bro",
+                        27,
+                        5,
+                        4,
+                        new Weapon(
+                            "Muscles",
+                            2,
+                            "muscle",
+                            1,
+                            new Buff(""),
+                            new Verbs("confidently flexed on", "power screamed at"),
+                            "some nice looking muscles"
+                        ),
+                        "probably short"
+                    ),
+                    new Enemy(
+                        "8 year old who can climb v9s",
+                        15,
+                        8,
+                        1,
+                        new Weapon(
+                            "Little Muscles",
+                            2,
+                            "muscle",
+                            1,
+                            new Buff(""),
+                            new Verbs("punches up at", "flashed the project of"),
+                            "looks can be decieving"
+                        ),
+                        "definitely short"
+                    )
+                )
+            ),
+            getFamilyArtifacts("brody krysa")
+        );
         //town of robloxia highschool
         BattleArea gymLockerRoomBathroom = new BattleArea(
             "Gym's Locker Room's Bathroom",
@@ -297,7 +335,7 @@ public class BattleAreas {
                     new Enemy(
                         "Riley Reid",
                         35,
-                        8,
+                        10,
                         5,
                         new Weapon(
                             "Hand of Exhaust",
@@ -320,6 +358,7 @@ public class BattleAreas {
         contentBattleAreas.add(braydensHouse);
         contentBattleAreas.add(unfinishedConstructionSite);
         contentBattleAreas.add(downTown);
+        contentBattleAreas.add(climbIowa);
         contentBattleAreas.add(target);
         contentBattleAreas.add(gymLockerRoomBathroom);
         contentBattleAreas.add(pureTaboosSet);
