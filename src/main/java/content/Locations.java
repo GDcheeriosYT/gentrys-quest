@@ -28,6 +28,7 @@ public class Locations {
                     getBattleArea("Down Town"),
                     getBattleArea("Climb Iowa"),
                     getBattleArea("Target")
+                )
             )
         );
 
