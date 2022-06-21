@@ -44,6 +44,7 @@ public class weapons {
       Weapon braydensOsuPen = new Weapon("Brayden's Osu Pen", 5, "Pen", 36, new Buff("critRate"), new Verbs("hit a circle on", "fc'ed the pattern on"), "Brayden's osu pen."); //brayden messerschmidt weapon
       Weapon quandaleDingle = new Weapon("Quandale Dingle", 5, "Person", 46, new Buff("attack"), new Verbs("quandale dingle'd", "dingle bombed"), "Long nose guy."); //bryce anderson weapon
       Weapon theBunnyGirl = new Weapon("The Bunny Girl", 5, "katana", 46, new Buff("critDamage"), new Verbs("tickled", "came inside"), "Born from the highest luxurious used bunny girl outfit fabric. A lustful weapon"); //hentai man weapon
+      Weapon theMobyDick = new Weapon("The Moby Dick", 5, "adult toy", 50, new Buff(""), new Verbs("stuck", "inserted in"), "Toes? Na, it pulls hoes."); //also mason james weapon
 
       contentWeapons.add(sword);
       contentWeapons.add(bow);
@@ -67,6 +68,8 @@ public class weapons {
       contentWeapons.add(sirFarQuad);
       contentWeapons.add(braydensOsuPen);
       contentWeapons.add(quandaleDingle);
+      contentWeapons.add(theBunnyGirl);
+      contentWeapons.add(theMobyDick);
     }
 
   public static ArrayList<Weapon> getContentWeapons() {

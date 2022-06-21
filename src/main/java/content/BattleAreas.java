@@ -235,12 +235,41 @@ public class BattleAreas {
             getFamilyArtifacts("man clan")
         );
 
+        //nigeria
+        BattleArea pureTaboosSet = new BattleArea(
+            "Pure Taboo Set",
+            true,
+            true,
+            new ArrayList<Enemy>(
+                List.of(
+                    new Enemy(
+                        "Riley Reid",
+                        35,
+                        8,
+                        5,
+                        new Weapon(
+                            "Hand of Exhaust",
+                            5,
+                            "Adult Toy",
+                            1,
+                            new Buff(""),
+                            new Verbs("touched", "grabbed"),
+                            "A very used \"adult toy\""
+                        ),
+                        "Popular actress"
+                    )
+                )
+            ),
+            getFamilyArtifacts("mason james")
+        );
+
         contentBattleAreas.add(introFight);
 
         contentBattleAreas.add(braydensHouse);
         contentBattleAreas.add(unfinishedConstructionSite);
         contentBattleAreas.add(downTown);
         contentBattleAreas.add(gymLockerRoomBathroom);
+        contentBattleAreas.add(pureTaboosSet);
     }
 
     public static ArrayList<BattleArea> getContentBattleAreas() {
