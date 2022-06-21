@@ -25,8 +25,10 @@ public class Locations {
                 List.of(
                     getBattleArea("Brayden's House"),
                     getBattleArea("Unfinished Construction Site"),
-                    getBattleArea("Down Town")
-                )
+                    getBattleArea("Down Town"),
+                    getBattleArea("Climb Iowa"),
+                    getBattleArea("Target")
+                ) 
             )
         );
 
