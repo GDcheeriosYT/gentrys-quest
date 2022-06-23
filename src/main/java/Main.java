@@ -359,12 +359,23 @@ class Main{
           else inventoryViewing = false;
         }
       }
-      else{
-        saveGame();
+      //settings
+      else if(input == 4){
+        clearConsole();
+        boolean inSettings = true;
+        while(inSettings){
+          System.out.println("1. debug [" + isToggledSetting("debug", true) + "]");
+          System.out.println("2. clear data");
+          int input2 = getMainMenuInput("3. exit");
+          //debug toggle
+          if(input2 == 1) toggleSetting("debug");
+          //clear data
+          else if(input2 == 2) clearData();
+          else inSettings = false;
+        }
       }
-     }
+    }
   }
-
 
 
 
