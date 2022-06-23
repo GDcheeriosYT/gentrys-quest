@@ -20,6 +20,8 @@ class Main{
   static Inventory inventory = new Inventory();
   static ArrayList<Character> gachaCharacterObtained = new ArrayList<Character>();
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
+  static JSONObject settings = new JSONObject();
+
   public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
     clearConsole();
     System.out.println("loading...");
