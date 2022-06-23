@@ -340,8 +340,6 @@ public class Character {
     if(clearConole) clearConsole();
   }
 
-  public static void setEquiped() equipped = !equipped;
-
   public String toString(){
     String stars = "";
     //make fancier star display
