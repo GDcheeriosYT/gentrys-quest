@@ -35,7 +35,7 @@ class Main{
     content.BattleAreas.initializeContentBattleAreas();
     System.out.println("loading locations");
     content.Locations.initializeContentLocations();
-    System.out.println("loading game data\n");
+    System.out.println("loading game data");
     loadGame();
 
     System.out.println("what's this protagonists name?");
