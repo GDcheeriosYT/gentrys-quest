@@ -38,52 +38,58 @@ class Main{
     System.out.println("loading game data");
     loadGame();
 
-    System.out.println("what's this protagonists name?");
-    String name = new Scanner(System.in).nextLine();
-    clearConsole();
+    if(getData().getInt("startupAmount") == 0){
+      System.out.println("what's this protagonists name?");
+      String name = new Scanner(System.in).nextLine();
+      clearConsole();
 
-    Character equipedCharacter = null;
-    Character player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
-    Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
+      Character equipedCharacter = null;
+      Character player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
+      Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
-    equipedCharacter = player;
+      equipedCharacter = player;
 
-    player.equipWeapon(fists, false);
-    inventory.addCharacter(player);
+      player.equipWeapon(fists, false);
+      inventory.addCharacter(player);
 
-    timeout(2000, false);
-    System.out.println("It's 10pm.");
-    timeout(2000, false);
-    System.out.println(equipedCharacter.getName() + " is at the convenience store buying instant noodles.");
-    timeout(3500, false);
-    System.out.println("He purchases " + (int)((Math.random() * ((Math.random() * 10) + 1)) + 1) + " packages of instant noodles and walks out the door.");
-    timeout(3500, false);
-    System.out.println("As he is walking down the road a pedestrian runs up to him, pulls out a knife and commands " + equipedCharacter.getName() + " to give him $" + (int)((Math.random() * ((Math.random() * 1000) + 1)) + 1));
-    timeout(5000, false);
-    System.out.println(equipedCharacter.getName() + " Prepares for battle\n");
-    timeout(1000, false);
+      timeout(2000, false);
+      System.out.println("It's 10pm.");
+      timeout(2000, false);
+      System.out.println(equipedCharacter.getName() + " is at the convenience store buying instant noodles.");
+      timeout(3500, false);
+      System.out.println("He purchases " + (int)((Math.random() * ((Math.random() * 10) + 1)) + 1) + " packages of instant noodles and walks out the door.");
+      timeout(3500, false);
+      System.out.println("As he is walking down the road a pedestrian runs up to him, pulls out a knife and commands " + equipedCharacter.getName() + " to give him $" + (int)((Math.random() * ((Math.random() * 1000) + 1)) + 1));
+      timeout(5000, false);
+      System.out.println(equipedCharacter.getName() + " Prepares for battle\n");
+      timeout(1000, false);
 
-    startBattle(content.BattleAreas.getContentBattleAreas().get(0), equipedCharacter, false, false);
-    timeout(1000, false);
+      startBattle(content.BattleAreas.getContentBattleAreas().get(0), equipedCharacter, false, false);
+      timeout(1000, false);
 
-    System.out.println("Or so " + equipedCharacter.getName() + " thought...");
-    timeout(3000, true);
+      System.out.println("Or so " + equipedCharacter.getName() + " thought...");
+      timeout(3000, true);
 
-    System.out.println(equipedCharacter.getName() + " opened his eyes.\nAs he looks around he notices he is in someone's living room.\n\"How did I get here?\" he asked himself.\nSomeone comes into the room.\n\"Oh my, you're awake.\" she says.\n\"I'm surprised I was able to save you. You were injured pretty badly.\"");
-    timeout(15000, false);
-    System.out.println("\"Thankfully Chug-Jugs are really effective.\"");
-    timeout(3500, true);
-    System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you this...\"");
-    timeout(15000, true);
-    gacha(true, 1);
-    System.out.println("\"I can't thank you enough!\" you say. She smiles at you while you exit through the front door.");
-    equipedCharacter.deEquipWeapon(false);
-    equipedCharacter.equipWeapon(inventory.getWeapons().get(0), true);
+      System.out.println(equipedCharacter.getName() + " opened his eyes.\nAs he looks around he notices he is in someone's living room.\n\"How did I get here?\" he asked himself.\nSomeone comes into the room.\n\"Oh my, you're awake.\" she says.\n\"I'm surprised I was able to save you. You were injured pretty badly.\"");
+      timeout(15000, false);
+      System.out.println("\"Thankfully Chug-Jugs are really effective.\"");
+      timeout(3500, true);
+      System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you this...\"");
+      timeout(15000, true);
+      gacha(true, 1);
+      System.out.println("\"I can't thank you enough!\" you say. She smiles at you while you exit through the front door.");
+      equipedCharacter.deEquipWeapon(false);
+      equipedCharacter.equipWeapon(inventory.getWeapons().get(0), true);
 
-    timeout(5000, true);
+      timeout(5000, true);
 
-    System.out.println("Welcome to Gentry's Quest!");
-    timeout(2500, true);
+      System.out.println("Welcome to Gentry's Quest!");
+      timeout(2500, true);
+    }
+    else{
+      Character equippedCharacter = 
+    }
+
     while(true){
       int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.Quit");
       //Locations
