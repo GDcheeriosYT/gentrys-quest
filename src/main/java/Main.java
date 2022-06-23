@@ -20,6 +20,8 @@ class Main{
   static Inventory inventory = new Inventory();
   static ArrayList<Character> gachaCharacterObtained = new ArrayList<Character>();
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
+  static JSONObject settings = new JSONObject();
+
   public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
     clearConsole();
     System.out.println("loading...");
@@ -33,55 +35,61 @@ class Main{
     content.BattleAreas.initializeContentBattleAreas();
     System.out.println("loading locations");
     content.Locations.initializeContentLocations();
-    System.out.println("loading game data\n");
+    System.out.println("loading game data");
     loadGame();
 
-    System.out.println("what's this protagonists name?");
-    String name = new Scanner(System.in).nextLine();
-    clearConsole();
+    if(getData().getInt("startupAmount") == 0){
+      System.out.println("what's this protagonists name?");
+      String name = new Scanner(System.in).nextLine();
+      clearConsole();
 
-    Character equipedCharacter = null;
-    Character player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
-    Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
+      Character equipedCharacter = null;
+      Character player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
+      Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
-    equipedCharacter = player;
+      equipedCharacter = player;
 
-    player.equipWeapon(fists, false);
-    inventory.addCharacter(player);
+      player.equipWeapon(fists, false);
+      inventory.addCharacter(player);
 
-    timeout(2000, false);
-    System.out.println("It's 10pm.");
-    timeout(2000, false);
-    System.out.println(equipedCharacter.getName() + " is at the convenience store buying instant noodles.");
-    timeout(3500, false);
-    System.out.println("He purchases " + (int)((Math.random() * ((Math.random() * 10) + 1)) + 1) + " packages of instant noodles and walks out the door.");
-    timeout(3500, false);
-    System.out.println("As he is walking down the road a pedestrian runs up to him, pulls out a knife and commands " + equipedCharacter.getName() + " to give him $" + (int)((Math.random() * ((Math.random() * 1000) + 1)) + 1));
-    timeout(5000, false);
-    System.out.println(equipedCharacter.getName() + " Prepares for battle\n");
-    timeout(1000, false);
+      timeout(2000, false);
+      System.out.println("It's 10pm.");
+      timeout(2000, false);
+      System.out.println(equipedCharacter.getName() + " is at the convenience store buying instant noodles.");
+      timeout(3500, false);
+      System.out.println("He purchases " + (int)((Math.random() * ((Math.random() * 10) + 1)) + 1) + " packages of instant noodles and walks out the door.");
+      timeout(3500, false);
+      System.out.println("As he is walking down the road a pedestrian runs up to him, pulls out a knife and commands " + equipedCharacter.getName() + " to give him $" + (int)((Math.random() * ((Math.random() * 1000) + 1)) + 1));
+      timeout(5000, false);
+      System.out.println(equipedCharacter.getName() + " Prepares for battle\n");
+      timeout(1000, false);
 
-    startBattle(content.BattleAreas.getContentBattleAreas().get(0), equipedCharacter, false, false);
-    timeout(1000, false);
+      startBattle(content.BattleAreas.getContentBattleAreas().get(0), equipedCharacter, false, false);
+      timeout(1000, false);
 
-    System.out.println("Or so " + equipedCharacter.getName() + " thought...");
-    timeout(3000, true);
+      System.out.println("Or so " + equipedCharacter.getName() + " thought...");
+      timeout(3000, true);
 
-    System.out.println(equipedCharacter.getName() + " opened his eyes.\nAs he looks around he notices he is in someone's living room.\n\"How did I get here?\" he asked himself.\nSomeone comes into the room.\n\"Oh my, you're awake.\" she says.\n\"I'm surprised I was able to save you. You were injured pretty badly.\"");
-    timeout(15000, false);
-    System.out.println("\"Thankfully Chug-Jugs are really effective.\"");
-    timeout(3500, true);
-    System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you this...\"");
-    timeout(15000, true);
-    gacha(true, 1);
-    System.out.println("\"I can't thank you enough!\" you say. She smiles at you while you exit through the front door.");
-    equipedCharacter.deEquipWeapon(false);
-    equipedCharacter.equipWeapon(inventory.getWeapons().get(0), true);
+      System.out.println(equipedCharacter.getName() + " opened his eyes.\nAs he looks around he notices he is in someone's living room.\n\"How did I get here?\" he asked himself.\nSomeone comes into the room.\n\"Oh my, you're awake.\" she says.\n\"I'm surprised I was able to save you. You were injured pretty badly.\"");
+      timeout(15000, false);
+      System.out.println("\"Thankfully Chug-Jugs are really effective.\"");
+      timeout(3500, true);
+      System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you this...\"");
+      timeout(15000, true);
+      gacha(true, 1);
+      System.out.println("\"I can't thank you enough!\" you say. She smiles at you while you exit through the front door.");
+      equipedCharacter.deEquipWeapon(false);
+      equipedCharacter.equipWeapon(inventory.getWeapons().get(0), true);
 
-    timeout(5000, true);
+      timeout(5000, true);
 
-    System.out.println("Welcome to Gentry's Quest!");
-    timeout(2500, true);
+      System.out.println("Welcome to Gentry's Quest!");
+      timeout(2500, true);
+    }
+    else{
+      Character equippedCharacter = 
+    }
+
     while(true){
       int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.Quit");
       //Locations
@@ -351,12 +359,23 @@ class Main{
           else inventoryViewing = false;
         }
       }
-      else{
-        saveGame();
+      //settings
+      else if(input == 4){
+        clearConsole();
+        boolean inSettings = true;
+        while(inSettings){
+          System.out.println("1. debug [" + isToggledSetting("debug", true) + "]");
+          System.out.println("2. clear data");
+          int input2 = getMainMenuInput("3. exit");
+          //debug toggle
+          if(input2 == 1) toggleSetting("debug");
+          //clear data
+          else if(input2 == 2) clearData();
+          else inSettings = false;
+        }
       }
-     }
+    }
   }
-
 
 
 
@@ -603,7 +622,7 @@ class Main{
     if(clearConole) clearConsole();
   }
 
-  public static void saveGame(){
+  public static void saveGame() throws FileNotFoundException {
     //do inventory stuff
     JSONObject inventoryData = new JSONObject();
 
@@ -615,11 +634,24 @@ class Main{
     JSONObject gameData = new JSONObject();
     gameData.put("startup amount", 1);
     gameData.put("inventory", inventoryData);
+    gameData.put("settings", settings);
 
     System.out.println(gameData.toString(4));
+
+    writeTo("src/main/java/data/GameData.json", gameData.toString(4));
   }
 
-  public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
+  public static void writeTo(String fileName, String content) throws FileNotFoundException {
+    try (FileWriter file = new FileWriter(fileName)) {
+      file.write(content);
+      file.flush();
+    }
+    catch (IOException e) {
+      if(isToggledSetting("debug", true)) e.printStackTrace();
+    }
+  }
+
+  public static JSONObject getData() throws FileNotFoundException {
     Scanner in = new Scanner(new FileReader("src/main/java/data/GameData.json"));
 
     StringBuilder sb = new StringBuilder();
@@ -629,10 +661,44 @@ class Main{
     in.close();
     String outString = sb.toString();
 
-    System.out.println(outString);
-
     JSONObject gameData = new JSONObject(outString);
 
-    System.out.println(gameData.toString(4));
+    return gameData;
   }
+
+  public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
+    System.out.println("\tstep 1, configurations");
+    settings.put("debug", isToggledSetting("debug", false));
+  }
+
+  public static boolean isToggledSetting(String setting, boolean instancedSettings) throws FileNotFoundException {
+    if(instancedSettings) return settings.getBoolean(setting);
+    else{
+      JSONObject gameData = getData();
+      return gameData.getJSONObject("settings").getBoolean(setting);
+    }
+  }
+
+  public static void toggleSetting(String setting) throws FileNotFoundException {
+    settings.put(setting, !isToggledSetting(setting, true));
+    clearConsole();
+    System.out.println("toggled debug");
+  }
+
+  public static void clearData() throws FileNotFoundException {
+    Scanner in = new Scanner(new FileReader("src/main/java/data/defaults.json"));
+
+    StringBuilder sb = new StringBuilder();
+    while(in.hasNext()) {
+      sb.append(in.next());
+    }
+    in.close();
+    String outString = sb.toString();
+
+    writeTo("src/main/java/data/GameData.json", new JSONObject(outString).toString(4));
+    clearConsole();
+    System.out.println("cleared data");
+  }
+
+
 }

@@ -35,6 +35,7 @@ public class Character {
   private Weapon weapon;
   private Artifact[] artifacts = {null, null, null, null, null};
   private int difficulty = 1;
+  private boolean equipped = false;
 
   public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description){
     this.starRating = starRating;
@@ -384,5 +385,13 @@ public class Character {
 
     float percent = (xp * 100.0f) / xpRequired;
     return name + " " + stars + "\nlevel " + level + "\nxp: " + xp + "/" + xpRequired + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense + "\ncrit rate: " + defaultCritRate + "% " + moreCritRate + "\ncrit damage " + defaultCritDamage + moreCritDamage + weaponInfo + artifactInfo + "\n====================\n" + description + "\n====================";
+  }
+
+  public boolean isEquipped() {
+    return equipped;
+  }
+
+  public void setEquipped(boolean equipped) {
+    this.equipped = equipped;
   }
 }
