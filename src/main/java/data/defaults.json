@@ -1,0 +1,12 @@
+{
+  "startupAmount" : 0,
+  "inventory" : {
+    "money" : 0,
+    "characters" : [],
+    "weapons" : [],
+    "artifacts" : []
+  },
+  "settings" : {
+    "debug" : false
+  }
+}
