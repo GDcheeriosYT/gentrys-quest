@@ -622,7 +622,7 @@ class Main{
     if(clearConole) clearConsole();
   }
 
-  public static void saveGame(){
+  public static void saveGame() throws FileNotFoundException {
     //do inventory stuff
     JSONObject inventoryData = new JSONObject();
 
@@ -634,11 +634,24 @@ class Main{
     JSONObject gameData = new JSONObject();
     gameData.put("startup amount", 1);
     gameData.put("inventory", inventoryData);
+    gameData.put("settings", settings);
 
     System.out.println(gameData.toString(4));
+
+    writeTo("src/main/java/data/GameData.json", gameData.toString(4));
   }
 
-  public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
+  public static void writeTo(String fileName, String content) throws FileNotFoundException {
+    try (FileWriter file = new FileWriter(fileName)) {
+      file.write(content);
+      file.flush();
+    }
+    catch (IOException e) {
+      if(isToggledSetting("debug", true)) e.printStackTrace();
+    }
+  }
+
+  public static JSONObject getData() throws FileNotFoundException {
     Scanner in = new Scanner(new FileReader("src/main/java/data/GameData.json"));
 
     StringBuilder sb = new StringBuilder();
@@ -648,10 +661,44 @@ class Main{
     in.close();
     String outString = sb.toString();
 
-    System.out.println(outString);
-
     JSONObject gameData = new JSONObject(outString);
 
-    System.out.println(gameData.toString(4));
+    return gameData;
   }
+
+  public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
+    System.out.println("\tstep 1, configurations");
+    settings.put("debug", isToggledSetting("debug", false));
+  }
+
+  public static boolean isToggledSetting(String setting, boolean instancedSettings) throws FileNotFoundException {
+    if(instancedSettings) return settings.getBoolean(setting);
+    else{
+      JSONObject gameData = getData();
+      return gameData.getJSONObject("settings").getBoolean(setting);
+    }
+  }
+
+  public static void toggleSetting(String setting) throws FileNotFoundException {
+    settings.put(setting, !isToggledSetting(setting, true));
+    clearConsole();
+    System.out.println("toggled debug");
+  }
+
+  public static void clearData() throws FileNotFoundException {
+    Scanner in = new Scanner(new FileReader("src/main/java/data/defaults.json"));
+
+    StringBuilder sb = new StringBuilder();
+    while(in.hasNext()) {
+      sb.append(in.next());
+    }
+    in.close();
+    String outString = sb.toString();
+
+    writeTo("src/main/java/data/GameData.json", new JSONObject(outString).toString(4));
+    clearConsole();
+    System.out.println("cleared data");
+  }
+
+
 }
