@@ -5,5 +5,8 @@
     "characters" : [],
     "weapons" : [],
     "artifacts" : []
+  },
+  "settings" : {
+    "debug" : false
   }
 }
