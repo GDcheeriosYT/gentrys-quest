@@ -21,6 +21,15 @@ class Main{
   static ArrayList<Character> gachaCharacterObtained = new ArrayList<Character>();
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
   static JSONObject settings = new JSONObject();
+  static int startupAmount;
+
+  {
+    try {
+      startupAmount = getData().getInt("startup amount");
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
     clearConsole();
@@ -37,13 +46,14 @@ class Main{
     content.Locations.initializeContentLocations();
     System.out.println("loading game data");
     loadGame();
+    Character equipedCharacter = null;
+    System.out.println(getData());
 
-    if(getData().getInt("startupAmount") == 0){
+    if(getData().getInt("startup amount") == 0){
       System.out.println("what's this protagonists name?");
       String name = new Scanner(System.in).nextLine();
       clearConsole();
 
-      Character equipedCharacter = null;
       Character player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
       Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
@@ -86,9 +96,11 @@ class Main{
       System.out.println("Welcome to Gentry's Quest!");
       timeout(2500, true);
     }
-    else{
-      Character equippedCharacter = 
+    else {
+      Character equippedCharacter = new Character(2, "john", 1, 1, 1, 1, 1, "likes penis");
+      equippedCharacter.equipWeapon(new Weapon("dick destroyer", 5, "thing", 10, new Buff(""), new Verbs("fucked", "super fucked him"), "a weapon"), true);
     }
+    startupAmount += 1;
 
     while(true){
       int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.Quit");
@@ -374,6 +386,9 @@ class Main{
           else inSettings = false;
         }
       }
+      else{
+        saveGame();
+      }
     }
   }
 
@@ -632,7 +647,7 @@ class Main{
     inventoryData.put("artifacts", inventory.getArtifacts());
 
     JSONObject gameData = new JSONObject();
-    gameData.put("startup amount", 1);
+    gameData.put("startup amount", startupAmount);
     gameData.put("inventory", inventoryData);
     gameData.put("settings", settings);
 

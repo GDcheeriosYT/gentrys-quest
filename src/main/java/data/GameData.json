@@ -1,10 +1,54 @@
 {
+    "startup amount": 1,
     "settings": {"debug": false},
     "inventory": {
-        "characters": [],
+        "characters": [{
+            "level": 1,
+            "fancyStars": "*",
+            "equipped": false,
+            "health": 20,
+            "description": "The guy",
+            "difficulty": 1,
+            "weapon": {
+                "damage": 3,
+                "level": 1,
+                "fancyStars": "**",
+                "name": "Bone",
+                "xp": 0,
+                "attribute": {"buff": [
+                    3,
+                    1
+                ]},
+                "starRating": 2,
+                "xpRequired": 200
+            },
+            "defense": 2,
+            "name": "niggagga",
+            "xp": 0,
+            "artifactList": [
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "starRating": 1,
+            "xpRequired": 100
+        }],
         "money": 0,
-        "weapons": [],
+        "weapons": [{
+            "damage": 3,
+            "level": 1,
+            "fancyStars": "**",
+            "name": "Bone",
+            "xp": 0,
+            "attribute": {"buff": [
+                3,
+                1
+            ]},
+            "starRating": 2,
+            "xpRequired": 200
+        }],
         "artifacts": []
-    },
-    "startupAmount": 0
+    }
 }
