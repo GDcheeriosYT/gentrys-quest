@@ -110,4 +110,11 @@ public class characters {
   public static ArrayList<Character> getContentCharacters() {
     return contentCharacters;
   }
+
+  public static Character getSpecificCharacter(String name){
+    for(Character character: contentCharacters){
+      if(character.getName().equals(name)) return character;
+    }
+    return null;
+  }
 }
