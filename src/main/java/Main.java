@@ -32,6 +32,10 @@ class Main{
   }
 
   public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+    String nameTest = "";
+    for(int i = 0; i<args.length; i++){
+      nameTest += args[i] + " ";
+    }
     clearConsole();
     System.out.println("loading...");
     System.out.println("loading artifacts");
@@ -61,9 +65,8 @@ class Main{
         player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
       }
 
-      Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
-
       equipedCharacter = player;
+      Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
       player.equipWeapon(fists, false);
       inventory.addCharacter(player);
@@ -491,6 +494,53 @@ class Main{
     }
   }
 
+  public static void gacha(Boolean pullWeapon, int amount, String name){
+    if(pullWeapon){
+      int weaponsPulled = 0;
+      for(int i = 0; i < amount; i = weaponsPulled){
+        Weapon weapon = content.weapons.getSpecificWeapon(name);
+        inventory.addWeapon(weapon);
+        weaponsPulled += 1;
+        gachaWeapopnObtained.add(weapon);
+      }
+      Map<String, Integer> counts = new HashMap<>();
+      for (Weapon weapon : gachaWeapopnObtained) {
+        int c = counts.computeIfAbsent(weapon.getName() + " " + weapon.getFancyStars(), key -> 0);
+        counts.put(weapon.getName() + " " + weapon.getFancyStars(), ++c);
+      }
+      System.out.println("You got:");
+      for (var entry : counts.entrySet()) {
+        System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
+      }
+      gachaWeapopnObtained.clear();
+      System.out.println("press enter to continue...");
+      new Scanner(System.in).nextLine();
+      clearConsole();
+    }
+    else{
+      int charactersPulled = 0;
+      for(int i = 0; i < amount; i = charactersPulled){
+        Character character = content.characters.getSpecificCharacter(name);
+        charactersPulled += 1;
+        inventory.addCharacter(character);
+        gachaCharacterObtained.add(character);
+      }
+      Map<String, Integer> counts = new HashMap<>();
+      for (Character character : gachaCharacterObtained) {
+        int c = counts.computeIfAbsent(character.getName() + " " + character.getFancyStars(), key -> 0);
+        counts.put(character.getName() + " " + character.getFancyStars(), ++c);
+      }
+      System.out.println("You got:");
+      for (var entry : counts.entrySet()) {
+        System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
+      }
+      gachaCharacterObtained.clear();
+      System.out.println("\npress enter to continue...");
+      new Scanner(System.in).nextLine();
+      clearConsole();
+    }
+  }
+
   public static int getMainMenuInput(String text){
     Scanner input = new Scanner(System.in);
     System.out.println(text);
@@ -724,6 +774,4 @@ class Main{
     clearConsole();
     System.out.println("cleared data");
   }
-
-
 }
