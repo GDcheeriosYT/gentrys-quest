@@ -53,8 +53,10 @@ class Main{
       System.out.println("what's this protagonists name?");
       String name = new Scanner(System.in).nextLine();
       clearConsole();
+      Character player = null;
+        player = inventory.getCharacters().get(0);
+        player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
 
-      Character player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
       Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
       equipedCharacter = player;
