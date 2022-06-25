@@ -31,7 +31,7 @@ public class BattleAreas {
                 List.of(new Enemy(
                     "Angry Pedestrian",
                     15,
-                    25,
+                    50,
                     3,
                     new Weapon(
                         "Knife",
