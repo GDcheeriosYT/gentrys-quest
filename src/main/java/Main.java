@@ -532,7 +532,6 @@ class Main{
         int c = counts.computeIfAbsent(character.getName() + " " + character.getFancyStars(), key -> 0);
         counts.put(character.getName() + " " + character.getFancyStars(), ++c);
       }
-      clearConsole();
       System.out.println("You got:");
       for (var entry : counts.entrySet()) {
         System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
