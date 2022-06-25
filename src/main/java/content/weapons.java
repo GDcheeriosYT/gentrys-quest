@@ -75,4 +75,11 @@ public class weapons {
   public static ArrayList<Weapon> getContentWeapons() {
     return contentWeapons;
   }
+
+  public static Weapon getSpecificWeapon(String name){
+    for(Weapon weapon: contentWeapons){
+      if(weapon.getName() == name) return weapon;
+    }
+    return null;
+  }
 }
