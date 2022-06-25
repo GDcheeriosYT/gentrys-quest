@@ -25,7 +25,7 @@ class Main{
 
   {
     try {
-      startupAmount = getData().getInt("startup amount");
+      startupAmount = getData().getInt("startupamount");
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
@@ -647,7 +647,7 @@ class Main{
     inventoryData.put("artifacts", inventory.getArtifacts());
 
     JSONObject gameData = new JSONObject();
-    gameData.put("startup amount", startupAmount);
+    gameData.put("startupamount", startupAmount);
     gameData.put("inventory", inventoryData);
     gameData.put("settings", settings);
 
