@@ -93,7 +93,7 @@ class Main{
       System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you this...\"");
       timeout(15000, true);
       gacha(true, 1);
-      System.out.println("\"I can't thank you enough!\" you say. She smiles at you while you exit through the front door.");
+      System.out.println("\"I can't thank you enough!\" " + equipedCharacter.getName() + " says. She smiles at you while you exit through the front door.");
       equipedCharacter.deEquipWeapon(false);
       equipedCharacter.equipWeapon(inventory.getWeapons().get(0), true);
 
@@ -690,6 +690,10 @@ class Main{
   public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
     System.out.println("\tstep 1, configurations");
     settings.put("debug", isToggledSetting("debug", false));
+    System.out.println("\tstep 2, characters");
+    for(Object notJSONCharacterData: getData().getJSONObject("inventory").getJSONArray("characters")){
+      JSONObject characterData = (JSONObject) notJSONCharacterData;
+    }
   }
 
   public static boolean isToggledSetting(String setting, boolean instancedSettings) throws FileNotFoundException {
