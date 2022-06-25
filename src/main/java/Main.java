@@ -47,15 +47,19 @@ class Main{
     System.out.println("loading game data");
     loadGame();
     Character equipedCharacter = null;
-    System.out.println(getData());
-
-    if(getData().getInt("startup amount") == 0){
-      System.out.println("what's this protagonists name?");
-      String name = new Scanner(System.in).nextLine();
-      clearConsole();
+    if(getData().getInt("startupamount") == 0){
       Character player = null;
+      if(args[0] != null){
+        System.out.println("\n\n\n\n\nThanks for contributing to the content of this game!\nAs a gift take this.");
+        gacha(false, 1, nameTest.substring(0, nameTest.length() - 1));
         player = inventory.getCharacters().get(0);
+      }
+      else{
+        System.out.println("what's this protagonists name?");
+        String name = new Scanner(System.in).nextLine();
+        clearConsole();
         player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
+      }
 
       Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
