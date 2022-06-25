@@ -524,6 +524,7 @@ class Main{
       for(int i = 0; i < amount; i = charactersPulled){
         Character character = content.characters.getSpecificCharacter(name);
         charactersPulled += 1;
+        inventory.addCharacter(character);
         gachaCharacterObtained.add(character);
       }
       Map<String, Integer> counts = new HashMap<>();
