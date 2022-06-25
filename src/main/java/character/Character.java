@@ -5,6 +5,7 @@ import java.util.Objects;
 import artifact.Artifact;
 import buff.Buff;
 import enemy.Enemy;
+import org.json.JSONObject;
 import weapon.Weapon;
 
 
@@ -17,7 +18,6 @@ public class Character {
   private long xpRequired = 100;
   long previousXpRequired;
   private int health;
-  private int maxHealth;
   private int defaultHealth;
   private int additionalHealth;
   private int attackDamage;
@@ -45,9 +45,32 @@ public class Character {
     this.defaultHealth = (starRating * 10) + (health * 10);
     this.defaultAttackDamage = starRating + attack;
     this.defaultDefense = starRating + defense;
-    this.defaultCritRate = starRating * 0.05 + critRate;
-    this.defaultCritDamage = starRating;
+    this.defaultCritRate = starRating + critRate;
+    this.defaultCritDamage = starRating + critDamage;
     updateStats();
+  }
+
+  public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description, int level, long xp, long xpRequired, int difficulty, Weapon weapon, Artifact[] artifacts){
+    this.starRating = starRating;
+    this.name = name;
+    this.health = health;
+    this.attackDamage = attack;
+    this.defense = defense;
+    this.critRate = critRate;
+    this.critDamage = critDamage;
+    this.description = description;
+    this.level = level;
+    this.xp = xp;
+    this.xpRequired = xpRequired;
+    this.difficulty = difficulty;
+    equipWeapon(weapon, false);
+    for(Artifact artifact: artifacts){
+      if(artifact != null){
+        for(int i = 0; i<4; i++){
+          if(this.artifacts[i] == null) equipArtifact(i, artifact);
+        }
+      }
+    }
   }
 
   public void addXp(int amount){
@@ -393,5 +416,33 @@ public class Character {
 
   public void setEquipped(boolean equipped) {
     this.equipped = equipped;
+  }
+
+  public JSONObject getData(){
+    JSONObject data = new JSONObject();
+
+    JSONObject stats = new JSONObject();
+    JSONObject equips = new JSONObject();
+    JSONObject experience = new JSONObject();
+
+    stats.put("health", health);
+    stats.put("attack", attackDamage);
+    stats.put("defense", defense);
+    stats.put("critRate", critRate);
+    stats.put("critDamage", critDamage);
+
+    equips.put("weapon", weapon);
+    equips.put("artifacts", artifacts);
+
+    experience.put("xp", xp);
+    experience.put("xp required", xpRequired);
+    experience.put("previous xp required", previousXpRequired);
+    experience.put("level", level);
+
+    data.put("stats", stats);
+    data.put("equips", equips);
+    data.put("experience", experience);
+
+    return data;
   }
 }

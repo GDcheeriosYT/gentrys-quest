@@ -25,7 +25,7 @@ class Main{
 
   {
     try {
-      startupAmount = getData().getInt("startup amount");
+      startupAmount = getData().getInt("startupamount");
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
@@ -51,9 +51,7 @@ class Main{
     System.out.println("loading game data");
     loadGame();
     Character equipedCharacter = null;
-    System.out.println(getData());
-
-    if(getData().getInt("startup amount") == 0){
+    if(getData().getInt("startupamount") == 0){
       Character player = null;
       if(args[0] != null){
         System.out.println("\n\n\n\n\nThanks for contributing to the content of this game!\nAs a gift take this.");
@@ -98,7 +96,7 @@ class Main{
       System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you this...\"");
       timeout(15000, true);
       gacha(true, 1);
-      System.out.println("\"I can't thank you enough!\" you say. She smiles at you while you exit through the front door.");
+      System.out.println("\"I can't thank you enough!\" " + equipedCharacter.getName() + " says. She smiles at you while you exit through the front door.");
       equipedCharacter.deEquipWeapon(false);
       equipedCharacter.equipWeapon(inventory.getWeapons().get(0), true);
 
@@ -705,7 +703,7 @@ class Main{
     inventoryData.put("artifacts", inventory.getArtifacts());
 
     JSONObject gameData = new JSONObject();
-    gameData.put("startup amount", startupAmount);
+    gameData.put("startupamount", startupAmount);
     gameData.put("inventory", inventoryData);
     gameData.put("settings", settings);
 
@@ -742,6 +740,10 @@ class Main{
   public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
     System.out.println("\tstep 1, configurations");
     settings.put("debug", isToggledSetting("debug", false));
+    System.out.println("\tstep 2, characters");
+    for(Object notJSONCharacterData: getData().getJSONObject("inventory").getJSONArray("characters")){
+      JSONObject characterData = (JSONObject) notJSONCharacterData;
+    }
   }
 
   public static boolean isToggledSetting(String setting, boolean instancedSettings) throws FileNotFoundException {
