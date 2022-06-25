@@ -485,6 +485,54 @@ class Main{
     }
   }
 
+  public static void gacha(Boolean pullWeapon, int amount, String name){
+    if(pullWeapon){
+      int weaponsPulled = 0;
+      for(int i = 0; i < amount; i = weaponsPulled){
+        Weapon weapon = content.weapons.getSpecificWeapon(name);
+        inventory.addWeapon(weapon);
+        weaponsPulled += 1;
+        gachaWeapopnObtained.add(weapon);
+      }
+      Map<String, Integer> counts = new HashMap<>();
+      for (Weapon weapon : gachaWeapopnObtained) {
+        int c = counts.computeIfAbsent(weapon.getName() + " " + weapon.getFancyStars(), key -> 0);
+        counts.put(weapon.getName() + " " + weapon.getFancyStars(), ++c);
+      }
+      clearConsole();
+      System.out.println("You got:");
+      for (var entry : counts.entrySet()) {
+        System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
+      }
+      gachaWeapopnObtained.clear();
+      System.out.println("press enter to continue...");
+      new Scanner(System.in).nextLine();
+      clearConsole();
+    }
+    else{
+      int charactersPulled = 0;
+      for(int i = 0; i < amount; i = charactersPulled){
+        Character character = content.characters.getSpecificCharacter(name);
+        charactersPulled += 1;
+        gachaCharacterObtained.add(character);
+      }
+      Map<String, Integer> counts = new HashMap<>();
+      for (Character character : gachaCharacterObtained) {
+        int c = counts.computeIfAbsent(character.getName() + " " + character.getFancyStars(), key -> 0);
+        counts.put(character.getName() + " " + character.getFancyStars(), ++c);
+      }
+      clearConsole();
+      System.out.println("You got:");
+      for (var entry : counts.entrySet()) {
+        System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
+      }
+      gachaCharacterObtained.clear();
+      System.out.println("\npress enter to continue...");
+      new Scanner(System.in).nextLine();
+      clearConsole();
+    }
+  }
+
   public static int getMainMenuInput(String text){
     Scanner input = new Scanner(System.in);
     System.out.println(text);
