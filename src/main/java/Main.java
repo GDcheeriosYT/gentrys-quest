@@ -392,7 +392,10 @@ class Main{
           if(input2 == 1) toggleSetting("debug");
           //clear data
           else if(input2 == 2) clearData();
-          else inSettings = false;
+          else{
+            clearConsole();
+            inSettings = false;
+          }
         }
       }
       else{
