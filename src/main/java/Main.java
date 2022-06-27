@@ -750,6 +750,8 @@ class Main{
 
     JSONObject gameData = new JSONObject(outString);
 
+    System.out.println(gameData.toString(4));
+
     return gameData;
   }
 
@@ -760,7 +762,26 @@ class Main{
     for(Object notJSONCharacterData: getData().getJSONObject("inventory").getJSONArray("characters")){
       JSONObject characterData = (JSONObject) notJSONCharacterData;
       if(isToggledSetting("debug", true)) System.out.println(characterData.toString(4));
-      //Character character = new Character(characterData.getInt("star rating"))
+//      int starRating = characterData.getInt("star rating");
+//      String name = characterData.getString("name");
+//      String description = characterData.getString("description");
+//      JSONObject stats = characterData.getJSONObject("stats");
+//      int health = stats.getInt("health");
+//      int attack = stats.getInt("attack");
+//      int defense = stats.getInt("defense");
+//      double critRate = stats.getDouble("critRate");
+//      int critDamage = stats.getInt("critDamage");
+//      Character character = new Character(
+//          starRating,
+//          name,
+//          health,
+//          attack,
+//          defense,
+//          critRate,
+//          critDamage,
+//          description,
+//
+//      )
     }
   }
 
