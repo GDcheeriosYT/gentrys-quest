@@ -70,7 +70,12 @@ class Main{
       Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
       player.equipWeapon(fists, false);
-      inventory.addCharacter(player);
+      try{
+        inventory.getCharacters().get(0);
+      }
+      catch (Exception e) {
+        inventory.addCharacter(player);
+      }
 
       timeout(2000, false);
       System.out.println("It's 10pm.");
