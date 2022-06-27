@@ -719,7 +719,7 @@ class Main{
 
     if(isToggledSetting("debug", true)) System.out.println(gameData.toString(4));
 
-    writeTo("src/main/java/data/GameData.json", gameData.toString(4));
+    writeTo(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./GameData.json")), gameData.toString(4));
   }
 
   public static void writeTo(String fileName, String content) throws FileNotFoundException {
@@ -733,7 +733,8 @@ class Main{
   }
 
   public static JSONObject getData() throws FileNotFoundException {
-    Scanner in = new Scanner(new FileReader("src/main/java/data/GameData.json"));
+    System.out.println(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./GameData.json")));
+    BufferedReader in = new BufferedReader(new FileReader(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./GameData.json"))));
 
     StringBuilder sb = new StringBuilder();
     while(in.hasNext()) {
@@ -773,7 +774,7 @@ class Main{
   }
 
   public static void clearData() throws FileNotFoundException {
-    Scanner in = new Scanner(new FileReader("src/main/java/data/defaults.json"));
+    Scanner in = new Scanner(new FileReader(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./defaults.json"))));
 
     StringBuilder sb = new StringBuilder();
     while(in.hasNext()) {
@@ -782,7 +783,7 @@ class Main{
     in.close();
     String outString = sb.toString();
 
-    writeTo("src/main/java/data/GameData.json", new JSONObject(outString).toString(4));
+    writeTo(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./GameData.json")), new JSONObject(outString).toString(4));
     clearConsole();
     System.out.println("cleared data");
   }

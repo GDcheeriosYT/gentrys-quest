@@ -1,0 +1,105 @@
+{
+    "settings": {"debug": true},
+    "startupamount": 1,
+    "inventory": {
+        "characters": [{
+            "stats": {
+                "defense": 6,
+                "attack": 9,
+                "critDamage": 0,
+                "health": 50,
+                "critRate": 0
+            },
+            "name": "Brayden Messerschmidt",
+            "description": "An osu player who formed a contract with ppy(Dean Herbert) to not talk to females.",
+            "equips": {
+                "weapon": {
+                    "weapon type": "Spear",
+                    "stats": {
+                        "attack": 6,
+                        "buff": [
+                            3,
+                            1
+                        ]
+                    },
+                    "name": "Spear",
+                    "description": "Just a spear.",
+                    "verbs": {
+                        "normal": "stabbed",
+                        "critical": "combo'd"
+                    },
+                    "experience": {
+                        "xp required": 100,
+                        "level": 1,
+                        "xp": 0,
+                        "previous xp required": 0
+                    },
+                    "star rating": 1
+                },
+                "artifacts": [{
+                    "stats": {
+                        "attributes": [],
+                        "main attribute": [
+                            4,
+                            1
+                        ]
+                    },
+                    "name": "Loli Body Pillow",
+                    "family": "brayden messerschmidt",
+                    "experience": {
+                        "xp required": 100,
+                        "level": 1,
+                        "xp": 50,
+                        "previous xp required": 0
+                    },
+                    "star rating": 1
+                }]
+            },
+            "experience": {
+                "xp required": 500,
+                "level": 1,
+                "xp": 270,
+                "previous xp required": 0
+            },
+            "star rating": 5
+        }],
+        "money": 0,
+        "weapons": [{
+            "damage": 6,
+            "data": {
+                "weapon type": "Spear",
+                "stats": {
+                    "attack": 6,
+                    "buff": [
+                        3,
+                        1
+                    ]
+                },
+                "name": "Spear",
+                "description": "Just a spear.",
+                "verbs": {
+                    "normal": "stabbed",
+                    "critical": "combo'd"
+                },
+                "experience": {
+                    "xp required": 100,
+                    "level": 1,
+                    "xp": 0,
+                    "previous xp required": 0
+                },
+                "star rating": 1
+            },
+            "level": 1,
+            "fancyStars": "*",
+            "name": "Spear",
+            "xp": 0,
+            "attribute": {"buff": [
+                3,
+                1
+            ]},
+            "starRating": 1,
+            "xpRequired": 100
+        }],
+        "artifacts": []
+    }
+}
