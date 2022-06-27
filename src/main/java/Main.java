@@ -717,7 +717,7 @@ class Main{
     gameData.put("inventory", inventoryData);
     gameData.put("settings", settings);
 
-    System.out.println(gameData.toString(4));
+    if(isToggledSetting("debug", true)) System.out.println(gameData.toString(4));
 
     writeTo("src/main/java/data/GameData.json", gameData.toString(4));
   }
@@ -753,6 +753,8 @@ class Main{
     System.out.println("\tstep 2, characters");
     for(Object notJSONCharacterData: getData().getJSONObject("inventory").getJSONArray("characters")){
       JSONObject characterData = (JSONObject) notJSONCharacterData;
+      if(isToggledSetting("debug", true)) System.out.println(characterData.toString(4));
+      //Character character = new Character(characterData.getInt("star rating"))
     }
   }
 
