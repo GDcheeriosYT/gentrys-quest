@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import artifact.Artifact;
@@ -700,8 +701,14 @@ class Main{
     //do inventory stuff
     JSONObject inventoryData = new JSONObject();
 
+    JSONArray characterData = new JSONArray();
+
+    for(Character character: inventory.getCharacters()){
+      characterData.put(character.getData());
+    }
+
     inventoryData.put("money", inventory.getMoney());
-    inventoryData.put("characters", inventory.getCharacters());
+    inventoryData.put("characters", characterData);
     inventoryData.put("weapons", inventory.getWeapons());
     inventoryData.put("artifacts", inventory.getArtifacts());
 
