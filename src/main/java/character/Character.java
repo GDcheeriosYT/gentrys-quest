@@ -5,6 +5,7 @@ import java.util.Objects;
 import artifact.Artifact;
 import buff.Buff;
 import enemy.Enemy;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import weapon.Weapon;
 
@@ -424,6 +425,7 @@ public class Character {
     JSONObject stats = new JSONObject();
     JSONObject equips = new JSONObject();
     JSONObject experience = new JSONObject();
+    JSONArray artifactData = new JSONArray();
 
     stats.put("health", health);
     stats.put("attack", attackDamage);
@@ -431,14 +433,18 @@ public class Character {
     stats.put("critRate", critRate);
     stats.put("critDamage", critDamage);
 
-    equips.put("weapon", weapon);
-    equips.put("artifacts", artifacts);
+    equips.put("weapon", weapon.getData());
+    for(Artifact artifact: artifacts) if(artifact != null) artifactData.put(artifact.getData());
+    equips.put("artifacts", artifactData);
 
     experience.put("xp", xp);
     experience.put("xp required", xpRequired);
     experience.put("previous xp required", previousXpRequired);
     experience.put("level", level);
 
+    data.put("name", name);
+    data.put("description", description);
+    data.put("star rating", starRating);
     data.put("stats", stats);
     data.put("equips", equips);
     data.put("experience", experience);

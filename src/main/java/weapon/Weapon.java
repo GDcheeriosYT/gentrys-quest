@@ -1,6 +1,7 @@
 package weapon;
 
 import buff.Buff;
+import org.json.JSONObject;
 
 public class Weapon {
   private final String name;
@@ -95,5 +96,34 @@ public class Weapon {
       stars += "*";
     }
     return name + " " + stars + "\ntype: " + weaponType + "\nbase attack: " + baseAttack + "\nattribute " + attribute + " +" + ((attribute.getBuff()[1] * 0.85) * (starRating * 1.3));
+  }
+
+  public JSONObject getData(){
+    JSONObject data = new JSONObject();
+
+    JSONObject stats = new JSONObject();
+    JSONObject experience = new JSONObject();
+    JSONObject verbs1 = new JSONObject();
+
+    stats.put("attack", baseAttack);
+    stats.put("buff", attribute.getBuff());
+
+    experience.put("xp", xp);
+    experience.put("xp required", xpRequired);
+    experience.put("previous xp required", previousXpRequired);
+    experience.put("level", level);
+
+    verbs1.put("normal", getVerb(false));
+    verbs1.put("critical", getVerb(true));
+
+    data.put("name", name);
+    data.put("description", description);
+    data.put("weapon type", weaponType);
+    data.put("star rating", starRating);
+    data.put("verbs", verbs1);
+    data.put("stats", stats);
+    data.put("experience", experience);
+
+    return data;
   }
 }

@@ -1,6 +1,7 @@
 package artifact;
 
 import buff.Buff;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -153,5 +154,28 @@ public class Artifact {
     else percent = 100;
 
     return name + " " + stars + "\nappart of: " + family + " set" + "\n" + "level: " + level + " (" + percent + "%)\n" + mainAttribute + " " + getValue(mainAttribute) + "\n" + strAttributes;
+  }
+
+  public JSONObject getData(){
+    JSONObject data = new JSONObject();
+
+    JSONObject stats = new JSONObject();
+    JSONObject experience = new JSONObject();
+
+    stats.put("main attribute", mainAttribute.getBuff());
+    stats.put("attributes", attributes);
+
+    experience.put("xp", xp);
+    experience.put("xp required", xpRequired);
+    experience.put("previous xp required", previousXpRequired);
+    experience.put("level", level);
+
+    data.put("name", name);
+    data.put("family", family);
+    data.put("star rating", starRating);
+    data.put("stats", stats);
+    data.put("experience", experience);
+
+    return data;
   }
 }
