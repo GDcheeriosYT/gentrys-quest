@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class Buff {
   private int level = 1;
-  private int percentage;
   private boolean health;
   private boolean attack;
   private boolean defense;
