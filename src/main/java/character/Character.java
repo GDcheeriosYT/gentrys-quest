@@ -170,6 +170,16 @@ public class Character {
   }
 
   public void checkArtifacts(boolean removal, Artifact artifact){
+    int averageStarRating = 0;
+    int starRatingTotalSum = 0;
+    int artifactCount = 0;
+    for(Artifact artifact1: artifacts){
+      if(artifact1 != null){
+        artifactCount++;
+        starRatingTotalSum += artifact1.getStarRating();
+      }
+    }
+    averageStarRating = starRatingTotalSum / artifactCount;
     if(!removal){
       for(Artifact artifact2: artifacts){
         if(artifact2 != null){
@@ -213,11 +223,11 @@ public class Character {
       }
     }
     if(hasSet()){
-      additionalHealth += starRating * 1.5;
-      additionalAttackDamage += starRating * 1.5;
-      additionalDefense += starRating * 1.5;
-      additionalCritRate += starRating * 0.7;
-      additionalCritDamage += starRating * 0.7;
+      additionalHealth += averageStarRating;
+      additionalAttackDamage += averageStarRating;
+      additionalDefense += averageStarRating;
+      additionalCritRate += averageStarRating;
+      additionalCritDamage += averageStarRating;
     }
   }
 
