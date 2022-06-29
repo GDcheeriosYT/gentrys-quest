@@ -21,6 +21,8 @@ class Main{
   static Inventory inventory = new Inventory();
   static ArrayList<Character> gachaCharacterObtained = new ArrayList<Character>();
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
+  static String gameDataFilePath = String.valueOf(ClassLoader.getSystemClassLoader().getResource("./GameData.json")).substring(6);;
+  static String defaultsFilePath = String.valueOf(ClassLoader.getSystemClassLoader().getResource("./defaults.json")).substring(6);;
   static JSONObject settings = new JSONObject();
   static int startupAmount;
 
@@ -112,8 +114,7 @@ class Main{
       timeout(2500, true);
     }
     else {
-      Character equippedCharacter = new Character(2, "john", 1, 1, 1, 1, 1, "likes penis");
-      equippedCharacter.equipWeapon(new Weapon("dick destroyer", 5, "thing", 10, new Buff(""), new Verbs("fucked", "super fucked him"), "a weapon"), true);
+      //equip equipped character from data
     }
     startupAmount += 1;
 
@@ -406,6 +407,7 @@ class Main{
       }
       else{
         saveGame();
+        System.exit(0);
       }
     }
   }
@@ -714,7 +716,7 @@ class Main{
 
     if(isToggledSetting("debug", true)) System.out.println(gameData.toString(4));
 
-    writeTo(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./GameData.json")), gameData.toString(4));
+    writeTo(gameDataFilePath, gameData.toString(4));
   }
 
   public static void writeTo(String fileName, String content) throws FileNotFoundException {
@@ -728,9 +730,7 @@ class Main{
   }
 
   public static JSONObject getData() throws FileNotFoundException {
-    String filePath = String.valueOf(ClassLoader.getSystemClassLoader().getResource("./GameData.json"));
-    filePath = filePath.substring(6);
-    File file = new File(filePath);
+    File file = new File(gameDataFilePath);
 
     String jsonData = "";
 
@@ -792,16 +792,21 @@ class Main{
   }
 
   public static void clearData() throws FileNotFoundException {
-    Scanner in = new Scanner(new FileReader(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./defaults.json"))));
+    File file = new File(defaultsFilePath);
 
-    StringBuilder sb = new StringBuilder();
-    while(in.hasNext()) {
-      sb.append(in.next());
+    String jsonData = "";
+
+    try (BufferedReader br = new BufferedReader(new FileReader(file)))
+    {
+      String line;
+      while ((line = br.readLine()) != null) {
+        jsonData += line + "\n";
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
     }
-    in.close();
-    String outString = sb.toString();
 
-    writeTo(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./GameData.json")), new JSONObject(outString).toString(4));
+    writeTo(gameDataFilePath, new JSONObject(jsonData).toString(4));
     clearConsole();
     System.out.println("cleared data");
   }
