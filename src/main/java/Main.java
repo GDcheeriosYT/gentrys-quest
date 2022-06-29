@@ -738,21 +738,23 @@ class Main{
   }
 
   public static JSONObject getData() throws FileNotFoundException {
-    System.out.println(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./GameData.json")));
-    BufferedReader in = new BufferedReader(new FileReader(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./GameData.json"))));
+    String filePath = String.valueOf(ClassLoader.getSystemClassLoader().getResource("./GameData.json"));
+    filePath = filePath.substring(6);
+    File file = new File(filePath);
 
-    StringBuilder sb = new StringBuilder();
-    while(in.hasNext()) {
-      sb.append(in.next());
+    String jsonData = "";
+
+    try (BufferedReader br = new BufferedReader(new FileReader(file)))
+    {
+      String line;
+      while ((line = br.readLine()) != null) {
+        jsonData += line + "\n";
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
     }
-    in.close();
-    String outString = sb.toString();
 
-    JSONObject gameData = new JSONObject(outString);
-
-    System.out.println(gameData.toString(4));
-
-    return gameData;
+    return new JSONObject(jsonData);
   }
 
   public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
