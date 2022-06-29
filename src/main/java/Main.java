@@ -453,9 +453,7 @@ class Main{
         System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
       }
       gachaWeapopnObtained.clear();
-      System.out.println("press enter to continue...");
-      new Scanner(System.in).nextLine();
-      clearConsole();
+      pressEnterToContinue(true);
     }
     else{
       int charactersPulled = 0;
@@ -497,9 +495,7 @@ class Main{
         System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
       }
       gachaCharacterObtained.clear();
-      System.out.println("\npress enter to continue...");
-      new Scanner(System.in).nextLine();
-      clearConsole();
+      pressEnterToContinue(true);
     }
   }
 
@@ -522,9 +518,7 @@ class Main{
         System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
       }
       gachaWeapopnObtained.clear();
-      System.out.println("press enter to continue...");
-      new Scanner(System.in).nextLine();
-      clearConsole();
+      pressEnterToContinue(true);
     }
     else{
       int charactersPulled = 0;
@@ -544,9 +538,7 @@ class Main{
         System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
       }
       gachaCharacterObtained.clear();
-      System.out.println("\npress enter to continue...");
-      new Scanner(System.in).nextLine();
-      clearConsole();
+      pressEnterToContinue(true);
     }
   }
 
@@ -660,9 +652,7 @@ class Main{
               ending + "\n" +
               "obtained:\n" + artifactList
       );
-      System.out.println("press enter to continue...");
-      new Scanner(System.in).nextLine();
-      clearConsole();
+      pressEnterToContinue(true);
     }
   }
 
@@ -812,5 +802,11 @@ class Main{
     writeTo(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./GameData.json")), new JSONObject(outString).toString(4));
     clearConsole();
     System.out.println("cleared data");
+  }
+
+  public static void pressEnterToContinue(boolean clearConsole){
+    System.out.println("press enter to continue...");
+    new Scanner(System.in).nextLine();
+    if(clearConsole) clearConsole();
   }
 }
