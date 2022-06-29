@@ -79,34 +79,34 @@ class Main{
 
       timeout(2000, false);
       System.out.println("It's 10pm.");
-      timeout(2000, false);
+      pressEnterToContinue(false, false);
       System.out.println(equipedCharacter.getName() + " is at the convenience store buying instant noodles.");
-      timeout(3500, false);
+      pressEnterToContinue(false, false);
       System.out.println("He purchases " + (int)((Math.random() * ((Math.random() * 10) + 1)) + 1) + " packages of instant noodles and walks out the door.");
-      timeout(3500, false);
+      pressEnterToContinue(false, false);
       System.out.println("As he is walking down the road a pedestrian runs up to him, pulls out a knife and commands " + equipedCharacter.getName() + " to give him $" + (int)((Math.random() * ((Math.random() * 1000) + 1)) + 1));
-      timeout(5000, false);
+      pressEnterToContinue(false, false);
       System.out.println(equipedCharacter.getName() + " Prepares for battle\n");
-      timeout(1000, false);
+      pressEnterToContinue(false, false);
 
       startBattle(content.BattleAreas.getContentBattleAreas().get(0), equipedCharacter, false, false);
-      timeout(1000, false);
+      pressEnterToContinue(false, false);
 
       System.out.println("Or so " + equipedCharacter.getName() + " thought...");
-      timeout(3000, true);
+      pressEnterToContinue(false, false);
 
       System.out.println(equipedCharacter.getName() + " opened his eyes.\nAs he looks around he notices he is in someone's living room.\n\"How did I get here?\" he asked himself.\nSomeone comes into the room.\n\"Oh my, you're awake.\" she says.\n\"I'm surprised I was able to save you. You were injured pretty badly.\"");
-      timeout(15000, false);
+      pressEnterToContinue(false, false);
       System.out.println("\"Thankfully Chug-Jugs are really effective.\"");
-      timeout(3500, true);
+      pressEnterToContinue(false, false);
       System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you this...\"");
-      timeout(15000, true);
+      pressEnterToContinue(false, false);
       gacha(true, 1);
       System.out.println("\"I can't thank you enough!\" " + equipedCharacter.getName() + " says. She smiles at you while you exit through the front door.");
       equipedCharacter.deEquipWeapon(false);
       equipedCharacter.equipWeapon(inventory.getWeapons().get(0), true);
 
-      timeout(5000, true);
+      pressEnterToContinue(false, false);
 
       System.out.println("Welcome to Gentry's Quest!");
       timeout(2500, true);
@@ -453,9 +453,7 @@ class Main{
         System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
       }
       gachaWeapopnObtained.clear();
-      System.out.println("press enter to continue...");
-      new Scanner(System.in).nextLine();
-      clearConsole();
+      pressEnterToContinue(true, true);
     }
     else{
       int charactersPulled = 0;
@@ -497,9 +495,7 @@ class Main{
         System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
       }
       gachaCharacterObtained.clear();
-      System.out.println("\npress enter to continue...");
-      new Scanner(System.in).nextLine();
-      clearConsole();
+      pressEnterToContinue(true, true);
     }
   }
 
@@ -522,9 +518,7 @@ class Main{
         System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
       }
       gachaWeapopnObtained.clear();
-      System.out.println("press enter to continue...");
-      new Scanner(System.in).nextLine();
-      clearConsole();
+      pressEnterToContinue(true, true);
     }
     else{
       int charactersPulled = 0;
@@ -544,9 +538,7 @@ class Main{
         System.out.printf("%s x %d%n", entry.getKey(), entry.getValue());
       }
       gachaCharacterObtained.clear();
-      System.out.println("\npress enter to continue...");
-      new Scanner(System.in).nextLine();
-      clearConsole();
+      pressEnterToContinue(true, true);
     }
   }
 
@@ -660,9 +652,7 @@ class Main{
               ending + "\n" +
               "obtained:\n" + artifactList
       );
-      System.out.println("press enter to continue...");
-      new Scanner(System.in).nextLine();
-      clearConsole();
+      pressEnterToContinue(true, true);
     }
   }
 
@@ -814,5 +804,11 @@ class Main{
     writeTo(String.valueOf(ClassLoader.getSystemClassLoader().getResourceAsStream("./GameData.json")), new JSONObject(outString).toString(4));
     clearConsole();
     System.out.println("cleared data");
+  }
+
+  public static void pressEnterToContinue(boolean clearConsole, boolean print){
+    if(print) System.out.println("press enter to continue...");
+    new Scanner(System.in).nextLine();
+    if(clearConsole) clearConsole();
   }
 }
