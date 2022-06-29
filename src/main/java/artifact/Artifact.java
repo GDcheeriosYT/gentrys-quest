@@ -153,7 +153,7 @@ public class Artifact {
     if(level != starRating*4) percent = (xp * 100.0f) / xpRequired;
     else percent = 100;
 
-    return name + " " + stars + "\nappart of: " + family + " set" + "\n" + "level: " + level + " (" + percent + "%)\n" + mainAttribute + " " + getValue(mainAttribute) + "\n" + strAttributes;
+    return name + " " + stars + "\nappart of: " + family + " set" + "\n" + "level: " + level + "/" + (starRating * 4) + " (" + percent + "%)\n" + mainAttribute + " " + getValue(mainAttribute) + "\n" + strAttributes;
   }
 
   public JSONObject getData(){
