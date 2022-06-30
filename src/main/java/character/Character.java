@@ -322,7 +322,7 @@ public class Character {
     this.health = health;
   }
 
-  public boolean attack(Enemy enemy){
+  public boolean attack(Enemy enemy, boolean debug){
     String output = name + " ";
     int damage = 0;
     if(weapon == null){
@@ -334,6 +334,7 @@ public class Character {
     }
     else damage = (int)(attackDamage + weapon.getDamage() - (Math.random() * enemy.getDefense()) + 1);
     double criticalChecker = (Math.random() * 100) + 1;
+    if(debug) System.out.println("*debug*\nCriticalRatio(roll to stat): " + criticalChecker + "|" + critRate + "\n*debug*");
     if(criticalChecker<critRate){
       output += weapon.getVerb(true) + " the " + enemy.getName() + " (" + (damage + critDamage) + "dmg)";
       damage += critDamage;

@@ -112,6 +112,7 @@ class Main{
 
       System.out.println("Welcome to Gentry's Quest!");
       timeout(2500, true);
+      inventory.setInfiniteMoney(true);
     }
     else {
       //equip equipped character from data
@@ -567,7 +568,7 @@ class Main{
     }
   }
 
-  public static void startBattle(BattleArea battleArea, Character character, boolean canRun, boolean results){
+  public static void startBattle(BattleArea battleArea, Character character, boolean canRun, boolean results) throws FileNotFoundException {
     ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
     ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     artifacts = battleArea.initializeArtifacts(character.getDifficulty());
@@ -607,14 +608,14 @@ class Main{
         }
         if(input == 1){
           clearConsole();
-          if(character.attack(enemy)){
+          if(character.attack(enemy, isToggledSetting("debug", true))){
             inventory.addMoney(enemy.getLevel() * 2);
             character.addXp(enemy.getLevel() * 10);
             System.out.println("Killed " + enemy.getName() + ", received $" + (enemy.getLevel() * 2) + " and " + (enemy.getLevel() * 10) + "xp");
             fighting = false;
           }
           if(fighting){
-            if(enemy.attack(character)){
+            if(enemy.attack(character, isToggledSetting("debug", true))){
               alive = false;
               character.updateStats();
               artifacts.clear();

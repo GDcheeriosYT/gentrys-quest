@@ -42,10 +42,11 @@ public class Enemy {
     return health;
   }
 
-  public boolean attack(Character character){
+  public boolean attack(Character character, boolean debug){
     double criticalChecker = (Math.random() * 100) + 1;
     int damage = attack;
     damage -= (Math.random() * character.getDefense()) + 1;
+    if(debug) System.out.println("*debug*\nCriticalRatio(roll to stat): " + criticalChecker + "|20" + "\n*debug*");
     if(criticalChecker < 20){
       damage += damage * 0.4;
       System.out.println(name + " " + weapon.getVerb(true) + " " + character.getName() + " (" + damage + "dmg)");
