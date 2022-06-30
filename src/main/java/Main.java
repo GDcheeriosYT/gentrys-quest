@@ -21,8 +21,8 @@ class Main{
   static Inventory inventory = new Inventory();
   static ArrayList<Character> gachaCharacterObtained = new ArrayList<Character>();
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
-  static String gameDataFilePath = String.valueOf(ClassLoader.getSystemClassLoader().getResource("./GameData.json")).substring(6);;
-  static String defaultsFilePath = String.valueOf(ClassLoader.getSystemClassLoader().getResource("./defaults.json")).substring(6);;
+  static String gameDataFilePath = String.valueOf(ClassLoader.getSystemClassLoader().getResource("./GameData.json")).substring(6);
+  static String defaultsFilePath = String.valueOf(ClassLoader.getSystemClassLoader().getResource("./defaults.json")).substring(6);
   static JSONObject settings = new JSONObject();
   static int startupAmount;
 
