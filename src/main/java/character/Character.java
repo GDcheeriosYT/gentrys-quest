@@ -38,6 +38,7 @@ public class Character {
   private int difficulty = 1;
   private boolean equipped = false;
 
+  //character creation constructor
   public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description){
     this.starRating = starRating;
     this.name = name;
@@ -51,6 +52,7 @@ public class Character {
     updateStats();
   }
 
+  //character load constructor
   public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description, int level, long xp, long xpRequired, int difficulty, Weapon weapon, Artifact[] artifacts){
     this.starRating = starRating;
     this.name = name;
