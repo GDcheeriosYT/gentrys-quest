@@ -297,7 +297,10 @@ class Main{
                           }
                         }
                       }
-                      else artifactViewing = false;
+                      else{
+                        character.checkArtifacts(false, null);
+                        artifactViewing = false;
+                      }
                     }
                   }
 

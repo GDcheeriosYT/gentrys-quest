@@ -179,7 +179,10 @@ public class Character {
         starRatingTotalSum += artifact1.getStarRating();
       }
     }
-    averageStarRating = starRatingTotalSum / artifactCount;
+    try{
+      averageStarRating = starRatingTotalSum / artifactCount;
+    }
+    catch (ArithmeticException ignored){}
     if(!removal){
       for(Artifact artifact2: artifacts){
         if(artifact2 != null){
