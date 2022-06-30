@@ -129,6 +129,8 @@ public class Character {
     health = defaultHealth + additionalHealth;
     attackDamage = defaultAttackDamage + additionalAttackDamage;
     defense = defaultDefense + additionalDefense;
+    critRate = defaultCritRate + additionalCritRate;
+    critDamage = defaultCritDamage + additionalCritDamage;
   }
 
   public String getFancyStars(){
