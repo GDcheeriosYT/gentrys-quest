@@ -203,7 +203,7 @@ public class BattleAreas {
                                 "phone",
                                 1,
                                 new Buff(""),
-                                new Verbs("scanner", "dealt with"),
+                                new Verbs("scanned", "dealt with"),
                                 "just a scanner phone."
                         ),
                         "a manager"
