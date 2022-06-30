@@ -56,7 +56,7 @@ class Main{
     Character equipedCharacter = null;
     if(getData().getInt("startupamount") == 0){
       Character player = null;
-      if(args[0] != null){
+      if(args.length != 0){
         System.out.println("\n\n\n\n\nThanks for contributing to the content of this game!\nAs a gift take this.");
         gacha(false, 1, nameTest.substring(0, nameTest.length() - 1));
         player = inventory.getCharacters().get(0);
