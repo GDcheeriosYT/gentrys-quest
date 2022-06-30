@@ -1,10 +1,13 @@
 plugins {
+    id 'java'
     id 'application'
+    id 'edu.sc.seis.launch4j' version '2.5.3'
 }
+
 
 group = 'com.name'
 version = '2.0.0'
-sourceCompatibility = 17
+sourceCompatibility = 16
 
 repositories {
     mavenCentral()
@@ -21,10 +24,14 @@ sourceSets {
     }
 }
 
+launch4j {
+    outfile = 'TestMain.exe'
+    mainClassName = 'Main'
+}
+
 run{
  standardInput = System.in
 }
-
 application {
     mainClassName = 'Main'
 }
