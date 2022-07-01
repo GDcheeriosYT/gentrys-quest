@@ -26,18 +26,18 @@ public class Artifact {
     return mainAttribute;
   }
 
-  public void levelUp(){
+  public void levelUp(Boolean output){
     if(level < starRating * 4){
-      timeout(1000, true);
+      if(output) timeout(1000, true);
       level += 1;
-      System.out.println("Your artifact is now level " + level);
+      if(output) System.out.println("Your artifact is now level " + level);
       previousXpRequired = xpRequired;
       xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
       mainAttribute.levelUp(1);
       if(level % 4 == 0){
         ArrayList<Buff> rewriteList = new ArrayList<Buff>();
         Buff e = new Buff("");
-        System.out.println("^" + e + "^");
+        if(output) System.out.println("^" + e + "^");
         if(attributes.size() == 0){
           attributes.add(e);
         }
@@ -55,10 +55,12 @@ public class Artifact {
       }
     }
     else{
-      timeout(1000, true);
-      System.out.println("you have reached the max level of this artifact!");
+      if(output){
+        timeout(1000, true);
+        System.out.println("you have reached the max level of this artifact!");
+      }
     }
-    timeout(3000, true);
+    if(output) timeout(3000, true);
   }
   public static void timeout(int time, boolean clearConole){
     try {
@@ -87,7 +89,7 @@ public class Artifact {
     amount += xp;
     xp = 0;
     while(amount >= xpRequired){
-      levelUp();
+      levelUp(true);
       amount -= previousXpRequired;
     }
     xp = amount;

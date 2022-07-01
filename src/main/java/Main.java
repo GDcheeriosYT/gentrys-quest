@@ -71,7 +71,7 @@ class Main{
       equipedCharacter = player;
       Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
-      player.equipWeapon(fists, false);
+      if(player.getWeapon() == null) player.equipWeapon(fists, false);
       try{
         inventory.getCharacters().get(0);
       }
@@ -94,19 +94,26 @@ class Main{
       startBattle(content.BattleAreas.getContentBattleAreas().get(0), equipedCharacter, false, false);
       pressEnterToContinue(false, false);
 
-      System.out.println("Or so " + equipedCharacter.getName() + " thought...");
-      pressEnterToContinue(false, false);
+      if(equipedCharacter.getStarRating() == 6){
+        System.out.println("its quiet...");
+      }
+      else{
+        System.out.println("Or so " + equipedCharacter.getName() + " thought...");
+        pressEnterToContinue(false, false);
 
-      System.out.println(equipedCharacter.getName() + " opened his eyes.\nAs he looks around he notices he is in someone's living room.\n\"How did I get here?\" he asked himself.\nSomeone comes into the room.\n\"Oh my, you're awake.\" she says.\n\"I'm surprised I was able to save you. You were injured pretty badly.\"");
-      pressEnterToContinue(false, false);
-      System.out.println("\"Thankfully Chug-Jugs are really effective.\"");
-      pressEnterToContinue(false, false);
-      System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you this...\"");
-      pressEnterToContinue(false, false);
-      gacha(true, 1);
-      System.out.println("\"I can't thank you enough!\" " + equipedCharacter.getName() + " says. She smiles at you while you exit through the front door.");
-      equipedCharacter.deEquipWeapon(false);
-      equipedCharacter.equipWeapon(inventory.getWeapons().get(0), true);
+        System.out.println(equipedCharacter.getName() + " opened his eyes.\nAs he looks around he notices he is in someone's living room.\n\"How did I get here?\" he asked himself.\nSomeone comes into the room.\n\"Oh my, you're awake.\" she says.\n\"I'm surprised I was able to save you. You were injured pretty badly.\"");
+        pressEnterToContinue(false, false);
+        System.out.println("\"Thankfully Chug-Jugs are really effective.\"");
+        pressEnterToContinue(false, false);
+        System.out.println("\"Thank you.\" you reply. \"But I must return home. My sister might get worried.\"\n\"Such a good sibling you are.\" she says. \"As I see you're a very respectful young man I will give you this...\"");
+        pressEnterToContinue(false, false);
+        gacha(true, 1);
+        System.out.println("\"I can't thank you enough!\" " + equipedCharacter.getName() + " says. She smiles at you while you exit through the front door.");
+        if(equipedCharacter.getWeapon().getName() == "fists"){
+          equipedCharacter.deEquipWeapon(false);
+          equipedCharacter.equipWeapon(inventory.getWeapons().get(0), true);
+        }
+      }
 
       pressEnterToContinue(false, false);
 
