@@ -86,8 +86,40 @@ public class BattleAreas {
                         "A demon's trident."
                     ),
                 "A demon from underneath brayden's bed."
+                ),
+                new Enemy(
+                    "Chinchilla",
+                    16,
+                    4,
+                    2,
+                    new Weapon(
+                        "paws",
+                        2,
+                        "paws",
+                        0,
+                        new Buff(""),
+                        new Verbs("pounced on", "bit"),
+                        "pair of paws on a chinchilla"
+                    ),
+                    "Just a normal pet chinchilla"
+                ),
+                new Enemy(
+                    "Guinea Pig",
+                    16,
+                    4,
+                    3,
+                    new Weapon(
+                        "teeth",
+                        2,
+                        "teeth",
+                        0,
+                        new Buff(""),
+                        new Verbs("bit", "chomped on"),
+                        "teeth on a guinea pig"
+                    ),
+                    "A guinea pig"
                 )
-                )
+            )
             ),
             getFamilyArtifacts(new ArrayList<>(List.of("brayden messerschmidt", "dan messerschmidt")))
         );
