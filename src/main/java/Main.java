@@ -158,8 +158,10 @@ class Main{
         clearConsole();
         //character
         if (input2 == 1){
+          clearConsole();
           System.out.println("how many characters would you like to pull?\n1 = $1000\nYou have: " + "$" + inventory.getMoney());
           int amount = getMainMenuInput("");
+          clearConsole();
           if(inventory.checkMoney(amount * 1000)){
             inventory.spendMoney(amount * 1000);
             gacha(false, amount);
@@ -169,11 +171,13 @@ class Main{
         else if(input2 == 2){
           clearConsole();
           int amount = getMainMenuInput("how many weapons would you like to pull?\n1 = $1000\nYou have: " + "$" + inventory.getMoney());
+          clearConsole();
           if(inventory.checkMoney(amount * 1000)){
             inventory.spendMoney(amount * 1000);
             gacha(true, amount);
           }
         }
+        timeout(2000, true);
       }
       //inventory
       else if (input == 3) {
