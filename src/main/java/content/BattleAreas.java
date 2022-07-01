@@ -289,6 +289,103 @@ public class BattleAreas {
             getFamilyArtifacts(new ArrayList<>(List.of("brody krysa", "david napier")))
         );
 
+        BattleArea hyvee = new BattleArea(
+            "Hy-vee",
+            false,
+            new ArrayList<Enemy>(
+                List.of(
+                    new Enemy(
+                        "Customer Service Manager",
+                        20,
+                        4,
+                        3,
+                        new Weapon(
+                            "Customer Service Phone",
+                            new Verbs("didn't find the item for", "declined service for")
+                        ),
+                        "A customer service manager"
+                    ),
+                    new Enemy(
+                        "Courtesy Clerk",
+                        25,
+                        4,
+                        4,
+                        new Weapon(
+                            "Hands",
+                            new Verbs("sprayed some oxiver at", "gave a disgusted look at")
+                        ),
+                        "a courtesy clerk"
+                    ),
+                    new Enemy(
+                        "Checker",
+                        20,
+                        3,
+                        3,
+                        new Weapon(
+                            "Scanner",
+                            new Verbs("didn't greet", "told a really unrelatable story to")
+                        ),
+                        "Just a checker"
+                    ),
+                    new Enemy(
+                        "Chinese chef",
+                        20,
+                        5,
+                        2,
+                        new Weapon(
+                            "pan",
+                            new Verbs("sliced", "超級扇耳光")
+                        ),
+                        "a chinese chef"
+                    ),
+                    new Enemy(
+                        "Baker",
+                        20,
+                        4,
+                        2,
+                        new Weapon(
+                            "rolling pin",
+                            new Verbs("used a rolling pin to hit", "used a really hot crousaunt to burn")
+                        ),
+                        "a baker"
+                    ),
+                    new Enemy(
+                        "Butcher",
+                        20,
+                        6,
+                        4,
+                        new Weapon(
+                            "cleaver",
+                            new Verbs("cleaved", "clean sliced")
+                        ),
+                        "a butcher from meat department"
+                    ),
+                    new Enemy(
+                        "Rude Customer",
+                        20,
+                        6,
+                        2,
+                        new Weapon(
+                            "voice",
+                            new Verbs("made a rude remark about", "roasted")
+                        ),
+                        "a rude customer"
+                    ),
+                    new Enemy(
+                        "Karen",
+                        20,
+                        4,
+                        3,
+                        new Weapon(
+                            "phone",
+                            new Verbs("recorded", "made a rude comment about")
+                        ),
+                        "a distasteful person"
+                    )
+                )
+            ),
+            getFamilyArtifacts(new ArrayList<>(List.of("brayden messerschmidt", "david napier", "hyvee")))
+        );
 
 
         //town of robloxia highschool
@@ -400,6 +497,7 @@ public class BattleAreas {
         contentBattleAreas.add(downTown);
         contentBattleAreas.add(climbIowa);
         contentBattleAreas.add(target);
+        contentBattleAreas.add(hyvee);
         contentBattleAreas.add(gymLockerRoomBathroom);
         contentBattleAreas.add(pureTaboosSet);
     }

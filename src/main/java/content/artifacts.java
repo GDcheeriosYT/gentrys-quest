@@ -20,7 +20,7 @@ public class artifacts {
 
     //brayden messerschmidt artifacts
     Artifact loliBodyPillow = new Artifact("Loli Body Pillow", new Buff("critRate"), "brayden messerschmidt");
-    Artifact hyveeFualSaverCard = new Artifact("Hy-vee Fuel Saver", new Buff("critRate"), "brayden messerschmidt");
+    Artifact madokaChibiPlush = new Artifact("Madoka Chibi Plush", new Buff("critRate"), "brayden messerschmidt");
     Artifact loliCloth = new Artifact("Loli Cloth", new Buff("critRate"), "brayden messerschmidt");
     Artifact pepsiBottle = new Artifact("Pepsi Bottle", new Buff("critRate"), "brayden messerschmidt");
     Artifact osuTablet = new Artifact("Osu Tablet", new Buff("critRate"), "brayden messerschmidt");
@@ -135,13 +135,23 @@ public class artifacts {
     Artifact fidgetSpinner = new Artifact("Fidget Spinner", new Buff("attack"), "david napier");
     Artifact pictureOfChildScreaming = new Artifact("Picture of Child Screaming", new Buff(""), "david napier");
 
+    //hyvee artifacts
+    Artifact hyveeFuelSaverCard = new Artifact("Hy-vee Fuel Saver Card", new Buff(""), "hyvee");
+    Artifact hyveeBrandWater = new Artifact("Hy-vee Brand Water", new Buff(""), "hyvee");
+    Artifact hyveeBrandSpaghetti = new Artifact("Hy-vee Brand Spaghetti", new Buff(""), "hyvee");
+    Artifact hyveeBrandCandy = new Artifact("Hy-vee Brand Candy", new Buff(""), "hyvee");
+    Artifact hyveeBrandFruit = new Artifact("Hy-vee Brand Fruit", new Buff(""), "hyvee");
+    Artifact hyveeBrandCereal = new Artifact("Hy-vee Brand Cereal", new Buff(""), "hyvee");
+    Artifact lostCreditCard = new Artifact("Lost Credit Card", new Buff(""), "hyvee");
+    Artifact lostID = new Artifact("Lost ID", new Buff(""), "hyvee");
+
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(fork);
     contentArtifacts.add(bucket);
     contentArtifacts.add(globe);
     contentArtifacts.add(blanket);
     contentArtifacts.add(loliBodyPillow);
-    contentArtifacts.add(hyveeFualSaverCard);
+    contentArtifacts.add(madokaChibiPlush);
     contentArtifacts.add(loliCloth);
     contentArtifacts.add(pepsiBottle);
     contentArtifacts.add(osuTablet);
@@ -219,6 +229,12 @@ public class artifacts {
     contentArtifacts.add(headbangersGuitarOfLoneliness);
     contentArtifacts.add(fidgetSpinner);
     contentArtifacts.add(pictureOfChildScreaming);
+    contentArtifacts.add(hyveeFuelSaverCard);
+    contentArtifacts.add(hyveeBrandWater);
+    contentArtifacts.add(hyveeBrandSpaghetti);
+    contentArtifacts.add(hyveeBrandFruit);
+    contentArtifacts.add(hyveeBrandCandy);
+    contentArtifacts.add(hyveeBrandCereal);
   }
 
   public static ArrayList<Artifact> getContentArtifacts(){
