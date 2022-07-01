@@ -593,7 +593,8 @@ class Main{
 
     for(Enemy enemy: enemies){
       if(!alive) break;
-      System.out.println(character.getName() + " encountered a " + enemy.getName() + "(lvl " + enemy.getLevel() + ")");
+      System.out.println(character.getName() + " encountered a " + enemy.getName());
+      System.out.println(enemy);
       boolean fighting = true;
       while(fighting){
         int input;
