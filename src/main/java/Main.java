@@ -119,7 +119,6 @@ class Main{
 
       System.out.println("Welcome to Gentry's Quest!");
       timeout(2500, true);
-      inventory.setInfiniteMoney(true);
     }
     else {
       //equip equipped character from data
