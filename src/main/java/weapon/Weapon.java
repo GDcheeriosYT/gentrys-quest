@@ -27,6 +27,15 @@ public class Weapon {
     this.xpRequired = xpRequired * starRating;
   }
 
+  public Weapon(String name, Verbs verbs){
+    this.name = name;
+    this.weaponType = "";
+    this.verbs = verbs;
+    this.starRating = 0;
+    this.attribute = new Buff("");
+    this.description = "";
+  }
+
   public void levelUp(int amount){
     level += amount;
     for(int i = 0; i < amount; i++){
