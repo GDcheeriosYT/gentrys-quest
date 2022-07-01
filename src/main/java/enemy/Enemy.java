@@ -95,7 +95,7 @@ public class Enemy {
     if(clearConole) clearConsole();
   }
 
-  public String toString(){
-    return name + "\nlevel: " + level + "\nhealth: " + health + "\nattack: " + attack + "\ndefense: " + defense + "\nweapon: " + weapon + "\n===============" + description + "\n===============";
+ public String toString(){
+    return "level: " + level + "\nhealth: " + health + "\nattack: " + attack + "\ndefense: " + defense;
   }
 }
