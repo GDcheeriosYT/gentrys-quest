@@ -297,10 +297,16 @@ class Main{
                                 if(input7 != inventory.getArtifacts().size() + 1){
                                   upgradeArtifact(character.getArtifactList()[input5 - 1], inventory.getArtifacts().get(input7 - 1));
                                 }
-                                else upgradingArtifact = false;
+                                else{
+                                  clearConsole();
+                                  upgradingArtifact = false;
+                                }
                               }
                             }
-                            else artifactDetailViewing = false;
+                            else{
+                              clearConsole();
+                              artifactDetailViewing = false;
+                            }
                           }
                         }
                       }
@@ -684,16 +690,19 @@ class Main{
       character.equipArtifact(position, inventory.getArtifacts().get(input - 1));
       inventory.removeArtifact(inventory.getArtifacts().get(input - 1));
     }
+    clearConsole();
   }
 
   public static void removeArtifact(Character character, int position){
     inventory.addArtifact(character.getArtifactList()[position - 1]);
     character.deEquipArtifact(position - 1);
+    clearConsole();
   }
 
   public static void upgradeArtifact(Artifact artifact, Artifact artifactInExchange){
     artifact.addXp((artifactInExchange.getLevel() * 50) * artifactInExchange.getStarRating());
     inventory.removeArtifact(artifactInExchange);
+    clearConsole();
   }
 
   public static void timeout(int time, boolean clearConole){
