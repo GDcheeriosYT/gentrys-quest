@@ -1,6 +1,11 @@
 package content;
 import java.util.ArrayList;
+
+import artifact.Artifact;
+import buff.Buff;
 import character.Character;
+import weapon.Verbs;
+import weapon.Weapon;
 
 public class characters {
   private static ArrayList<Character> contentCharacters = new ArrayList<Character>();
@@ -62,6 +67,29 @@ public class characters {
     Character kchuntMan = new Character(5, "KchuntMan", 0, 0, 0, 4.0, 0, "Stealth Mode.");
     Character hentaiMan = new Character(5, "Hentai Man", 0, 0, 0, 4.0, 0, "Weaponized hentai.");
 
+    //6 star(divine) characters
+    Character GDcheerios = new Character(6, "GDcheerios", 6, 6, 6, 6.0, 6, "The all mighty. He's Practically god...");
+    Weapon quantumAPI = new Weapon("Quantum API", 6, "API", 100, new Buff("defense"), new Verbs("modified", "ripped apart and evaporized"), "The ability to change the atomic world around you.");
+    GDcheerios.equipWeapon(quantumAPI, false);
+    Artifact artifact0 = new Artifact("", new Buff("health"), "GDcheerios");
+    artifact0.setStarRating(6);
+    Artifact artifact1 = new Artifact("", new Buff("attack"), "GDcheerios");
+    artifact1.setStarRating(6);
+    Artifact artifact2 = new Artifact("", new Buff("defense"), "GDcheerios");
+    artifact2.setStarRating(6);
+    Artifact artifact3 = new Artifact("", new Buff("critRate"), "GDcheerios");
+    artifact3.setStarRating(6);
+    Artifact artifact4 = new Artifact("", new Buff("critDamage"), "GDcheerios");
+    artifact4.setStarRating(6);
+    GDcheerios.equipArtifact(0, artifact0);
+    GDcheerios.equipArtifact(1, artifact1);
+    GDcheerios.equipArtifact(2, artifact2);
+    GDcheerios.equipArtifact(3, artifact3);
+    GDcheerios.equipArtifact(4, artifact4);
+
+    divinify(GDcheerios);
+
+
     //putting into the arraylist
     contentCharacters.add(brodyKrysa);
     contentCharacters.add(davidNapier);
@@ -105,6 +133,7 @@ public class characters {
     contentCharacters.add(makDaddy);
     contentCharacters.add(kchuntMan);
     contentCharacters.add(hentaiMan);
+    contentCharacters.add(GDcheerios);
   }
 
   public static ArrayList<Character> getContentCharacters() {
@@ -116,5 +145,15 @@ public class characters {
       if(character.getName().equals(name)) return character;
     }
     return null;
+  }
+
+  public static void divinify(Character character){
+    character.getWeapon().levelUp(99);
+    for(Artifact artifact: character.getArtifactList()){
+      for(int i = 0; i<6*4; i++){
+        artifact.levelUp(false);
+    }
+    }
+    character.levelUp(99);
   }
 }
