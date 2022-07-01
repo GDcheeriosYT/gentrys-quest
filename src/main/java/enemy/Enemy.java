@@ -33,9 +33,10 @@ public class Enemy {
 
   public void setLevel(int level) {
     this.level = level;
-    this.health += (int)(level * 3);
-    this.attack += (int)(level * 0.3);
-    this.defense += (int)(level * 0.03);
+    level = level - 1;
+    this.health += (level * 3) + (level * 0.8);
+    this.attack += (level * 0.3) + (level * 0.5);
+    this.defense += (level * 0.15) + (level * 0.5);
   }
 
   public int getHealth() {
@@ -94,7 +95,7 @@ public class Enemy {
     if(clearConole) clearConsole();
   }
 
-  public String toString(){
-    return name + "\nlevel: " + level + "\nhealth: " + health + "\nattack: " + attack + "\ndefense: " + defense + "\nweapon: " + weapon + "\n===============" + description + "\n===============";
+ public String toString(){
+    return "level: " + level + "\nhealth: " + health + "\nattack: " + attack + "\ndefense: " + defense;
   }
 }

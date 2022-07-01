@@ -579,7 +579,7 @@ class Main{
     ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
     ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     artifacts = battleArea.initializeArtifacts(character.getDifficulty());
-    enemies = battleArea.initializeEnemies(character.getDifficulty());
+    enemies = battleArea.initializeEnemies(character.getDifficulty(), (int) ((character.getLevel() % 20) + (Math.random() * 5) + 1));
 
     boolean ran = false;
     String ending = "";
@@ -593,7 +593,8 @@ class Main{
 
     for(Enemy enemy: enemies){
       if(!alive) break;
-      System.out.println(character.getName() + " encountered a " + enemy.getName() + "(lvl " + enemy.getLevel() + ")");
+      System.out.println(character.getName() + " encountered a " + enemy.getName());
+      System.out.println(enemy);
       boolean fighting = true;
       while(fighting){
         int input;

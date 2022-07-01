@@ -21,7 +21,7 @@ public class BattleArea {
     return name;
   }
 
-  public ArrayList<Enemy> initializeEnemies(int difficulty){
+  public ArrayList<Enemy> initializeEnemies(int difficulty, int maxLevel){
     if(isBossArea){
       difficulty++;
       System.out.println("!warning!\nthis area is very dangerous.");
@@ -32,7 +32,7 @@ public class BattleArea {
       for(int i = 0; i<enemyAmount; i++){
         Enemy enemySelector = enemies.get((int) (Math.random() * enemies.size()));
         Enemy enemy = new Enemy(enemySelector.getName(), enemySelector.getHealth(), enemySelector.getAttack(), enemySelector.getDefense(), enemySelector.getWeapon(), enemySelector.getDescription());
-        enemy.setLevel((int)((20 * (difficulty - 1)) + (Math.random() * 5) + 1));
+        enemy.setLevel((int)((20 * (difficulty - 1)) + (Math.random() * (maxLevel - (maxLevel * 0.5))) + (maxLevel * 0.5)));
         enemiesToReturn.add(enemy);
       }
     }
