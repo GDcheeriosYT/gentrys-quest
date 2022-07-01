@@ -15,10 +15,12 @@ public class BattleAreas {
         //empty constructor lol
     }
 
-    private static ArrayList<Artifact> getFamilyArtifacts(String family){
+    private static ArrayList<Artifact> getFamilyArtifacts(ArrayList<String> families){
         ArrayList<Artifact> artifactList = new ArrayList<Artifact>();
-        for(Artifact artifact: artifacts.getContentArtifacts()){
-            if(artifact.getFamily().equals(family)) artifactList.add(artifact);
+        for(String family: families){
+            for(Artifact artifact: artifacts.getContentArtifacts()){
+                if(artifact.getFamily().equals(family)) artifactList.add(artifact);
+            }
         }
         return artifactList;
     }
@@ -46,7 +48,7 @@ public class BattleAreas {
                 )
                 )
             ),
-            getFamilyArtifacts("brayden messerschmidt")
+            getFamilyArtifacts(new ArrayList<>(List.of("brayden messerschmidt", "dan messerschmidt")))
         );
 
         //iowa locations
@@ -87,7 +89,7 @@ public class BattleAreas {
                 )
                 )
             ),
-            getFamilyArtifacts("brayden messerschmidt")
+            getFamilyArtifacts(new ArrayList<>(List.of("brayden messerschmidt", "dan messerschmidt")))
         );
 
         BattleArea unfinishedConstructionSite = new BattleArea(
@@ -112,7 +114,7 @@ public class BattleAreas {
                 )
 
             ),
-            getFamilyArtifacts("max shrum")
+            getFamilyArtifacts(new ArrayList<>(List.of("max shrum")))
         );
 
         BattleArea downTown = new BattleArea(
@@ -152,7 +154,7 @@ public class BattleAreas {
                 )
                 )
             ),
-            getFamilyArtifacts("down town")
+            getFamilyArtifacts(new ArrayList<>(List.of("down town")))
         );
 
         BattleArea target = new BattleArea(
@@ -210,7 +212,7 @@ public class BattleAreas {
                     )
                 )
             ),
-            getFamilyArtifacts("lucas smidt")
+            getFamilyArtifacts(new ArrayList<>(List.of("lucas smidt")))
         );
 
         BattleArea climbIowa = new BattleArea(
@@ -252,8 +254,10 @@ public class BattleAreas {
                     )
                 )
             ),
-            getFamilyArtifacts("brody krysa")
+            getFamilyArtifacts(new ArrayList<>(List.of("brody krysa", "david napier")))
         );
+
+
 
         //town of robloxia highschool
         BattleArea gymLockerRoomBathroom = new BattleArea(
@@ -327,7 +331,7 @@ public class BattleAreas {
                     )
                 )
             ),
-            getFamilyArtifacts("man clan")
+            getFamilyArtifacts(new ArrayList<>(List.of("man clan")))
         );
 
         //nigeria
@@ -354,7 +358,7 @@ public class BattleAreas {
                     )
                 )
             ),
-            getFamilyArtifacts("mason james")
+            getFamilyArtifacts(new ArrayList<>(List.of("mason james")))
         );
 
         contentBattleAreas.add(introFight);
