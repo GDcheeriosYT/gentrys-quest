@@ -125,6 +125,16 @@ public class artifacts {
     Artifact soakedDoujin = new Artifact("Soaked Doujin", new Buff("critRate"), "man clan");
     //kchuntMan artifacts
 
+
+    //Dylan Topic artifacts
+
+    //David Napier artifacts
+    Artifact davidsGoldenAmuletOfMotherlessness = new Artifact("David's Golden Amulet of Motherlessness", new Buff("health"), "david napier");
+    Artifact titaniumStiltsForShortKings = new Artifact("Titanium Stilts For Short Kings", new Buff("defense"), "david napier");
+    Artifact headbangersGuitarOfLoneliness = new Artifact("Head-banger's Guitar of Loneliness", new Buff("critDamage"), "david napier");
+    Artifact fidgetSpinner = new Artifact("Fidget Spinner", new Buff("attack"), "david napier");
+    Artifact pictureOfChildScreaming = new Artifact("Picture of Child Screaming", new Buff(""), "david napier");
+
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(fork);
     contentArtifacts.add(bucket);
@@ -204,6 +214,11 @@ public class artifacts {
     contentArtifacts.add(crustyBodyPillow);
     contentArtifacts.add(bluetoothSpeakerThatPlaysVineBoomSoundEffect);
     contentArtifacts.add(soakedDoujin);
+    contentArtifacts.add(davidsGoldenAmuletOfMotherlessness);
+    contentArtifacts.add(titaniumStiltsForShortKings);
+    contentArtifacts.add(headbangersGuitarOfLoneliness);
+    contentArtifacts.add(fidgetSpinner);
+    contentArtifacts.add(pictureOfChildScreaming);
   }
 
   public static ArrayList<Artifact> getContentArtifacts(){
