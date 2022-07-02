@@ -65,10 +65,11 @@ class Main{
         System.out.println("what's this protagonists name?");
         String name = new Scanner(System.in).nextLine();
         clearConsole();
-        player = new Character(1, name, 1, 1, 1, 0.5, 1, "The guy");
+        player = new Character(5, name, 1, 1, 1, 0.5, 1, "The guy");
       }
 
       equipedCharacter = player;
+      equipedCharacter.levelUp(99);
       Weapon fists = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
 
       if(player.getWeapon() == null) player.equipWeapon(fists, false);
