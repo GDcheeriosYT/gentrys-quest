@@ -144,6 +144,7 @@ public class artifacts {
     Artifact hyveeBrandCereal = new Artifact("Hy-vee Brand Cereal", new Buff(""), "hyvee");
     Artifact lostCreditCard = new Artifact("Lost Credit Card", new Buff(""), "hyvee");
     Artifact lostID = new Artifact("Lost ID", new Buff(""), "hyvee");
+    Artifact hyveeChinese = new Artifact("Hy-vee Chinese", new Buff(""), "hyvee");
 
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(fork);
@@ -235,6 +236,9 @@ public class artifacts {
     contentArtifacts.add(hyveeBrandFruit);
     contentArtifacts.add(hyveeBrandCandy);
     contentArtifacts.add(hyveeBrandCereal);
+    contentArtifacts.add(lostCreditCard);
+    contentArtifacts.add(lostID);
+    contentArtifacts.add(hyveeChinese);
   }
 
   public static ArrayList<Artifact> getContentArtifacts(){
