@@ -3,10 +3,11 @@ package enemy;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
 import weapon.Weapon;
+import character.Character;
 
 public class EnemyTest {
 
@@ -72,5 +73,39 @@ public class EnemyTest {
     @Test
     void getWeaponTest(){
         assertThat(e.getWeapon()).isEqualTo(weapon);
+    }
+    @Test
+    void toStringTest(){
+        String str = e.toString();
+       assertThat(str).contains("level")
+                .contains("health")
+                .contains("attack")
+                .contains("weapon")
+                .contains("defense")
+                .contains("===============")
+                .contains("\n");
+    }
+    @Test
+    void attackTest() {
+        Character character = mock(Character.class);
+        when(character.getName()).thenReturn("John");
+        when(character.getHealth()).thenReturn(100);
+
+        boolean expected = e.attack(character);
+        verify(character).setHealth(any(Integer.class));
+        //As we mock 'character', we are interested only if character.setHealth() was called for ANY Integer argument
+        assertThat(expected).isFalse();
+    }
+
+    @Test
+    void attackDiedTest() {
+        Character character = mock(Character.class);
+        when(character.getName()).thenReturn("John");
+        when(character.getHealth()).thenReturn(0); // character's health < 1 -> dies
+
+        boolean expected = e.attack(character);
+        verify(character).setHealth(any(Integer.class));
+        //As we mock 'character', we are interested only if character.setHealth() was called for ANY Integer argument
+        assertThat(expected).isTrue();
     }
 }
