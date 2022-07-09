@@ -1,10 +1,10 @@
-package tests.Character;
+package Character;
 
 import character.Character;
 
-public class CharacterInfo {
+public class CharacterTest {
 
-    public CharacterInfo(){
+    public CharacterTest(){
         //testing class
     }
 
