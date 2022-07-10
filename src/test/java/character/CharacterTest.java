@@ -1,6 +1,4 @@
-package Character;
-
-import character.Character;
+package character;
 
 public class CharacterTest {
 
