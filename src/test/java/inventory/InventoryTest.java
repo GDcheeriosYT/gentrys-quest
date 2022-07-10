@@ -64,5 +64,52 @@ public class InventoryTest {
     void getWeaponsTest() {
         assertThat(inventory.getWeapons()).isEmpty();
     }
+    @Test
+    void addMoneyTest() {
+        inventory.addMoney(50);
+        assertThat(inventory.getMoney()).isEqualTo(50);
+    }
 
+    @Test
+    void getMoneyInfiniteTest() {
+        inventory.setInfiniteMoney(true);
+        assertThat(inventory.getMoney()).isEqualTo(Integer.MAX_VALUE);
+    }
+    @Test
+    void getMoneyNotInfiniteTest() {
+        inventory.setInfiniteMoney(false);
+        inventory.addMoney(100);
+        assertThat(inventory.getMoney()).isEqualTo(100);
+    }
+    @Test
+    void spendMoneyTest() {
+        inventory.setInfiniteMoney(false);
+        inventory.addMoney(100);
+        inventory.spendMoney(20);
+        assertThat(inventory.getMoney()).isEqualTo(100 - 20);
+    }
+    @Test
+    void checkMoneyInfiniteTest() {
+        inventory.setInfiniteMoney(true);
+        assertThat(inventory.checkMoney(50)).isTrue();
+    }
+    @Test
+    void checkMoneyNotInfiniteEqualToAmountTest() {
+        inventory.setInfiniteMoney(false);
+        inventory.addMoney(50);
+        assertThat(inventory.checkMoney(50)).isTrue();
+    }
+    @Test
+    void checkMoneyNotInfiniteGreaterThanAmountTest() {
+        inventory.setInfiniteMoney(false);
+        inventory.addMoney(60);
+        assertThat(inventory.checkMoney(50)).isTrue();
+    }
+
+    @Test
+    void checkMoneyNotInfiniteLessThanAmountTest() {
+        inventory.setInfiniteMoney(false);
+        inventory.addMoney(40);
+        assertThat(inventory.checkMoney(50)).isFalse();
+    }
 }
