@@ -31,7 +31,7 @@ public class InventoryTest {
     }
 
     @Test
-    void getArtifactTesst() {
+    void getArtifactTest() {
         assertThat(inventory.getArtifacts()).isEmpty();
     }
 
@@ -41,4 +41,17 @@ public class InventoryTest {
         inventory.removeArtifact(artifact);
         assertThat(inventory.getArtifacts()).isEmpty();
     }
+
+
+    @Test
+    void addCharacterTest() {
+        inventory.addCharacter(character);
+        assertThat(inventory.getCharacters()).containsExactly(character);
+    }
+
+    @Test
+    void getCharacterTest() {
+        assertThat(inventory.getCharacters()).isEmpty();
+    }
+
 }
