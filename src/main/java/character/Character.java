@@ -193,19 +193,24 @@ public class Character {
           for(Buff attribute: artifact2.getAllBuffs()){
             int[] attributeInfo = attribute.getBuff();
             if(attributeInfo[0] == 1){
-              additionalHealth += artifact2.getValue(attribute);
+              if(attributeInfo[1] == 1) additionalHealth += percentValueGiver(artifact2.getStarRating(), defaultHealth, attribute);
+              else additionalHealth += artifact2.getValue(attribute);
             }
             else if(attributeInfo[0] == 2){
-              additionalAttackDamage += artifact2.getValue(attribute);
+              if(attributeInfo[1] == 1) additionalAttackDamage += percentValueGiver(artifact2.getStarRating(), defaultAttackDamage, attribute);
+              else additionalAttackDamage += artifact2.getValue(attribute);
             }
             else if(attributeInfo[0] == 3){
-              additionalDefense += artifact2.getValue(attribute);
+              if(attributeInfo[1] == 1) additionalDefense += percentValueGiver(artifact2.getStarRating(), defaultDefense, attribute);
+              else additionalDefense += artifact2.getValue(attribute);
             }
             else if(attributeInfo[0] == 4){
-              additionalCritRate += artifact2.getValue(attribute);
+              if(attributeInfo[1] == 1) additionalCritRate += percentValueGiver(artifact2.getStarRating(), defaultCritRate, attribute);
+              else additionalCritRate += artifact2.getValue(attribute);
             }
             else{
-              additionalCritDamage += artifact2.getValue(attribute);
+              if(attributeInfo[1] == 1) additionalCritDamage += percentValueGiver(artifact2.getStarRating(), defaultCritDamage, attribute);
+              else additionalCritDamage += artifact2.getValue(attribute);
             }
           }
         }
@@ -215,18 +220,26 @@ public class Character {
       for (Buff attribute : artifact.getAllBuffs()) {
         int[] attributeInfo = attribute.getBuff();
         if (attributeInfo[0] == 1) {
-          additionalHealth -= artifact.getValue(attribute);
+          if (attributeInfo[1] == 1)
+            additionalHealth -= percentValueGiver(artifact.getStarRating(), defaultHealth, attribute);
+          else additionalHealth -= artifact.getValue(attribute);
+        } else if (attributeInfo[0] == 2) {
+          if (attributeInfo[1] == 1)
+            additionalAttackDamage -= percentValueGiver(artifact.getStarRating(), defaultAttackDamage, attribute);
+          else additionalAttackDamage -= artifact.getValue(attribute);
+        } else if (attributeInfo[0] == 3) {
+          if (attributeInfo[1] == 1)
+            additionalDefense -= percentValueGiver(artifact.getStarRating(), defaultDefense, attribute);
+          else additionalDefense -= artifact.getValue(attribute);
+        } else if (attributeInfo[0] == 4) {
+          if (attributeInfo[1] == 1)
+            additionalCritRate -= percentValueGiver(artifact.getStarRating(), defaultCritRate, attribute);
+          else additionalCritRate -= artifact.getValue(attribute);
+        } else {
+          if (attributeInfo[1] == 1)
+            additionalCritDamage -= percentValueGiver(artifact.getStarRating(), defaultCritDamage, attribute);
+          else additionalCritDamage -= artifact.getValue(attribute);
         }
-        else if (attributeInfo[0] == 2) {
-          additionalAttackDamage -= artifact.getValue(attribute);
-        }
-        else if (attributeInfo[0] == 3) {
-          additionalDefense -= artifact.getValue(attribute);
-        }
-        else if (attributeInfo[0] == 4) {
-          additionalCritRate -= artifact.getValue(attribute);
-        }
-        else additionalCritDamage -= artifact.getValue(attribute);
       }
     }
     if(hasSet()){
@@ -367,6 +380,10 @@ public class Character {
     for (int i = 0; i < 100; i++) {
       System.out.println("");
     }
+  }
+
+  public double percentValueGiver(int starRating, double defaultAmount, Buff buff){
+    return defaultAmount + (defaultAmount * ((2 * starRating) + (buff.getBuff()[2] * 1.5)));
   }
 
   public int getDefense() {
