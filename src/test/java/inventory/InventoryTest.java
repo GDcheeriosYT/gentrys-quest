@@ -50,8 +50,19 @@ public class InventoryTest {
     }
 
     @Test
-    void getCharacterTest() {
+    void getCharactersTest() {
         assertThat(inventory.getCharacters()).isEmpty();
+    }
+
+    @Test
+    void addWeaponTest() {
+        inventory.addWeapon(weapon);
+        assertThat(inventory.getWeapons()).containsExactly(weapon);
+    }
+
+    @Test
+    void getWeaponsTest() {
+        assertThat(inventory.getWeapons()).isEmpty();
     }
 
 }
