@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import weapon.Weapon;
 
 import java.util.ArrayList;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class InventoryTest {
     private boolean infiniteMoney;
@@ -111,5 +111,19 @@ public class InventoryTest {
         inventory.setInfiniteMoney(false);
         inventory.addMoney(40);
         assertThat(inventory.checkMoney(50)).isFalse();
+    }
+    @Test
+    void getLongestCharacterNameLengthTest() {
+        Character ch1 = mock(Character.class);
+        Character ch2 = mock(Character.class);
+        Character ch3 = mock(Character.class);
+        when(ch1.getName()).thenReturn("short");
+        when(ch2.getName()).thenReturn("longer");
+        when(ch3.getName()).thenReturn("the longest name"); // has length 16
+        inventory.addCharacter(ch1);
+        inventory.addCharacter(ch2);
+        inventory.addCharacter(ch3);
+
+        assertThat(inventory.getLongestCharacterNameLength(inventory.getCharacters())).isEqualTo(16);
     }
 }
