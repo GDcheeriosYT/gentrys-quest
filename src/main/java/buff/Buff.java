@@ -9,8 +9,10 @@ public class Buff {
   private boolean defense;
   private boolean critRate;
   private boolean critDamage;
+  private boolean percentage = false;
 
   public Buff(String mainAttribute){
+    if((Math.random() * 100) + 1 < 25) percentage = true;
     if(mainAttribute == "health"){
       health = true;
     }
@@ -52,30 +54,35 @@ public class Buff {
   }
 
   public int[] getBuff(){
-    int[] values = new int[2];
+    int[] values = new int[3];
     if(health == true){
       values[0] = 1;
-      values[1] = level;
+      values[1] = percentage ? 1 : 0;
+      values[2] = level;
       return values;
     }
     else if(attack == true){
       values[0] = 2;
-      values[1] = level;
+      values[1] = percentage ? 1 : 0;
+      values[2] = level;
       return values;
     }
     else if (defense == true){
       values[0] = 3;
-      values[1] = level;
+      values[1] = percentage ? 1 : 0;
+      values[2] = level;
       return values;
     }
     else if (critRate == true){
       values[0] = 4;
-      values[1] = level;
+      values[1] = percentage ? 1 : 0;
+      values[2] = level;
       return values;
     }
     else{
       values[0] = 5;
-      values[1] = level;
+      values[1] = percentage ? 1 : 0;
+      values[2] = level;
       return values;
     }
   }
