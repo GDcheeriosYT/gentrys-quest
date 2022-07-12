@@ -32,7 +32,8 @@ public class BattleArea {
       for(int i = 0; i<enemyAmount; i++){
         Enemy enemySelector = enemies.get((int) (Math.random() * enemies.size()));
         Enemy enemy = new Enemy(enemySelector.getName(), enemySelector.getHealth(), enemySelector.getAttack(), enemySelector.getDefense(), enemySelector.getWeapon(), enemySelector.getDescription());
-        enemy.setLevel((int)((20 * (difficulty - 1)) + (Math.random() * (maxLevel - (maxLevel * 0.5))) + (maxLevel * 0.5)));
+        int levelToSet = (int)((20 * (difficulty - 1)) + (Math.random() * (maxLevel - (maxLevel * 0.5))) + (maxLevel * 0.5));
+        enemy.setLevel(levelToSet == 0 ? 1 : levelToSet);
         enemiesToReturn.add(enemy);
       }
     }

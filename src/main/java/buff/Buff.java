@@ -12,7 +12,7 @@ public class Buff {
   private boolean percentage = false;
 
   public Buff(String mainAttribute){
-    if((Math.random() * 100) + 1 < 25) percentage = true;
+    if((Math.random() * 100) + 1 < 50) percentage = true;
     if(mainAttribute == "health"){
       health = true;
     }

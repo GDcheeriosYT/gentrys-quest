@@ -1,6 +1,7 @@
 package character;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 import artifact.Artifact;
 import buff.Buff;
@@ -11,7 +12,7 @@ import weapon.Weapon;
 
 
 public class Character {
-  private final int starRating;
+  private int starRating;
   private final String name;
   private final String description;
   private int level = 1;
@@ -103,17 +104,33 @@ public class Character {
   }
 
   public void levelUp(int amount){
-    level += amount;
-    for(int i = 0; i < amount; i++){
-      //System.out.println(xpRequired);
-      previousXpRequired = xpRequired;
-      xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
-      defaultHealth += 2 + (level * 0.5) + (starRating * 1.67);
-      defaultAttackDamage += 1 + (level * 0.5) + (starRating);
-      defaultDefense += 0.5 + (level * 0.5) + (starRating * 0.5);
-      defaultCritRate += 0.1 + (starRating * 0.03);
-      defaultCritDamage += 0.5 + (level * 0.5) + (starRating * 0.85);
-      difficulty = (int)(1 + (level / 20));
+    if(level < level + amount){
+      level += amount;
+      for(int i = 0; i < amount; i++){
+        //System.out.println(xpRequired);
+        previousXpRequired = xpRequired;
+        xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
+        defaultHealth += 2 + (level * 0.5) + (starRating * 1.67);
+        defaultAttackDamage += 1 + (level * 0.5) + (starRating);
+        defaultDefense += 0.5 + (level * 0.5) + (starRating * 0.5);
+        defaultCritRate += 0.1 + (starRating * 0.03);
+        defaultCritDamage += 0.5 + (level * 0.5) + (starRating * 0.85);
+        difficulty = (int)(1 + (level / 20));
+      }
+    }
+    else{
+      level += amount;
+      for(int i = 0; i < amount; i++){
+        //System.out.println(xpRequired);
+        previousXpRequired = xpRequired;
+        xpRequired -= xpRequired * ((starRating * 0.004) + 0.045);
+        defaultHealth -= 2 + (level * 0.5) + (starRating * 1.67);
+        defaultAttackDamage -= 1 + (level * 0.5) + (starRating);
+        defaultDefense -= 0.5 + (level * 0.5) + (starRating * 0.5);
+        defaultCritRate -= 0.1 + (starRating * 0.03);
+        defaultCritDamage -= 0.5 + (level * 0.5) + (starRating * 0.85);
+        difficulty = (int)(1 + (level / 20));
+      }
     }
 
     additionalHealth = 0;
@@ -485,5 +502,90 @@ public class Character {
     data.put("experience", experience);
 
     return data;
+  }
+
+  public String testingToString(){
+    String stars = "";
+    //make fancier star display
+    for(int i = 0; i < starRating; i++){
+      stars += "*";
+    }
+    String moreHealth = "";
+    String moreAttackDamage = "";
+    String moreDefense = "";
+    String moreCritRate = "";
+    String moreCritDamage = "";
+    String weaponInfo = "";
+    String artifactInfo = "";
+    if(additionalHealth != 0){
+      moreHealth = " + " + additionalHealth + " (" + (defaultHealth + additionalHealth) + ")";
+    }
+
+    if(additionalAttackDamage != 0){
+      moreAttackDamage = " + " + additionalAttackDamage + " (" + (defaultAttackDamage + additionalAttackDamage) + ")";
+    }
+
+    if(additionalDefense != 0){
+      moreDefense = " + " + additionalDefense + " (" + (defaultDefense + additionalDefense) + ")";
+    }
+
+    if(additionalCritRate != 0){
+      moreCritRate = " + " + additionalCritRate + "%" + " (" + (defaultCritRate + additionalCritRate) + "%)";
+      if(additionalCritRate + defaultCritRate > 100){
+        moreCritRate = " + " + additionalCritRate + "%" + "(100.0%)";
+      }
+    }
+
+    if(additionalCritDamage != 0){
+      moreCritDamage = " + " + additionalCritDamage + " (" + (defaultCritDamage + additionalCritDamage) + ")";
+    }
+
+    weaponInfo += "\n--------weapon--------\n" + Objects.requireNonNullElse(weapon, "empty\n");
+
+    for(Artifact artifact: artifacts){
+      artifactInfo += "\n^^^^^^^^artifact^^^^^^^^\n";
+      artifactInfo += Objects.requireNonNullElse(artifact, "empty\n");
+    }
+
+    float percent = (xp * 100.0f) / xpRequired;
+    return name + " " + "<-[Q]" + stars + "[W]->" + "\nlevel\t<-[K]" + level + "[L]->\nxp: " + xp + "/" + xpRequired + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense + "\ncrit rate: " + defaultCritRate + "% " + moreCritRate + "\ncrit damage " + defaultCritDamage + moreCritDamage + "[E] edit weapon info" + weaponInfo + "[A] edit artifact info" + artifactInfo + "\n====================\n" + description + "\n====================";
+  }
+
+  public String getStringInput(String outputText){
+    System.out.println(outputText);
+    Scanner input = new Scanner(System.in);
+    return input.nextLine();
+  }
+
+  public void editStats(){
+    label:
+    while(true){
+      String input = getStringInput(testingToString());
+      System.out.println(input);
+      switch (input) {
+        case "q":
+          starRating -= 1;
+          levelUp(0);
+          break;
+        case "w":
+          starRating += 1;
+          levelUp(0);
+          break;
+        case "k":
+          levelUp(-1);
+          break;
+        case "K":
+          levelUp(-10);
+          break;
+        case "l":
+          levelUp(1);
+          break;
+        case "L":
+          levelUp(10);
+          break;
+        default:
+          break label;
+      }
+    }
   }
 }

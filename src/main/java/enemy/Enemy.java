@@ -1,6 +1,9 @@
 package enemy;
 import character.Character;
 import weapon.Weapon;
+
+import java.util.Scanner;
+
 public class Enemy {
   private final String name;
   private final String description;
@@ -9,6 +12,9 @@ public class Enemy {
   private int attack;
   private int defense;
   private Weapon weapon;
+  private int initialHealth;
+  private int initialAttack;
+  private int initialDefense;
 
   public Enemy(String name, int health, int attack, int defense, Weapon weapon, String description){
     this.name = name;
@@ -17,6 +23,9 @@ public class Enemy {
     this.defense = defense;
     this.weapon = weapon;
     this.description = description;
+    this.initialHealth = health;
+    this.initialAttack = attack;
+    this.initialDefense = defense;
   }
 
   public void setHealth(int health) {
@@ -35,9 +44,22 @@ public class Enemy {
     this.level = level;
     level = level - 1;
     for(int i = 0; i<level; i++){
-      this.health += 2.5 + (level * 2.15);
-      this.attack += 1 + (level * 0.33);
-      this.defense += 0.5 + (level * 0.15);
+      health += 2.5 + (level * 2.15);
+      attack += 1 + (level * 0.33);
+      defense += 0.5 + (level * 0.15);
+    }
+  }
+
+  public void testingSetLevel(int level) {
+    this.level = level;
+    level = level - 1;
+    health = initialHealth;
+    attack = initialAttack;
+    defense = initialDefense;
+    for (int i = 0; i < level; i++) {
+      health += 2.5 + (level * 2.15);
+      attack += 1 + (level * 0.33);
+      defense += 0.5 + (level * 0.15);
     }
   }
 
@@ -86,6 +108,40 @@ public class Enemy {
     for (int i = 0; i < 100; i++) {
       System.out.println("");
     }
+  }
+
+  private String showStats(){
+    return "name: " + name + "\nlevel:\t<-[K]" + level + "[L]->\nhealth:\t" + health + "\nattack:\t" + attack + "\ndefense:\t" + defense;
+  }
+
+  public void editStats(){
+    label:
+    while(true){
+      String input = getStringInput(showStats());
+      System.out.println(input);
+      switch (input) {
+        case "k":
+          testingSetLevel(level-1);
+          break;
+        case "l":
+          testingSetLevel(level+1);
+          break;
+        case "K":
+          testingSetLevel(level - 10);
+          break;
+        case "L":
+          testingSetLevel(level + 10);
+          break;
+        default:
+          break label;
+      }
+    }
+  }
+
+  public String getStringInput(String outputText){
+    System.out.println(outputText);
+    Scanner input = new Scanner(System.in);
+    return input.nextLine();
   }
 
   public static void timeout(int time, boolean clearConole){

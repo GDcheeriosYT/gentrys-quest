@@ -415,11 +415,13 @@ class Main{
         while(inSettings){
           System.out.println("1. debug [" + isToggledSetting("debug", true) + "]");
           System.out.println("2. clear data");
-          int input2 = getMainMenuInput("3. exit");
+          System.out.println("3. test battle scene");
+          int input2 = getMainMenuInput("4. exit");
           //debug toggle
           if(input2 == 1) toggleSetting("debug");
           //clear data
           else if(input2 == 2) clearData();
+          else if(input2 == 3) testBattleScene();
           else{
             clearConsole();
             inSettings = false;
@@ -841,4 +843,53 @@ class Main{
     new Scanner(System.in).nextLine();
     if(clearConsole) clearConsole();
   }
-}
+
+  public static void testBattleScene() throws FileNotFoundException {
+    //variables
+    Enemy testDummy = new Enemy("Test Dummy", 15, 1, 1, new Weapon("Test Weapon", new Verbs("did something to", "did something crazy to")), "a test dummy for the battle testing scene");
+    Character testGuy = new Character(1, "Test Guy", 0, 0, 0, 0.0, 0, "a test guy for the battle testing scene");
+
+    //scene mainLoop
+    clearConsole();
+    System.out.println("You are now testing a battle area scene.");
+    boolean testing = true;
+    while(testing){
+        System.out.println(testGuy.getName() + " encountered a " + testDummy.getName());
+        System.out.println(testDummy);
+        boolean fighting = true;
+        while(fighting){
+          int input;
+          input = getMainMenuInput("===========================================\n\t" +
+                  testDummy.getName() + "(lvl " + testDummy.getLevel() + ")" +
+                  "\n\t" + testDummy.getHealth() +
+                  "\n==========================================\n" +
+                  testGuy.getName() + " has " + testGuy.getHealth() + " health" +
+                  "\n1.attack\n2.edit test data\n3.run");
+          if(input == 1){
+            if(testGuy.attack(testDummy, isToggledSetting("debug", true))) testDummy.setLevel(testGuy.getLevel());
+            if(testDummy.attack(testGuy, isToggledSetting("debug", true))) testGuy.updateStats();
+          }
+          else if(input == 2){
+            int input2 = getMainMenuInput("1.enemy\n2.player\n3.break");
+            if(input2 == 1) testDummy.editStats();
+            else if(input2 == 2) testGuy.editStats();
+            else break;
+          }
+        }
+        pressEnterToContinue(true, true);
+    }
+  }
+
+  private static void displaySceneSettings(){
+
+  }
+  public int generateStarRating() {
+      int randomNumber = (int) (Math.random() * 100) + 1;
+      if (randomNumber <= 7) return 5;
+      else if (randomNumber <= 20) return 4;
+      else if (randomNumber <= 35) return 3;
+      else if (randomNumber <= 50) return 2;
+      else if (randomNumber <= 80) return 1;
+      return 1;
+    }
+  }
