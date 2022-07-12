@@ -26,6 +26,7 @@ public class Enemy {
     this.initialHealth = health;
     this.initialAttack = attack;
     this.initialDefense = defense;
+    setLevel(1);
   }
 
   public void setHealth(int health) {
@@ -43,24 +44,12 @@ public class Enemy {
   public void setLevel(int level) {
     this.level = level;
     level = level - 1;
-    for(int i = 0; i<level; i++){
-      health += 2.5 + (level * 2.15);
-      attack += 1 + (level * 0.33);
-      defense += 0.5 + (level * 0.15);
-    }
-  }
-
-  public void testingSetLevel(int level) {
-    this.level = level;
-    level = level - 1;
-    health = initialHealth;
-    attack = initialAttack;
-    defense = initialDefense;
-    for (int i = 0; i < level; i++) {
-      health += 2.5 + (level * 2.15);
-      attack += 1 + (level * 0.33);
-      defense += 0.5 + (level * 0.15);
-    }
+    int healthCalc = (int) (initialHealth + 2.5 * (level * 3 + ((level + 1 / 20) * 3)));
+    int attackCalc = (int) (initialAttack + 0.5 * (level * 1.6 + ((level + 1 / 20) * 3)));
+    int defenseCalc = (int) (initialDefense + 0.3 * (level * 1.3 + ((level + 1 / 20) * 3)));
+    health = healthCalc;
+    attack = attackCalc;
+    defense = defenseCalc;
   }
 
   public int getHealth() {
@@ -121,16 +110,16 @@ public class Enemy {
       System.out.println(input);
       switch (input) {
         case "k":
-          testingSetLevel(level-1);
+          setLevel(level-1);
           break;
         case "l":
-          testingSetLevel(level+1);
+          setLevel(level+1);
           break;
         case "K":
-          testingSetLevel(level - 10);
+          setLevel(level - 10);
           break;
         case "L":
-          testingSetLevel(level + 10);
+          setLevel(level + 10);
           break;
         default:
           break label;
