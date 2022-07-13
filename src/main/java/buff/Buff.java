@@ -32,6 +32,8 @@ public class Buff {
     }
   }
 
+  public Buff(String mainAttribute, boolean isPercentage){
+    if(isPercentage) percentage = true;
     switch (mainAttribute) {
       case "health" -> health = true;
       case "attack" -> attack = true;
