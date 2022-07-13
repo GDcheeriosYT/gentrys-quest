@@ -13,38 +13,40 @@ public class Buff {
 
   public Buff(String mainAttribute){
     if((Math.random() * 100) + 1 < 50) percentage = true;
-    if(mainAttribute == "health"){
-      health = true;
-    }
-    else if(mainAttribute == "attack"){
-      attack = true;
-    }
-    else if(mainAttribute == "defense"){
-      defense = true;
-    }
-    else if(mainAttribute == "critRate"){
-      critRate = true;
-    }
-    else if(mainAttribute == "critDamage"){
-      critDamage = true;
-    }
-    else{
-      int random1 = (int)(Math.random() * 5 + 1);
-  
-      if(random1 == 1){
-        health = true;
+    switch (mainAttribute) {
+      case "health" -> health = true;
+      case "attack" -> attack = true;
+      case "defense" -> defense = true;
+      case "critRate" -> critRate = true;
+      case "critDamage" -> critDamage = true;
+      default -> {
+        int random1 = (int) (Math.random() * 5 + 1);
+        switch (random1) {
+          case 1 -> health = true;
+          case 2 -> attack = true;
+          case 3 -> defense = true;
+          case 4 -> critRate = true;
+          case 5 -> critDamage = true;
+        }
       }
-      else if(random1 == 2){
-        attack = true;
-      }
-      else if(random1 == 3){
-        defense = true;
-      }
-      else if(random1 == 4){
-        critRate = true;
-      }
-      else if(random1 == 5){
-        critDamage = true;
+    }
+  }
+
+    switch (mainAttribute) {
+      case "health" -> health = true;
+      case "attack" -> attack = true;
+      case "defense" -> defense = true;
+      case "critRate" -> critRate = true;
+      case "critDamage" -> critDamage = true;
+      default -> {
+        int random1 = (int) (Math.random() * 5 + 1);
+        switch (random1) {
+          case 1 -> health = true;
+          case 2 -> attack = true;
+          case 3 -> defense = true;
+          case 4 -> critRate = true;
+          case 5 -> critDamage = true;
+        }
       }
     }
   }
