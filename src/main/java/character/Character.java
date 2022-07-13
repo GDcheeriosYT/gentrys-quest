@@ -541,13 +541,92 @@ public class Character {
     }
 
     float percent = (xp * 100.0f) / xpRequired;
-    return name + " " + "<-[Q]" + stars + "[W]->" + "\nlevel\t<-[K]" + level + "[L]->\nxp: " + xp + "/" + xpRequired + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense + "\ncrit rate: " + defaultCritRate + "% " + moreCritRate + "\ncrit damage " + defaultCritDamage + moreCritDamage + "[E] edit weapon info" + weaponInfo + "[A] edit artifact info" + artifactInfo + "\n====================\n" + description + "\n====================";
+    return name + " " + "<-[Q]" + stars + "[W]->" + "\nlevel\t<-[K]" + level + "[L]->\nxp: " + xp + "/" + xpRequired + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense + "\ncrit rate: " + defaultCritRate + "% " + moreCritRate + "\ncrit damage " + defaultCritDamage + moreCritDamage + ".\n[E] edit weapon info" + weaponInfo + "\n[A] edit artifact info" + artifactInfo + "\n====================\n" + description + "\n====================";
   }
 
   public String getStringInput(String outputText){
     System.out.println(outputText);
     Scanner input = new Scanner(System.in);
     return input.nextLine();
+  }
+
+  public static int getMainMenuInput(String text){
+    Scanner input = new Scanner(System.in);
+    System.out.println(text);
+    return input.nextInt();
+  }
+
+  public void editWeapon(){
+    label:
+    while(true){
+      String input = getStringInput(weapon.editingToString());
+      System.out.println(input);
+      switch (input){
+        case "q":
+          weapon.setStarRating(weapon.getStarRating() - 1);
+          break;
+        case "w":
+          weapon.setStarRating(weapon.getStarRating() + 1);
+          break;
+        case "Q":
+          weapon.setStarRating(1);
+          break;
+        case "W":
+          weapon.setStarRating(5);
+          break;
+        case "s":
+          weapon.setBaseAttack(weapon.getBaseAttack() + 1);
+          break;
+        case "S":
+          weapon.setBaseAttack(weapon.getBaseAttack() + 10);
+          break;
+        case "a":
+          weapon.setBaseAttack(weapon.getBaseAttack() - 1);
+          break;
+        case "A":
+          weapon.setBaseAttack(weapon.getBaseAttack() - 10);
+          break;
+
+        case "f":
+          label1:
+          while(true) {
+            String input2 = getStringInput(weapon.attributeToStringEditing());
+            switch (input2){
+              case "q":
+                String output1;
+                int input3 = getMainMenuInput("1.health\n2.attack\n3.defense\n4.critRate\n5.critDamage");
+                int input4 = getMainMenuInput("1.%\n2.integer");
+                switch (input3) {
+                  case 1 -> output1 = "health";
+                  case 2 -> output1 = "attack";
+                  case 3 -> output1 = "defense";
+                  case 4 -> output1 = "critRate";
+                  case 5 -> output1 = "critDamage";
+                  default -> output1 = "";
+                }
+                weapon.setAttribute(output1, input4 == 1);
+                break;
+
+              case "a":
+                weapon.getAttribute().levelUp(-1);
+                break;
+              case "A":
+                weapon.getAttribute().levelUp(-10);
+                break;
+              case "s":
+                weapon.getAttribute().levelUp(1);
+                break;
+              case "S":
+                weapon.getAttribute().levelUp(10);
+              default:
+                break label1;
+            }
+          }
+        default:
+          break label;
+      }
+    }
+
   }
 
   public void editStats(){
@@ -557,25 +636,46 @@ public class Character {
       System.out.println(input);
       switch (input) {
         case "q":
+          clearConsole();
           starRating -= 1;
           levelUp(0);
           break;
         case "w":
+          clearConsole();
           starRating += 1;
           levelUp(0);
           break;
+        case "Q":
+          clearConsole();
+          starRating = 1;
+          levelUp(0);
+          break;
+        case "W":
+          clearConsole();
+          starRating = 5;
+          levelUp(0);
+          break;
         case "k":
+          clearConsole();
           levelUp(-1);
           break;
         case "K":
+          clearConsole();
           levelUp(-10);
           break;
         case "l":
+          clearConsole();
           levelUp(1);
           break;
         case "L":
+          clearConsole();
           levelUp(10);
           break;
+        case "e":
+          clearConsole();
+          editWeapon();
+          break;
+
         default:
           break label;
       }
