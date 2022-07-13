@@ -849,47 +849,72 @@ class Main{
     Enemy testDummy = new Enemy("Test Dummy", 15, 1, 1, new Weapon("Test Weapon", new Verbs("did something to", "did something crazy to")), "a test dummy for the battle testing scene");
     Character testGuy = new Character(1, "Test Guy", 0, 0, 0, 0.0, 0, "a test guy for the battle testing scene");
 
+    Artifact testArtifact1 = new Artifact("Test Artifact", new Buff(""), "testing");
+    Artifact testArtifact2 = new Artifact("Test Artifact", new Buff(""), "testing");
+    Artifact testArtifact3 = new Artifact("Test Artifact", new Buff(""), "testing");
+    Artifact testArtifact4 = new Artifact("Test Artifact", new Buff(""), "testing");
+    Artifact testArtifact5 = new Artifact("Test Artifact", new Buff(""), "testing");
+
+    testArtifact1.setStarRating(1);
+    testArtifact2.setStarRating(1);
+    testArtifact3.setStarRating(1);
+    testArtifact4.setStarRating(1);
+    testArtifact5.setStarRating(1);
+
+    testGuy.equipArtifact(0, testArtifact1);
+    testGuy.equipArtifact(1, testArtifact2);
+    testGuy.equipArtifact(2, testArtifact3);
+    testGuy.equipArtifact(3, testArtifact4);
+    testGuy.equipArtifact(4, testArtifact5);
+
+    Weapon testWeapon = new Weapon("Test Weapon", 1, "test", 1, new Buff(""), new Verbs("did something", "did something better"), "just a testing weapon.");
+
+    testGuy.equipWeapon(testWeapon, true);
+
     //scene mainLoop
     clearConsole();
     System.out.println("You are now testing a battle area scene.");
     boolean testing = true;
     while(testing){
-        System.out.println(testGuy.getName() + " encountered a " + testDummy.getName());
-        System.out.println(testDummy);
-        boolean fighting = true;
-        while(fighting){
-          int input;
-          input = getMainMenuInput("===========================================\n\t" +
-                  testDummy.getName() + "(lvl " + testDummy.getLevel() + ")" +
-                  "\n\t" + testDummy.getHealth() +
-                  "\n==========================================\n" +
-                  testGuy.getName() + " has " + testGuy.getHealth() + " health" +
-                  "\n1.attack\n2.edit test data\n3.run");
-          if(input == 1){
-            if(testGuy.attack(testDummy, isToggledSetting("debug", true))) testDummy.setLevel(testGuy.getLevel());
-            if(testDummy.attack(testGuy, isToggledSetting("debug", true))) testGuy.updateStats();
-          }
-          else if(input == 2){
-            int input2 = getMainMenuInput("1.enemy\n2.player\n3.break");
-            if(input2 == 1) testDummy.editStats();
-            else if(input2 == 2) testGuy.editStats();
-            else break;
-          }
+      System.out.println(testGuy.getName() + " encountered a " + testDummy.getName());
+      System.out.println(testDummy);
+      boolean fighting = true;
+      while(fighting){
+        clearConsole();
+        int input;
+        input = getMainMenuInput("===========================================\n\t" +
+                testDummy.getName() + "(lvl " + testDummy.getLevel() + ")" +
+                "\n\t" + testDummy.getHealth() +
+                "\n==========================================\n" +
+                testGuy.getName() + " has " + testGuy.getHealth() + " health" +
+                "\n1.attack\n2.edit test data\n3.run");
+        if(input == 1){
+          if(testGuy.attack(testDummy, isToggledSetting("debug", true))) testDummy.setLevel(testGuy.getLevel());
+          if(testDummy.attack(testGuy, isToggledSetting("debug", true))) testGuy.updateStats();
         }
-        pressEnterToContinue(true, true);
+        else if(input == 2){
+          clearConsole();
+          int input2 = getMainMenuInput("1.enemy\n2.player\n3.break");
+          clearConsole();
+          if(input2 == 1) testDummy.editStats();
+          else if(input2 == 2) testGuy.editStats();
+          else break;
+        }
+        else if(input == 3){
+          clearConsole();
+          testing = false;
+        }
+      }
+      pressEnterToContinue(true, true);
     }
-  }
-
-  private static void displaySceneSettings(){
-
   }
   public int generateStarRating() {
-      int randomNumber = (int) (Math.random() * 100) + 1;
-      if (randomNumber <= 7) return 5;
-      else if (randomNumber <= 20) return 4;
-      else if (randomNumber <= 35) return 3;
-      else if (randomNumber <= 50) return 2;
-      else if (randomNumber <= 80) return 1;
-      return 1;
-    }
+    int randomNumber = (int) (Math.random() * 100) + 1;
+    if (randomNumber <= 7) return 5;
+    else if (randomNumber <= 20) return 4;
+    else if (randomNumber <= 35) return 3;
+    else if (randomNumber <= 50) return 2;
+    else if (randomNumber <= 80) return 1;
+    return 1;
   }
+}
