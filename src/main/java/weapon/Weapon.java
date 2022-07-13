@@ -12,6 +12,7 @@ public class Weapon {
   long previousXpRequired;
   private final int starRating;
   private int baseAttack;
+  private int initialBaseAttack;
   private final Buff attribute;
   private final Verbs verbs;
   private final String description;
@@ -21,6 +22,7 @@ public class Weapon {
     this.starRating = starRating;
     this.weaponType = weaponType;
     this.baseAttack = baseAttack;
+    this.initialBaseAttack = baseAttack;
     this.attribute = attribute;
     this.verbs = verbs;
     this.description = description;
@@ -38,14 +40,9 @@ public class Weapon {
 
   public void levelUp(int amount){
     level += amount;
-    for(int i = 0; i < amount; i++){
-      previousXpRequired = xpRequired;
-      xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
-      baseAttack += (level*0.16) + (starRating);
-      if(level % 5 == 0){
-        attribute.levelUp(1);
-      }
-    }
+    previousXpRequired = xpRequired;
+    xpRequired = (long) (level * 25) + (starRating * 75);
+    baseAttack = initialBaseAttack + (int) ((level*1.5) + (starRating * 2));
   }
 
   public String getFancyStars(){
