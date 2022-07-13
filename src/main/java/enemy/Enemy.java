@@ -44,9 +44,9 @@ public class Enemy {
   public void setLevel(int level) {
     this.level = level;
     level = level - 1;
-    int healthCalc = (int) (initialHealth + 2.5 * (level * 3 + ((level + 1 / 20) * 3)));
-    int attackCalc = (int) (initialAttack + 0.5 * (level * 1.6 + ((level + 1 / 20) * 3)));
-    int defenseCalc = (int) (initialDefense + 0.3 * (level * 1.3 + ((level + 1 / 20) * 3)));
+    int healthCalc = (int) (initialHealth + 2.5 * (level * 3 + (((level + 1) / 20) * 50)));
+    int attackCalc = (int) (initialAttack + 0.8 * (level * 1.6 + (((level + 1) / 20) * 10)));
+    int defenseCalc = (int) (initialDefense + 0.53 * (level * 1.3 + (((level + 1) / 20) * 15)));
     health = healthCalc;
     attack = attackCalc;
     defense = defenseCalc;
