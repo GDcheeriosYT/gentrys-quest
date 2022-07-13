@@ -59,25 +59,25 @@ public class Buff {
 
   public int[] getBuff(){
     int[] values = new int[3];
-    if(health == true){
+    if(health){
       values[0] = 1;
       values[1] = percentage ? 1 : 0;
       values[2] = level;
       return values;
     }
-    else if(attack == true){
+    else if(attack){
       values[0] = 2;
       values[1] = percentage ? 1 : 0;
       values[2] = level;
       return values;
     }
-    else if (defense == true){
+    else if (defense){
       values[0] = 3;
       values[1] = percentage ? 1 : 0;
       values[2] = level;
       return values;
     }
-    else if (critRate == true){
+    else if (critRate){
       values[0] = 4;
       values[1] = percentage ? 1 : 0;
       values[2] = level;
