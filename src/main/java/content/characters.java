@@ -70,6 +70,7 @@ public class characters {
     Character jackBorland = new Character(5, "Jack Borland", 2, 0, 1, 0.0, 1, "The chicken wiener collector.");
     Character masonBorland = new Character(5, "Mason Borland", 0, 0, 0, 4.0, 0, "The beautiful nut haver.");
     Character charlieJohnson = new Character(5, "Charlie Johnson", 3, 0, 0, 1.0, 0, "He used to be skinny, but he ate too much kfc.");
+    Character oliviaMesserschmidt = new Character(5,"Olivia Messerschmidt", 4, 0, 0, 0.0, 0, "Creative.");
 
     //6 star(divine) characters
     Character GDcheerios = new Character(6, "GDcheerios", 6, 6, 6, 6.0, 6, "The all mighty. He's Practically god...");
@@ -141,6 +142,7 @@ public class characters {
     contentCharacters.add(jackBorland);
     contentCharacters.add(masonBorland);
     contentCharacters.add(charlieJohnson);
+    contentCharacters.add(oliviaMesserschmidt);
     contentCharacters.add(GDcheerios);
   }
 
