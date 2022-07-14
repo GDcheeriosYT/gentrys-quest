@@ -427,6 +427,8 @@ class Main{
         }
       }
       else if(input == 5){
+        clearConsole();
+        pressEnterToContinue(true, true);
       }
       else{
         saveGame();
