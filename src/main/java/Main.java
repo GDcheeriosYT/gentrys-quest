@@ -316,7 +316,7 @@ class Main{
                         }
                       }
                       else{
-                        character.checkArtifacts(false, null);
+                        character.levelUp(0);
                         artifactViewing = false;
                       }
                     }
