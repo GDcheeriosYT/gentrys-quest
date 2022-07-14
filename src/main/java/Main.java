@@ -125,16 +125,16 @@ class Main{
     startupAmount += 1;
 
     while(true){
-      int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.Quit");
+      int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.Quit", rangeArrayListMaker(1, 5));
       //Locations
       if(input == 1){
         clearConsole();
         listLocations();
-        int input2 = getMainMenuInput("where would you like to go?\n");
+        int input2 = getMainMenuInput("where would you like to go?\n", rangeArrayListMaker(1, content.Locations.getContentLocations().size()));
         Location location = content.Locations.getContentLocations().get(input2 - 1);
         clearConsole();
         location.listBattleAreas();
-        input2 = getMainMenuInput("where in " + location.getName() + " would you like to go?");
+        input2 = getMainMenuInput("where in " + location.getName() + " would you like to go?", rangeArrayListMaker(1, location.battleAreaCount()));
         clearConsole();
         startBattle(location.getBattleArea(input2 - 1), equipedCharacter, true, true);
         try{
@@ -153,13 +153,13 @@ class Main{
       //gacha
       else if (input == 2) {
         clearConsole();
-        int input2 = getMainMenuInput("what would you like to pull?\n1.character\n2.Weapon");
+        int input2 = getMainMenuInput("what would you like to pull?\n1.character\n2.Weapon", new ArrayList<Integer>(List.of(1, 2)));
         clearConsole();
         //character
         if (input2 == 1){
           clearConsole();
-          System.out.println("how many characters would you like to pull?\n1 = $1000\nYou have: " + "$" + inventory.getMoney());
-          int amount = getMainMenuInput("");
+          System.out.println("how many characters would you like to pull?\n!MAXIMUM OF 100!\n1 = $1000\nYou have: " + "$" + inventory.getMoney());
+          int amount = getMainMenuInput("", rangeArrayListMaker(0, 100));
           clearConsole();
           if(inventory.checkMoney(amount * 1000)){
             inventory.spendMoney(amount * 1000);
@@ -169,7 +169,7 @@ class Main{
         //weapon
         else if(input2 == 2){
           clearConsole();
-          int amount = getMainMenuInput("how many weapons would you like to pull?\n1 = $1000\nYou have: " + "$" + inventory.getMoney());
+          int amount = getMainMenuInput("how many characters would you like to pull?\n!MAXIMUM OF 100!\n1 = $1000\nYou have: " + "$" + inventory.getMoney(), rangeArrayListMaker(0, 100));
           clearConsole();
           if(inventory.checkMoney(amount * 1000)){
             inventory.spendMoney(amount * 1000);
@@ -184,7 +184,7 @@ class Main{
         while(inventoryViewing){
           clearConsole();
           System.out.println("$" + inventory.getMoney());
-          int input2 = getMainMenuInput("1.Characters\n2.Artifacts\n3.Weapons\n4.Back");
+          int input2 = getMainMenuInput("1.Characters\n2.Artifacts\n3.Weapons\n4.Back", rangeArrayListMaker(0, 4));
           clearConsole();
           //Characters
           if(input2 == 1){
@@ -196,7 +196,7 @@ class Main{
                 System.out.println(indexCounter + ". " + character.getName() + " " + character.getFancyStars() + " lvl " +  character.getLevel());
                 indexCounter++;
               }
-              int input3 = getMainMenuInput("View character\nor\n" + indexCounter + ". quit");
+              int input3 = getMainMenuInput("View character\nor\n" + indexCounter + ". quit", rangeArrayListMaker(1, indexCounter));
               clearConsole();
               if(input3 == inventory.getCharacters().size() + 1) characterViewing = false;
               else{
@@ -204,7 +204,7 @@ class Main{
                 boolean characterInfoViewing = true;
                 while(characterInfoViewing){
                   System.out.println(character);
-                  int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.equip character\n5.back");
+                  int input4 = getMainMenuInput("1.level up\n2.manage weapon\n3.manage artifacts\n4.equip character\n5.back", rangeArrayListMaker(1, 5));
                   clearConsole();
                   //leveling
                   if(input4 == 1){
@@ -215,7 +215,7 @@ class Main{
                               "\nxp " + character.getXp() + "/" + character.getXpRequired() + " (" + percent + ")" +
                               "\nupgrade your character?\n" +
                               "$" + inventory.getMoney() + "/" + "$" + (int)(character.getXpRequired() * 0.1) + " required to level up" +
-                              "\n$1 = 10xp\n0 to go back");
+                              "\n$1 = 10xp\n0 to go back", rangeArrayListMaker(0, inventory.getMoney()));
                       clearConsole();
                       if(input5 != 0){
                         if(inventory.checkMoney(input5)){
@@ -233,7 +233,7 @@ class Main{
                   else if(input4 == 2){
                     boolean weaponViewing = true;
                     while(weaponViewing){
-                      int input5 = getMainMenuInput(character.getName() + " currently has the weapon " + character.getWeapon() + " equipped\n1.swap weapon\n2.back");
+                      int input5 = getMainMenuInput(character.getName() + " currently has the weapon " + character.getWeapon() + " equipped\n1.swap weapon\n2.back", rangeArrayListMaker(1, 2));
                       clearConsole();
                       //swap weapon
                       int counter = 1;
@@ -243,7 +243,7 @@ class Main{
                           System.out.println(counter + "." + weapon.getName() + " " + weapon.getFancyStars() + " lvl " + weapon.getLevel());
                           counter++;
                         }
-                        int input6 = getMainMenuInput("select a weapon or " + counter + ".back");
+                        int input6 = getMainMenuInput("select a weapon or " + counter + ".back", rangeArrayListMaker(1, counter));
                         if(input6 != counter) {
                           clearConsole();
                           character.deEquipWeapon(false);
@@ -265,7 +265,7 @@ class Main{
                         if(character.getArtifactList()[i - 1] == null) System.out.println(i + ". unequipped");
                         else System.out.println(i + ". " + character.getArtifactList()[i - 1].getName() + " " + character.getArtifactList()[i - 1].getFancyStars() + " lvl " + character.getArtifactList()[i - 1].getLevel());
                       }
-                      int input5 = getMainMenuInput(6 + ". back");
+                      int input5 = getMainMenuInput(6 + ". back", rangeArrayListMaker(1, 6));
                       clearConsole();
                       if(input5 != 6){
                         boolean artifactDetailViewing = true;
@@ -275,7 +275,7 @@ class Main{
                           }
                           else{
                             System.out.println(character.getArtifactList()[input5 - 1]);
-                            int input6 = getMainMenuInput("1.switch artifact\n2.remove artifact\n3.upgrade artifact\n4.back");
+                            int input6 = getMainMenuInput("1.switch artifact\n2.remove artifact\n3.upgrade artifact\n4.back", rangeArrayListMaker(1, 4));
                             clearConsole();
                             if(input6 == 1){
                               switchArtifact(character, input5 - 1, character.getArtifactList()[input5 - 1]);
@@ -296,7 +296,7 @@ class Main{
                                   System.out.println(tracker + ". " + artifact);
                                   tracker++;
                                 }
-                                int input7 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back");
+                                int input7 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back", rangeArrayListMaker(1, inventory.getArtifacts().size()));
                                 if(input7 != inventory.getArtifacts().size() + 1){
                                   upgradeArtifact(character.getArtifactList()[input5 - 1], inventory.getArtifacts().get(input7 - 1));
                                 }
@@ -340,14 +340,14 @@ class Main{
                 Artifact artifact = inventory.getArtifacts().get(i - 1);
                 System.out.println(i + ". " + artifact);
               }
-              int input3 = getMainMenuInput((inventory.getArtifacts().size() + 1) + ". back\nselect an artifact");
+              int input3 = getMainMenuInput((inventory.getArtifacts().size() + 1) + ". back\nselect an artifact", rangeArrayListMaker(1, inventory.getArtifacts().size()));
               if(input3 == inventory.getArtifacts().size() + 1) artifactViewing = false;
               else{
                 Artifact artifact = inventory.getArtifacts().get(input3 - 1);
                 clearConsole();
                 boolean viewingArtifact = true;
                 while(viewingArtifact){
-                  int input4 = getMainMenuInput(artifact + "\n1.level up artifact\n2.back");
+                  int input4 = getMainMenuInput(artifact + "\n1.level up artifact\n2.back", rangeArrayListMaker(1, 2));
                   if(input4 == 1){
                     clearConsole();
                     boolean upgradingArtifact = true;
@@ -361,7 +361,7 @@ class Main{
                         Artifact artifact2 = inventory.getArtifacts().get(i - 1);
                         System.out.println(i + ". " + artifact2);
                       }
-                      int input5 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back");
+                      int input5 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back", rangeArrayListMaker(1, inventory.getArtifacts().size()));
                       if(input5 != inventory.getArtifacts().size() + 1){
                         upgradeArtifact(inventory.getArtifacts().get(input4 - 1), inventory.getArtifacts().get(input5 - 1));
                       }
@@ -382,14 +382,14 @@ class Main{
                 System.out.println(counter + "." + weapon.getName() + " " + weapon.getFancyStars() + " lvl " + weapon.getLevel());
                 counter += 1;
               }
-              int input3 = getMainMenuInput("select a weapon\nor\n0.back");
+              int input3 = getMainMenuInput("select a weapon\nor\n0.back", rangeArrayListMaker(0, counter));
               clearConsole();
               if(input3 != 0){
                 Weapon weapon = inventory.getWeapons().get(input3 -1);
                 float percent = (weapon.getXp() * 100.0f) / weapon.getXpRequired();
                 boolean leveling = true;
                 while(leveling){
-                  int input4 = getMainMenuInput("lvl " + weapon.getLevel() + "\nxp " + weapon.getXp() + "/" + weapon.getXpRequired() + " (" + percent + ")\n\nupgrade your weapon?\n$1 = 10xp\n0 to go back");
+                  int input4 = getMainMenuInput("lvl " + weapon.getLevel() + "\nxp " + weapon.getXp() + "/" + weapon.getXpRequired() + " (" + percent + ")\n\nupgrade your weapon?\n$1 = 10xp\n0 to go back", rangeArrayListMaker(0, inventory.getMoney()));
                   clearConsole();
                   if(input4 == 0) leveling = false;
                   else{
@@ -414,7 +414,7 @@ class Main{
           System.out.println("1. debug [" + isToggledSetting("debug", true) + "]");
           System.out.println("2. clear data");
           System.out.println("3. test battle scene");
-          int input2 = getMainMenuInput("4. exit");
+          int input2 = getMainMenuInput("4. exit", rangeArrayListMaker(1, 4));
           //debug toggle
           if(input2 == 1) toggleSetting("debug");
           //clear data
@@ -639,7 +639,7 @@ class Main{
                   "\n\t" + enemy.getHealth() +
                   "\n==========================================\n" +
                   character.getName() + " has " + character.getHealth() + " health" +
-                  "\n1.attack\n2.run");
+                  "\n1.attack\n2.run", new ArrayList<Integer>(List.of(1,2)));
         }
         else{
           input = getMainMenuInput("===========================================\n\t" +
@@ -647,7 +647,7 @@ class Main{
                   "\n\t" + enemy.getHealth() +
                   "\n==========================================\n" +
                   character.getName() + " has " + character.getHealth() + " health" +
-                  "\n1.attack");
+                  "\n1.attack", new ArrayList<Integer>(List.of(1)));
         }
         if(input == 1){
           clearConsole();
@@ -705,13 +705,13 @@ class Main{
     }
   }
 
-  public static void switchArtifact(Character character, int position, Artifact startingArtifact){
+  public static void switchArtifact(Character character, int position, Artifact startingArtifact) throws FileNotFoundException {
     int tracker = 1;
     for(Artifact artifact: inventory.getArtifacts()){
       System.out.println(tracker + ". " + artifact);
       tracker++;
     }
-    int input = getMainMenuInput(tracker + ". back");
+    int input = getMainMenuInput(tracker + ". back", rangeArrayListMaker(0, tracker));
     if(input != tracker){
       if(startingArtifact != null){
         character.deEquipArtifact(position);
@@ -910,14 +910,14 @@ class Main{
                 "\n\t" + testDummy.getHealth() +
                 "\n==========================================\n" +
                 testGuy.getName() + " has " + testGuy.getHealth() + " health" +
-                "\n1.attack\n2.edit test data\n3.run");
+                "\n1.attack\n2.edit test data\n3.run", rangeArrayListMaker(0, 3));
         if(input == 1){
           if(testGuy.attack(testDummy, isToggledSetting("debug", true))) testDummy.setLevel(testGuy.getLevel());
           if(testDummy.attack(testGuy, isToggledSetting("debug", true))) testGuy.updateStats();
         }
         else if(input == 2){
           clearConsole();
-          int input2 = getMainMenuInput("1.enemy\n2.player\n3.break");
+          int input2 = getMainMenuInput("1.enemy\n2.player\n3.break", rangeArrayListMaker(1, 3));
           clearConsole();
           if(input2 == 1) testDummy.editStats();
           else if(input2 == 2) testGuy.editStats();
