@@ -32,9 +32,9 @@ public class BattleAreas {
             new ArrayList<Enemy>(
                 List.of(new Enemy(
                     "Angry Pedestrian",
-                    15,
+                    30,
                     60,
-                    3,
+                    2,
                     new Weapon(
                         "Knife",
                         1,

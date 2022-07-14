@@ -54,7 +54,7 @@ public class Character {
     initialDefense = defense;
     initialCritRate = critRate;
     initialCritDamage = critDamage;
-    xpRequired = (level * 25) + (starRating * 75);
+    xpRequired = (long) (((level * 75) + (level * 0.75)) + (starRating * 25));
     defaultHealth = (int) (2 * level + (starRating * 10));
     defaultAttackDamage = (int) (1 * (level * 1.45) + (starRating + 2));
     defaultDefense = (int) (0.5 + (level * 0.5) + (starRating * 0.5));
@@ -118,7 +118,7 @@ public class Character {
     level += amount;
     //System.out.println(xpRequired);
     previousXpRequired = xpRequired;
-    xpRequired = (level * 25) + (starRating * 75);
+    xpRequired = (long) (((level * 80) + (level * 0.80)) + (starRating * 20));
     defaultHealth = (int) (2 * level + (starRating * 10));
     defaultAttackDamage = (int) (1 * (level * 1.45) + (starRating + 2));
     defaultDefense = (int) (0.5 + (level * 0.5) + (starRating * 0.5));
@@ -393,7 +393,7 @@ public class Character {
   }
 
   public double percentValueGiver(int starRating, double defaultAmount, Buff buff){
-    return defaultAmount + (defaultAmount * ((2 * starRating) + (buff.getBuff()[2] * 1.5)));
+    return defaultAmount * ((2 * starRating) + (buff.getBuff()[2] * 2)) * 0.01;
   }
 
   public int getDefense() {
