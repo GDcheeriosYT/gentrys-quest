@@ -589,7 +589,7 @@ class Main{
     ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
     ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     artifacts = battleArea.initializeArtifacts(character.getDifficulty());
-    enemies = battleArea.initializeEnemies(character.getDifficulty(), (character.getLevel() % 20));
+    enemies = battleArea.initializeEnemies(character.getDifficulty(), (character.getLevel() % 20) + 2);
 
     boolean ran = false;
     String ending = "";
