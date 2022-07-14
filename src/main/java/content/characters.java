@@ -66,6 +66,11 @@ public class characters {
     Character makDaddy = new Character(5, "Mak Daddy", 1, 2, 1, 0.0, 0, "4 foot 11 and 40 pounds but big strong.");
     Character kchuntMan = new Character(5, "KchuntMan", 0, 0, 0, 4.0, 0, "Stealth Mode.");
     Character hentaiMan = new Character(5, "Hentai Man", 0, 0, 0, 4.0, 0, "Weaponized hentai.");
+    Character jayceeMaiers = new Character(5, "Jaycee Maiers", 2, 1, 1, 0.0, 0, "The booty builder.");
+    Character jackBorland = new Character(5, "Jack Borland", 2, 0, 1, 0.0, 1, "The chicken wiener collector.");
+    Character masonBorland = new Character(5, "Mason Borland", 0, 0, 0, 4.0, 0, "The beautiful nut haver.");
+    Character charlieJohnson = new Character(5, "Charlie Johnson", 3, 0, 0, 1.0, 0, "He used to be skinny, but he ate too much kfc.");
+    Character oliviaMesserschmidt = new Character(5,"Olivia Messerschmidt", 4, 0, 0, 0.0, 0, "Creative.");
 
     //6 star(divine) characters
     Character GDcheerios = new Character(6, "GDcheerios", 6, 6, 6, 6.0, 6, "The all mighty. He's Practically god...");
@@ -133,6 +138,11 @@ public class characters {
     contentCharacters.add(makDaddy);
     contentCharacters.add(kchuntMan);
     contentCharacters.add(hentaiMan);
+    contentCharacters.add(jayceeMaiers);
+    contentCharacters.add(jackBorland);
+    contentCharacters.add(masonBorland);
+    contentCharacters.add(charlieJohnson);
+    contentCharacters.add(oliviaMesserschmidt);
     contentCharacters.add(GDcheerios);
   }
 

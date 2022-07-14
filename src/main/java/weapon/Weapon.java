@@ -10,9 +10,10 @@ public class Weapon {
   private long xp = 0;
   private long xpRequired = 100;
   long previousXpRequired;
-  private final int starRating;
+  private int starRating;
   private int baseAttack;
-  private final Buff attribute;
+  private int initialBaseAttack;
+  private Buff attribute;
   private final Verbs verbs;
   private final String description;
 
@@ -21,6 +22,7 @@ public class Weapon {
     this.starRating = starRating;
     this.weaponType = weaponType;
     this.baseAttack = baseAttack;
+    this.initialBaseAttack = baseAttack;
     this.attribute = attribute;
     this.verbs = verbs;
     this.description = description;
@@ -38,14 +40,9 @@ public class Weapon {
 
   public void levelUp(int amount){
     level += amount;
-    for(int i = 0; i < amount; i++){
-      previousXpRequired = xpRequired;
-      xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
-      baseAttack += (level*0.16) + (starRating);
-      if(level % 5 == 0){
-        attribute.levelUp(1);
-      }
-    }
+    previousXpRequired = xpRequired;
+    xpRequired = (long) (level * 25) + (starRating * 75);
+    baseAttack = initialBaseAttack + (int) ((level*1.5) + (starRating * 2));
   }
 
   public String getFancyStars(){
@@ -99,12 +96,44 @@ public class Weapon {
     return attribute;
   }
 
+  public int getBaseAttack() {
+    return baseAttack;
+  }
+
+  public void setBaseAttack(int baseAttack) {
+    this.baseAttack = baseAttack;
+  }
+
   public String toString(){
     String stars = "";
     for(int i = 0; i < starRating; i++){
       stars += "*";
     }
-    return name + " " + stars + "\ntype: " + weaponType + "\nbase attack: " + baseAttack + "\nattribute " + attribute + " +" + ((attribute.getBuff()[1] * 0.85) * (starRating * 1.3));
+    return name + " " + stars + "\ntype: " + weaponType + "\nbase attack: " + baseAttack + "\nattribute " + attribute + " +" + ((attribute.getBuff()[2] * 0.85) * (starRating * 1.3)) + (attribute.getBuff()[1] == 1 ? "%" : "");
+  }
+
+  public void setStarRating(int starRating) {
+    this.starRating = starRating;
+  }
+
+  public String editingToString(){
+    String stars = "";
+    for(int i = 0; i < starRating; i++){
+      stars += "*";
+    }
+    return name + " <-[Q]" + stars + "[W]->\ntype: " + weaponType + "\nbase attack: <-[A]" + baseAttack + "[S]->\nattribute [F]change attribute " + attribute + " +" + ((attribute.getBuff()[2] * 0.85) * (starRating * 1.3)) + (attribute.getBuff()[1] == 1 ? "%" : "");
+  }
+
+  public String attributeToStringEditing(){
+    String stars = "";
+    for(int i = 0; i < starRating; i++){
+      stars += "*";
+    }
+    return name + " [Q]edit attribute type " + attribute + " <-[A]+" + ((attribute.getBuff()[2] * 0.85) * (starRating * 1.3)) + (attribute.getBuff()[1] == 1 ? "%" : "")+ "[S]->";
+  }
+
+  public void setAttribute(String buffAttribute, boolean percentageBoolean){
+    attribute = new Buff(buffAttribute, percentageBoolean);
   }
 
   public JSONObject getData(){
