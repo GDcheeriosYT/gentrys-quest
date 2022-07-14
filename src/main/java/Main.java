@@ -466,7 +466,8 @@ class Main{
                 "* Added percentage value artifacts by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/59\n" +
                 "* Reworked calculations to work without loops by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/66\n" +
                 "* Added partial battle scene testing capability by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/60\n" +
-                "* Added list of allowed keys to input methods to prevent crashes by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/67");
+                "* Added list of allowed keys to input methods to prevent crashes by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/67\n" +
+                "* Added changelog by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/68");
         pressEnterToContinue(true, true);
       }
       else{
