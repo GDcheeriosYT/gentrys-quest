@@ -125,7 +125,7 @@ class Main{
     startupAmount += 1;
 
     while(true){
-      int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.Quit", rangeArrayListMaker(1, 5));
+      int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.changelog\n6.Quit", rangeArrayListMaker(1, 6));
       //Locations
       if(input == 1){
         clearConsole();
@@ -425,6 +425,49 @@ class Main{
             inSettings = false;
           }
         }
+      }
+      else if(input == 5){
+        clearConsole();
+        System.out.println("v2.0.0 BETA");
+        System.out.println("* removed infinite money statement by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/2\n" +
+                "* Regulated enemy stats by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/3\n" +
+                "* Rescaled enemy level to stats result by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/4\n" +
+                "* added some cody content by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/5\n" +
+                "* Added intro sequence for starting out by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/6\n" +
+                "* Fixed battle areas index out of bounds exception in robloxia high location by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/7\n" +
+                "* Fixed locations not being indexed when listed by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/8\n" +
+                "* Fixed difficulty incrementor going up on first level up by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/14\n" +
+                "* Corrected verbs for quandale dingle weapon by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/16\n" +
+                "* Made health restore at the end of battle area by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/18\n" +
+                "* Made attack info shown in battles by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/19\n" +
+                "* Fixed \"You have no weapon...\" dialogue from causing crashes by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/20\n" +
+                "* Rescaled how stats change on leveling up by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/17\n" +
+                "* Changed up the intro sequence a bit by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/21\n" +
+                "* Fixed verb on brody's broadsword by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/22\n" +
+                "* Fixed artifact is max level dialogue loop by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/23\n" +
+                "* Removed single boss area parameter by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/24\n" +
+                "* Work on mason content by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/25\n" +
+                "* Added climbing gym battle area by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/26\n" +
+                "* Added target battle area by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/27\n" +
+                "* Made only one enemy appear in battle area if it's a boss area and there's only one enemy by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/28\n" +
+                "* Added settings to the game by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/29\n" +
+                "* Added arguments to start out with a character by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/30\n" +
+                "* Fixed verbs on cool weapon by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/31\n" +
+                "* Changed intro from timed to key press progression by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/32\n" +
+                "* Changed code to update player stats after managing artifacts by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/44\n" +
+                "* Changed `args[0] != null` to `args.length != 0` by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/43\n" +
+                "* Fixed grammatical error in target battle area by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/41\n" +
+                "* Add try & except clause around `averageStarRating` assignment by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/42\n" +
+                "* Fixed player criticals not happening in battle by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/46\n" +
+                "* Added obtaining of other families in results by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/47\n" +
+                "* added divine characters by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/49\n" +
+                "* Rescaled enemy stats by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/51\n" +
+                "* Added missing clear console calls by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/53\n" +
+                "* Added percentage value artifacts by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/59\n" +
+                "* Reworked calculations to work without loops by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/66\n" +
+                "* Added partial battle scene testing capability by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/60\n" +
+                "* Added list of allowed keys to input methods to prevent crashes by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/67");
+        pressEnterToContinue(true, true);
       }
       else{
         saveGame();
