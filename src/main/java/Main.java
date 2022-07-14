@@ -428,6 +428,7 @@ class Main{
       }
       else if(input == 5){
         clearConsole();
+        System.out.println("v2.0.0 BETA");
         pressEnterToContinue(true, true);
       }
       else{
