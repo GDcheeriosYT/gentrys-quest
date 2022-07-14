@@ -572,25 +572,30 @@ class Main{
     while(!goodInput){
       input = new Scanner(System.in);
       System.out.println(text);
-      int scannerInput = input.nextInt();
-      if(isToggledSetting("debug", true)){
-        System.out.println("debug: checking valid entries" + " {" + goodInput + "}");
+      try{
+        int scannerInput = input.nextInt();
+        if(isToggledSetting("debug", true)){
+          System.out.println("debug: checking valid entries" + " {" + goodInput + "}");
+        }
+        for(int input1: allowedInputs){
+          if(input1 == scannerInput){
+            output = input1;
+            if(isToggledSetting("debug", true)){
+              System.out.println("debug: [" + allowedInputs.get(allowedInputs.indexOf(input1)) + "] valid entry" + " {" + !goodInput + "}");
+              timeout(1000, true);
+            }
+            goodInput = true;
+            break;
+          }
+          else{
+            if(isToggledSetting("debug", true)){
+              System.out.println("debug: [" + allowedInputs.get(allowedInputs.indexOf(input1)) + "]" + " not valid entry" + " {" + goodInput + "}");
+            }
+          }
+        }
       }
-      for(int input1: allowedInputs){
-        if(input1 == scannerInput){
-          output = input1;
-          if(isToggledSetting("debug", true)){
-            System.out.println("debug: [" + allowedInputs.get(allowedInputs.indexOf(input1)) + "] valid entry" + " {" + !goodInput + "}");
-            timeout(1000, true);
-          }
-          goodInput = true;
-          break;
-        }
-        else{
-          if(isToggledSetting("debug", true)){
-            System.out.println("debug: [" + allowedInputs.get(allowedInputs.indexOf(input1)) + "]" + " not valid entry" + " {" + goodInput + "}");
-          }
-        }
+      catch (InputMismatchException e){
+        clearConsole();
       }
     }
     return output;
