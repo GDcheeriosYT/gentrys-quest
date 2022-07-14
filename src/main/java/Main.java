@@ -125,7 +125,7 @@ class Main{
     startupAmount += 1;
 
     while(true){
-      int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.Quit", rangeArrayListMaker(1, 5));
+      int input = getMainMenuInput("1.Travel\n2.Gacha\n3.Inventory\n4.Options\n5.changelog\n6.Quit", rangeArrayListMaker(1, 6));
       //Locations
       if(input == 1){
         clearConsole();
@@ -425,6 +425,8 @@ class Main{
             inSettings = false;
           }
         }
+      }
+      else if(input == 5){
       }
       else{
         saveGame();
