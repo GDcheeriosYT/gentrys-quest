@@ -565,10 +565,35 @@ class Main{
     }
   }
 
-  public static int getMainMenuInput(String text){
-    Scanner input = new Scanner(System.in);
-    System.out.println(text);
-    return input.nextInt();
+  public static int getMainMenuInput(String text, ArrayList<Integer> allowedInputs) throws FileNotFoundException {
+    Scanner input = null;
+    int output = 0;
+    boolean goodInput = false;
+    while(!goodInput){
+      input = new Scanner(System.in);
+      System.out.println(text);
+      int scannerInput = input.nextInt();
+      if(isToggledSetting("debug", true)){
+        System.out.println("debug: checking valid entries" + " {" + goodInput + "}");
+      }
+      for(int input1: allowedInputs){
+        if(input1 == scannerInput){
+          output = input1;
+          if(isToggledSetting("debug", true)){
+            System.out.println("debug: [" + allowedInputs.get(allowedInputs.indexOf(input1)) + "] valid entry" + " {" + !goodInput + "}");
+            timeout(1000, true);
+          }
+          goodInput = true;
+          break;
+        }
+        else{
+          if(isToggledSetting("debug", true)){
+            System.out.println("debug: [" + allowedInputs.get(allowedInputs.indexOf(input1)) + "]" + " not valid entry" + " {" + goodInput + "}");
+          }
+        }
+      }
+    }
+    return output;
   }
 
   public static void clearConsole(){
@@ -914,5 +939,16 @@ class Main{
     else if (randomNumber <= 50) return 2;
     else if (randomNumber <= 80) return 1;
     return 1;
+  }
+
+  public static ArrayList<Integer> rangeArrayListMaker(int min, int max) throws FileNotFoundException {
+    ArrayList<Integer> rangeToReturn = new ArrayList<Integer>();
+    for(int i = min; i<=max; i++){
+      rangeToReturn.add(i);
+    }
+    if(isToggledSetting("debug", true)){
+      System.out.println("debug: range of input" + rangeToReturn);
+    }
+    return rangeToReturn;
   }
 }
