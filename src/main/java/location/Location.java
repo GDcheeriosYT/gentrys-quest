@@ -22,6 +22,8 @@ public class Location {
     }
   }
 
+  public int battleAreaCount(){return battleAreas.size();}
+
   public BattleArea getBattleArea(int index){
     return battleAreas.get(index);
   }
