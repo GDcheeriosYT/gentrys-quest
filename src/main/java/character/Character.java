@@ -618,6 +618,8 @@ public class Character {
                 break;
               case "S":
                 weapon.getAttribute().levelUp(10);
+                break;
+
               default:
                 break label1;
             }
