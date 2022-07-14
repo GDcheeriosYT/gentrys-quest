@@ -109,7 +109,7 @@ public class Weapon {
     for(int i = 0; i < starRating; i++){
       stars += "*";
     }
-    return name + " " + stars + "\ntype: " + weaponType + "\nbase attack: " + baseAttack + "\nattribute " + attribute + " +" + ((attribute.getBuff()[1] * 0.85) * (starRating * 1.3));
+    return name + " " + stars + "\ntype: " + weaponType + "\nbase attack: " + baseAttack + "\nattribute " + attribute + " +" + ((attribute.getBuff()[2] * 0.85) * (starRating * 1.3)) + (attribute.getBuff()[1] == 1 ? "%" : "");
   }
 
   public void setStarRating(int starRating) {
@@ -121,7 +121,7 @@ public class Weapon {
     for(int i = 0; i < starRating; i++){
       stars += "*";
     }
-    return name + " <-[Q]" + stars + "[W]->\ntype: " + weaponType + "\nbase attack: <-[A]" + baseAttack + "[S]->\nattribute [F]change attribute " + attribute + " +" + ((attribute.getBuff()[1] * 0.85) * (starRating * 1.3));
+    return name + " <-[Q]" + stars + "[W]->\ntype: " + weaponType + "\nbase attack: <-[A]" + baseAttack + "[S]->\nattribute [F]change attribute " + attribute + " +" + ((attribute.getBuff()[2] * 0.85) * (starRating * 1.3)) + (attribute.getBuff()[1] == 1 ? "%" : "");
   }
 
   public String attributeToStringEditing(){
@@ -129,7 +129,7 @@ public class Weapon {
     for(int i = 0; i < starRating; i++){
       stars += "*";
     }
-    return name + " [Q]edit attribute type " + attribute + " <-[A]+" + ((attribute.getBuff()[1] * 0.85) * (starRating * 1.3)) + "[S]->";
+    return name + " [Q]edit attribute type " + attribute + " <-[A]+" + ((attribute.getBuff()[2] * 0.85) * (starRating * 1.3)) + (attribute.getBuff()[1] == 1 ? "%" : "")+ "[S]->";
   }
 
   public void setAttribute(String buffAttribute, boolean percentageBoolean){
