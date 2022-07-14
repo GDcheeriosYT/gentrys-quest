@@ -37,18 +37,29 @@ public class Character {
   private Artifact[] artifacts = {null, null, null, null, null};
   private int difficulty = 1;
   private boolean equipped = false;
+  private int initialHealth;
+  private int initialAttack;
+  private int initialDefense;
+  private double initialCritRate;
+  private int initialCritDamage;
 
   //character creation constructor
   public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description){
     this.starRating = starRating;
     this.name = name;
     this.description = description;
-    this.xpRequired = (long) (xpRequired * (starRating * 0.3));
-    this.defaultHealth = 15 + (starRating * 5) + (health * 5);
-    this.defaultAttackDamage = starRating + attack;
-    this.defaultDefense = starRating + defense;
-    this.defaultCritRate = starRating + critRate;
-    this.defaultCritDamage = starRating + critDamage;
+    initialHealth = health * 5;
+    initialAttack = attack;
+    initialDefense = defense;
+    initialCritRate = critRate;
+    initialCritDamage = critDamage;
+    xpRequired = (long) (((level * 75) + (level * 0.75)) + (starRating * 25));
+    defaultHealth = (int) (2 * level + (starRating * 10));
+    defaultAttackDamage = (int) (1 * (level * 1.45) + (starRating + 2));
+    defaultDefense = (int) (0.5 + (level * 0.5) + (starRating * 0.5));
+    defaultCritRate = 7 + (level * 0.2) + (starRating * 1);
+    defaultCritDamage = (int) (0.5 + (level * 1.45) + (starRating * 2));
+    difficulty = (int)(1 + (level / 20));
     updateStats();
   }
 
@@ -104,17 +115,15 @@ public class Character {
 
   public void levelUp(int amount){
     level += amount;
-    for(int i = 0; i < amount; i++){
-      //System.out.println(xpRequired);
-      previousXpRequired = xpRequired;
-      xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
-      defaultHealth += 2 + (level * 0.5) + (starRating * 1.67);
-      defaultAttackDamage += 1 + (level * 0.5) + (starRating);
-      defaultDefense += 0.5 + (level * 0.5) + (starRating * 0.5);
-      defaultCritRate += 0.1 + (starRating * 0.03);
-      defaultCritDamage += 0.5 + (level * 0.5) + (starRating * 0.85);
-      difficulty = (int)(1 + (level / 20));
-    }
+    //System.out.println(xpRequired);
+    previousXpRequired = xpRequired;
+    xpRequired = (long) (((level * 80) + (level * 0.80)) + (starRating * 20));
+    defaultHealth = (int) (2 * level + (starRating * 10));
+    defaultAttackDamage = (int) (1 * (level * 1.45) + (starRating + 2));
+    defaultDefense = (int) (0.5 + (level * 0.5) + (starRating * 0.5));
+    defaultCritRate = 7 + (level * 0.2) + (starRating * 1);
+    defaultCritDamage = (int) (0.5 + (level * 1.45) + (starRating * 2));
+    difficulty = (int)(1 + (level / 20));
 
     additionalHealth = 0;
     additionalAttackDamage = 0;
@@ -367,6 +376,10 @@ public class Character {
     for (int i = 0; i < 100; i++) {
       System.out.println("");
     }
+  }
+
+  public double percentValueGiver(int starRating, double defaultAmount, Buff buff){
+    return defaultAmount * ((2 * starRating) + (buff.getBuff()[2] * 2)) * 0.01;
   }
 
   public int getDefense() {
