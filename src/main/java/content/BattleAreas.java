@@ -387,6 +387,404 @@ public class BattleAreas {
             getFamilyArtifacts(new ArrayList<>(List.of("brayden messerschmidt", "david napier", "hyvee")))
         );
 
+        BattleArea valleyHighSchool = new BattleArea(
+            "Valley High School",
+            false,
+            new ArrayList<Enemy>(
+                List.of(
+                    new Enemy(
+                        "Brody Krysa",
+                        20,
+                        3,
+                        2,
+                        new Weapon("Brody's Broadsword", 1, "Broadsword", 10, new Buff("attack"), new Verbs("swung at", "whacked"), "Brody the mighty warrior's broadsword.\nThe weapon was wielded for centuries by Brody himself, but was lost when the great calamity struck and he lost his life to the invading Waifu's."),
+                        "Mighty warrior. Known as wall climber."
+                    ),
+                    new Enemy(
+                        "David Napier",
+                        20,
+                        3,
+                        2,
+                        new Weapon("Jason's Junk", 5, "penis", 42, new Buff("health"), new Verbs("wanked", "cumblasted"), "it's Jason's. From Hy-vee. Estimated 14 inches."),
+                        "6'4''."
+                    ),
+                    new Enemy(
+                        "Gavin Knudsen",
+                        20,
+                        4,
+                        2,
+                        new Weapon("Nut Buster", 4, "Mace", 25, new Buff("attack"), new Verbs("you busted", "busted their nuts"), "Perfect weapon to slide on your opps and bust their nuts."),
+                        "description"
+                    ),
+                    new Enemy(
+                        "Ryan Martinez",
+                        25,
+                        3,
+                        2,
+                        new Weapon(
+                            "Fists",
+                            new Verbs(
+                                "punched",
+                                "upper-cut"
+                            )
+                        ),
+                        "an American former YouTuber known for his rant videos, vlogs, and for being a superfan of the American football team the Philadelphia Eagles."
+                    ),
+                    new Enemy(
+                        "Connor Fogarty",
+                        20,
+                        4,
+                        3,
+                        new Weapon("Bone", 2, "Sword", 3, new Buff(""), new Verbs("clobbered", "smushed"), "4 foot long dog bone"),
+                        "A mutant shih tzu who loves cheese and belly rubs."
+                    ),
+                    new Enemy(
+                        "Connor",
+                        20,
+                        4,
+                        2,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "description"
+                    ),
+                    new Enemy(
+                        "Max Tramontina",
+                        25,
+                        4,
+                        2,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "description"
+                    ),
+                    new Enemy(
+                        "Caleb Jallen",
+                        25,
+                        4,
+                        2,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "Dude I don't know."
+                    ),
+                    new Enemy(
+                        "Charlie Eddie",
+                        20,
+                        5,
+                        2,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "A lone hunter in the wild just trying to avenge his dead dog."
+                    ),
+                    new Enemy(
+                        "Alec Ferchen",
+                        20,
+                        5,
+                        2,
+                        new Weapon("Alec's Rock", 2, "Stone", 12, new Buff("attack"), new Verbs("hit", "immensely bashed"), "A small rock."),
+                        "Big sexy man"
+                    ),
+                    new Enemy(
+                        "Dyllon Forney",
+                        20,
+                        5,
+                        2,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "description"
+                    ),
+                    new Enemy(
+                        "Kolin Craig",
+                        25,
+                        3,
+                        3,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "A super *tall* and handsome man."
+                    ),
+                    new Enemy(
+                        "Asher Lane",
+                        20,
+                        5,
+                        2,
+                        new Weapon("Homade Staff of Honey", 3, "Staff", 20, new Buff("critRate"), new Verbs("stabbed", "enlightened"), "A pointy staff of honey."),
+                        "Pray to the goddess honey"
+                    ),
+                    new Enemy(
+                        "Benji",
+                        20,
+                        6,
+                        2,
+                        new Weapon("The Messerschmidter", 5, "Sword", 40, new Buff("attack"), new Verbs("with your Messerschmidter tapped", "with your Messerschmidter spat on"), "A life size version of Brayden Messerschmidt but as a sword"),
+                        "He was born a very lucky boy."
+                    ),
+                    new Enemy(
+                        "Dylan Topic",
+                        35,
+                        3,
+                        2,
+                        new Weapon("Sir Far Quad", 5, "Lance", 50, new Buff("critDamage"), new Verbs("impailed", "sliced"), "Long long sword."),
+                        "Cool uhm uhm uhm uhm uhm uhm oh tetris dude."
+                    ),
+                    new Enemy(
+                        "Max Shrum",
+                        30,
+                        4,
+                        2,
+                        new Weapon("Cypirean Scythe", 5, "Scythe", 38, new Buff(""), new Verbs("swung at", "did a sweeping 360 BayBlade scythe spin"), "Long black shaft with 死 imprinted on the blade."),
+                        "Minecraft player thing"
+                    ),
+                    new Enemy(
+                        "Joe Nuts",
+                        20,
+                        3,
+                        5,
+                        new Weapon("Anubis Blade", 4, "Sword", 30, new Buff("attack"), new Verbs("quindavious bingleton smashed", "placed a goblin giant on the battlefield and it smacked the poop out of"), "Fried chicken muncher :)."),
+                        "Massive man who likes sausage."
+                    ),
+                    new Enemy(
+                        "Hanna Hardy",
+                        25,
+                        5,
+                        2,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "IDK"
+                    ),
+                    new Enemy(
+                        "Mr.Gentry",
+                        30,
+                        5,
+                        2,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "Hyplains drifter"
+                    ),
+                    new Enemy(
+                        "Brayden Messerschmidt",
+                        20,
+                        7,
+                        2,
+                        new Weapon("Brayden's Osu Pen", 5, "Pen", 36, new Buff("critRate"), new Verbs("hit a circle on", "fc'ed the pattern on"), "Brayden's osu pen."),
+                        "An osu player who formed a contract with ppy(Dean Herbert ot not talk to females.)"
+                    ),
+                    new Enemy(
+                        "Seth Smith",
+                        25,
+                        6,
+                        2,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "goat."
+                    ),
+                    new Enemy(
+                        "Oliver Strauss",
+                        20,
+                        7,
+                        2,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "sneaky boi, has many females."
+                    ),
+                    new Enemy(
+                        "Nathan Tenney",
+                        25,
+                        4,
+                        4,
+                        new Weapon("Ichimonji", 4, "Katana", 36, new Buff("attack"), new Verbs("sliced", "performed a 100 calibur slice on"), "A blade wielded by Zoro.\nIs sharp enough to slice the wind."),
+                        "description"
+                    ),
+                    new Enemy(
+                        "Nolan Anderson",
+                        30,
+                        5,
+                        2,
+                        new Weapon("Mason Killer", 5, "Dagger", 50, new Buff("attack"), new Verbs("penetrated", "hard penetrated"), "Two purple daggers."),
+                        "Best character in the game"
+                    ),
+                    new Enemy(
+                        "Grant Armstrong",
+                        30,
+                        4,
+                        3,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "description"
+                    ),
+                    new Enemy(
+                        "Brian Hightower",
+                        20,
+                        5,
+                        4,
+                        new Weapon(
+                            "Guitar",
+                            new Verbs(
+                                    "used his guitar to hit",
+                                    "played a terrible song to"
+                            )
+                        ),
+                        "A headbanger"
+                    ),
+                    new Enemy(
+                        "Mason James",
+                        20,
+                        7,
+                        2,
+                        new Weapon("Mason-ator", 5, "Toothbrush", 34, new Buff("critDamage"), new Verbs("brushed", "squirted toothpaste on"), "THE TOOTHBRUSH.\nThis toothbrush has been handed down for generations upon generations by the greek gods. You must be worthy of the brush to obtain this brush."),
+                        "description"
+                    ),
+                    new Enemy(
+                        "Kevin",
+                        20,
+                        7,
+                        2,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "description"
+                    ),
+                    new Enemy(
+                        "Lucas Smidt",
+                        25,
+                        5,
+                        3,
+                        new Weapon("Cool Weapon", 5, "Sword", 43, new Buff("attack"), new Verbs("sweetified", "coolified"), "Super cool sword.\nOnly the coolest of the cool can wield this sword."),
+                        "Totally rad guy who is super awesome."
+                    ),
+                    new Enemy(
+                        "Sean Mcbroom",
+                        20,
+                        5,
+                        2,
+                        new Weapon(
+                                "Fists",
+                                new Verbs(
+                                        "punched",
+                                        "upper-cut"
+                                )
+                        ),
+                        "Fart nuts"
+                    ),
+                        new Enemy(
+                            "Derek Corona",
+                            30,
+                            5,
+                            2,
+                            new Weapon(
+                                    "Fists",
+                                    new Verbs(
+                                            "punched",
+                                            "upper-cut"
+                                    )
+                            ),
+                            "A mexican assassin who can't keep away from alcohol."
+                        ),
+                        new Enemy(
+                            "Bryce Anderson",
+                            30,
+                            5,
+                            2,
+                            new Weapon("Quandale Dingle", 5, "Person", 46, new Buff("attack"), new Verbs("quandale dingle'd", "dingle bombed"), "Long nose guy."),
+                            "Tall guy."
+                        ),
+                        new Enemy(
+                            "Spencer George",
+                            20,
+                            7,
+                            2,
+                            new Weapon("Sharp Throwing Cards", 5, "Playing Cards", 33, new Buff("critRate"), new Verbs("grazed", "sliced"), "Tactical throwing cards."),
+                            "Gambling glass cannon"
+                        ),
+                        new Enemy(
+                            "Will Johnson",
+                            25,
+                            5,
+                            3,
+                            new Weapon(
+                                    "Fists",
+                                    new Verbs(
+                                            "punched",
+                                            "upper-cut"
+                                    )
+                            ),
+                            "He has teh longest johnson."
+                        ),
+                        new Enemy(
+                            "Mr.Maxwell",
+                            40,
+                            8,
+                            7,
+                            new Weapon(
+                                "the punisher",
+                                    new Verbs(
+                                            "punished",
+                                            "bent over"
+                                    )
+                            ),
+                                "The principle of Valley High School."
+                        )
+                )
+            ),
+              getFamilyArtifacts(new ArrayList<>(List.of("nathan tenny", "brayden messerschmdit", "connor fogarty", "alec ferchen", "max shrum", "spencer george", "brody krysa", "lucas smidt", "nolan anderson", "gavin knudsen", "bryce anderson", "david napier")))
+        );
+
 
         //town of robloxia highschool
         BattleArea gymLockerRoomBathroom = new BattleArea(
@@ -498,6 +896,7 @@ public class BattleAreas {
         contentBattleAreas.add(climbIowa);
         contentBattleAreas.add(target);
         contentBattleAreas.add(hyvee);
+        contentBattleAreas.add(valleyHighSchool);
         contentBattleAreas.add(gymLockerRoomBathroom);
         contentBattleAreas.add(pureTaboosSet);
     }

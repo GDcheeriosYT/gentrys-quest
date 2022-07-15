@@ -13,7 +13,7 @@ public class characters {
   public characters(){
 
   }
-  
+
   public static void initializeContentCharacters(){
     //1 star characters
     Character brodyKrysa = new Character(1, "Brody Krysa", 0, 0, 0, 0.0, 0, "Mighty warrior. Known as wall climber.");
@@ -23,12 +23,12 @@ public class characters {
     //2 star characters
     Character gavinKnudsen = new Character(2, "Gavin Knudsen", 0, 1, 0, 0.0, 0, "description");
     Character ryanMartinez = new Character(2, "Ryan Martinez",  1, 0, 0, 0.0, 0, "an American former YouTuber known for his rant videos, vlogs, and for being a superfan of the American football team the Philadelphia Eagles.");
-    Character connor = new Character(2, "Connor", 0, 0, 0, 1.0, 0, "A mutant shih tzu who loves cheese and belly rubs.");
+    Character connor = new Character(2, "Connor", 0, 0, 0, 1.0, 0, "description");
 
     //3 star characters
     Character maxTramontina = new Character(3, "Max Tramontina", 1, 0, 0, 1.0, 0, "description");
     Character calebJallen = new Character(3, "Caleb Jallen", 1, 0, 0, 0.0, 1, "Dude I don't know.");
-    Character charlieEddie = new Character(3, "Charlie Eddie", 0, 2, 0, 0.0, 0, "A lone hunter in the wild just trying to avenge his dead dog.");
+    Character charlieEddie = new Character(3, "Charlie Eddie", 0, 2, 0, 0.0, 0, "");
     Character alecFerchen = new Character(3, "Alec Ferchen", 0, 2, 0, 0.0, 0, "Big sexy man.");
     Character dyllonForney = new Character(3, "Dyllon Forney", 0, 2, 0, 0, 0, "description");
     Character kolinCraig = new Character(3, "Kolin Craig", 1, 0, 1, 0.0, 0, "A super *tall* and handsome man.");
@@ -50,7 +50,7 @@ public class characters {
     Character oliverStrauss = new Character(5, "Oliver Strauss", 0, 0, 0, 2.0, 2, "sneaky boi, has many females.");
     Character nathanTenney = new Character(5, "Nathan Tenney", 1, 1, 2, 0.0, 0, "description");
     Character nolanAnderson = new Character(5, "Nolan Anderson", 2, 2, 0, 0.0, 0, "Best character in the game.");
-    Character grantArmstrong = new Character(5, "Grant Armstrong", 2, 1, 1, 0.0, 0, "");
+    Character grantArmstrong = new Character(5, "Grant Armstrong", 2, 1, 1, 0.0, 0, "description");
     Character brianHightower = new Character(5, "Brian Hightower", 0, 2, 2, 0.0, 0, "description");
     Character masonJames = new Character(5, "Mason James", 0, 4, 0, 0.0, 0, "description");
     Character shrpe = new Character(5, "Shrpe", 1, 3, 0, 0.0, 0, "Child prodigy who also specializes in making cupcakes for the the once famous Philadelphia eagles superfan.");

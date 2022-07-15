@@ -28,7 +28,8 @@ public class Locations {
                     getBattleArea("Down Town"),
                     getBattleArea("Climb Iowa"),
                     getBattleArea("Target"),
-                    getBattleArea("Hy-vee")
+                    getBattleArea("Hy-vee"),
+                    getBattleArea("Valley High School")
                 )
             )
         );

@@ -24,7 +24,7 @@ public class weapons {
       Weapon bone = new Weapon("Bone", 2, "Sword", 3, new Buff(""), new Verbs("clobbered", "smushed"), "4 foot long dog bone"); //connor weapon
 
       //3 star weapons
-      Weapon homemadeStaffOfHoney = new Weapon("Homade Staff of Honey", 3, "Staff", 20, new Buff("critRate"), new Verbs("stabbed", "enlightened"), "A pointy staff of honey.");
+      Weapon homemadeStaffOfHoney = new Weapon("Homade Staff of Honey", 3, "Staff", 20, new Buff("critRate"), new Verbs("stabbed", "enlightened"), "A pointy staff of honey."); //asher lane weapon
 
       //4 star weapons
       Weapon dualSabers = new Weapon("Dual Sabers", 4, "Saber", 32, new Buff("critDamage"), new Verbs("slashed", "mollywhopped"), "The Dual Sabers, plucked from the depths of hell.");
@@ -45,7 +45,7 @@ public class weapons {
       Weapon quandaleDingle = new Weapon("Quandale Dingle", 5, "Person", 46, new Buff("attack"), new Verbs("quandale dingle'd", "dingle bombed"), "Long nose guy."); //bryce anderson weapon
       Weapon theBunnyGirl = new Weapon("The Bunny Girl", 5, "katana", 46, new Buff("critDamage"), new Verbs("tickled", "came inside"), "Born from the highest luxurious used bunny girl outfit fabric. A lustful weapon"); //hentai man weapon
       Weapon theMobyDick = new Weapon("The Moby Dick", 5, "adult toy", 50, new Buff(""), new Verbs("stuck", "inserted in"), "Toes? Na, it pulls hoes."); //also mason james weapon
-      Weapon jasonsJunk = new Weapon("Jason's Junk", 5, "penis", 42, new Buff("health"), new Verbs("wanked", "cumblasted"), "it's Jason's. From Hy-vee. Estimated 14 inches.");
+      Weapon jasonsJunk = new Weapon("Jason's Junk", 5, "penis", 42, new Buff("health"), new Verbs("wanked", "cumblasted"), "it's Jason's. From Hy-vee. Estimated 14 inches."); //david napier weapon
 
       contentWeapons.add(sword);
       contentWeapons.add(bow);
