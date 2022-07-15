@@ -184,7 +184,7 @@ class Main{
         while(inventoryViewing){
           clearConsole();
           System.out.println("$" + inventory.getMoney());
-          int input2 = getMainMenuInput("1.Characters\n2.Artifacts\n3.Weapons\n4.Back", rangeArrayListMaker(0, 4));
+          int input2 = getMainMenuInput("1.Characters\n2.Artifacts\n3.Weapons\n4.Back", rangeArrayListMaker(1, 4));
           clearConsole();
           //Characters
           if(input2 == 1){
@@ -272,6 +272,8 @@ class Main{
                         while(artifactDetailViewing){
                           if(character.getArtifactList()[input5 - 1] == null){
                             switchArtifact(character, input5 - 1, null);
+                            clearConsole();
+                            break;
                           }
                           else{
                             System.out.println(character.getArtifactList()[input5 - 1]);
@@ -296,13 +298,14 @@ class Main{
                                   System.out.println(tracker + ". " + artifact);
                                   tracker++;
                                 }
-                                int input7 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back", rangeArrayListMaker(1, inventory.getArtifacts().size()));
+                                int input7 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back", rangeArrayListMaker(1, inventory.getArtifacts().size() + 1));
                                 if(input7 != inventory.getArtifacts().size() + 1){
                                   upgradeArtifact(character.getArtifactList()[input5 - 1], inventory.getArtifacts().get(input7 - 1));
                                 }
                                 else{
                                   clearConsole();
                                   upgradingArtifact = false;
+                                  break;
                                 }
                               }
                             }
@@ -340,8 +343,8 @@ class Main{
                 Artifact artifact = inventory.getArtifacts().get(i - 1);
                 System.out.println(i + ". " + artifact);
               }
-              int input3 = getMainMenuInput((inventory.getArtifacts().size() + 1) + ". back\nselect an artifact", rangeArrayListMaker(1, inventory.getArtifacts().size()));
-              if(input3 == inventory.getArtifacts().size() + 1) artifactViewing = false;
+              int input3 = getMainMenuInput((inventory.getArtifacts().size() + 1) + ". back\nselect an artifact", rangeArrayListMaker(1, inventory.getArtifacts().size() + 1));
+              if(input3 == inventory.getArtifacts().size() + 1)break;
               else{
                 Artifact artifact = inventory.getArtifacts().get(input3 - 1);
                 clearConsole();
@@ -355,20 +358,27 @@ class Main{
                       if(artifact.getLevel() == artifact.getStarRating() * 4){
                         System.out.println("Artifact is max level!");
                         upgradingArtifact = false;
+                        clearConsole();
                         break;
                       }
                       for(int i = 1; i < inventory.getArtifacts().size() + 1; i++){
                         Artifact artifact2 = inventory.getArtifacts().get(i - 1);
                         System.out.println(i + ". " + artifact2);
                       }
-                      int input5 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back", rangeArrayListMaker(1, inventory.getArtifacts().size()));
+                      int input5 = getMainMenuInput("which would you like to exchange?\n" + (inventory.getArtifacts().size() + 1) + ". back", rangeArrayListMaker(1, inventory.getArtifacts().size() + 1));
                       if(input5 != inventory.getArtifacts().size() + 1){
                         upgradeArtifact(inventory.getArtifacts().get(input4 - 1), inventory.getArtifacts().get(input5 - 1));
                       }
-                      else upgradingArtifact = false;
+                      else{
+                        clearConsole();
+                        break;
+                      }
                     }
                   }
-                  else viewingArtifact = false;
+                  else{
+                    clearConsole();
+                    break;
+                  }
                 }
               }
             }
@@ -762,14 +772,15 @@ class Main{
     }
     int input = getMainMenuInput(tracker + ". back", rangeArrayListMaker(0, tracker));
     if(input != tracker){
+      System.out.println("test");
       if(startingArtifact != null){
         character.deEquipArtifact(position);
         inventory.addArtifact(startingArtifact);
       }
       character.equipArtifact(position, inventory.getArtifacts().get(input - 1));
       inventory.removeArtifact(inventory.getArtifacts().get(input - 1));
+      clearConsole();
     }
-    clearConsole();
   }
 
   public static void removeArtifact(Character character, int position){
