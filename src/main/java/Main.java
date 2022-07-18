@@ -439,7 +439,8 @@ class Main{
       else if(input == 5){
         clearConsole();
         System.out.println("v2.0.0 BETA");
-        System.out.println("* removed infinite money statement by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/2\n" +
+        System.out.println("!some content that was added wasn't included in changelog\n" +
+                "* removed infinite money statement by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/2\n" +
                 "* Regulated enemy stats by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/3\n" +
                 "* Rescaled enemy level to stats result by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/4\n" +
                 "* added some cody content by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/5\n" +
