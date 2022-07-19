@@ -834,31 +834,25 @@ class Main{
   }
 
   public static void writeTo(String fileName, String content) throws FileNotFoundException {
-    System.out.println("we are about to be in the try");
     try (FileWriter file = new FileWriter(fileName)) {
-      System.out.println("we are in the try");
       file.write(content);
       file.flush();
     }
     catch (IOException e) {
-      System.out.println("it fucking failed retard");
       if(isToggledSetting("debug", true)) e.printStackTrace();
     }
-    System.out.println("passed try?");
   }
 
   public static JSONObject getData() throws FileNotFoundException {
     File file = new File(gameDataFilePath);
 
     String jsonData = "";
-    System.out.println("jsondata: " + jsonData);
 
     try (BufferedReader br = new BufferedReader(new FileReader(file)))
     {
       String line;
       while ((line = br.readLine()) != null) {
         jsonData += line + "\n";
-        System.out.println("jsondata: " + jsonData);
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -913,8 +907,6 @@ class Main{
   }
 
   public static void clearData() throws FileNotFoundException {
-
-    System.out.println("json data now being initialized");
 
     String jsonData = "{\n" +
             "  \"startupamount\" : 0,\n" +
@@ -1026,9 +1018,7 @@ class Main{
   }
 
   public static void createFiles() throws IOException {
-    System.out.println("creating file");
     new File("GameData.json").createNewFile();
-    System.out.println("we got here?");
     clearData();
   }
 }
