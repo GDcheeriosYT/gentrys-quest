@@ -1,6 +1,8 @@
 import java.io.*;
+import java.nio.file.*;
 import java.util.*;
 
+import content.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,36 +20,37 @@ class Main{
   static Inventory inventory = new Inventory();
   static ArrayList<Character> gachaCharacterObtained = new ArrayList<Character>();
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
-  static String gameDataFilePath = String.valueOf(ClassLoader.getSystemClassLoader().getResource("./GameData.json")).substring(6);
-  static String defaultsFilePath = String.valueOf(ClassLoader.getSystemClassLoader().getResource("./defaults.json")).substring(6);
+  static String gameDataFilePath = "GameData.json";
   static JSONObject settings = new JSONObject();
   static int startupAmount;
 
-  {
-    try {
+  public static void main(String[] args) throws IOException {
+    if(Files.exists(Path.of(gameDataFilePath))){
       startupAmount = getData().getInt("startupamount");
-    } catch (FileNotFoundException e) {
-      throw new RuntimeException(e);
     }
-  }
+    else{
+      System.out.println("no save files found... creating them now!");
+      createFiles();
+      gameDataFilePath = System.getProperty("user.dir") + "/GameData.json";
+      startupAmount = getData().getInt("startupamount");
 
-  public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-    String nameTest = "";
+    }
+      String nameTest = "";
     for(int i = 0; i<args.length; i++){
       nameTest += args[i] + " ";
     }
     clearConsole();
     System.out.println("loading...");
     System.out.println("loading artifacts");
-    content.artifacts.initializeContentArtifacts();
+    artifacts.initializeContentArtifacts();
     System.out.println("loading characters");
-    content.characters.initializeContentCharacters();
+    characters.initializeContentCharacters();
     System.out.println("loading weapons");
-    content.weapons.initializeContentWeapons();
+    weapons.initializeContentWeapons();
     System.out.println("loading battle areas");
-    content.BattleAreas.initializeContentBattleAreas();
+    BattleAreas.initializeContentBattleAreas();
     System.out.println("loading locations");
-    content.Locations.initializeContentLocations();
+    Locations.initializeContentLocations();
     System.out.println("loading game data");
     loadGame();
     Character equipedCharacter = null;
@@ -90,7 +93,7 @@ class Main{
       System.out.println(equipedCharacter.getName() + " Prepares for battle\n");
       pressEnterToContinue(false, false);
 
-      startBattle(content.BattleAreas.getContentBattleAreas().get(0), equipedCharacter, false, false);
+      startBattle(BattleAreas.getContentBattleAreas().get(0), equipedCharacter, false, false);
       pressEnterToContinue(false, false);
 
       if(equipedCharacter.getStarRating() == 6){
@@ -130,8 +133,8 @@ class Main{
       if(input == 1){
         clearConsole();
         listLocations();
-        int input2 = getMainMenuInput("where would you like to go?\n", rangeArrayListMaker(1, content.Locations.getContentLocations().size()));
-        Location location = content.Locations.getContentLocations().get(input2 - 1);
+        int input2 = getMainMenuInput("where would you like to go?\n", rangeArrayListMaker(1, Locations.getContentLocations().size()));
+        Location location = Locations.getContentLocations().get(input2 - 1);
         clearConsole();
         location.listBattleAreas();
         input2 = getMainMenuInput("where in " + location.getName() + " would you like to go?", rangeArrayListMaker(1, location.battleAreaCount()));
@@ -439,7 +442,7 @@ class Main{
       else if(input == 5){
         clearConsole();
         System.out.println("v2.0.0 BETA");
-        System.out.println("!some content that was added wasn't included in changelog\n" +
+        System.out.println("!some content that was added wasn't included in changelog!\n" +
                 "* removed infinite money statement by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/2\n" +
                 "* Regulated enemy stats by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/3\n" +
                 "* Rescaled enemy level to stats result by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/4\n" +
@@ -831,29 +834,36 @@ class Main{
   }
 
   public static void writeTo(String fileName, String content) throws FileNotFoundException {
+    System.out.println("we are about to be in the try");
     try (FileWriter file = new FileWriter(fileName)) {
+      System.out.println("we are in the try");
       file.write(content);
       file.flush();
     }
     catch (IOException e) {
+      System.out.println("it fucking failed retard");
       if(isToggledSetting("debug", true)) e.printStackTrace();
     }
+    System.out.println("passed try?");
   }
 
   public static JSONObject getData() throws FileNotFoundException {
     File file = new File(gameDataFilePath);
 
     String jsonData = "";
+    System.out.println("jsondata: " + jsonData);
 
     try (BufferedReader br = new BufferedReader(new FileReader(file)))
     {
       String line;
       while ((line = br.readLine()) != null) {
         jsonData += line + "\n";
+        System.out.println("jsondata: " + jsonData);
       }
     } catch (IOException e) {
       e.printStackTrace();
     }
+
 
     return new JSONObject(jsonData);
   }
@@ -903,19 +913,21 @@ class Main{
   }
 
   public static void clearData() throws FileNotFoundException {
-    File file = new File(defaultsFilePath);
 
-    String jsonData = "";
+    System.out.println("json data now being initialized");
 
-    try (BufferedReader br = new BufferedReader(new FileReader(file)))
-    {
-      String line;
-      while ((line = br.readLine()) != null) {
-        jsonData += line + "\n";
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    String jsonData = "{\n" +
+            "  \"startupamount\" : 0,\n" +
+            "  \"inventory\" : {\n" +
+            "    \"money\" : 0,\n" +
+            "    \"characters\" : [],\n" +
+            "    \"weapons\" : [],\n" +
+            "    \"artifacts\" : []\n" +
+            "  },\n" +
+            "  \"settings\" : {\n" +
+            "    \"debug\" : false\n" +
+            "  }\n" +
+            "}";
 
     writeTo(gameDataFilePath, new JSONObject(jsonData).toString(4));
     clearConsole();
@@ -1011,5 +1023,12 @@ class Main{
       System.out.println("debug: range of input" + rangeToReturn);
     }
     return rangeToReturn;
+  }
+
+  public static void createFiles() throws IOException {
+    System.out.println("creating file");
+    new File("GameData.json").createNewFile();
+    System.out.println("we got here?");
+    clearData();
   }
 }
