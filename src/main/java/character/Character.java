@@ -64,30 +64,6 @@ public class Character {
     updateStats();
   }
 
-  //character load constructor
-  public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description, int level, long xp, long xpRequired, int difficulty, Weapon weapon, Artifact[] artifacts){
-    this.starRating = starRating;
-    this.name = name;
-    this.health = health;
-    this.attackDamage = attack;
-    this.defense = defense;
-    this.critRate = critRate;
-    this.critDamage = critDamage;
-    this.description = description;
-    this.level = level;
-    this.xp = xp;
-    this.xpRequired = xpRequired;
-    this.difficulty = difficulty;
-    equipWeapon(weapon, false);
-    for(Artifact artifact: artifacts){
-      if(artifact != null){
-        for(int i = 0; i<4; i++){
-          if(this.artifacts[i] == null) equipArtifact(i, artifact);
-        }
-      }
-    }
-  }
-
   public void addXp(int amount){
     amount += xp;
     xp = 0;
