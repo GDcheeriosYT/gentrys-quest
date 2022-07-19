@@ -776,7 +776,6 @@ class Main{
     }
     int input = getMainMenuInput(tracker + ". back", rangeArrayListMaker(0, tracker));
     if(input != tracker){
-      System.out.println("test");
       if(startingArtifact != null){
         character.deEquipArtifact(position);
         inventory.addArtifact(startingArtifact);
@@ -869,26 +868,121 @@ class Main{
     for(Object notJSONCharacterData: getData().getJSONObject("inventory").getJSONArray("characters")){
       JSONObject characterData = (JSONObject) notJSONCharacterData;
       if(isToggledSetting("debug", true)) System.out.println(characterData.toString(4));
-//      int starRating = characterData.getInt("star rating");
-//      String name = characterData.getString("name");
-//      String description = characterData.getString("description");
-//      JSONObject stats = characterData.getJSONObject("stats");
-//      int health = stats.getInt("health");
-//      int attack = stats.getInt("attack");
-//      int defense = stats.getInt("defense");
-//      double critRate = stats.getDouble("critRate");
-//      int critDamage = stats.getInt("critDamage");
+      int starRating = characterData.getInt("star rating");
+      String name = characterData.getString("name");
+      String description = characterData.getString("description");
+      JSONObject stats = characterData.getJSONObject("stats");
+      int initialHealth = stats.getInt("health");
+      int initialAttack = stats.getInt("attack");
+      int initialDefense = stats.getInt("defense");
+      double initialCritRate = stats.getDouble("critRate");
+      int initialCritDamage = stats.getInt("critDamage");
+//
+//      JSONObject weapon = characterData.getJSONObject("equips").getJSONObject("weapon");
+//      Buff buff = new Buff(
+//              getBuffString(
+//                      weapon.getJSONObject(
+//                              "stats"
+//                      ).getJSONArray(
+//                              "buff"
+//                      ).getInt(
+//                              0
+//                      )
+//              ),
+//              weapon.getJSONObject(
+//                      "stats"
+//              ).getJSONArray(
+//                      "buff"
+//              ).getInt(
+//                      1
+//              ) == 1
+//      );
+//      buff.levelUp(weapon.getJSONObject(
+//              "stats"
+//      ).getJSONArray(
+//              "buff"
+//      ).getInt(
+//              2
+//      ));
+//
+//      ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
+//
+//      for(Object artifact: characterData.getJSONObject("equips").getJSONArray("artifacts")){
+//        JSONObject artifactData = (JSONObject) artifact;
+//        ArrayList<Buff> buffs = new ArrayList<Buff>();
+//        Buff mainAttribute = new Buff(
+//                getBuffString(
+//                        artifactData.getJSONObject(
+//                                "stats"
+//                        ).getJSONArray(
+//                                "main attribute"
+//                        ).getInt(
+//                                0
+//                        )
+//                ),
+//                artifactData.getJSONObject(
+//                        "stats"
+//                ).getJSONArray(
+//                        "main attribute"
+//                ).getInt(
+//                        1
+//                ) == 1
+//        );
+//        mainAttribute.levelUp(
+//                (Integer) artifactData.getJSONObject(
+//                        "stats"
+//                ).getJSONArray(
+//                        "main attribute"
+//                ).get(
+//                        2
+//                )
+//        );
+//        Artifact newArtifact = new Artifact(artifactData.getString("name"), mainAttribute, artifactData.getString("family"));
+//        artifacts.add(newArtifact);
+//      }
+//
 //      Character character = new Character(
 //          starRating,
 //          name,
-//          health,
-//          attack,
-//          defense,
-//          critRate,
-//          critDamage,
+//          initialHealth,
+//          initialAttack,
+//          initialDefense,
+//          initialCritRate,
+//          initialCritDamage,
 //          description,
+//          new Weapon(
+//                  weapon.getString("name"),
+//                  weapon.getInt("star rating"),
+//                  weapon.getString("weapon type"),
+//                  weapon.getJSONObject("stats").getInt("attack"),
+//                  buff,
+//                  new Verbs(
+//                          weapon.getJSONObject(
+//                                  "verbs"
+//                          ).getString(
+//                                  "normal"
+//                          ),
+//                          weapon.getJSONObject(
+//                                  "verbs"
+//                          ).getString(
+//                                  "critical"
+//                          )
+//                  ),
+//                  weapon.getString("description"),
+//                  weapon.getJSONObject(
+//                          "experience"
+//                  ).getInt(
+//                          "level"
+//                  ),
+//                  weapon.getJSONObject(
+//                          "experience"
+//                  ).getInt(
+//                          "xp"
+//                  )
+//          ),
 //
 //      )
+
     }
   }
 
@@ -1008,6 +1102,7 @@ class Main{
 
   public static ArrayList<Integer> rangeArrayListMaker(int min, int max) throws FileNotFoundException {
     ArrayList<Integer> rangeToReturn = new ArrayList<Integer>();
+    if(max == Integer.MAX_VALUE) max = 10000;
     for(int i = min; i<=max; i++){
       rangeToReturn.add(i);
     }
@@ -1020,5 +1115,15 @@ class Main{
   public static void createFiles() throws IOException {
     new File("GameData.json").createNewFile();
     clearData();
+  }
+
+  public static String getBuffString(int number){
+    return switch (number) {
+      case 1 -> "health";
+      case 2 -> "attack";
+      case 3 -> "defense";
+      case 4 -> "critRate";
+      default -> "critDamage";
+    };
   }
 }

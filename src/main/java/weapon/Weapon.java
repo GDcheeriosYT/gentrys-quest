@@ -38,6 +38,22 @@ public class Weapon {
     this.description = "";
   }
 
+  public Weapon(String name, int starRating, String weaponType, int baseAttack, Buff attribute, Verbs verbs, String description, int level, long xp){
+    this.name = name;
+    this.starRating = starRating;
+    this.weaponType = weaponType;
+    this.baseAttack = baseAttack;
+    this.initialBaseAttack = baseAttack;
+    this.attribute = attribute;
+    this.verbs = verbs;
+    this.description = description;
+    this.xpRequired = xpRequired * starRating;
+    levelUp(2);
+    this.xp = xp;
+    previousXpRequired = (long) ((level - 1) * 25) + (starRating * 75);
+    xpRequired = (long) (level * 25) + (starRating * 75);
+  }
+
   public void levelUp(int amount){
     level += amount;
     previousXpRequired = xpRequired;
