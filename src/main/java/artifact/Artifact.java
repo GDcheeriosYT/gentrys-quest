@@ -4,6 +4,7 @@ import buff.Buff;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Artifact {
   private final String name;
@@ -35,22 +36,9 @@ public class Artifact {
       xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
       mainAttribute.levelUp(1);
       if (level % 4 == 0) {
-        ArrayList<Buff> rewriteList = new ArrayList<Buff>();
         Buff e = new Buff("");
-        if (output) System.out.println("^" + e + "^");
-        if (attributes.size() == 0) {
-          attributes.add(e);
-        }
-        for (Buff attribute : attributes) {
-          if (attribute == e) {
-            attribute.levelUp(1);
-          } else {
-            rewriteList.add(e);
-          }
-        }
-        if (rewriteList.size() != 0) {
-          attributes.add(rewriteList.get(0));
-        }
+        if (output) System.out.println("^ " + (e.getBuffString(e.getBuff()[0])) + (e.getBuff()[1] == 1 ? "%" : "") + " ^");
+        addAttribute(e);
       }
     } else {
       if (output) {
@@ -59,6 +47,22 @@ public class Artifact {
       }
     }
     if (output) timeout(3000, true);
+  }
+
+  public void addAttribute(Buff buff){
+    if(attributes.size() == 0){
+      attributes.add(buff);
+    }
+    else{
+      boolean leveled = false;
+      for(Buff attribute: attributes){
+        if(buff.getBuff()[0] == attribute.getBuff()[0] && buff.getBuff()[1] == attribute.getBuff()[1]){
+          attribute.levelUp(1);
+          leveled = true;
+        }
+      }
+      if(!leveled) attributes.add(buff);
+    }
   }
 
   public static void timeout(int time, boolean clearConole) {
