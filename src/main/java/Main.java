@@ -287,6 +287,7 @@ class Main{
                             }
                             else if(input6 == 2){
                               removeArtifact(character, input5 - 1);
+                              break;
                             }
                             else if(input6 == 3){
                               boolean upgradingArtifact = true;
