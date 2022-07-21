@@ -433,14 +433,17 @@ class Main{
         boolean inSettings = true;
         while(inSettings){
           System.out.println("1. debug [" + isToggledSetting("debug", true) + "]");
-          System.out.println("2. clear data");
-          System.out.println("3. test battle scene");
-          int input2 = getMainMenuInput("4. exit", rangeArrayListMaker(1, 4));
+          System.out.println("2. no timeout [" + isToggledSetting("no timeout", true) + "]");
+          System.out.println("3. clear data");
+          System.out.println("4. test battle scene");
+          int input2 = getMainMenuInput("5. exit", rangeArrayListMaker(1, 5));
           //debug toggle
           if(input2 == 1) toggleSetting("debug");
+          //no timeout
+          else if(input2 == 2) toggleSetting("no timeout");
           //clear data
-          else if(input2 == 2) clearData();
-          else if(input2 == 3) testBattleScene();
+          else if(input2 == 3) clearData();
+          else if(input2 == 4) testBattleScene();
           else{
             clearConsole();
             inSettings = false;
@@ -726,14 +729,14 @@ class Main{
         }
         if(input == 1){
           clearConsole();
-          if(character.attack(enemy, isToggledSetting("debug", true))){
+          if(character.attack(enemy, isToggledSetting("debug", true), !isToggledSetting("no timeout", true))){
             inventory.addMoney(enemy.getLevel() * 2);
             character.addXp(enemy.getLevel() * 10);
             System.out.println("Killed " + enemy.getName() + ", received $" + (enemy.getLevel() * 2) + " and " + (enemy.getLevel() * 10) + "xp");
             fighting = false;
           }
           if(fighting){
-            if(enemy.attack(character, isToggledSetting("debug", true))){
+            if(enemy.attack(character, isToggledSetting("debug", true), !isToggledSetting("no timeout", true))){
               alive = false;
               character.updateStats();
               artifacts.clear();
@@ -810,13 +813,15 @@ class Main{
     clearConsole();
   }
 
-  public static void timeout(int time, boolean clearConole){
-    try {
-      Thread.sleep(time);
-    } catch (InterruptedException ex) {
-      throw new RuntimeException(ex);
+  public static void timeout(int time, boolean clearConole) throws FileNotFoundException {
+    if(!isToggledSetting("no timeout", true)){
+      try {
+        Thread.sleep(time);
+      } catch (InterruptedException ex) {
+        throw new RuntimeException(ex);
+      }
+      if(clearConole) clearConsole();
     }
-    if(clearConole) clearConsole();
   }
 
   public static void saveGame() throws FileNotFoundException {
@@ -888,6 +893,7 @@ class Main{
   public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
     System.out.println("\tstep 1, configurations");
     settings.put("debug", isToggledSetting("debug", false));
+    settings.put("no timeout", isToggledSetting("no timeout", false));
     System.out.println("\tstep 2, money");
     inventory.addMoney(getData().getJSONObject("inventory").getInt("money"));
     System.out.println("\tstep 3, characters");
@@ -1027,7 +1033,7 @@ class Main{
   public static void toggleSetting(String setting) throws FileNotFoundException {
     settings.put(setting, !isToggledSetting(setting, true));
     clearConsole();
-    System.out.println("toggled debug");
+    System.out.println("toggled " + setting);
   }
 
   public static void clearData() throws FileNotFoundException {
@@ -1041,7 +1047,7 @@ class Main{
             "    \"artifacts\" : []\n" +
             "  },\n" +
             "  \"settings\" : {\n" +
-            "    \"debug\" : false\n" +
+            "    \"debug\" : false,\n" +
             "    \"no timeout\" : false\n" +
             "  }\n" +
             "}";
@@ -1102,8 +1108,8 @@ class Main{
                 testGuy.getName() + " has " + testGuy.getHealth() + " health" +
                 "\n1.attack\n2.edit test data\n3.run", rangeArrayListMaker(0, 3));
         if(input == 1){
-          if(testGuy.attack(testDummy, isToggledSetting("debug", true))) testDummy.setLevel(testGuy.getLevel());
-          if(testDummy.attack(testGuy, isToggledSetting("debug", true))) testGuy.updateStats();
+          if(testGuy.attack(testDummy, isToggledSetting("debug", true), !isToggledSetting("no timeout", true))) testDummy.setLevel(testGuy.getLevel());
+          if(testDummy.attack(testGuy, isToggledSetting("debug", true), !isToggledSetting("no timeout", true))) testGuy.updateStats();
         }
         else if(input == 2){
           clearConsole();
