@@ -35,22 +35,9 @@ public class Artifact {
       xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
       mainAttribute.levelUp(1);
       if (level % 4 == 0) {
-        ArrayList<Buff> rewriteList = new ArrayList<Buff>();
         Buff e = new Buff("");
-        if (output) System.out.println("^" + e + "^");
-        if (attributes.size() == 0) {
-          attributes.add(e);
-        }
-        for (Buff attribute : attributes) {
-          if (attribute == e) {
-            attribute.levelUp(1);
-          } else {
-            rewriteList.add(e);
-          }
-        }
-        if (rewriteList.size() != 0) {
-          attributes.add(rewriteList.get(0));
-        }
+        if (output) System.out.println("^ " + (e.getBuffString(e.getBuff()[0])) + (e.getBuff()[1] == 1 ? " %" : "") + " ^");
+        addAttribute(e);
       }
     } else {
       if (output) {
@@ -59,6 +46,34 @@ public class Artifact {
       }
     }
     if (output) timeout(3000, true);
+  }
+
+  public void addAttribute(Buff buff){
+    if(attributes.size() == 0){
+      attributes.add(buff);
+    }
+    else{
+      boolean leveled = false;
+      for(Buff attribute: attributes){
+        if(isSameAttribute(buff, attribute, false)){
+          attribute.levelUp(1);
+          leveled = true;
+        }
+      }
+      if(!leveled) attributes.add(buff);
+    }
+  }
+
+  public static boolean isSameAttribute(Buff buff1, Buff buff2, boolean includeLevel){
+    if(buff1.getBuff()[0] == buff2.getBuff()[0] && buff1.getBuff()[1] == buff2.getBuff()[1]){
+      if(includeLevel){
+        return buff1.getBuff()[2] == buff2.getBuff()[2];
+      }
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
   public static void timeout(int time, boolean clearConole) {
@@ -98,13 +113,15 @@ public class Artifact {
     return family;
   }
 
+
+
   public double getValue(Buff buff) {
     double value;
     if (buff.getBuff()[1] == 0) {
       if (buff.getBuff()[0] == 4) {
         value = 1 + (level * 0.05) + (starRating * 0.3) * (buff.getBuff()[2] * 0.5);
       } else {
-        value = 1 + (int) (level * 0.85) + (int) (starRating * 1.2) * (buff.getBuff()[2]);
+        value = 1 + (!isSameAttribute(buff, mainAttribute, true) ? (level * 0.85) + (starRating * 1.2) * (buff.getBuff()[2]): (int) (starRating * 1.2) * (buff.getBuff()[2]));
       }
     } else {
       value = (2 * starRating) + (level * 1.5);
@@ -136,6 +153,17 @@ public class Artifact {
 
   public int getLevel() {
     return level;
+  }
+
+  public static String getStringBuff(int attributeID){
+    return switch (attributeID) {
+      case 1 -> "health";
+      case 2 -> "attack";
+      case 3 -> "defense";
+      case 4 -> "critRate";
+      case 5 -> "critDamage";
+      default -> null;
+    };
   }
 
   public String toString(){
