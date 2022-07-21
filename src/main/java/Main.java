@@ -134,29 +134,36 @@ class Main{
       if(input == 1){
         clearConsole();
         listLocations();
-        int input2 = getMainMenuInput("where would you like to go?\n", rangeArrayListMaker(1, Locations.getContentLocations().size()));
-        Location location = Locations.getContentLocations().get(input2 - 1);
-        clearConsole();
-        location.listBattleAreas();
-        input2 = getMainMenuInput("where in " + location.getName() + " would you like to go?", rangeArrayListMaker(1, location.battleAreaCount()));
-        clearConsole();
-        try{
-          startBattle(location.getBattleArea(input2 - 1), equipedCharacter, true, true);
-        }catch (Exception e){
-          System.out.println("Make sure to equip a character!");
-        }
-        try{
-        }
-        catch (Exception e){
+        int input2 = getMainMenuInput("where would you like to go?\nor\n" + (Locations.getContentLocations().size()+1) + ".back", rangeArrayListMaker(1, Locations.getContentLocations().size() + 1));
+        if(input2 != Locations.getContentLocations().size() + 1){
+          Location location = Locations.getContentLocations().get(input2 - 1);
           clearConsole();
-          System.out.println("This battle area doesn't exist...");
-          try {
-            Thread.sleep(2000);
-          } catch (InterruptedException ex) {
-            throw new RuntimeException(ex);
+          location.listBattleAreas();
+          input2 = getMainMenuInput("where in " + location.getName() + " would you like to go?\n" + (location.battleAreaCount() + 1) + ".back", rangeArrayListMaker(1, location.battleAreaCount() + 1));
+          if(input2 != location.battleAreaCount()+1){
+            clearConsole();
+            try{
+              startBattle(location.getBattleArea(input2 - 1), equipedCharacter, true, true);
+            }catch (Exception e){
+              System.out.println("Make sure to equip a character!");
+            }
+            try{
+            }
+            catch (Exception e){
+              clearConsole();
+              System.out.println("This battle area doesn't exist...");
+              try {
+                Thread.sleep(2000);
+              } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+              }
+              clearConsole();
+            }
+            clearConsole();
           }
           clearConsole();
         }
+        clearConsole();
       }
       //gacha
       else if (input == 2) {
