@@ -1,6 +1,7 @@
 package character;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ import buff.Buff;
 import enemy.Enemy;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import weapon.Verbs;
 import weapon.Weapon;
 
 
@@ -35,7 +37,7 @@ public class Character {
   private int critDamage;
   private int defaultCritDamage;
   private int additionalCritDamage;
-  private Weapon weapon;
+  private Weapon weapon = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
   private Artifact[] artifacts = {null, null, null, null, null};
   private int difficulty = 1;
   private boolean equipped = false;
@@ -81,11 +83,14 @@ public class Character {
     defaultCritRate = 7 + (level * 0.2) + (starRating * 1);
     defaultCritDamage = (int) (0.5 + (level * 1.45) + (starRating * 2));
     difficulty = (int)(1 + (level / 20));
+    setLevel(level);
     this.xp = xp;
-    equipWeapon(weapon, false);
-    for(int i = 0; i<4; i++){
-      if(artifacts.get(i) != null) equipArtifact(i, artifacts.get(i));
-    }
+    if (weapon != null) equipWeapon(weapon, false);
+    try{
+      for(int i = 0; i<4; i++){
+        if(artifacts.get(i) != null) equipArtifact(i, artifacts.get(i));
+      }
+    } catch (Exception e){}
     levelUp(0);
   }
 
@@ -97,6 +102,10 @@ public class Character {
       amount -= previousXpRequired;
     }
     xp = amount;
+  }
+
+  public void setLevel(int level) {
+    this.level = level;
   }
 
   private boolean hasSet(){
@@ -479,7 +488,12 @@ public class Character {
     stats.put("critRate", initialCritRate);
     stats.put("critDamage", initialCritDamage);
 
-    equips.put("weapon", weapon.getData());
+    try{
+      equips.put("weapon", weapon.getData());
+    }
+    catch (NullPointerException e){
+      System.out.println("this character doesn't have a weapon...");
+    }
     for(Artifact artifact: artifacts) if(artifact != null) artifactData.put(artifact.getData());
     equips.put("artifacts", artifactData);
 

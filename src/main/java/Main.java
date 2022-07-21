@@ -139,7 +139,11 @@ class Main{
         location.listBattleAreas();
         input2 = getMainMenuInput("where in " + location.getName() + " would you like to go?", rangeArrayListMaker(1, location.battleAreaCount()));
         clearConsole();
-        startBattle(location.getBattleArea(input2 - 1), equipedCharacter, true, true);
+        try{
+          startBattle(location.getBattleArea(input2 - 1), equipedCharacter, true, true);
+        }catch (Exception e){
+          System.out.println("Make sure to equip a character!");
+        }
         try{
         }
         catch (Exception e){
@@ -865,7 +869,9 @@ class Main{
   public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
     System.out.println("\tstep 1, configurations");
     settings.put("debug", isToggledSetting("debug", false));
-    System.out.println("\tstep 2, characters");
+    System.out.println("\tstep 2, money");
+    inventory.addMoney(getData().getJSONObject("inventory").getInt("money"));
+    System.out.println("\tstep 3, characters");
     for(Object notJSONCharacterData: getData().getJSONObject("inventory").getJSONArray("characters")){
       JSONObject characterData = (JSONObject) notJSONCharacterData;
       if(isToggledSetting("debug", true)) System.out.println(characterData.toString(4));
@@ -878,113 +884,95 @@ class Main{
       int initialDefense = stats.getInt("defense");
       double initialCritRate = stats.getDouble("critRate");
       int initialCritDamage = stats.getInt("critDamage");
-//
-//      JSONObject weapon = characterData.getJSONObject("equips").getJSONObject("weapon");
-//      Buff buff = new Buff(
-//              getBuffString(
-//                      weapon.getJSONObject(
-//                              "stats"
-//                      ).getJSONArray(
-//                              "buff"
-//                      ).getInt(
-//                              0
-//                      )
-//              ),
-//              weapon.getJSONObject(
-//                      "stats"
-//              ).getJSONArray(
-//                      "buff"
-//              ).getInt(
-//                      1
-//              ) == 1
-//      );
-//      buff.levelUp(weapon.getJSONObject(
-//              "stats"
-//      ).getJSONArray(
-//              "buff"
-//      ).getInt(
-//              2
-//      ));
-//
-//      ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
-//
-//      for(Object artifact: characterData.getJSONObject("equips").getJSONArray("artifacts")){
-//        JSONObject artifactData = (JSONObject) artifact;
-//        ArrayList<Buff> buffs = new ArrayList<Buff>();
-//        Buff mainAttribute = new Buff(
-//                getBuffString(
-//                        artifactData.getJSONObject(
-//                                "stats"
-//                        ).getJSONArray(
-//                                "main attribute"
-//                        ).getInt(
-//                                0
-//                        )
-//                ),
-//                artifactData.getJSONObject(
-//                        "stats"
-//                ).getJSONArray(
-//                        "main attribute"
-//                ).getInt(
-//                        1
-//                ) == 1
-//        );
-//        mainAttribute.levelUp(
-//                (Integer) artifactData.getJSONObject(
-//                        "stats"
-//                ).getJSONArray(
-//                        "main attribute"
-//                ).get(
-//                        2
-//                )
-//        );
-//        Artifact newArtifact = new Artifact(artifactData.getString("name"), mainAttribute, artifactData.getString("family"));
-//        artifacts.add(newArtifact);
-//      }
-//
-//      Character character = new Character(
-//          starRating,
-//          name,
-//          initialHealth,
-//          initialAttack,
-//          initialDefense,
-//          initialCritRate,
-//          initialCritDamage,
-//          description,
-//          new Weapon(
-//                  weapon.getString("name"),
-//                  weapon.getInt("star rating"),
-//                  weapon.getString("weapon type"),
-//                  weapon.getJSONObject("stats").getInt("attack"),
-//                  buff,
-//                  new Verbs(
-//                          weapon.getJSONObject(
-//                                  "verbs"
-//                          ).getString(
-//                                  "normal"
-//                          ),
-//                          weapon.getJSONObject(
-//                                  "verbs"
-//                          ).getString(
-//                                  "critical"
-//                          )
-//                  ),
-//                  weapon.getString("description"),
-//                  weapon.getJSONObject(
-//                          "experience"
-//                  ).getInt(
-//                          "level"
-//                  ),
-//                  weapon.getJSONObject(
-//                          "experience"
-//                  ).getInt(
-//                          "xp"
-//                  )
-//          ),
-//
-//      )
 
+      JSONObject weapon = characterData.getJSONObject("equips").getJSONObject("weapon");
+      Buff weaponBuff = new Buff(
+              getBuffString(
+                      weapon.getJSONObject(
+                              "stats"
+                      ).getJSONArray(
+                              "buff"
+                      ).getInt(
+                              0
+                      )
+              ),
+              weapon.getJSONObject(
+                      "stats"
+              ).getJSONArray(
+                      "buff"
+              ).getInt(
+                      1
+              ) == 1
+      );
+      weaponBuff.levelUp(weapon.getJSONObject(
+              "stats"
+      ).getJSONArray(
+              "buff"
+      ).getInt(
+              2
+      ));
+
+      ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
+
+      for(Object artifact: characterData.getJSONObject("equips").getJSONArray("artifacts")) {
+        JSONObject artifactData = (JSONObject) artifact;
+        ArrayList<Buff> buffs = new ArrayList<Buff>();
+        for (int i = 0; i<artifactData.getJSONObject("stats").getJSONArray("attributes").length(); i++){
+          JSONArray buffArray = artifactData.getJSONObject("stats").getJSONArray("attributes").getJSONObject(i).getJSONArray("buff");
+          buffs.add(createBuff(buffArray));
+        }
+        Buff mainAttribute = createBuff(artifactData.getJSONObject("stats").getJSONArray("main attribute"));
+        Artifact newArtifact = new Artifact(artifactData.getString("name"), mainAttribute, artifactData.getString("family"));
+        for(Buff buff: buffs){
+          newArtifact.addAttribute(buff);
+        }
+        newArtifact.setLevel(artifactData.getJSONObject("experience").getInt("level"));
+        artifacts.add(newArtifact);
+      }
+
+      Character character = new Character(
+          starRating,
+          name,
+          initialHealth,
+          initialAttack,
+          initialDefense,
+          initialCritRate,
+          initialCritDamage,
+          description,
+          characterData.getJSONObject("experience").getInt("level"),
+          characterData.getJSONObject("experience").getLong("xp"),
+          new Weapon(weapon.getString("name"), weapon.getInt("star rating"), weapon.getString("weapon type"),
+                  weapon.getJSONObject("stats").getInt("attack"),
+                  weaponBuff,
+                  new Verbs(
+                          weapon.getJSONObject(
+                                  "verbs"
+                          ).getString(
+                                  "normal"
+                          ),
+                          weapon.getJSONObject(
+                                  "verbs"
+                          ).getString(
+                                  "critical"
+                          )
+                  ),
+                  weapon.getString("description"),
+                  weapon.getJSONObject(
+                          "experience"
+                  ).getInt(
+                          "level"
+                  ),
+                  weapon.getJSONObject(
+                          "experience"
+                  ).getInt(
+                          "xp"
+                  )
+          ),
+          artifacts
+      );
+      inventory.addCharacter(character);
     }
+    System.out.println("\tstep 4, weapons");
   }
 
   public static boolean isToggledSetting(String setting, boolean instancedSettings) throws FileNotFoundException {
@@ -1117,6 +1105,22 @@ class Main{
     new File("GameData.json").createNewFile();
     clearData();
   }
+
+  public static Buff createBuff(JSONArray buffArray){
+    Buff buff = new Buff(
+            getBuffString(
+                    (Integer) buffArray.get(0)
+            ),
+            (Integer) (buffArray.get(1)) == 1
+    );
+    buff.levelUp((Integer) buffArray.get(2));
+
+    return buff;
+  }
+
+//  public static Weapon createWeapon(JSONArray weaponArray){
+//
+//  }
 
   public static String getBuffString(int number){
     return switch (number) {

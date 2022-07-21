@@ -15,8 +15,15 @@ repositories {
 run{
  standardInput = System.in
 }
+
 application {
     mainClassName = 'Main'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
 }
 
 dependencies {

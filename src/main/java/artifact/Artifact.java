@@ -27,6 +27,10 @@ public class Artifact {
     return mainAttribute;
   }
 
+  public void setLevel(int level) {
+    this.level = level;
+  }
+
   public void levelUp(Boolean output) {
     if (level < starRating * 4) {
       if (output) timeout(1000, true);
