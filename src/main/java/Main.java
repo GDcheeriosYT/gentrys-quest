@@ -891,32 +891,41 @@ class Main{
       double initialCritRate = stats.getDouble("critRate");
       int initialCritDamage = stats.getInt("critDamage");
 
-      JSONObject weapon = characterData.getJSONObject("equips").getJSONObject("weapon");
-      Buff weaponBuff = new Buff(
-              getBuffString(
-                      weapon.getJSONObject(
-                              "stats"
-                      ).getJSONArray(
-                              "buff"
-                      ).getInt(
-                              0
-                      )
-              ),
-              weapon.getJSONObject(
-                      "stats"
-              ).getJSONArray(
-                      "buff"
-              ).getInt(
-                      1
-              ) == 1
-      );
-      weaponBuff.levelUp(weapon.getJSONObject(
-              "stats"
-      ).getJSONArray(
-              "buff"
-      ).getInt(
-              2
-      ));
+      JSONObject weapon;
+      Buff weaponBuff;
+
+      if(characterData.getJSONObject("equips").has("weapon")){
+        weapon = characterData.getJSONObject("equips").getJSONObject("weapon");
+        weaponBuff = new Buff(
+                getBuffString(
+                        weapon.getJSONObject(
+                                "stats"
+                        ).getJSONArray(
+                                "buff"
+                        ).getInt(
+                                0
+                        )
+                ),
+                weapon.getJSONObject(
+                        "stats"
+                ).getJSONArray(
+                        "buff"
+                ).getInt(
+                        1
+                ) == 1
+        );
+        weaponBuff.levelUp(weapon.getJSONObject(
+                "stats"
+        ).getJSONArray(
+                "buff"
+        ).getInt(
+                2
+        ));
+      }
+      else{
+        weapon = characterData;
+        weaponBuff = new Buff("");
+      }
 
       ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
 
@@ -947,33 +956,7 @@ class Main{
           description,
           characterData.getJSONObject("experience").getInt("level"),
           characterData.getJSONObject("experience").getLong("xp"),
-          new Weapon(weapon.getString("name"), weapon.getInt("star rating"), weapon.getString("weapon type"),
-                  weapon.getJSONObject("stats").getInt("attack"),
-                  weaponBuff,
-                  new Verbs(
-                          weapon.getJSONObject(
-                                  "verbs"
-                          ).getString(
-                                  "normal"
-                          ),
-                          weapon.getJSONObject(
-                                  "verbs"
-                          ).getString(
-                                  "critical"
-                          )
-                  ),
-                  weapon.getString("description"),
-                  weapon.getJSONObject(
-                          "experience"
-                  ).getInt(
-                          "level"
-                  ),
-                  weapon.getJSONObject(
-                          "experience"
-                  ).getInt(
-                          "xp"
-                  )
-          ),
+          (((characterData.getJSONObject("equips").has("weapon")) ? new Weapon(weapon.getString("name"), weapon.getInt("star rating"), weapon.getString("weapon type"), weapon.getJSONObject("stats").getInt("attack"), weaponBuff, new Verbs(weapon.getJSONObject("verbs").getString("normal"), weapon.getJSONObject("verbs").getString("critical")), weapon.getString("description"), weapon.getJSONObject("experience").getInt("level"), weapon.getJSONObject("experience").getInt("xp")) : null)),
           artifacts
       );
       inventory.addCharacter(character);
