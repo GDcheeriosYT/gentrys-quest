@@ -248,7 +248,7 @@ class Main{
                   else if(input4 == 2){
                     boolean weaponViewing = true;
                     while(weaponViewing){
-                      int input5 = getMainMenuInput(character.getName() + " currently has the weapon " + character.getWeapon() + " equipped\n1.swap weapon\n2.back", rangeArrayListMaker(1, 2));
+                      int input5 = getMainMenuInput(character.getName() + " currently has the weapon " + character.getWeapon() + " equipped\n1.swap weapon\n2.level up\n3.back", rangeArrayListMaker(1, 3));
                       clearConsole();
                       //swap weapon
                       int counter = 1;
@@ -268,8 +268,32 @@ class Main{
                         }
                         clearConsole();
                       }
+                      else if(input5 == 2){
+                        try{
+                          boolean leveling = true;
+                          Weapon weapon = character.getWeapon();
+                          while(leveling){
+                            float percent = (weapon.getXp() * 100.0f) / weapon.getXpRequired();
+                            int input6 = getMainMenuInput("lvl " + weapon.getLevel() +
+                                    "\nxp " + weapon.getXp() + "/" + weapon.getXpRequired() + " (" + percent + ")" +
+                                    "\nupgrade your character?\n" +
+                                    "$" + inventory.getMoney() + "/" + "$" + (int) ((weapon.getXpRequired() * 0.1) - (weapon.getXp() * 0.1)) + " required to level up" +
+                                    "\n$1 = 10xp\n0 to go back", rangeArrayListMaker(0, inventory.getMoney()));
+                            clearConsole();
+                            if (input6 == 0) leveling = false;
+                            else {
+                              if (inventory.checkMoney(input6)) {
+                                weapon.addXp(input6 * 10);
+                                inventory.spendMoney(input6);
+                              }
+                            }
+                          }
+                        }catch (Exception e){
+                          System.out.println("Make sure you have a weapon equiped first!");
+                        }
+                      }
                       //end loop
-                      else if(input5 == 2) weaponViewing = false;
+                      else if(input5 == 3) weaponViewing = false;
                     }
                   }
 
