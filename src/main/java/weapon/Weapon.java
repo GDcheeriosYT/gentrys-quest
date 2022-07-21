@@ -48,7 +48,7 @@ public class Weapon {
     this.verbs = verbs;
     this.description = description;
     this.xpRequired = xpRequired * starRating;
-    levelUp(2);
+    levelUp(level);
     this.xp = xp;
     previousXpRequired = (long) ((level - 1) * 25) + (starRating * 75);
     xpRequired = (long) (level * 25) + (starRating * 75);
