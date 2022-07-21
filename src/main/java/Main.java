@@ -114,6 +114,7 @@ class Main{
         if(equipedCharacter.getWeapon().getName() == "fists"){
           equipedCharacter.deEquipWeapon(false);
           equipedCharacter.equipWeapon(inventory.getWeapons().get(0), true);
+          inventory.removeWeapon(inventory.getWeapons().get(0));
         }
       }
 
@@ -824,14 +825,26 @@ class Main{
 
     JSONArray characterData = new JSONArray();
 
+    JSONArray weaponData = new JSONArray();
+
+    JSONArray artifactData = new JSONArray();
+
     for(Character character: inventory.getCharacters()){
       characterData.put(character.getData());
     }
 
+    for(Weapon weapon: inventory.getWeapons()){
+      weaponData.put(weapon.getData());
+    }
+
+    for(Artifact artifact: inventory.getArtifacts()){
+      artifactData.put(artifact.getData());
+    }
+
     inventoryData.put("money", inventory.getMoney());
     inventoryData.put("characters", characterData);
-    inventoryData.put("weapons", inventory.getWeapons());
-    inventoryData.put("artifacts", inventory.getArtifacts());
+    inventoryData.put("weapons", weaponData);
+    inventoryData.put("artifacts", artifactData);
 
     JSONObject gameData = new JSONObject();
     gameData.put("startupamount", startupAmount);
@@ -941,6 +954,7 @@ class Main{
         for(Buff buff: buffs){
           newArtifact.addAttribute(buff);
         }
+        newArtifact.setStarRating(artifactData.getInt("star rating"));
         newArtifact.setLevel(artifactData.getJSONObject("experience").getInt("level"));
         artifacts.add(newArtifact);
       }
@@ -961,7 +975,45 @@ class Main{
       );
       inventory.addCharacter(character);
     }
+    JSONObject inventoryData = getData().getJSONObject("inventory");
     System.out.println("\tstep 4, weapons");
+    for(Object weapon: inventoryData.getJSONArray("weapons")){
+      JSONObject weaponData = (JSONObject) weapon;
+      JSONObject weaponStats = weaponData.getJSONObject("stats");
+      JSONObject weaponVerbs = weaponData.getJSONObject("verbs");
+      JSONObject weaponExperience = weaponData.getJSONObject("experience");
+      Buff newBuff = createBuff(weaponStats.optJSONArray("buff"));
+      Weapon newWeapon = new Weapon(
+              weaponData.getString("name"),
+              weaponData.getInt("star rating"),
+              weaponData.getString("weapon type"),
+              weaponStats.getInt("attack"),
+              newBuff,
+              new Verbs(weaponVerbs.getString("normal"), weaponVerbs.getString("critical")),
+              weaponData.getString("description"),
+              weaponExperience.getInt("level"),
+              weaponExperience.getInt("xp")
+      );
+      inventory.addWeapon(newWeapon);
+    }
+    System.out.println("\tstep 5, artifacts");
+    for(Object artifact: inventoryData.getJSONArray("artifacts")) {
+      JSONObject artifactData = (JSONObject) artifact;
+      ArrayList<Buff> buffs = new ArrayList<Buff>();
+      for (int i = 0; i<artifactData.getJSONObject("stats").getJSONArray("attributes").length(); i++){
+        JSONArray buffArray = artifactData.getJSONObject("stats").getJSONArray("attributes").getJSONObject(i).getJSONArray("buff");
+        buffs.add(createBuff(buffArray));
+      }
+      Buff mainAttribute = createBuff(artifactData.getJSONObject("stats").getJSONArray("main attribute"));
+      Artifact newArtifact = new Artifact(artifactData.getString("name"), mainAttribute, artifactData.getString("family"));
+      for(Buff buff: buffs){
+        newArtifact.addAttribute(buff);
+      }
+      newArtifact.setStarRating(artifactData.getInt("star rating"));
+      newArtifact.setLevel(artifactData.getJSONObject("experience").getInt("level"));
+      inventory.addArtifact(newArtifact);
+    }
+
   }
 
   public static boolean isToggledSetting(String setting, boolean instancedSettings) throws FileNotFoundException {
@@ -1102,7 +1154,7 @@ class Main{
             ),
             (Integer) (buffArray.get(1)) == 1
     );
-    buff.levelUp((Integer) buffArray.get(2));
+    buff.levelUp((Integer) buffArray.get(2) - 1);
 
     return buff;
   }
