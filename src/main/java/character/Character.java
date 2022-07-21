@@ -87,7 +87,7 @@ public class Character {
     this.xp = xp;
     if (weapon != null) equipWeapon(weapon, false);
     try{
-      for(int i = 0; i<4; i++){
+      for(int i = 0; i<5; i++){
         if(artifacts.get(i) != null) equipArtifact(i, artifacts.get(i));
       }
     } catch (Exception e){}
