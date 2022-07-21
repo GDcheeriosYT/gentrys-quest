@@ -277,7 +277,7 @@ class Main{
                             int input6 = getMainMenuInput("lvl " + weapon.getLevel() +
                                     "\nxp " + weapon.getXp() + "/" + weapon.getXpRequired() + " (" + percent + ")" +
                                     "\nupgrade your character?\n" +
-                                    "$" + inventory.getMoney() + "/" + "$" + (int) ((weapon.getXpRequired() * 0.1) - (weapon.getXp() * 0.1)) + " required to level up" +
+                                    "$" + inventory.getMoney() + "/" + "$" + (int) ((weapon.getXpRequired() * 0.1) - (weapon.getXp() * 0.1)) + 1 + " required to level up" +
                                     "\n$1 = 10xp\n0 to go back", rangeArrayListMaker(0, inventory.getMoney()));
                             clearConsole();
                             if (input6 == 0) leveling = false;
