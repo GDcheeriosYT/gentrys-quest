@@ -4,6 +4,7 @@ import buff.Buff;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Artifact {
   private final String name;
@@ -63,7 +64,7 @@ public class Artifact {
       if(!leveled) attributes.add(buff);
     }
   }
-
+  
   public static boolean isSameAttribute(Buff buff1, Buff buff2, boolean includeLevel){
     if(buff1.getBuff()[0] == buff2.getBuff()[0] && buff1.getBuff()[1] == buff2.getBuff()[1]){
       if(includeLevel){
@@ -75,7 +76,7 @@ public class Artifact {
       return false;
     }
   }
-
+  
   public static void timeout(int time, boolean clearConole) {
     try {
       Thread.sleep(time);

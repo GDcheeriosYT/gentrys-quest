@@ -287,6 +287,7 @@ class Main{
                             }
                             else if(input6 == 2){
                               removeArtifact(character, input5 - 1);
+                              break;
                             }
                             else if(input6 == 3){
                               boolean upgradingArtifact = true;
@@ -787,8 +788,8 @@ class Main{
   }
 
   public static void removeArtifact(Character character, int position){
-    inventory.addArtifact(character.getArtifactList()[position - 1]);
-    character.deEquipArtifact(position - 1);
+    inventory.addArtifact(character.getArtifactList()[position]);
+    character.deEquipArtifact(position);
     clearConsole();
   }
 
