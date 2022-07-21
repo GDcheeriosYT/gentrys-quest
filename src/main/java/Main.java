@@ -253,8 +253,10 @@ class Main{
                         int input6 = getMainMenuInput("select a weapon or " + counter + ".back", rangeArrayListMaker(1, counter));
                         if(input6 != counter) {
                           clearConsole();
+                          inventory.addWeapon(character.getWeapon());
                           character.deEquipWeapon(false);
                           character.equipWeapon(inventory.getWeapons().get(input6 - 1), true);
+                          inventory.removeWeapon(inventory.getWeapons().get(input6 - 1));
                         }
                         clearConsole();
                       }

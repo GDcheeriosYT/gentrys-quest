@@ -21,6 +21,8 @@ public class Inventory {
     artifacts.remove(artifact);
   }
 
+  public void removeWeapon(Weapon weapon) { weapons.remove(weapon); }
+
   public ArrayList<Artifact> getArtifacts(){
     return artifacts;
   }
