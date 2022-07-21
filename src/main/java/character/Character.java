@@ -1,5 +1,6 @@
 package character;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -62,6 +63,30 @@ public class Character {
     defaultCritDamage = (int) (0.5 + (level * 1.45) + (starRating * 2));
     difficulty = (int)(1 + (level / 20));
     updateStats();
+  }
+
+  public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description, int level, long xp, Weapon weapon, ArrayList<Artifact> artifacts){
+    this.starRating = starRating;
+    this.name = name;
+    this.description = description;
+    initialHealth = health * 5;
+    initialAttack = attack;
+    initialDefense = defense;
+    initialCritRate = critRate;
+    initialCritDamage = critDamage;
+    xpRequired = (long) (((level * 75) + (level * 0.75)) + (starRating * 25));
+    defaultHealth = (int) (2 * level + (starRating * 10));
+    defaultAttackDamage = (int) (1 * (level * 1.45) + (starRating + 2));
+    defaultDefense = (int) (0.5 + (level * 0.5) + (starRating * 0.5));
+    defaultCritRate = 7 + (level * 0.2) + (starRating * 1);
+    defaultCritDamage = (int) (0.5 + (level * 1.45) + (starRating * 2));
+    difficulty = (int)(1 + (level / 20));
+    this.xp = xp;
+    equipWeapon(weapon, false);
+    for(int i = 0; i<4; i++){
+      if(artifacts.get(i) != null) equipArtifact(i, artifacts.get(i));
+    }
+    levelUp(0);
   }
 
   public void addXp(int amount){
@@ -448,19 +473,17 @@ public class Character {
     JSONObject experience = new JSONObject();
     JSONArray artifactData = new JSONArray();
 
-    stats.put("health", health);
-    stats.put("attack", attackDamage);
-    stats.put("defense", defense);
-    stats.put("critRate", critRate);
-    stats.put("critDamage", critDamage);
+    stats.put("health", initialHealth);
+    stats.put("attack", initialAttack);
+    stats.put("defense", initialDefense);
+    stats.put("critRate", initialCritRate);
+    stats.put("critDamage", initialCritDamage);
 
     equips.put("weapon", weapon.getData());
     for(Artifact artifact: artifacts) if(artifact != null) artifactData.put(artifact.getData());
     equips.put("artifacts", artifactData);
 
     experience.put("xp", xp);
-    experience.put("xp required", xpRequired);
-    experience.put("previous xp required", previousXpRequired);
     experience.put("level", level);
 
     data.put("name", name);

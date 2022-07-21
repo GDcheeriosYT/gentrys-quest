@@ -91,21 +91,23 @@ public class Buff {
     }
   }
 
+  public String getBuffString(int number){
+    return switch (number) {
+      case 1 -> "health";
+      case 2 -> "attack";
+      case 3 -> "defense";
+      case 4 -> "critRate";
+      default -> "critDamage";
+    };
+  }
+
   public String toString(){
-    if(getBuff()[0] == 1){
-      return "HP";
-    }
-    else if(getBuff()[0] == 2){
-      return "Attack";
-    }
-    else if(getBuff()[0] == 3){
-      return "Defense";
-    }
-    else if(getBuff()[0] == 4){
-      return "Crit Rate";
-    }
-    else{
-      return "Crit Damage";
-    }
+    return switch (getBuff()[0]) {
+      case 1 -> "HP";
+      case 2 -> "Attack";
+      case 3 -> "Defense";
+      case 4 -> "Crit Rate";
+      default -> "Crit Damage";
+    };
   }
 }

@@ -543,7 +543,7 @@ public class BattleAreas {
                         20,
                         6,
                         2,
-                        new Weapon("The Messerschmidter", 5, "Sword", 40, new Buff("attack"), new Verbs("with your Messerschmidter tapped", "with your Messerschmidter spat on"), "A life size version of Brayden Messerschmidt but as a sword"),
+                        new Weapon("The Messerschmidter", 5, "Sword", 40, new Buff("attack"), new Verbs("with his Messerschmidter tapped", "with his Messerschmidter spat on"), "A life size version of Brayden Messerschmidt but as a sword"),
                         "He was born a very lucky boy."
                     ),
                     new Enemy(
