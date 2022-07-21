@@ -1,6 +1,9 @@
 package enemy;
 import character.Character;
 import weapon.Weapon;
+
+import java.util.Scanner;
+
 public class Enemy {
   private final String name;
   private final String description;
@@ -9,6 +12,9 @@ public class Enemy {
   private int attack;
   private int defense;
   private Weapon weapon;
+  private int initialHealth;
+  private int initialAttack;
+  private int initialDefense;
 
   public Enemy(String name, int health, int attack, int defense, Weapon weapon, String description){
     this.name = name;
@@ -17,6 +23,10 @@ public class Enemy {
     this.defense = defense;
     this.weapon = weapon;
     this.description = description;
+    this.initialHealth = health;
+    this.initialAttack = attack;
+    this.initialDefense = defense;
+    setLevel(1);
   }
 
   public void setHealth(int health) {
@@ -33,19 +43,32 @@ public class Enemy {
 
   public void setLevel(int level) {
     this.level = level;
-    this.health += (int)(level * 3.5);
-    this.attack += (int)(level * 0.5);
-    this.defense += (int)(level * 0.5);
+    level = level - 1;
+    int healthCalc = (int) (initialHealth + 2.5 * (level * 3 + (((level + 1) / 20) * 50)));
+    int attackCalc = (int) (initialAttack + 0.8 * (level * 1.6 + (((level + 1) / 20) * 10)));
+    int defenseCalc = (int) (initialDefense + 0.53 * (level * 1.3 + (((level + 1) / 20) * 15)));
+    health = healthCalc;
+    attack = attackCalc;
+    defense = defenseCalc;
   }
 
   public int getHealth() {
     return health;
   }
 
-  public boolean attack(Character character){
-    System.out.println(name + " " + weapon.getVerb(false) + " " + character.getName());
+  public boolean attack(Character character, boolean debug){
+    double criticalChecker = (Math.random() * 100) + 1;
+    int damage = attack;
+    damage -= (Math.random() * character.getDefense()) + 1;
+    if(debug) System.out.println("*debug*\nCriticalRatio(roll to stat): " + criticalChecker + "|20" + "\n*debug*");
+    if(criticalChecker < 20){
+      damage += damage * 0.4;
+      System.out.println(name + " " + weapon.getVerb(true) + " " + character.getName() + " (" + damage + "dmg)");
+    }
+    else System.out.println(name + " " + weapon.getVerb(false) + " " + character.getName() + " (" + damage + "dmg)");
     timeout(2000, false);
-    character.setHealth(character.getHealth() - attack);
+    if(damage < 1) System.out.println(character.getName() + " dodged");
+    else character.setHealth(character.getHealth() - damage);
     if(character.getHealth() < 1){
       System.out.println(character.getName() + " died...\n");
       timeout(2000, false);
@@ -76,6 +99,40 @@ public class Enemy {
     }
   }
 
+  private String showStats(){
+    return "name: " + name + "\nlevel:\t<-[K]" + level + "[L]->\nhealth:\t" + health + "\nattack:\t" + attack + "\ndefense:\t" + defense;
+  }
+
+  public void editStats(){
+    label:
+    while(true){
+      String input = getStringInput(showStats());
+      System.out.println(input);
+      switch (input) {
+        case "k":
+          setLevel(level-1);
+          break;
+        case "l":
+          setLevel(level+1);
+          break;
+        case "K":
+          setLevel(level - 10);
+          break;
+        case "L":
+          setLevel(level + 10);
+          break;
+        default:
+          break label;
+      }
+    }
+  }
+
+  public String getStringInput(String outputText){
+    System.out.println(outputText);
+    Scanner input = new Scanner(System.in);
+    return input.nextLine();
+  }
+
   public static void timeout(int time, boolean clearConole){
     try {
       Thread.sleep(time);
@@ -85,7 +142,7 @@ public class Enemy {
     if(clearConole) clearConsole();
   }
 
-  public String toString(){
-    return name + "\nlevel: " + level + "\nhealth: " + health + "\nattack: " + attack + "\ndefense: " + defense + "\nweapon: " + weapon + "\n===============" + description + "\n===============";
+ public String toString(){
+    return "level: " + level + "\nhealth: " + health + "\nattack: " + attack + "\ndefense: " + defense;
   }
 }

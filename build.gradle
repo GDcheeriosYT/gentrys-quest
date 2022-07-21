@@ -1,10 +1,12 @@
 plugins {
+    id 'java'
     id 'application'
 }
 
+
 group = 'com.name'
-version = '1.0.0'
-sourceCompatibility = 17
+version = '2.0.0'
+sourceCompatibility = 16
 
 repositories {
     mavenCentral()
@@ -13,7 +15,6 @@ repositories {
 run{
  standardInput = System.in
 }
-
 application {
     mainClassName = 'Main'
 }
@@ -23,3 +24,22 @@ dependencies {
     implementation group: 'org.json', name: 'json', version: '20220320'
     implementation group: 'org.fusesource.jansi', name: 'jansi', version: '2.4.0'
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
+}
+
+task fatJar(type:Jar){
+    manifest{
+        attributes 'Main-class' : 'Main',
+        'Implementation-Title' : "Gentry's Quest",
+        'Implementation-version' : '2.0.0'
+    }
+    from{
+        configurations.runtimeClasspath.collect{it.isDirectory() ? it : zipTree(it)}
+    }
+    with jar
+}
+
