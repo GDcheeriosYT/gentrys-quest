@@ -15,9 +15,14 @@ repositories {
 run{
  standardInput = System.in
 }
-
 application {
     mainClassName = 'Main'
+}
+
+dependencies {
+    implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
+    implementation group: 'org.json', name: 'json', version: '20220320'
+    implementation group: 'org.fusesource.jansi', name: 'jansi', version: '2.4.0'
 }
 
 jar {
@@ -26,8 +31,15 @@ jar {
     }
 }
 
-dependencies {
-    implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
-    implementation group: 'org.json', name: 'json', version: '20220320'
-    implementation group: 'org.fusesource.jansi', name: 'jansi', version: '2.4.0'
+task fatJar(type:Jar){
+    manifest{
+        attributes 'Main-class' : 'Main',
+        'Implementation-Title' : "Gentry's Quest",
+        'Implementation-version' : '2.0.0'
+    }
+    from{
+        configurations.runtimeClasspath.collect{it.isDirectory() ? it : zipTree(it)}
+    }
+    with jar
 }
+
