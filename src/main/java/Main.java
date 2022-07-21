@@ -488,7 +488,11 @@ class Main{
                 "* Reworked calculations to work without loops by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/66\n" +
                 "* Added partial battle scene testing capability by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/60\n" +
                 "* Added list of allowed keys to input methods to prevent crashes by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/67\n" +
-                "* Added changelog by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/68");
+                "* Added changelog by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/68\n" +
+                "* Fixed the messerschmidter verbs by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/70\n" +
+                "* Fixed wrong index for removing artifacts by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/75\n" +
+                "* Reworked artifact class by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/76\n" +
+                "* Added swapping between inventory and characters on equip and dequip by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/79");
         pressEnterToContinue(true, true);
       }
       else{
