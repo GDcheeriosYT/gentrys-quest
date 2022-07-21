@@ -37,7 +37,7 @@ public class Character {
   private int critDamage;
   private int defaultCritDamage;
   private int additionalCritDamage;
-  private Weapon weapon = new Weapon("fists", 1, "hand", 5, new Buff("attack"), new Verbs("punched", "slapped the absolute poop out of"), "Just your hands.");
+  private Weapon weapon;
   private Artifact[] artifacts = {null, null, null, null, null};
   private int difficulty = 1;
   private boolean equipped = false;
