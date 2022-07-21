@@ -56,7 +56,7 @@ public class Enemy {
     return health;
   }
 
-  public boolean attack(Character character, boolean debug){
+  public boolean attack(Character character, boolean debug, boolean timeout){
     double criticalChecker = (Math.random() * 100) + 1;
     int damage = attack;
     damage -= (Math.random() * character.getDefense()) + 1;
@@ -66,12 +66,12 @@ public class Enemy {
       System.out.println(name + " " + weapon.getVerb(true) + " " + character.getName() + " (" + damage + "dmg)");
     }
     else System.out.println(name + " " + weapon.getVerb(false) + " " + character.getName() + " (" + damage + "dmg)");
-    timeout(2000, false);
+    if(timeout) timeout(2000, false);
     if(damage < 1) System.out.println(character.getName() + " dodged");
     else character.setHealth(character.getHealth() - damage);
     if(character.getHealth() < 1){
       System.out.println(character.getName() + " died...\n");
-      timeout(2000, false);
+      if(timeout) timeout(2000, false);
       return true;
     }
     return false;

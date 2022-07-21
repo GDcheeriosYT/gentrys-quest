@@ -359,14 +359,14 @@ public class Character {
     this.health = health;
   }
 
-  public boolean attack(Enemy enemy, boolean debug){
+  public boolean attack(Enemy enemy, boolean debug, boolean timeout){
     String output = name + " ";
     int damage = 0;
     if(weapon == null){
       System.out.println("You have no weapon...");
-      timeout(2000, false);
+      if(timeout) timeout(2000, false);
       System.out.println("You're better off running away.");
-      timeout(2000, false);
+      if(timeout) timeout(2000, false);
       return false;
     }
     else damage = (int)(attackDamage + weapon.getDamage() - (Math.random() * enemy.getDefense()) + 1);
@@ -379,18 +379,18 @@ public class Character {
     else output += weapon.getVerb(false) + " the " + enemy.getName() + " (" + damage + "dmg)";
     if(damage < enemy.getDefense()){
       System.out.println(enemy.getName() + " dodged...\n");
-      timeout(2000, false);
+      if(timeout) timeout(2000, false);
       return false;
     }
     else{
       System.out.println(output + "\n");
-      timeout(2000, false);
+      if(timeout) timeout(2000, false);
     }
 
     enemy.setHealth(enemy.getHealth() - damage);
     if(enemy.getHealth() < 1){
       System.out.println(enemy.getName() + " is dead.\n");
-      timeout(2000, false);
+      if(timeout) timeout(2000, false);
       return true;
     }
     return false;
