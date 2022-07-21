@@ -46,6 +46,7 @@ public class weapons {
       Weapon theBunnyGirl = new Weapon("The Bunny Girl", 5, "katana", 46, new Buff("critDamage"), new Verbs("tickled", "came inside"), "Born from the highest luxurious used bunny girl outfit fabric. A lustful weapon"); //hentai man weapon
       Weapon theMobyDick = new Weapon("The Moby Dick", 5, "adult toy", 50, new Buff(""), new Verbs("stuck", "inserted in"), "Toes? Na, it pulls hoes."); //also mason james weapon
       Weapon jasonsJunk = new Weapon("Jason's Junk", 5, "penis", 42, new Buff("health"), new Verbs("wanked", "cumblasted"), "it's Jason's. From Hy-vee. Estimated 14 inches."); //david napier weapon
+      Weapon shitLauncherSupreem = new Weapon("Shit Launcher Supreem", 5, "Grenade Launcher", 41, new Buff("defense"), new Verbs("glooped on", "sharted on"), "The sequel to the noob tube.");
 
       contentWeapons.add(sword);
       contentWeapons.add(bow);
@@ -72,6 +73,7 @@ public class weapons {
       contentWeapons.add(theBunnyGirl);
       contentWeapons.add(theMobyDick);
       contentWeapons.add(jasonsJunk);
+      contentWeapons.add(shitLauncherSupreem);
     }
 
   public static ArrayList<Weapon> getContentWeapons() {

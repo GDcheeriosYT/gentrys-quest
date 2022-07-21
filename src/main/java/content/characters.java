@@ -19,6 +19,7 @@ public class characters {
     Character brodyKrysa = new Character(1, "Brody Krysa", 0, 0, 0, 0.0, 0, "Mighty warrior. Known as wall climber.");
     Character davidNapier = new Character(1, "David Napier", 0, 0, 0, 0.0, 0, "6'4''.");
     Character matheuSliger = new Character(1, "Matheu Sliger", 0, 0, 0, 0.0, 0, "Big ninja.");
+    Character grantWiseman = new Character(1, "Grant Wiseman", 0, 0, 0, 0.0, 0, "Large and made of shit.");
 
     //2 star characters
     Character gavinKnudsen = new Character(2, "Gavin Knudsen", 0, 1, 0, 0.0, 0, "description");
@@ -100,6 +101,7 @@ public class characters {
     contentCharacters.add(davidNapier);
     contentCharacters.add(gavinKnudsen);
     contentCharacters.add(matheuSliger);
+    contentCharacters.add(grantWiseman);
     contentCharacters.add(ryanMartinez);
     contentCharacters.add(connor);
     contentCharacters.add(maxTramontina);

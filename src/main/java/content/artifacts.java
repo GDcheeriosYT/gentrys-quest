@@ -146,6 +146,9 @@ public class artifacts {
     Artifact lostID = new Artifact("Lost ID", new Buff(""), "hyvee");
     Artifact hyveeChinese = new Artifact("Hy-vee Chinese", new Buff(""), "hyvee");
 
+    //Grant Wiseman artifact
+    Artifact vialOfPiss = new Artifact("Vial of Piss", new Buff(""), "grant wiseman");
+
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(fork);
     contentArtifacts.add(bucket);
@@ -239,6 +242,7 @@ public class artifacts {
     contentArtifacts.add(lostCreditCard);
     contentArtifacts.add(lostID);
     contentArtifacts.add(hyveeChinese);
+    contentArtifacts.add(vialOfPiss);
   }
 
   public static ArrayList<Artifact> getContentArtifacts(){

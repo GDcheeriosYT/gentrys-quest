@@ -767,6 +767,14 @@ public class BattleAreas {
                             "He has teh longest johnson."
                         ),
                         new Enemy(
+                            "Grant Wiseman",
+                            15,
+                            3,
+                            2,
+                            new Weapon("Shit Launcher Supreem", 5, "Grenade Launcher", 41, new Buff("defense"), new Verbs("glooped on", "sharted on"), "The sequel to the noob tube."),
+                            "Large and made of shit."
+                        ),
+                        new Enemy(
                             "Mr.Maxwell",
                             40,
                             8,
@@ -782,7 +790,7 @@ public class BattleAreas {
                         )
                 )
             ),
-              getFamilyArtifacts(new ArrayList<>(List.of("nathan tenny", "brayden messerschmdit", "connor fogarty", "alec ferchen", "max shrum", "spencer george", "brody krysa", "lucas smidt", "nolan anderson", "gavin knudsen", "bryce anderson", "david napier")))
+              getFamilyArtifacts(new ArrayList<>(List.of("nathan tenny", "brayden messerschmdit", "connor fogarty", "alec ferchen", "max shrum", "spencer george", "brody krysa", "lucas smidt", "nolan anderson", "gavin knudsen", "bryce anderson", "david napier", "grant wiseman")))
         );
 
 
