@@ -1042,6 +1042,7 @@ class Main{
             "  },\n" +
             "  \"settings\" : {\n" +
             "    \"debug\" : false\n" +
+            "    \"no timeout\" : false\n" +
             "  }\n" +
             "}";
 
