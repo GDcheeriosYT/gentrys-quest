@@ -21,7 +21,6 @@ public class Weapon {
     this.name = name;
     this.starRating = starRating;
     this.weaponType = weaponType;
-    this.baseAttack = baseAttack;
     this.initialBaseAttack = baseAttack;
     this.attribute = attribute;
     this.verbs = verbs;
@@ -42,23 +41,23 @@ public class Weapon {
     this.name = name;
     this.starRating = starRating;
     this.weaponType = weaponType;
-    this.baseAttack = baseAttack;
     this.initialBaseAttack = baseAttack;
     this.attribute = attribute;
     this.verbs = verbs;
     this.description = description;
     this.xpRequired = xpRequired * starRating;
-    levelUp(level);
+    this.level = level;
     this.xp = xp;
     previousXpRequired = (long) ((level - 1) * 25) + (starRating * 75);
     xpRequired = (long) (level * 25) + (starRating * 75);
+    levelUp(0);
   }
 
   public void levelUp(int amount){
     level += amount;
     previousXpRequired = xpRequired;
     xpRequired = (long) (level * 25) + (starRating * 75);
-    baseAttack = initialBaseAttack + (int) ((level*1.5) + (starRating * 2));
+    baseAttack = initialBaseAttack + (int) ((level*1.75) + (starRating * 1.25));
   }
 
   public String getFancyStars(){
@@ -159,7 +158,7 @@ public class Weapon {
     JSONObject experience = new JSONObject();
     JSONObject verbs1 = new JSONObject();
 
-    stats.put("attack", baseAttack);
+    stats.put("attack", initialBaseAttack);
     stats.put("buff", attribute.getBuff());
 
     experience.put("xp", xp);
