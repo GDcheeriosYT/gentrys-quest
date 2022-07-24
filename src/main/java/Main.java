@@ -1,10 +1,14 @@
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.*;
 import java.util.*;
 
 import content.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import com.squareup.*;
 
 import artifact.Artifact;
 import buff.Buff;
@@ -22,6 +26,9 @@ class Main{
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
   static String gameDataFilePath = "GameData.json";
   static JSONObject settings = new JSONObject();
+  static JSONObject serverData = new JSONObject();
+  static URL url;
+  static HttpURLConnection serverConnection;
   static int startupAmount;
 
   public static void main(String[] args) throws IOException {
