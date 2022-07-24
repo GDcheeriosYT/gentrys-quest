@@ -32,6 +32,7 @@ jar {
 }
 
 task fatJar(type:Jar){
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest{
         attributes 'Main-class' : 'Main',
         'Implementation-Title' : "Gentry's Quest",
