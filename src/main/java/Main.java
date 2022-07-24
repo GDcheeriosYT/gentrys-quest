@@ -1,10 +1,14 @@
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.*;
 import java.util.*;
 
 import content.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
+//import com.squareup.*;
 
 import artifact.Artifact;
 import buff.Buff;
@@ -22,6 +26,9 @@ class Main{
   static ArrayList<Weapon> gachaWeapopnObtained = new ArrayList<Weapon>();
   static String gameDataFilePath = "GameData.json";
   static JSONObject settings = new JSONObject();
+  static JSONObject serverData = new JSONObject();
+  static URL url;
+  static HttpURLConnection serverConnection;
   static int startupAmount;
 
   public static void main(String[] args) throws IOException {
@@ -465,16 +472,19 @@ class Main{
         while(inSettings){
           System.out.println("1. debug [" + isToggledSetting("debug", true) + "]");
           System.out.println("2. no timeout [" + isToggledSetting("no timeout", true) + "]");
-          System.out.println("3. clear data");
-          System.out.println("4. test battle scene");
-          int input2 = getMainMenuInput("5. exit", rangeArrayListMaker(1, 5));
+          System.out.println("3. change server");
+          System.out.println("4. clear data");
+          System.out.println("5. test battle scene");
+          int input2 = getMainMenuInput("6. exit", rangeArrayListMaker(1, 6));
           //debug toggle
           if(input2 == 1) toggleSetting("debug");
           //no timeout
           else if(input2 == 2) toggleSetting("no timeout");
+          //change server
+          else if(input2 == 3) changeServer();
           //clear data
-          else if(input2 == 3) clearData();
-          else if(input2 == 4) testBattleScene();
+          else if(input2 == 4) clearData();
+          else if(input2 == 5) testBattleScene();
           else{
             clearConsole();
             inSettings = false;
@@ -886,6 +896,7 @@ class Main{
     gameData.put("startupamount", startupAmount);
     gameData.put("inventory", inventoryData);
     gameData.put("settings", settings);
+    gameData.put("server", serverData);
 
     if(isToggledSetting("debug", true)) System.out.println(gameData.toString(4));
 
@@ -921,10 +932,17 @@ class Main{
     return new JSONObject(jsonData);
   }
 
-  public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException {
+  public static void loadGame() throws FileNotFoundException, UnsupportedEncodingException, MalformedURLException {
     System.out.println("\tstep 1, configurations");
     settings.put("debug", isToggledSetting("debug", false));
     settings.put("no timeout", isToggledSetting("no timeout", false));
+    serverData = getData().getJSONObject("server");
+    url = new URL(serverData.getString("ip") + (serverData.getInt("port") > 0 ? (":" + serverData.getInt("port")) : ""));
+    try {
+      serverConnection = (HttpURLConnection) url.openConnection();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
     System.out.println("\tstep 2, money");
     inventory.addMoney(getData().getJSONObject("inventory").getInt("money"));
     System.out.println("\tstep 3, characters");
@@ -1080,6 +1098,10 @@ class Main{
             "  \"settings\" : {\n" +
             "    \"debug\" : false,\n" +
             "    \"no timeout\" : false\n" +
+            "  },\n" +
+            " \"server\" : {\n" +
+            "   \"ip\" : \"http://gdcheerios.com\",\n" +
+            "   \"port\" : 80\n" +
             "  }\n" +
             "}";
 
@@ -1209,5 +1231,22 @@ class Main{
       case 4 -> "critRate";
       default -> "critDamage";
     };
+  }
+
+  public static String getStringInput(String outputText){
+    System.out.println(outputText);
+    Scanner input = new Scanner(System.in);
+    return input.nextLine();
+  }
+
+  public static void changeServer() throws FileNotFoundException {
+    String ip = getStringInput("enter ip");
+    int port = getMainMenuInput("enter port", rangeArrayListMaker(0, 25565));
+    serverData.put("ip", ip);
+    serverData.put("port", port);
+    clearConsole();
+    System.out.println("changed server info");
+    System.out.println(serverData);
+    saveGame();
   }
 }
