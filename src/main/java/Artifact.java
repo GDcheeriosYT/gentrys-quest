@@ -1,5 +1,3 @@
-package artifact;
-
 import buff.Buff;
 import org.json.JSONObject;
 

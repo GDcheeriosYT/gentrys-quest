@@ -1,7 +1,4 @@
-package content;
 import java.util.ArrayList;
-import artifact.Artifact;
-import buff.Buff;
 
 public class artifacts {
   private static ArrayList<Artifact> contentArtifacts = new ArrayList<Artifact>();

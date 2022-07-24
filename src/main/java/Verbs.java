@@ -1,5 +1,3 @@
-package weapon;
-
 public class
 Verbs {
     private final String normal;

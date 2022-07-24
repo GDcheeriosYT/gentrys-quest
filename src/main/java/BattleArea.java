@@ -1,4 +1,3 @@
-package location;
 import java.util.ArrayList;
 
 import artifact.Artifact;
@@ -19,6 +18,14 @@ public class BattleArea {
 
   public String getName() {
     return name;
+  }
+
+  public ArrayList<Artifact> getArtifacts() {
+    return artifacts;
+  }
+
+  public ArrayList<Enemy> getEnemies() {
+    return enemies;
   }
 
   public ArrayList<Enemy> initializeEnemies(int difficulty, int maxLevel){

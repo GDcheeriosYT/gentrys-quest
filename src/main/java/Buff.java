@@ -1,5 +1,3 @@
-package buff;
-
 import java.util.Random;
 
 public class Buff {
