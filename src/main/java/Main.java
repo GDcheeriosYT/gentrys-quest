@@ -5,20 +5,9 @@ import java.net.URL;
 import java.nio.file.*;
 import java.util.*;
 
-import content.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 //import com.squareup.*;
-
-import artifact.Artifact;
-import buff.Buff;
-import character.Character;
-import enemy.Enemy;
-import location.BattleArea;
-import location.Location;
-import weapon.Verbs;
-import weapon.Weapon;
-import data.Inventory;
 
 class Main{
   static Inventory inventory = new Inventory();
@@ -537,7 +526,9 @@ class Main{
                 "* Fixed the messerschmidter verbs by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/70\n" +
                 "* Fixed wrong index for removing artifacts by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/75\n" +
                 "* Reworked artifact class by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/76\n" +
-                "* Added swapping between inventory and characters on equip and dequip by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/79");
+                "* Added swapping between inventory and characters on equip and dequip by @GDcheeriosYT in https://github.com/GDcheeriosYT/gentrys-quest/pull/79\n" +
+                "Removed customization of artifact buff by @GDcheeriosYT\n" +
+                "Migrated content to JSON database by @GDcheeriosYT");
         pressEnterToContinue(true, true);
       }
       else{
@@ -553,9 +544,9 @@ class Main{
     if(pullWeapon){
       int weaponsPulled = 0;
       for(int i = 0; i < amount; i = weaponsPulled){
-        int randomPullWeapon = (int)((Math.random() * content.weapons.getContentWeapons().size()) + 1);
+        int randomPullWeapon = (int)((Math.random() * weapons.getContentWeapons().size()) + 1);
         int randomPullValue = (int)((Math.random() * ((Math.random() * 5) + 1)) + 1);
-        Weapon weapon = content.weapons.getContentWeapons().get(randomPullWeapon - 1);
+        Weapon weapon = weapons.getContentWeapons().get(randomPullWeapon - 1);
         if(weapon.getStarRating() <= randomPullValue){
           boolean ownsWeapon = false;
           for(Weapon inventoryWeapon: inventory.getWeapons()){
@@ -595,9 +586,9 @@ class Main{
     else{
       int charactersPulled = 0;
       for(int i = 0; i < amount; i = charactersPulled){
-        int randomPullCharacter = (int)((Math.random() * content.characters.getContentCharacters().size()) + 1);
+        int randomPullCharacter = (int)((Math.random() * characters.getContentCharacters().size()) + 1);
         int randomPullValue = (int)((Math.random() * ((Math.random() * 5) + 1)) + 1);
-        Character character = content.characters.getContentCharacters().get(randomPullCharacter - 1);
+        Character character = characters.getContentCharacters().get(randomPullCharacter - 1);
         if(character.getStarRating() <= randomPullValue){
           boolean ownsCharacter = false;
           for(Character inventoryCharacter: inventory.getCharacters()){
@@ -640,7 +631,7 @@ class Main{
     if(pullWeapon){
       int weaponsPulled = 0;
       for(int i = 0; i < amount; i = weaponsPulled){
-        Weapon weapon = content.weapons.getSpecificWeapon(name);
+        Weapon weapon = weapons.getSpecificWeapon(name);
         inventory.addWeapon(weapon);
         weaponsPulled += 1;
         gachaWeapopnObtained.add(weapon);
@@ -660,7 +651,7 @@ class Main{
     else{
       int charactersPulled = 0;
       for(int i = 0; i < amount; i = charactersPulled){
-        Character character = content.characters.getSpecificCharacter(name);
+        Character character = characters.getSpecificCharacter(name);
         charactersPulled += 1;
         inventory.addCharacter(character);
         gachaCharacterObtained.add(character);
@@ -723,7 +714,7 @@ class Main{
 
   public static void listLocations(){
     int indexer = 1;
-    for(Location location: content.Locations.getContentLocations()){
+    for(Location location: Locations.getContentLocations()){
       System.out.println(indexer + ". " + location);
       indexer += 1;
     }

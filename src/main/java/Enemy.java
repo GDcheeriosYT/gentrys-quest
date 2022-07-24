@@ -1,4 +1,3 @@
-package enemy;
 import character.Character;
 import weapon.Weapon;
 

@@ -1,5 +1,3 @@
-package content;
-
 import artifact.Artifact;
 import buff.Buff;
 import enemy.Enemy;
