@@ -491,9 +491,7 @@ public class Character {
     try{
       equips.put("weapon", weapon.getData());
     }
-    catch (NullPointerException e){
-      System.out.println("this character doesn't have a weapon...");
-    }
+    catch (NullPointerException e){}
     for(Artifact artifact: artifacts) if(artifact != null) artifactData.put(artifact.getData());
     equips.put("artifacts", artifactData);
 
