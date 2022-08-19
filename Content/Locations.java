@@ -1,5 +1,3 @@
-import location.BattleArea;
-import location.Location;
 import java.util.ArrayList;
 import java.util.List;
 

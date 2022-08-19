@@ -1,5 +1,6 @@
-public class
-Verbs {
+package SignificantThings.Weapons;
+
+public class Verbs {
     private final String normal;
     private final String critical;
 

@@ -1,25 +1,20 @@
+package SignificantThings.Characters;
+
+import SignificantThings.SignificantThing;
+import SignificantThings.Weapons.*;
+import SignificantThings.Artifacts.Artifact;
+import SignificantThings.Enemies.Enemy;
+import SignificantThings.Buffs.Buff;
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
-import artifact.Artifact;
-import buff.Buff;
-import enemy.Enemy;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import weapon.Verbs;
-import weapon.Weapon;
 
-
-public class Character {
-  private int starRating;
-  private final String name;
-  private final String description;
-  private int level = 1;
-  private long xp = 0;
-  private long xpRequired = 100;
-  long previousXpRequired;
+public class Character extends SignificantThing {
   private int health;
   private int defaultHealth;
   private int additionalHealth;
@@ -38,7 +33,6 @@ public class Character {
   private Weapon weapon;
   private Artifact[] artifacts = {null, null, null, null, null};
   private int difficulty = 1;
-  private boolean equipped = false;
   private int initialHealth;
   private int initialAttack;
   private int initialDefense;
@@ -47,42 +41,36 @@ public class Character {
 
   //character creation constructor
   public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description){
-    this.starRating = starRating;
-    this.name = name;
-    this.description = description;
+    super(starRating, name, description);
     initialHealth = health * 5;
     initialAttack = attack;
     initialDefense = defense;
     initialCritRate = critRate;
     initialCritDamage = critDamage;
-    xpRequired = (long) (((level * 75) + (level * 0.75)) + (starRating * 25));
-    defaultHealth = (int) (2 * level + (starRating * 10));
-    defaultAttackDamage = (int) (1 * (level * 1.45) + (starRating + 2));
-    defaultDefense = (int) (0.5 + (level * 0.5) + (starRating * 0.5));
-    defaultCritRate = 7 + (level * 0.2) + (starRating * 1);
-    defaultCritDamage = (int) (0.5 + (level * 1.45) + (starRating * 2));
-    difficulty = (int)(1 + (level / 20));
+    defaultHealth = (int) (2 * super.getLevel() + (super.getStarRating() * 10));
+    defaultAttackDamage = (int) (1 * (super.getLevel() * 1.45) + (super.getStarRating() + 2));
+    defaultDefense = (int) (0.5 + (super.getLevel() * 0.5) + (super.getStarRating() * 0.5));
+    defaultCritRate = 7 + (super.getLevel() * 0.2) + (super.getStarRating() * 1);
+    defaultCritDamage = (int) (0.5 + (super.getLevel() * 1.45) + (super.getStarRating() * 2));
+    difficulty = (int)(1 + (super.getLevel() / 20));
     updateStats();
   }
 
   public Character(int starRating, String name, int health, int attack, int defense, double critRate, int critDamage, String description, int level, long xp, Weapon weapon, ArrayList<Artifact> artifacts){
-    this.starRating = starRating;
-    this.name = name;
-    this.description = description;
+    super(starRating, name, description);
     initialHealth = health * 5;
     initialAttack = attack;
     initialDefense = defense;
     initialCritRate = critRate;
     initialCritDamage = critDamage;
-    xpRequired = (long) (((level * 75) + (level * 0.75)) + (starRating * 25));
-    defaultHealth = (int) (2 * level + (starRating * 10));
-    defaultAttackDamage = (int) (1 * (level * 1.45) + (starRating + 2));
-    defaultDefense = (int) (0.5 + (level * 0.5) + (starRating * 0.5));
-    defaultCritRate = 7 + (level * 0.2) + (starRating * 1);
-    defaultCritDamage = (int) (0.5 + (level * 1.45) + (starRating * 2));
-    difficulty = (int)(1 + (level / 20));
+    defaultHealth = (int) (2 * super.getLevel() + (super.getStarRating() * 10));
+    defaultAttackDamage = (int) (1 * (super.getLevel() * 1.45) + (super.getStarRating() + 2));
+    defaultDefense = (int) (0.5 + (super.getLevel() * 0.5) + (super.getStarRating() * 0.5));
+    defaultCritRate = 7 + (super.getLevel() * 0.2) + (super.getStarRating() * 1);
+    defaultCritDamage = (int) (0.5 + (super.getLevel() * 1.45) + (super.getStarRating() * 2));
+    difficulty = (int)(1 + (super.getLevel() / 20));
     setLevel(level);
-    this.xp = xp;
+    super.setXp(xp);
     if (weapon != null) equipWeapon(weapon, false);
     try{
       for(int i = 0; i<5; i++){
@@ -90,20 +78,6 @@ public class Character {
       }
     } catch (Exception e){}
     levelUp(0);
-  }
-
-  public void addXp(int amount){
-    amount += xp;
-    xp = 0;
-    while(amount >= xpRequired){
-      levelUp(1);
-      amount -= previousXpRequired;
-    }
-    xp = amount;
-  }
-
-  public void setLevel(int level) {
-    this.level = level;
   }
 
   private boolean hasSet(){
@@ -122,29 +96,6 @@ public class Character {
     return true;
   }
 
-  public void levelUp(int amount){
-    level += amount;
-    //System.out.println(xpRequired);
-    previousXpRequired = xpRequired;
-    xpRequired = (long) (((level * 80) + (level * 0.80)) + (starRating * 20));
-    defaultHealth = (int) (2 * level + (starRating * 10));
-    defaultAttackDamage = (int) (1 * (level * 1.45) + (starRating + 2));
-    defaultDefense = (int) (0.5 + (level * 0.5) + (starRating * 0.5));
-    defaultCritRate = 7 + (level * 0.2) + (starRating * 1);
-    defaultCritDamage = (int) (0.5 + (level * 1.45) + (starRating * 2));
-    difficulty = (int)(1 + (level / 20));
-
-    additionalHealth = 0;
-    additionalAttackDamage = 0;
-    additionalDefense = 0;
-    additionalCritRate = 0;
-    additionalCritDamage = 0;
-
-    checkWeapon();
-    checkArtifacts(false, null);
-    updateStats();
-  }
-
   public void updateStats(){
     health = initialHealth + defaultHealth + additionalHealth;
     attackDamage = initialAttack + defaultAttackDamage + additionalAttackDamage;
@@ -155,18 +106,10 @@ public class Character {
 
   public String getFancyStars(){
     String stars = "";
-    for(int i = 0; i<starRating; i++){
+    for(int i = 0; i<super.getStarRating(); i++){
       stars += "*";
     }
     return stars;
-  }
-
-  public long getXp() {
-    return xp;
-  }
-
-  public long getXpRequired() {
-    return xpRequired;
   }
 
   public void equipArtifact(int position, Artifact artifact){
@@ -292,7 +235,7 @@ public class Character {
 
   public void equipWeapon(Weapon weapon2, boolean output){
     if(output == true){
-      System.out.println(name + " has succesfully equipped " + weapon2.getName());
+      System.out.println(super.getName() + " has succesfully equipped " + weapon2.getName());
     }
     weapon = weapon2;
     checkWeapon();
@@ -325,22 +268,6 @@ public class Character {
     return artifacts;
   }
 
-  public String getName(){
-    return name;
-  }
-
-  public int getStarRating(){
-    return starRating;
-  }
-
-  public String getDescription(){
-    return description;
-  }
-
-  public int getLevel() {
-    return level;
-  }
-
   public int getDifficulty() {
     return difficulty;
   }
@@ -358,7 +285,7 @@ public class Character {
   }
 
   public boolean attack(Enemy enemy, boolean debug, boolean timeout){
-    String output = name + " ";
+    String output = super.getName() + " ";
     int damage = 0;
     if(weapon == null){
       System.out.println("You have no weapon...");
@@ -420,7 +347,7 @@ public class Character {
   public String toString(){
     String stars = "";
     //make fancier star display
-    for(int i = 0; i < starRating; i++){
+    for(int i = 0; i < super.getStarRating(); i++){
       stars += "*";
     }
     String moreHealth = "";
@@ -460,16 +387,8 @@ public class Character {
       artifactInfo += Objects.requireNonNullElse(artifact, "empty\n");
     }
 
-    float percent = (xp * 100.0f) / xpRequired;
-    return name + " " + stars + "\nlevel " + level + "\nxp: " + xp + "/" + xpRequired + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense + "\ncrit rate: " + defaultCritRate + "% " + moreCritRate + "\ncrit damage " + defaultCritDamage + moreCritDamage + weaponInfo + artifactInfo + "\n====================\n" + description + "\n====================";
-  }
-
-  public boolean isEquipped() {
-    return equipped;
-  }
-
-  public void setEquipped(boolean equipped) {
-    this.equipped = equipped;
+    float percent = (super.getXp() * 100.0f) / super.getXpRequired();
+    return super.getName() + " " + stars + "\nlevel " + super.getLevel() + "\nxp: " + super.getXp() + "/" + super.getXpRequired() + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense + "\ncrit rate: " + defaultCritRate + "% " + moreCritRate + "\ncrit damage " + defaultCritDamage + moreCritDamage + weaponInfo + artifactInfo + "\n====================\n" + super.getDescription() + "\n====================";
   }
 
   public JSONObject getData(){
@@ -493,203 +412,16 @@ public class Character {
     for(Artifact artifact: artifacts) if(artifact != null) artifactData.put(artifact.getData());
     equips.put("artifacts", artifactData);
 
-    experience.put("xp", xp);
-    experience.put("level", level);
+    experience.put("xp", super.getXp());
+    experience.put("level", super.getLevel());
 
-    data.put("name", name);
-    data.put("description", description);
-    data.put("star rating", starRating);
+    data.put("name", super.getName());
+    data.put("description", super.getDescription());
+    data.put("star rating", super.getStarRating());
     data.put("stats", stats);
     data.put("equips", equips);
     data.put("experience", experience);
 
     return data;
-  }
-
-  public String testingToString(){
-    String stars = "";
-    //make fancier star display
-    for(int i = 0; i < starRating; i++){
-      stars += "*";
-    }
-    String moreHealth = "";
-    String moreAttackDamage = "";
-    String moreDefense = "";
-    String moreCritRate = "";
-    String moreCritDamage = "";
-    String weaponInfo = "";
-    String artifactInfo = "";
-    if(additionalHealth != 0){
-      moreHealth = " + " + additionalHealth + " (" + (defaultHealth + additionalHealth) + ")";
-    }
-
-    if(additionalAttackDamage != 0){
-      moreAttackDamage = " + " + additionalAttackDamage + " (" + (defaultAttackDamage + additionalAttackDamage) + ")";
-    }
-
-    if(additionalDefense != 0){
-      moreDefense = " + " + additionalDefense + " (" + (defaultDefense + additionalDefense) + ")";
-    }
-
-    if(additionalCritRate != 0){
-      moreCritRate = " + " + additionalCritRate + "%" + " (" + (defaultCritRate + additionalCritRate) + "%)";
-      if(additionalCritRate + defaultCritRate > 100){
-        moreCritRate = " + " + additionalCritRate + "%" + "(100.0%)";
-      }
-    }
-
-    if(additionalCritDamage != 0){
-      moreCritDamage = " + " + additionalCritDamage + " (" + (defaultCritDamage + additionalCritDamage) + ")";
-    }
-
-    weaponInfo += "\n--------weapon--------\n" + Objects.requireNonNullElse(weapon, "empty\n");
-
-    for(Artifact artifact: artifacts){
-      artifactInfo += "\n^^^^^^^^artifact^^^^^^^^\n";
-      artifactInfo += Objects.requireNonNullElse(artifact, "empty\n");
-    }
-
-    float percent = (xp * 100.0f) / xpRequired;
-    return name + " " + "<-[Q]" + stars + "[W]->" + "\nlevel\t<-[K]" + level + "[L]->\nxp: " + xp + "/" + xpRequired + " " + (int)percent + "%" + "\nhealth: " + defaultHealth + moreHealth + "\nattack: " + defaultAttackDamage + moreAttackDamage + "\ndefense: " + defaultDefense + moreDefense + "\ncrit rate: " + defaultCritRate + "% " + moreCritRate + "\ncrit damage " + defaultCritDamage + moreCritDamage + ".\n[E] edit weapon info" + weaponInfo + "\n[A] edit artifact info" + artifactInfo + "\n====================\n" + description + "\n====================";
-  }
-
-  public String getStringInput(String outputText){
-    System.out.println(outputText);
-    Scanner input = new Scanner(System.in);
-    return input.nextLine();
-  }
-
-  public static int getMainMenuInput(String text){
-    Scanner input = new Scanner(System.in);
-    System.out.println(text);
-    return input.nextInt();
-  }
-
-  public void editWeapon(){
-    label:
-    while(true){
-      String input = getStringInput(weapon.editingToString());
-      System.out.println(input);
-      switch (input){
-        case "q":
-          weapon.setStarRating(weapon.getStarRating() - 1);
-          break;
-        case "w":
-          weapon.setStarRating(weapon.getStarRating() + 1);
-          break;
-        case "Q":
-          weapon.setStarRating(1);
-          break;
-        case "W":
-          weapon.setStarRating(5);
-          break;
-        case "s":
-          weapon.setBaseAttack(weapon.getBaseAttack() + 1);
-          break;
-        case "S":
-          weapon.setBaseAttack(weapon.getBaseAttack() + 10);
-          break;
-        case "a":
-          weapon.setBaseAttack(weapon.getBaseAttack() - 1);
-          break;
-        case "A":
-          weapon.setBaseAttack(weapon.getBaseAttack() - 10);
-          break;
-
-        case "f":
-          label1:
-          while(true) {
-            String input2 = getStringInput(weapon.attributeToStringEditing());
-            switch (input2){
-              case "q":
-                String output1;
-                int input3 = getMainMenuInput("1.health\n2.attack\n3.defense\n4.critRate\n5.critDamage");
-                int input4 = getMainMenuInput("1.%\n2.integer");
-                switch (input3) {
-                  case 1 -> output1 = "health";
-                  case 2 -> output1 = "attack";
-                  case 3 -> output1 = "defense";
-                  case 4 -> output1 = "critRate";
-                  case 5 -> output1 = "critDamage";
-                  default -> output1 = "";
-                }
-                weapon.setAttribute(output1, input4 == 1);
-                break;
-
-              case "a":
-                weapon.getAttribute().levelUp(-1);
-                break;
-              case "A":
-                weapon.getAttribute().levelUp(-10);
-                break;
-              case "s":
-                weapon.getAttribute().levelUp(1);
-                break;
-              case "S":
-                weapon.getAttribute().levelUp(10);
-                break;
-
-              default:
-                break label1;
-            }
-          }
-        default:
-          break label;
-      }
-    }
-
-  }
-
-  public void editStats(){
-    label:
-    while(true){
-      String input = getStringInput(testingToString());
-      System.out.println(input);
-      switch (input) {
-        case "q":
-          clearConsole();
-          starRating -= 1;
-          levelUp(0);
-          break;
-        case "w":
-          clearConsole();
-          starRating += 1;
-          levelUp(0);
-          break;
-        case "Q":
-          clearConsole();
-          starRating = 1;
-          levelUp(0);
-          break;
-        case "W":
-          clearConsole();
-          starRating = 5;
-          levelUp(0);
-          break;
-        case "k":
-          clearConsole();
-          levelUp(-1);
-          break;
-        case "K":
-          clearConsole();
-          levelUp(-10);
-          break;
-        case "l":
-          clearConsole();
-          levelUp(1);
-          break;
-        case "L":
-          clearConsole();
-          levelUp(10);
-          break;
-        case "e":
-          clearConsole();
-          editWeapon();
-          break;
-
-        default:
-          break label;
-      }
-    }
   }
 }

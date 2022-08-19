@@ -1,6 +1,3 @@
-import buff.Buff;
-import weapon.Verbs;
-import weapon.Weapon;
 import java.util.ArrayList;
 
 public class weapons {

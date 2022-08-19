@@ -1,22 +1,23 @@
-import buff.Buff;
+package SignificantThings.Artifacts;
+
+import SignificantThings.SignificantThing;
+import SignificantThings.Buffs.Buff;
+
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Artifact {
-  private final String name;
-  private int starRating;
-  private int level = 1;
-  int xp = 0;
-  int xpRequired = 100;
-  int previousXpRequired;
+import static ConsoleMethods.ConsoleMethods.timeout;
+
+public class Artifact extends SignificantThing {
   private final Buff mainAttribute;
   private final String family;
   private ArrayList<Buff> attributes = new ArrayList<Buff>();
 
   public Artifact(String name, Buff mainAttribute, String family) {
-    this.name = name;
+    super(name);
     this.mainAttribute = mainAttribute;
     this.family = family;
   }
@@ -25,21 +26,17 @@ public class Artifact {
     return mainAttribute;
   }
 
-  public void setLevel(int level) {
-    this.level = level;
-  }
-
-  public void levelUp(Boolean output) {
-    if (level < starRating * 4) {
+  public void levelUp(Boolean output) throws FileNotFoundException {
+    if (super.getLevel() < super.getStarRating() * 4) {
       if (output) timeout(1000, true);
-      level += 1;
-      if (output) System.out.println("Your artifact is now level " + level);
-      previousXpRequired = xpRequired;
-      xpRequired += xpRequired * ((starRating * 0.004) + 0.045);
+      super.levelUp(1);
+      if (output) System.out.println("Your artifact is now level " + super.getLevel());
+      super.setPreviousXpRequired(super.getXpRequired());
+      super.setXpRequired((long) (super.getXpRequired() + super.getXpRequired() * ((super.getStarRating() * 0.004) + 0.045)));
       mainAttribute.levelUp(1);
-      if (level % 4 == 0) {
+      if (super.getLevel() % 4 == 0) {
         Buff e = new Buff("");
-        if (output) System.out.println("^ " + (e.getBuffString(e.getBuff()[0])) + (e.getBuff()[1] == 1 ? " %" : "") + " ^");
+        if (output) System.out.println("^ " + (e.getBuffString(e.getBuff()[0])) + " ^");
         addAttribute(e);
       }
     } else {
@@ -66,7 +63,7 @@ public class Artifact {
       if(!leveled) attributes.add(buff);
     }
   }
-  
+
   public static boolean isSameAttribute(Buff buff1, Buff buff2, boolean includeLevel){
     if(buff1.getBuff()[0] == buff2.getBuff()[0] && buff1.getBuff()[1] == buff2.getBuff()[1]){
       if(includeLevel){
@@ -78,38 +75,23 @@ public class Artifact {
       return false;
     }
   }
-  
-  public static void timeout(int time, boolean clearConole) {
-    try {
-      Thread.sleep(time);
-    } catch (InterruptedException ex) {
-      throw new RuntimeException(ex);
-    }
-    if (clearConole) clearConsole();
-  }
-
-  public static void clearConsole() {
-    for (int i = 0; i < 100; i++) {
-      System.out.println("");
-    }
-  }
 
   public String getFancyStars() {
     String stars = "";
-    for (int i = 0; i < starRating; i++) {
+    for (int i = 0; i < super.getStarRating(); i++) {
       stars += "*";
     }
     return stars;
   }
 
   public void addXp(int amount) {
-    amount += xp;
-    xp = 0;
-    while (amount >= xpRequired) {
-      levelUp(true);
-      amount -= previousXpRequired;
+    amount += super.getXp();
+    super.setXp(0);
+    while (amount >= super.getXpRequired()) {
+      super.levelUp(1);
+      amount -= super.getPreviousXpRequired();
     }
-    xp = amount;
+    super.setXp(amount);
   }
 
   public String getFamily() {
@@ -122,12 +104,12 @@ public class Artifact {
     double value;
     if (buff.getBuff()[1] == 0) {
       if (buff.getBuff()[0] == 4) {
-        value = 1 + (level * 0.05) + (starRating * 0.3) * (buff.getBuff()[2] * 0.5);
+        value = 1 + (super.getLevel() * 0.05) + (super.getStarRating() * 0.3) * (buff.getBuff()[2] * 0.5);
       } else {
-        value = 1 + (!isSameAttribute(buff, mainAttribute, true) ? (level * 0.85) + (starRating * 1.2) * (buff.getBuff()[2]): (int) (starRating * 1.2) * (buff.getBuff()[2]));
+        value = 1 + (!isSameAttribute(buff, mainAttribute, true) ? (super.getLevel() * 0.85) + (super.getStarRating() * 1.2) * (buff.getBuff()[2]): (int) (super.getStarRating() * 1.2) * (buff.getBuff()[2]));
       }
     } else {
-      value = (2 * starRating) + (level * 1.5);
+      value = (2 * super.getStarRating()) + (super.getLevel() * 1.5);
     }
     return value;
   }
@@ -139,23 +121,6 @@ public class Artifact {
       buffs.add(attribute);
     }
     return buffs;
-  }
-
-  public void setStarRating(int starRating) {
-    this.starRating = starRating;
-    this.xpRequired = xpRequired * starRating;
-  }
-
-  public String getName(){
-    return name;
-  }
-
-  public int getStarRating(){
-    return starRating;
-  }
-
-  public int getLevel() {
-    return level;
   }
 
   public static String getStringBuff(int attributeID){
@@ -172,7 +137,7 @@ public class Artifact {
   public String toString(){
     String stars = "";
     //make fancier star display
-    for(int i = 0; i < starRating; i++){
+    for(int i = 0; i < super.getStarRating(); i++){
       stars += "*";
     }
     String strAttributes = "";
@@ -181,10 +146,10 @@ public class Artifact {
     }
 
     float percent;
-    if(level != starRating*4) percent = (xp * 100.0f) / xpRequired;
+    if(super.getLevel() != super.getStarRating()*4) percent = (super.getXp() * 100.0f) / super.getXpRequired();
     else percent = 100;
 
-    return name + " " + stars + "\nappart of: " + family + " set" + "\n" + "level: " + level + "/" + (starRating * 4) + " (" + percent + "%)\n" + mainAttribute + " " + getValue(mainAttribute) + " " + (mainAttribute.getBuff()[1] == 1 ? "%" : "") + "\n" + strAttributes;
+    return super.getName() + " " + stars + "\nappart of: " + family + " set" + "\n" + "level: " + super.getLevel() + "/" + (super.getStarRating() * 4) + " (" + percent + "%)\n" + mainAttribute + " " + getValue(mainAttribute) + " " + (mainAttribute.getBuff()[1] == 1 ? "%" : "") + "\n" + strAttributes;
   }
 
   public JSONObject getData(){
@@ -196,14 +161,14 @@ public class Artifact {
     stats.put("main attribute", mainAttribute.getBuff());
     stats.put("attributes", attributes);
 
-    experience.put("xp", xp);
-    experience.put("xp required", xpRequired);
-    experience.put("previous xp required", previousXpRequired);
-    experience.put("level", level);
+    experience.put("xp", super.getXp());
+    experience.put("xp required", super.getXpRequired());
+    experience.put("previous xp required", super.getPreviousXpRequired());
+    experience.put("level", super.getLevel());
 
-    data.put("name", name);
+    data.put("name", super.getName());
     data.put("family", family);
-    data.put("star rating", starRating);
+    data.put("star rating", super.getStarRating());
     data.put("stats", stats);
     data.put("experience", experience);
 

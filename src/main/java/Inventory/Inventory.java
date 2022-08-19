@@ -1,7 +1,10 @@
+package Inventory;
+
 import java.util.ArrayList;
-import character.Character;
-import artifact.Artifact;
-import weapon.Weapon;
+
+import SignificantThings.Artifacts.Artifact;
+import SignificantThings.Weapons.Weapon;
+import SignificantThings.Characters.Character;
 
 public class Inventory {
   private boolean infiniteMoney;
@@ -11,7 +14,7 @@ public class Inventory {
   private int money;
 
   public Inventory(){}
-  
+
   public void addArtifact(Artifact artifact){
     artifacts.add(artifact);
   }
@@ -59,14 +62,6 @@ public class Inventory {
   public int getMoney() {
     if(infiniteMoney) return Integer.MAX_VALUE;
     return money;
-  }
-
-  public int getLongestCharacterNameLength(ArrayList<Character> characterList){
-    int longest = 0;
-    for(Character character: getCharacters()){
-      if(character.getName().length() > longest) longest = character.getName().length();
-    }
-    return longest;
   }
 
   public ArrayList<Character> getCharacters(){

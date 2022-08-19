@@ -1,16 +1,18 @@
-import java.util.Random;
+package SignificantThings.Buffs;
 
-public class Buff {
-  private int level = 1;
-  private boolean health;
-  private boolean attack;
-  private boolean defense;
-  private boolean critRate;
-  private boolean critDamage;
+import SignificantThings.SignificantThing;
+
+public class Buff extends SignificantThing {
   private boolean percentage = false;
+  private boolean health = false;
+  private boolean attack = false;
+  private boolean defense = false;
+  private boolean critRate = false;
+  private boolean critDamage = false;
 
-  public Buff(String mainAttribute){
-    if((Math.random() * 100) + 1 < 50) percentage = true;
+  public Buff(String mainAttribute) {
+    super();
+    if ((Math.random() * 100) + 1 < 50) percentage = true;
     switch (mainAttribute) {
       case "health" -> health = true;
       case "attack" -> attack = true;
@@ -30,8 +32,8 @@ public class Buff {
     }
   }
 
-  public Buff(String mainAttribute, boolean isPercentage){
-    if(isPercentage) percentage = true;
+  public Buff(String mainAttribute, boolean isPercentage) {
+    if (isPercentage) percentage = true;
     switch (mainAttribute) {
       case "health" -> health = true;
       case "attack" -> attack = true;
@@ -51,61 +53,57 @@ public class Buff {
     }
   }
 
-  public void levelUp(int amount){
-    level += amount;
-  }
-
-  public int[] getBuff(){
+  public int[] getBuff() {
     int[] values = new int[3];
-    if(health){
+    if (health) {
       values[0] = 1;
       values[1] = percentage ? 1 : 0;
-      values[2] = level;
+      values[2] = super.getLevel();
       return values;
-    }
-    else if(attack){
+    } else if (attack) {
       values[0] = 2;
       values[1] = percentage ? 1 : 0;
-      values[2] = level;
+      values[2] = super.getLevel();
       return values;
-    }
-    else if (defense){
+    } else if (defense) {
       values[0] = 3;
       values[1] = percentage ? 1 : 0;
-      values[2] = level;
+      values[2] = super.getLevel();
       return values;
-    }
-    else if (critRate){
+    } else if (critRate) {
       values[0] = 4;
       values[1] = percentage ? 1 : 0;
-      values[2] = level;
+      values[2] = super.getLevel();
       return values;
-    }
-    else{
+    } else {
       values[0] = 5;
       values[1] = percentage ? 1 : 0;
-      values[2] = level;
+      values[2] = super.getLevel();
       return values;
     }
   }
 
-  public String getBuffString(int number){
+  public String getPercentString(){
+    return percentage ? "%" : "";
+  }
+
+  public String getBuffString(int number) {
     return switch (number) {
-      case 1 -> "health";
-      case 2 -> "attack";
-      case 3 -> "defense";
-      case 4 -> "critRate";
-      default -> "critDamage";
+      case 1 -> "health" + getPercentString();
+      case 2 -> "attack" + getPercentString();
+      case 3 -> "defense" + getPercentString();
+      case 4 -> "critRate" + getPercentString();
+      default -> "critDamage" + getPercentString();
     };
   }
 
-  public String toString(){
-    return switch (getBuff()[0]) {
-      case 1 -> "HP";
-      case 2 -> "Attack";
-      case 3 -> "Defense";
-      case 4 -> "Crit Rate";
-      default -> "Crit Damage";
-    };
-  }
+    public String toString(){
+      return switch (getBuff()[0]) {
+        case 1 -> "HP" + getPercentString();
+        case 2 -> "Attack" + getPercentString();
+        case 3 -> "Defense" + getPercentString();
+        case 4 -> "Crit Rate" + getPercentString();
+        default -> "Crit Damage" + getPercentString();
+      };
+    }
 }
