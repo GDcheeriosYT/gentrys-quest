@@ -1,13 +1,13 @@
 package Settings;
 
-public class Setting {
-    private String name;
+import InterfaceManager.Option;
+public class Setting extends  Option{
 
     public Setting(String name){
-        this.name = name;
+        super(name);
     }
 
     public String getName() {
-        return name;
+        return super.getOptionName();
     }
 }
