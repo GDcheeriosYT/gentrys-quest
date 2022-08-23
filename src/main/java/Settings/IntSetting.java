@@ -5,16 +5,26 @@ public class IntSetting extends Setting{
     private int minValue;
     private int maxValue;
 
-    public IntSetting(String name, int value){
-        super(name);
+    public IntSetting(String name, int value, Runnable method){
+        super(name, method);
         this.value = value;
+        this.minValue = Integer.MIN_VALUE;
+        this.maxValue = Integer.MAX_VALUE;
     }
 
-    public IntSetting(String name, int defaultValue, int minValue, int maxValue){
-        super(name);
-        this.value = value;
+    public IntSetting(String name, int defaultValue, int minValue, int maxValue, Runnable method){
+        super(name, method);
+        this.value = defaultValue;
         this.minValue = minValue;
         this.maxValue = maxValue;
+    }
+
+    public void addValue(){
+        value += 1;
+    }
+
+    public void subtractValue(){
+        value -= 1;
     }
 
     public int getValue() {

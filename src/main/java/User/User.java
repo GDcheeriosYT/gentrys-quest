@@ -8,13 +8,11 @@ import java.lang.Math;
 
 public class User {
     private String username;
-    private int age;
     private int powerLevel;
     private Inventory inventory;
 
-    public User(String username, int age, Inventory inventory){
+    public User(String username, Inventory inventory){
         this.username = username;
-        this.age = age;
         this.inventory = inventory;
         this.powerLevel = powerLevelGetter(inventory);
     }

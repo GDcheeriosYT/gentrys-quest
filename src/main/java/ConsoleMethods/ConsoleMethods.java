@@ -8,7 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ConsoleMethods {
-    public static void timeout(int time, boolean clearConole) throws FileNotFoundException {
+    public static void timeout(int time, boolean clearConole){
         try {
             Thread.sleep(time);
         } catch (InterruptedException ex) {
@@ -29,7 +29,7 @@ public class ConsoleMethods {
         }
     }
 
-    public static int getMainMenuInput(String text, ArrayList<Integer> allowedInputs) throws FileNotFoundException {
+    public static int getIntInput(String text, ArrayList<Integer> allowedInputs){
         Scanner input = null;
         int output = 0;
         boolean goodInput = false;
@@ -53,7 +53,7 @@ public class ConsoleMethods {
         return output;
     }
 
-    public static ArrayList<Integer> rangeArrayListMaker(int min, int max) throws FileNotFoundException {
+    public static ArrayList<Integer> rangeArrayListMaker(int min, int max){
         ArrayList<Integer> rangeToReturn = new ArrayList<Integer>();
         if(max == Integer.MAX_VALUE) max = 10000;
         for(int i = min; i<=max; i++){
@@ -61,7 +61,6 @@ public class ConsoleMethods {
         }
         return rangeToReturn;
     }
-
 
     public static String getStringInput(String outputText){
         System.out.println(outputText);

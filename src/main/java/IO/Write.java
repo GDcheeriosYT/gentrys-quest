@@ -26,10 +26,6 @@
 //                "  \"settings\" : {\n" +
 //                "    \"debug\" : false,\n" +
 //                "    \"no timeout\" : false\n" +
-//                "  },\n" +
-//                " \"server\" : {\n" +
-//                "   \"ip\" : \"http://gdcheerios.com\",\n" +
-//                "   \"port\" : 80\n" +
 //                "  }\n" +
 //                "}";
 //

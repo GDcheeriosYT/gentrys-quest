@@ -1,6 +1,9 @@
 package SignificantThings.Buffs;
 
 import SignificantThings.SignificantThing;
+import org.json.JSONArray;
+
+import java.util.ArrayList;
 
 public class Buff extends SignificantThing {
   private boolean percentage = false;
@@ -87,23 +90,29 @@ public class Buff extends SignificantThing {
     return percentage ? "%" : "";
   }
 
-  public String getBuffString(int number) {
+  public static String getBuffString(int number) {
     return switch (number) {
-      case 1 -> "health" + getPercentString();
-      case 2 -> "attack" + getPercentString();
-      case 3 -> "defense" + getPercentString();
-      case 4 -> "critRate" + getPercentString();
-      default -> "critDamage" + getPercentString();
+      case 1 -> "health";
+      case 2 -> "attack";
+      case 3 -> "defense";
+      case 4 -> "critRate";
+      default -> "critDamage";
     };
   }
 
-    public String toString(){
-      return switch (getBuff()[0]) {
-        case 1 -> "HP" + getPercentString();
-        case 2 -> "Attack" + getPercentString();
-        case 3 -> "Defense" + getPercentString();
-        case 4 -> "Crit Rate" + getPercentString();
-        default -> "Crit Damage" + getPercentString();
-      };
-    }
+  public static Buff createBuff(JSONArray buffArray){
+    Buff buff = new Buff(getBuffString(buffArray.getInt(0)), buffArray.getInt(1) == 1 ? true : false);
+    buff.levelUp(buffArray.getInt(2));
+    return buff;
+  }
+
+  public String toString(){
+    return switch (getBuff()[0]) {
+      case 1 -> "HP" + getPercentString();
+      case 2 -> "Attack" + getPercentString();
+      case 3 -> "Defense" + getPercentString();
+      case 4 -> "Crit Rate" + getPercentString();
+      default -> "Crit Damage" + getPercentString();
+    };
+  }
 }
