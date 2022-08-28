@@ -2,18 +2,14 @@ package InterfaceManager;
 
 public class Option {
     private String optionName;
-    private Runnable method;
+    private Interface  linkedInterface;
 
-    public Option(String name, Runnable method) {
+    public Option(String name, Interface linkedInterface) {
         optionName = name;
-        this.method = method;
+        this.linkedInterface = linkedInterface;
     }
 
     public String getOptionName() {
         return optionName;
-    }
-
-    public void runMethod(){
-        method.run();
     }
 }

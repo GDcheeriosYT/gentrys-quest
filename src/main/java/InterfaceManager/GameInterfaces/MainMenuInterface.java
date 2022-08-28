@@ -5,24 +5,22 @@ import InterfaceManager.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainMenuInterface {
-    private Interface mainMenu;
+public class MainMenuInterface extends Interface{
+
+    static OptionGroup optionGroup = new OptionGroup(new ArrayList<Option>(List.of(
+            new Option("play", PlayInterface),
+            new Option("settings", SettingsInterface),
+            new Option("changelog", ChangelogInterface),
+            new Option("quit", null)
+    )));
 
     public MainMenuInterface(){
-
+        super("Gentry's Quest", optionGroup, InputType.INT);
     }
 
-    public void show(){
-        OptionGroup options = new OptionGroup(new ArrayList<>(List.of(
-                new Option("play"),
-                new Option("settings", new SettingsInterface().show()),
-                new Option("quit", new Runnable() {
-                    @Override
-                    public void run() {
-                        System.exit(0);
-                    }
-                })
-        )));
-        this.mainMenu = new Interface("Gentry's Quest");
+    public Interface handleInput(int input){
+        switch (input){
+            case 1:
+        }
     }
 }

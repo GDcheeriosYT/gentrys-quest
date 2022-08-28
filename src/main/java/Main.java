@@ -1,5 +1,7 @@
 import java.io.*;
+import java.util.ArrayList;
 
+import InterfaceManager.Interface;
 import Inventory.Inventory;
 import Settings.*;
 import ConsoleMethods.ConsoleMethods;
@@ -10,11 +12,11 @@ import org.fusesource.jansi.*;
 import static org.fusesource.jansi.Ansi.ansi;
 import static org.fusesource.jansi.Ansi.Color;
 
-
 class Main{
   static Data gameData = new Data();
   static User user;
   static Inventory inventory;
+  static ArrayList<Interface> menunMemory;
 
   public static void main(String[] args) throws IOException {
     AnsiConsole.systemInstall();
@@ -25,6 +27,6 @@ class Main{
     ConsoleMethods.clearConsole();
     AnsiConsole.out().println( ansi().eraseScreen().a("welcome " + args[0]).reset() );
     ConsoleMethods.timeout(1000, false);
-    MainMenuInterface.show();
+    new MainMenuInterface();
   }
 }

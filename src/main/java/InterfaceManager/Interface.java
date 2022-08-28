@@ -6,12 +6,12 @@ import ConsoleMethods.ConsoleMethods;
 public class Interface {
     private String interfaceInfo;
     private OptionGroup options;
-    private boolean inputIsInt;
+    private InputType inputType;
 
-    public Interface(String interfaceInfo, OptionGroup options, boolean inputIsInt){
+    public Interface(String interfaceInfo, OptionGroup options, InputType inputType){
         this.interfaceInfo = interfaceInfo;
         this.options = options;
-        this.inputIsInt = inputIsInt;
+        this.inputType = inputType;
     }
 
     public void display(){
@@ -20,7 +20,9 @@ public class Interface {
         for (Option option: options.getOptions()){
             System.out.println((options.getOptions().indexOf(option) + 1) + ". " + option.getOptionName());
         }
-        if(inputIsInt) options.getOptions().get(InputManager.getIntInput("\n", ConsoleMethods.rangeArrayListMaker(1, options.getOptions().size()))-1).runMethod();
-        else InputManager.getStringInput("\n");
+    }
+
+    public OptionGroup getOptions() {
+        return options;
     }
 }
