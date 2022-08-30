@@ -4,9 +4,8 @@ public class Option {
     private String optionName;
     private Interface  linkedInterface;
 
-    public Option(String name, Interface linkedInterface) {
+    public Option(String name) {
         optionName = name;
-        this.linkedInterface = linkedInterface;
     }
 
     public String getOptionName() {

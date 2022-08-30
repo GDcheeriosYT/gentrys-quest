@@ -6,12 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainMenuInterface extends Interface{
-
     static OptionGroup optionGroup = new OptionGroup(new ArrayList<Option>(List.of(
-            new Option("play", PlayInterface),
-            new Option("settings", SettingsInterface),
-            new Option("changelog", ChangelogInterface),
-            new Option("quit", null)
+            new Option("play"),
+            new Option("settings"),
+            new Option("changelog"),
+            new Option("quit")
     )));
 
     public MainMenuInterface(){
@@ -20,7 +19,9 @@ public class MainMenuInterface extends Interface{
 
     public Interface handleInput(int input){
         switch (input){
-            case 1:
+            case 1: {
+                new PlayInterface.display();
+            }
         }
     }
 }
