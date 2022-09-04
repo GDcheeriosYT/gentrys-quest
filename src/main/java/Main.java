@@ -13,16 +13,20 @@ import static org.fusesource.jansi.Ansi.ansi;
 import static org.fusesource.jansi.Ansi.Color;
 
 class Main{
+  //initialize necessary variables
   static Data gameData = new Data();
   static User user;
   static Inventory inventory;
-  static ArrayList<Interface> menunMemory;
   static SettingManager settingManager = new SettingManager();
 
+  //main menu initialization
+  static MainMenuInterface mainMenu;
+
+  //d
+
   public static void main(String[] args) throws IOException {
-    MainMenuInterface mainMenu = new MainMenuInterface();
+    //initialize AnsiConsole
     AnsiConsole.systemInstall();
-    AnsiConsole.out().println( ansi().eraseScreen().fg(Color.RED).a(args[0]).fg(Color.GREEN).a(" " + args[1]).fg(Color.BLUE).a(" " + args[2]).reset() );
     gameData.getSaveDataFromServer(args[0], args[1], args[2]);
     inventory = gameData.loadData();
     SettingManager.populateSettings(gameData.initializeSettings());

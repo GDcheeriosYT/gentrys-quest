@@ -9,8 +9,14 @@ import java.util.List;
 
 public class SettingsInterface extends Interface{
 
-    public SettingsInterface(ArrayList<Setting> settings, ArrayList<Setting> ){
-        super("settings", settings, InputType.INT, true);
+    private ArrayList<Setting> settings;
+
+    public SettingsInterface(){
+
+    }
+
+    public updateSettings(ArrayList<Setting> settings){
+        this.settings = settings;
     }
 
     public void handleInput(int input) {
