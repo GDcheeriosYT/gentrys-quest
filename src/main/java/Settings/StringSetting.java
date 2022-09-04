@@ -4,7 +4,7 @@ public class StringSetting extends Setting{
     private String text;
 
     public StringSetting(String name, String text, Runnable method){
-        super(name, method);
+        super(name);
         this.text = text;
     }
 

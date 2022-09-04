@@ -6,14 +6,14 @@ public class IntSetting extends Setting{
     private int maxValue;
 
     public IntSetting(String name, int value, Runnable method){
-        super(name, method);
+        super(name);
         this.value = value;
         this.minValue = Integer.MIN_VALUE;
         this.maxValue = Integer.MAX_VALUE;
     }
 
     public IntSetting(String name, int defaultValue, int minValue, int maxValue, Runnable method){
-        super(name, method);
+        super(name);
         this.value = defaultValue;
         this.minValue = minValue;
         this.maxValue = maxValue;

@@ -4,7 +4,7 @@ public class ToggleSetting extends Setting{
     private Boolean toggled;
 
     public ToggleSetting(String name, Boolean toggled, Runnable method){
-        super(name, method);
+        super(name);
         this.toggled = toggled;
     }
 
