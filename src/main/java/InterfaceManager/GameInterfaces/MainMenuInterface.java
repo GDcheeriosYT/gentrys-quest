@@ -14,9 +14,11 @@ public class MainMenuInterface extends Interface{
             new Option("changelog"),
             new Option("quit")
     )));
+    private PlayInterface playInterface = new PlayInterface();
+    private SettingsInterface settingsInterface = new SettingsInterface();
 
-    public MainMenuInterface(JSONObject settings){
-        super("Gentry's Quest", optionGroup, InputType.INT);
+    public MainMenuInterface(){
+        super("Gentry's Quest", optionGroup, InputType.INT, false);
         this.settings = settings;
     }
 
@@ -26,7 +28,8 @@ public class MainMenuInterface extends Interface{
                 new PlayInterface().display();
             }
             case 2: {
-                new SettingsInterface(settings).display();
+                new SettingsInterface().display();
+                settings.handleInput();
             }
             case 4:
                 System.exit(0);

@@ -1,10 +1,14 @@
+import InterfaceManager.GameInterfaces.SettingsInterface;
+import InterfaceManager.Option;
+import InterfaceManager.OptionGroup;
 import Inventory.Inventory;
+import Settings.*;
 import SignificantThings.Artifacts.Artifact;
 import SignificantThings.Buffs.Buff;
-import SignificantThings.SignificantThing;
 import SignificantThings.Weapons.Verbs;
 import SignificantThings.Weapons.Weapon;
 import SignificantThings.Characters.Character;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import okhttp3.*;
@@ -39,6 +43,18 @@ public class Data {
                     "  }\n" +
                     "}");
         }
+    }
+
+    public ArrayList<Setting> initializeSettings(){
+        JSONObject settingsFromJSON = data.getJSONObject("settings");
+        ArrayList<Setting> settings = new ArrayList<Setting>();
+        for(String setting: settingsFromJSON.keySet()){
+            System.out.println(settingsFromJSON.get(setting));
+            if (settingsFromJSON.get(setting) instanceof Integer) settings.add(new IntSetting(setting, ((Integer) settingsFromJSON.get(setting)).intValue()));
+            if (settingsFromJSON.get(setting) instanceof String) settings.add(new StringSetting(setting, settingsFromJSON.get(setting).toString()));
+            if (settingsFromJSON.get(setting) instanceof Boolean) settings.add(new ToggleSetting(setting, ((Boolean) settingsFromJSON.get(setting)).booleanValue()));
+        }
+        return settings;
     }
 
     public Inventory loadData(){

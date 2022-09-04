@@ -3,8 +3,8 @@ package Settings;
 public class ToggleSetting extends Setting{
     private Boolean toggled;
 
-    public ToggleSetting(String name, Boolean toggled, Runnable method){
-        super(name);
+    public ToggleSetting(String name, Boolean toggled){
+        super(name, SettingType.TOGGLE);
         this.toggled = toggled;
     }
 
@@ -12,6 +12,7 @@ public class ToggleSetting extends Setting{
         return toggled;
     }
 
+    @Override
     public void toggleSetting(){
         toggled = !toggled;
     }

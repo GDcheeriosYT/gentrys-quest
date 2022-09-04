@@ -16,7 +16,8 @@ public class PlayInterface extends Interface {
         super(
             "",
             optionGroup,
-            InputType.INT
+            InputType.INT,
+            false
         );
     }
 

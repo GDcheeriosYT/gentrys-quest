@@ -7,29 +7,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SettingsInterface {
-    private Interface settingsInterface;
-    private ToggleSetting debug;
-    private ToggleSetting timeout;
-    static OptionGroup optionGroup = new OptionGroup(new ArrayList<Option>(List.of(
-        new Option("debug"),
-        new Option("timeout"),
-        new Option("back")
-    )));
+public class SettingsInterface extends Interface{
 
-    public SettingsInterface(JSONObject settings){
-        debug.setToggle(settings.getBoolean("debug"));
-        timeout.setToggle(settings.getBoolean("timeout"));
-        this.settingsInterface = new Interface(
-        "settings",
-                optionGroup,
-                InputType.INT
-        );
+    public SettingsInterface(ArrayList<Setting> settings, ArrayList<Setting> ){
+        super("settings", settings, InputType.INT, true);
     }
 
     public void handleInput(int input) {
-        switch(){
-            
+        if(input < super.getSettings().size()){
+            switch (super.getSettings().get(input - 1).getType()) {
+                case NUMBER -> {
+                }
+                case STRING -> {
+                }
+                case TOGGLE -> {
+                    super.getSettings().get(input - 1).toggleSetting();
+                }
+            }
         }
     }
 }

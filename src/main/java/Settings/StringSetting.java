@@ -3,8 +3,8 @@ package Settings;
 public class StringSetting extends Setting{
     private String text;
 
-    public StringSetting(String name, String text, Runnable method){
-        super(name);
+    public StringSetting(String name, String text){
+        super(name, SettingType.STRING);
         this.text = text;
     }
 
