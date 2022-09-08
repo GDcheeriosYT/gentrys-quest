@@ -18,6 +18,9 @@ run{
 application {
     mainClassName = 'Main'
 }
+test {
+    useJUnitPlatform()
+}
 
 dependencies {
     implementation group: 'org.json', name: 'json', version: '20220320'
@@ -43,4 +46,3 @@ task fatJar(type:Jar){
     }
     with jar
 }
-

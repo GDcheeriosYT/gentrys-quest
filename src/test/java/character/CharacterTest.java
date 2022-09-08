@@ -1,10 +1,8 @@
-package tests.Character;
+package character;
 
-import character.Character;
+public class CharacterTest {
 
-public class CharacterInfo {
-
-    public CharacterInfo(){
+    public CharacterTest(){
         //testing class
     }
 
