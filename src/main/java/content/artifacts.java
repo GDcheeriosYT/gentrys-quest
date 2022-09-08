@@ -20,7 +20,7 @@ public class artifacts {
 
     //brayden messerschmidt artifacts
     Artifact loliBodyPillow = new Artifact("Loli Body Pillow", new Buff("critRate"), "brayden messerschmidt");
-    Artifact hyveeFualSaverCard = new Artifact("Hy-vee Fuel Saver", new Buff("critRate"), "brayden messerschmidt");
+    Artifact madokaChibiPlush = new Artifact("Madoka Chibi Plush", new Buff("critRate"), "brayden messerschmidt");
     Artifact loliCloth = new Artifact("Loli Cloth", new Buff("critRate"), "brayden messerschmidt");
     Artifact pepsiBottle = new Artifact("Pepsi Bottle", new Buff("critRate"), "brayden messerschmidt");
     Artifact osuTablet = new Artifact("Osu Tablet", new Buff("critRate"), "brayden messerschmidt");
@@ -52,11 +52,11 @@ public class artifacts {
     Artifact bouncer = new Artifact("Bouncer", new Buff("defense"), "spencer george");
 
     //mason james artifacts
-    Artifact toothpaste = new Artifact("Toothpaste", new Buff("attack"), "mason james");
-    Artifact luckyFloss = new Artifact("Lucky Floss", new Buff("health"), "mason james");
-    Artifact dentures = new Artifact("Dentures", new Buff("defense"), "mason james");
-    Artifact retainers = new Artifact("Retainers", new Buff("critRate"), "mason james");
-    Artifact toothComb = new Artifact("Tooth Comb", new Buff("critDamage"), "mason james");
+    Artifact usedUndies = new Artifact("Used Undies", new Buff("health"), "mason james");
+    Artifact hairBrush = new Artifact("Hair Brush", new Buff("attack"), "mason james");
+    Artifact handCuffs = new Artifact("Hand Cuffs", new Buff("defense"), "mason james");
+    Artifact restraints = new Artifact("Restraints", new Buff("critRate"), "mason james");
+    Artifact strangeFlashlight = new Artifact("Strange Flashlight", new Buff("critDamage"), "mason james");
 
     //brody krysa artifacts
     Artifact chalkBag = new Artifact("Chalk Bag", new Buff("critRate"), "brody krysa");
@@ -107,13 +107,55 @@ public class artifacts {
     Artifact nyanCat = new Artifact("Nyan Cat", new Buff("critRate"), "bryce anderson");
     Artifact angryAnubis = new Artifact("Angry Anubis", new Buff("critRate"), "bryce anderson");
 
+    //Down Town artifacts
+    Artifact trashCanLid = new Artifact("Trash Can Lid", new Buff("defense"), "down town");
+    Artifact suit = new Artifact("Suit", new Buff("defense"), "down town");
+    Artifact jacket = new Artifact("Jacket", new Buff("defense"), "down town");
+    Artifact carKeys = new Artifact("Car Keys", new Buff(""), "down town");
+    Artifact cardboardBox = new Artifact("Cardboard Box", new Buff(""), "down town");
+    Artifact moldyCheese = new Artifact("Moldy Cheese", new Buff(""), "down town");
+    Artifact emptyBeerBottle = new Artifact("Empty Beer Bottle", new Buff("attack"), "down town");
+
+    //Man Clan artifacts
+    //Hentai Man
+    Artifact phone = new Artifact("Phone", new Buff("critDamage"), "man clan");
+    Artifact spoonCollection = new Artifact("Spoon Collection", new Buff("health"), "man clan");
+    Artifact crustyBodyPillow = new Artifact("Crusty Body Pillow", new Buff("defense"), "man clan");
+    Artifact bluetoothSpeakerThatPlaysVineBoomSoundEffect = new Artifact("Bluetooth Speaker That Plays Vine Boom Sound Effect", new Buff("health"), "man clan");
+    Artifact soakedDoujin = new Artifact("Soaked Doujin", new Buff("critRate"), "man clan");
+    //kchuntMan artifacts
+
+
+    //Dylan Topic artifacts
+
+    //David Napier artifacts
+    Artifact davidsGoldenAmuletOfMotherlessness = new Artifact("David's Golden Amulet of Motherlessness", new Buff("health"), "david napier");
+    Artifact titaniumStiltsForShortKings = new Artifact("Titanium Stilts For Short Kings", new Buff("defense"), "david napier");
+    Artifact headbangersGuitarOfLoneliness = new Artifact("Head-banger's Guitar of Loneliness", new Buff("critDamage"), "david napier");
+    Artifact fidgetSpinner = new Artifact("Fidget Spinner", new Buff("attack"), "david napier");
+    Artifact pictureOfChildScreaming = new Artifact("Picture of Child Screaming", new Buff(""), "david napier");
+
+    //hyvee artifacts
+    Artifact hyveeFuelSaverCard = new Artifact("Hy-vee Fuel Saver Card", new Buff(""), "hyvee");
+    Artifact hyveeBrandWater = new Artifact("Hy-vee Brand Water", new Buff(""), "hyvee");
+    Artifact hyveeBrandSpaghetti = new Artifact("Hy-vee Brand Spaghetti", new Buff(""), "hyvee");
+    Artifact hyveeBrandCandy = new Artifact("Hy-vee Brand Candy", new Buff(""), "hyvee");
+    Artifact hyveeBrandFruit = new Artifact("Hy-vee Brand Fruit", new Buff(""), "hyvee");
+    Artifact hyveeBrandCereal = new Artifact("Hy-vee Brand Cereal", new Buff(""), "hyvee");
+    Artifact lostCreditCard = new Artifact("Lost Credit Card", new Buff(""), "hyvee");
+    Artifact lostID = new Artifact("Lost ID", new Buff(""), "hyvee");
+    Artifact hyveeChinese = new Artifact("Hy-vee Chinese", new Buff(""), "hyvee");
+
+    //Grant Wiseman artifact
+    Artifact vialOfPiss = new Artifact("Vial of Piss", new Buff(""), "grant wiseman");
+
     contentArtifacts.add(rubiksCube);
     contentArtifacts.add(fork);
     contentArtifacts.add(bucket);
     contentArtifacts.add(globe);
     contentArtifacts.add(blanket);
     contentArtifacts.add(loliBodyPillow);
-    contentArtifacts.add(hyveeFualSaverCard);
+    contentArtifacts.add(madokaChibiPlush);
     contentArtifacts.add(loliCloth);
     contentArtifacts.add(pepsiBottle);
     contentArtifacts.add(osuTablet);
@@ -134,11 +176,11 @@ public class artifacts {
     contentArtifacts.add(weightedDice);
     contentArtifacts.add(rouletteWheel);
     contentArtifacts.add(bouncer);
-    contentArtifacts.add(toothpaste);
-    contentArtifacts.add(luckyFloss);
-    contentArtifacts.add(dentures);
-    contentArtifacts.add(retainers);
-    contentArtifacts.add(toothComb);
+    contentArtifacts.add(usedUndies);
+    contentArtifacts.add(hairBrush);
+    contentArtifacts.add(handCuffs);
+    contentArtifacts.add(restraints);
+    contentArtifacts.add(strangeFlashlight);
     contentArtifacts.add(chalkBag);
     contentArtifacts.add(climbingShoes);
     contentArtifacts.add(harness);
@@ -174,6 +216,33 @@ public class artifacts {
     contentArtifacts.add(buttahDog);
     contentArtifacts.add(nyanCat);
     contentArtifacts.add(angryAnubis);
+    contentArtifacts.add(trashCanLid);
+    contentArtifacts.add(suit);
+    contentArtifacts.add(jacket);
+    contentArtifacts.add(carKeys);
+    contentArtifacts.add(cardboardBox);
+    contentArtifacts.add(moldyCheese);
+    contentArtifacts.add(emptyBeerBottle);
+    contentArtifacts.add(phone);
+    contentArtifacts.add(spoonCollection);
+    contentArtifacts.add(crustyBodyPillow);
+    contentArtifacts.add(bluetoothSpeakerThatPlaysVineBoomSoundEffect);
+    contentArtifacts.add(soakedDoujin);
+    contentArtifacts.add(davidsGoldenAmuletOfMotherlessness);
+    contentArtifacts.add(titaniumStiltsForShortKings);
+    contentArtifacts.add(headbangersGuitarOfLoneliness);
+    contentArtifacts.add(fidgetSpinner);
+    contentArtifacts.add(pictureOfChildScreaming);
+    contentArtifacts.add(hyveeFuelSaverCard);
+    contentArtifacts.add(hyveeBrandWater);
+    contentArtifacts.add(hyveeBrandSpaghetti);
+    contentArtifacts.add(hyveeBrandFruit);
+    contentArtifacts.add(hyveeBrandCandy);
+    contentArtifacts.add(hyveeBrandCereal);
+    contentArtifacts.add(lostCreditCard);
+    contentArtifacts.add(lostID);
+    contentArtifacts.add(hyveeChinese);
+    contentArtifacts.add(vialOfPiss);
   }
 
   public static ArrayList<Artifact> getContentArtifacts(){

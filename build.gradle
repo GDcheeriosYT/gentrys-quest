@@ -1,10 +1,12 @@
 plugins {
+    id 'java'
     id 'application'
 }
 
+
 group = 'com.name'
-version = '1.0.0'
-sourceCompatibility = 17
+version = '2.0.0'
+sourceCompatibility = 16
 
 repositories {
     mavenCentral()
@@ -13,7 +15,6 @@ repositories {
 run{
  standardInput = System.in
 }
-
 application {
     mainClassName = 'Main'
 }
@@ -22,14 +23,26 @@ test {
 }
 
 dependencies {
-    implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
     implementation group: 'org.json', name: 'json', version: '20220320'
     implementation group: 'org.fusesource.jansi', name: 'jansi', version: '2.4.0'
-    // JUnit
-    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
-    // https://mvnrepository.com/artifact/org.mockito/mockito-core
-    testImplementation 'org.mockito:mockito-core:4.6.1'
-    // https://mvnrepository.com/artifact/org.assertj/assertj-core
-    testImplementation 'org.assertj:assertj-core:3.23.1'
+    implementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version:'4.10.0'
+}
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
+}
+
+task fatJar(type:Jar){
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest{
+        attributes 'Main-class' : 'Main',
+        'Implementation-Title' : "Gentry's Quest",
+        'Implementation-version' : '2.0.0'
+    }
+    from{
+        configurations.runtimeClasspath.collect{it.isDirectory() ? it : zipTree(it)}
+    }
+    with jar
 }

@@ -7,14 +7,12 @@ import enemy.Enemy;
 public class BattleArea {
   private final String name;
   private boolean isBossArea;
-  private boolean isSingleBossArea;
   private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   private ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
 
-  public BattleArea(String name, boolean isBossArea, boolean isSingleBossArea, ArrayList<Enemy> enemies, ArrayList<Artifact> artifacts){
+  public BattleArea(String name, boolean isBossArea, ArrayList<Enemy> enemies, ArrayList<Artifact> artifacts){
     this.name = name;
     this.isBossArea = isBossArea;
-    this.isSingleBossArea = isSingleBossArea;
     this.enemies = enemies;
     this.artifacts = artifacts;
   }
@@ -23,20 +21,29 @@ public class BattleArea {
     return name;
   }
 
-  public ArrayList<Enemy> initializeEnemies(int difficulty){
+  public ArrayList<Enemy> initializeEnemies(int difficulty, int maxLevel){
     if(isBossArea){
       difficulty++;
-      System.out.println("!warning!\n this area is very dangerous.");
+      System.out.println("!warning!\nthis area is very dangerous.");
     }
-    if(isSingleBossArea) return enemies;
     int enemyAmount = (int)(Math.random() *  (difficulty * 1.5) + 1);
     ArrayList<Enemy> enemiesToReturn = new ArrayList<Enemy>();
-    for(int i = 0; i<enemyAmount; i++){
+    if(enemies.size() > 1){
+      for(int i = 0; i<enemyAmount; i++){
+        Enemy enemySelector = enemies.get((int) (Math.random() * enemies.size()));
+        Enemy enemy = new Enemy(enemySelector.getName(), enemySelector.getHealth(), enemySelector.getAttack(), enemySelector.getDefense(), enemySelector.getWeapon(), enemySelector.getDescription());
+        int levelToSet = (int)((20 * (difficulty - 1)) + (Math.random() * (maxLevel - (maxLevel * 0.5))) + (maxLevel * 0.5));
+        enemy.setLevel(levelToSet == 0 ? 1 : levelToSet);
+        enemiesToReturn.add(enemy);
+      }
+    }
+    else{
       Enemy enemySelector = enemies.get((int) (Math.random() * enemies.size()));
       Enemy enemy = new Enemy(enemySelector.getName(), enemySelector.getHealth(), enemySelector.getAttack(), enemySelector.getDefense(), enemySelector.getWeapon(), enemySelector.getDescription());
       enemy.setLevel((int)((20 * (difficulty - 1)) + (Math.random() * 5) + 1));
       enemiesToReturn.add(enemy);
     }
+
 
     return enemiesToReturn;
   }
